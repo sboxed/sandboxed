@@ -1,0 +1,5 @@
+name: vibook_workspace
+sdkPath: ".fvm/flutter_sdk"
+packages:
+  - apps/*
+  - packages/*
