@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/provider/theme_mode.dart';
+import 'package:vibook/provider/title.dart';
 import 'package:vibook/tree/component_tree.dart';
 
 class ViDrawer extends StatelessWidget {
-  const ViDrawer({super.key});
+  const ViDrawer({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,12 @@ class ViDrawer extends StatelessWidget {
                   title: FittedBox(
                     fit: BoxFit.scaleDown,
                     alignment: Alignment.topLeft,
-                    child: Text(
-                      'VIBOOK',
+                    child: DefaultTextStyle.merge(
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
                           ),
+                      child: ref.watch(titleProvider),
                     ),
                   ),
                   contentPadding: const EdgeInsets.only(left: 16, right: 8),

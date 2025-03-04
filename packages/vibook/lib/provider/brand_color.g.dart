@@ -6,7 +6,7 @@ part of 'brand_color.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$brandColorHash() => r'47a6ea99af14b469ac72aea41ce9cad9fcf109b8';
+String _$brandColorHash() => r'a5de268264ddadec44e0fca4ade1ddb58823b32e';
 
 /// See also [brandColor].
 @ProviderFor(brandColor)

@@ -16,16 +16,17 @@ class AddonsInspector extends ConsumerWidget {
         child: ListView(
           children: [
             for (final addon in ref.watch(addonsProvider))
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: KeyedSubtree(
-                    key: Key(addon.id),
-                    child: addon.buildEditor(context),
+              if (addon.buildEditor(context) case Widget editor)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: KeyedSubtree(
+                      key: Key(addon.id),
+                      child: editor,
+                    ),
                   ),
                 ),
-              ),
           ],
         ),
       ),

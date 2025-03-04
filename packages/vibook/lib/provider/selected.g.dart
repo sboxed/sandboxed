@@ -6,7 +6,7 @@ part of 'selected.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$selectedStoryHash() => r'32ebd55bd170ac168e64716146d454728998dd5d';
+String _$selectedStoryHash() => r'121a886b037a6813a33f6310e2f2c290f8a4cc98';
 
 /// See also [selectedStory].
 @ProviderFor(selectedStory)

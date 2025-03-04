@@ -14,9 +14,9 @@ const kCardTheme = CardTheme(
 
 final kInputTheme = InputDecorationTheme(
   filled: true,
-
-  // outlineBorder: BorderSide(color: Colors.red),
-  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12),
+  ),
 );
 
 ThemeData buildLightTheme(BuildContext context, WidgetRef ref) => ThemeData(

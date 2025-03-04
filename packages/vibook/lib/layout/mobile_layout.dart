@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibook/provider/addons.dart';
-import 'package:vibook/provider/selected.dart';
+import 'package:vibook/layout/story_viewport.dart';
+import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/widgets/story_name.dart';
+import 'package:vibook/widgets/vi_bottom_app_bar.dart';
 import 'package:vibook/widgets/vi_drawer.dart';
 import 'package:vibook_core/component.dart';
-import 'package:vibook_core/story.dart';
-import 'package:vibook_core/story_view.dart';
 
 class MobileLayout extends StatefulWidget {
   final List<Component> components;
@@ -28,37 +27,19 @@ class _MobileLayoutState extends State<MobileLayout> {
         return Scaffold(
           appBar: AppBar(
             title: const StoryName(),
-            backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
           ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.endContained,
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {},
+            backgroundColor: ref.watch(brandColorProvider),
+            foregroundColor: Colors.white,
+            label: const Text("Share"),
+          ),
+          bottomNavigationBar: const ViBottomAppBar(),
           drawer: const ViDrawer(),
-          endDrawer: Drawer(
-            child: Column(
-              children: [
-                AppBar(
-                  automaticallyImplyLeading: false,
-                  title: const StoryName(),
-                  actions: const [CloseButton()],
-                  backgroundColor: Colors.transparent,
-                ),
-              ],
-            ),
-          ),
-          body: Column(
-            children: [
-              if (ref.watch(selectedStoryProvider)
-                  case (Component component, Story story))
-                Expanded(
-                  child: StoryView(
-                    meta: component.meta(),
-                    story: story,
-                    decorators: [
-                      for (final addon in ref.watch(addonsProvider))
-                        ...addon.decorate(context),
-                    ],
-                  ),
-                ),
-            ],
-          ),
+          body: const StoryViewport(),
         );
       },
     );

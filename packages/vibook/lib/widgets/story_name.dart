@@ -18,10 +18,10 @@ class StoryName extends StatelessWidget {
           child: Text(
             component != null
                 ? '${component.meta().displayName} / ${story!.name}'
-                : 'Hello',
+                : 'Select Story',
             style: TextStyle(
-              color: ref.watch(brandColorProvider),
-              fontWeight: FontWeight.bold,
+              color: component != null ? ref.watch(brandColorProvider) : null,
+              fontWeight: FontWeight.w800,
             ),
           ),
         );

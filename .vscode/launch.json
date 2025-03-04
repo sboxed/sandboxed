@@ -4,11 +4,25 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-  
     {
-      "name": "vibook",
+      "name": "material_book",
+      "cwd": "apps/material_book",
       "request": "launch",
       "type": "dart"
+    },
+    {
+      "name": "material_book (profile mode)",
+      "cwd": "apps/material_book",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "material_book (release mode)",
+      "cwd": "apps/material_book",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
     },
     {
       "name": "sandbox",
@@ -30,51 +44,5 @@
       "type": "dart",
       "flutterMode": "release"
     },
-    {
-      "name": "core",
-      "cwd": "packages/core",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "core (profile mode)",
-      "cwd": "packages/core",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "core (release mode)",
-      "cwd": "packages/core",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release"
-    },
-    {
-      "name": "vibook",
-      "cwd": "packages/vibook",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "vibook (profile mode)",
-      "cwd": "packages/vibook",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "vibook (release mode)",
-      "cwd": "packages/vibook",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release"
-    },
-    {
-      "name": "vibook_generator",
-      "cwd": "packages/vibook_generator",
-      "request": "launch",
-      "type": "dart"
-    }
   ]
 }

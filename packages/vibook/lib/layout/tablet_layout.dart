@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_resizable_container/flutter_resizable_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/inspector/addons_inspector.dart';
-import 'package:vibook/inspector/sidebar.dart';
-import 'package:vibook/provider/addons.dart';
-import 'package:vibook/provider/selected.dart';
-import 'package:vibook/toolbar/toolbar.dart';
+import 'package:vibook/inspector/knobs_inspector.dart';
+import 'package:vibook/layout/story_viewport.dart';
+import 'package:vibook/widgets/sidebar.dart';
 import 'package:vibook/widgets/vi_drawer.dart';
 import 'package:vibook_core/component.dart';
-import 'package:vibook_core/story.dart';
-import 'package:vibook_core/story_view.dart';
 
 class TabletLayout extends StatefulWidget {
   final List<Component> components;
@@ -21,6 +18,9 @@ class TabletLayout extends StatefulWidget {
 }
 
 class _TabletLayoutState extends State<TabletLayout> {
+  late final GlobalKey _viewportKey = GlobalKey();
+  late final GlobalKey _bottomBarKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     final divider = ResizableDivider(
@@ -29,53 +29,66 @@ class _TabletLayoutState extends State<TabletLayout> {
     );
 
     return Scaffold(
-      body: ResizableContainer(
-        children: [
-          ResizableChild(
-            divider: divider,
-            size: const ResizableSize.pixels(300, min: 300),
-            child: const ViDrawer(),
-          ),
-          ResizableChild(
-            divider: divider,
-            size: const ResizableSize.expand(),
-            child: Consumer(
-              builder: (context, ref, child) => Column(
-                children: [
-                  const Toolbar(),
-                  if (ref.watch(selectedStoryProvider)
-                      case (Component component, Story story))
-                    Expanded(
-                      child: StoryView(
-                        meta: component.meta(),
-                        story: story,
-                        decorators: [
-                          for (final addon in ref.watch(addonsProvider))
-                            ...addon.decorate(context),
-                        ],
-                      ),
-                    ),
-                ],
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return ResizableContainer(
+            children: [
+              ResizableChild(
+                divider: divider,
+                size: const ResizableSize.pixels(300, min: 300),
+                child: const ViDrawer(),
               ),
-            ),
-          ),
-          ResizableChild(
-            divider: divider,
-            size: const ResizableSize.pixels(300, min: 300),
-            child: Sidebar(
-              tabs: [
-                (Text('Addons'), AddonsInspector()),
-              ],
-            ),
-          ),
-        ],
-        direction: Axis.horizontal,
-      ),
-    );
-
-    return Scaffold(
-      body: Row(
-        children: [],
+              ResizableChild(
+                divider: divider,
+                size: const ResizableSize.expand(min: 300),
+                child: Consumer(
+                  builder: (context, ref, child) => ResizableContainer(
+                    key: ValueKey(constraints.maxHeight),
+                    direction: Axis.vertical,
+                    children: [
+                      ResizableChild(
+                        size: const ResizableSize.expand(),
+                        divider: divider,
+                        child: KeyedSubtree(
+                          key: _viewportKey,
+                          child: const StoryViewport(),
+                        ),
+                      ),
+                      ResizableChild(
+                        // key:
+                        divider: divider,
+                        size: ResizableSize.ratio(
+                          1 / 3,
+                          min: 200,
+                          max: constraints.maxHeight * 2 / 3,
+                        ),
+                        child: KeyedSubtree(
+                          key: _bottomBarKey,
+                          child: SizedBox(
+                            height: double.infinity,
+                            child: Card(
+                              child: KnobsInspector(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ResizableChild(
+                divider: divider,
+                size: const ResizableSize.pixels(300, min: 300),
+                child: const Sidebar(
+                  tabs: [
+                    (Text('Addons'), AddonsInspector()),
+                  ],
+                ),
+              ),
+            ],
+            direction: Axis.horizontal,
+          );
+        },
       ),
     );
   }

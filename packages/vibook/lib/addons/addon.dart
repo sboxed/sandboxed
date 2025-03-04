@@ -8,9 +8,11 @@ abstract base class Addon<T> {
 
   List<Decorator> decorate(BuildContext context);
 
-  Widget buildEditor(BuildContext context);
+  Widget? buildEditor(BuildContext context);
 
-  Map<String, dynamic> serialize();
+  Map<String, dynamic>? serialize() {
+    return null;
+  }
 
-  void deserialize(Map<String, dynamic> json);
+  void deserialize(Map<String, dynamic> json) {}
 }
