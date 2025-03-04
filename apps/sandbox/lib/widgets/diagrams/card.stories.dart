@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vibook/addons/param_builders/base_param_builders/single_chips_param_builder.dart';
 import 'package:vibook_core/decorator.dart';
 import 'package:vibook_core/meta.dart';
 import 'package:vibook_core/story.dart';
@@ -24,20 +25,32 @@ final meta = Meta<ViDiagramCard>(
 
 Story get $Green => Story(
       name: 'Green',
-      builder: (context, knobs) {
+      builder: (context, params) {
         return ViDiagramCard(
-          title: knobs.string('title', "Lorem"),
-          color: knobs.color('color', Colors.green),
+          title: params.string('title', "Lorem"),
+          color: params.color('color', Colors.green),
+          stats: params.multi(
+            'stats',
+            [],
+            ViDiagramCardStats.values,
+            ChipsType(),
+          ),
         );
       },
     );
 
 Story get $Blue => Story(
       name: 'Blue',
-      builder: (context, knobs) {
+      builder: (context, params) {
         return ViDiagramCard(
-          title: knobs.string('title', "Lorem"),
-          color: knobs.color('color', Colors.blue),
+          title: params.string('title', "Lorem"),
+          color: params.color('color', Colors.blue),
+          stats: params.multi(
+            'stats',
+            [],
+            ViDiagramCardStats.values,
+            ChipsType(),
+          ),
         );
       },
     );

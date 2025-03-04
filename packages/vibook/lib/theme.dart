@@ -19,18 +19,28 @@ final kInputTheme = InputDecorationTheme(
   ),
 );
 
+final kFilledButtonTheme = FilledButtonThemeData(
+  style: FilledButton.styleFrom(
+    foregroundColor: Colors.white,
+  ),
+);
+
+const kOutlinedButtonTheme = OutlinedButtonThemeData();
+
 ThemeData buildLightTheme(BuildContext context, WidgetRef ref) => ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       colorScheme: ColorScheme.fromSeed(
         brightness: Brightness.light,
-        seedColor: Colors.grey,
+        seedColor: Colors.white,
         primary: ref.watch(brandColorProvider),
       ),
 
       // shared
       textTheme:
           GoogleFonts.jetBrainsMonoTextTheme(ThemeData.light().textTheme),
+      filledButtonTheme: kFilledButtonTheme,
+      outlinedButtonTheme: kOutlinedButtonTheme,
       drawerTheme: kDrawerTheme,
       cardTheme: kCardTheme,
       inputDecorationTheme: kInputTheme,
@@ -45,12 +55,14 @@ ThemeData buildDarkTheme(BuildContext context, WidgetRef ref) => ThemeData(
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(
         brightness: Brightness.dark,
-        seedColor: Colors.grey,
+        seedColor: Colors.white,
         primary: ref.watch(brandColorProvider),
       ),
 
       // shared
       textTheme: GoogleFonts.jetBrainsMonoTextTheme(ThemeData.dark().textTheme),
+      filledButtonTheme: kFilledButtonTheme,
+      outlinedButtonTheme: kOutlinedButtonTheme,
       drawerTheme: kDrawerTheme,
       cardTheme: kCardTheme,
       inputDecorationTheme: kInputTheme,

@@ -8,8 +8,8 @@ final components = [
   Component(
     meta: () => button.meta,
     stories: [
-      () => button.$Blue,
       () => button.$Green,
+      () => button.$Blue,
     ],
   ),
   Component(

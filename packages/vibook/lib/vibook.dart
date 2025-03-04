@@ -4,6 +4,7 @@ library vibook;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/addons/addon.dart';
+import 'package:vibook/addons/param_builders/base_param_builders_addon.dart';
 import 'package:vibook/addons/reload/reload_addon.dart';
 import 'package:vibook/layout/mobile_layout.dart';
 import 'package:vibook/layout/tablet_layout.dart';
@@ -66,12 +67,11 @@ class _VibookState extends State<Vibook> {
         titleProvider.overrideWithValue(widget.title),
         brandColorProvider.overrideWithValue(widget.brandColor),
         componentsProvider.overrideWithValue(widget.components),
-        addonsProvider.overrideWithValue(
-          [
-            ReloadAddon(),
-            ...widget.addons,
-          ],
-        ),
+        addonListProvider.overrideWithValue([
+          ReloadAddon(),
+          ...widget.addons,
+          BaseParamBuildersAddon(),
+        ]),
       ],
       child: Consumer(
         builder: (context, ref, child) {

@@ -24,20 +24,20 @@ final meta = Meta<ViDiagramButton>(
 
 Story get $Green => Story(
       name: 'Green',
-      builder: (context, knobs) {
+      builder: (context, params) {
         return ViDiagramButton(
-          title: knobs.string('title', "Lorem"),
-          color: knobs.color('color', Colors.green),
+          title: params.string('title', "Lorem"),
+          color: params.color('color', Colors.green),
         );
       },
     );
 
 Story get $Blue => Story(
       name: 'Blue',
-      builder: (context, knobs) {
+      builder: (context, params) {
         return ViDiagramButton(
-          title: knobs.string('title', "Lorem"),
-          color: knobs.color('color', Colors.blue),
+          title: params.string('title', "Lorem"),
+          color: params.color('color', Colors.blue),
         );
       },
     );

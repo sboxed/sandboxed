@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vibook/addons/addon.dart';
+import 'package:vibook/addons/decorator_addon.dart';
 
-abstract base class FlagAddon extends Addon<bool> {
+abstract base class FlagAddon extends Addon with DecoratorAddon<bool> {
   String get name;
 
   @override

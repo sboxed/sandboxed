@@ -14,7 +14,7 @@ const meta = Meta<MyComponent>(
 
 get $Percentage => Story(
   builder: (context) {
-    final args = context.knobs.title();
+    final args = context.params.title();
 
     return MyComponent(
       type: MyComponentType.percentage,
@@ -24,7 +24,7 @@ get $Percentage => Story(
 
 get $Integer => Story(
   builder: (context, args) {
-    final title = context.knobs.string("Lorem");
+    final title = context.params.string("Lorem");
 
     return MyComponent(
       title: title,

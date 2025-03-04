@@ -32,7 +32,7 @@ Meta get meta => Meta<Header>(
 
 Story get $Default => Story(
       name: 'Default',
-      builder: (context, knobs) {
+      builder: (context, params) {
         return const Header();
       },
     );

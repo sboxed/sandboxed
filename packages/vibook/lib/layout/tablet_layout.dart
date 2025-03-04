@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_resizable_container/flutter_resizable_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/inspector/addons_inspector.dart';
-import 'package:vibook/inspector/knobs_inspector.dart';
+import 'package:vibook/inspector/component_inspector.dart';
 import 'package:vibook/layout/story_viewport.dart';
 import 'package:vibook/widgets/sidebar.dart';
 import 'package:vibook/widgets/vi_drawer.dart';
@@ -64,10 +64,10 @@ class _TabletLayoutState extends State<TabletLayout> {
                         ),
                         child: KeyedSubtree(
                           key: _bottomBarKey,
-                          child: SizedBox(
+                          child: const SizedBox(
                             height: double.infinity,
                             child: Card(
-                              child: KnobsInspector(),
+                              child: ComponentInspector(),
                             ),
                           ),
                         ),

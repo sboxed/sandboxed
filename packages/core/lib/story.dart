@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/knobs.dart';
+import 'package:vibook_core/params.dart';
 
-typedef StoryBuilder = Widget Function(BuildContext context, Knobs knobs);
+typedef StoryBuilder = Widget Function(BuildContext context, Params params);
 
 class Story {
   final String? name;

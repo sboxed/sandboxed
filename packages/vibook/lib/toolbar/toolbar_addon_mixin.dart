@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vibook/addons/addon.dart';
 
-base mixin ToolbarAddonMixin<T> on Addon<T> {
+base mixin ToolbarAddonMixin on Addon {
   List<Widget> get actions;
 }

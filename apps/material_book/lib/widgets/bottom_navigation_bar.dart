@@ -27,7 +27,7 @@ Meta get meta => Meta<BottomNavigationBar>(
 
 Story get $Default => Story(
       name: 'Green',
-      builder: (context, knobs) {
+      builder: (context, params) {
         return BottomNavigationBar(
           items: [
             BottomNavigationBarItem(

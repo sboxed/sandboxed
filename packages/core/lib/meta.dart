@@ -8,6 +8,8 @@ class Meta<T extends Widget> {
 
   final String? module;
 
+  final String? documentation;
+
   /// Parameters in JS-like format.
   final Map<String, dynamic> parameters;
 
@@ -18,6 +20,7 @@ class Meta<T extends Widget> {
     String? name,
     Type? component,
     this.module,
+    this.documentation,
     this.parameters = const {},
     this.decorators = const [],
   })  : _name = name,
@@ -29,4 +32,21 @@ class Meta<T extends Widget> {
       name.split('/').last.trim().replaceAll(RegExp(r'^[\d.]+'), '').trim();
 
   Type get component => _component ?? T;
+
+  Meta<T> copyWith({
+    String? name,
+    String? documentation,
+    String? module,
+  }) {
+    return Meta(
+      name: name ?? this.name,
+      documentation: documentation ?? this.documentation,
+      module: module ?? this.module,
+
+      // shared
+      component: component,
+      parameters: parameters,
+      decorators: decorators,
+    );
+  }
 }

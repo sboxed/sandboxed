@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vibook/addons/decorator_addon.dart';
 import 'package:vibook/provider/addons.dart';
 
 class AddonsInspector extends ConsumerWidget {
@@ -16,17 +17,18 @@ class AddonsInspector extends ConsumerWidget {
         child: ListView(
           children: [
             for (final addon in ref.watch(addonsProvider))
-              if (addon.buildEditor(context) case Widget editor)
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: KeyedSubtree(
-                      key: Key(addon.id),
-                      child: editor,
+              if (addon case DecoratorAddon addon)
+                if (addon.buildEditor(context) case Widget editor)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: KeyedSubtree(
+                        key: Key(addon.id),
+                        child: editor,
+                      ),
                     ),
                   ),
-                ),
           ],
         ),
       ),

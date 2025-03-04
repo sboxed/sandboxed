@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/alignment/alignment_picker.dart';
+import 'package:vibook/addons/decorator_addon.dart';
 import 'package:vibook/toolbar/toolbar_addon_mixin.dart';
 import 'package:vibook/toolbar/toolbar_button.dart';
 import 'package:vibook/toolbar/toolbar_overlay_button.dart';
 import 'package:vibook_core/decorator.dart';
 
-final class AlignmentAddon extends Addon<Alignment> with ToolbarAddonMixin {
+final class AlignmentAddon extends Addon
+    with DecoratorAddon<Alignment>, ToolbarAddonMixin {
   @override
   String get id => 'alignment';
 

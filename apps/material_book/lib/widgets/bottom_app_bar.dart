@@ -33,7 +33,7 @@ Meta get meta => Meta<BottomAppBar>(
 
 Story get $Default => Story(
       name: 'Green',
-      builder: (context, knobs) {
+      builder: (context, params) {
         return BottomAppBar(
           child: Row(
             children: <Widget>[
