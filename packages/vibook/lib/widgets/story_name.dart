@@ -10,19 +10,32 @@ class StoryName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final (component, story) =
-            ref.watch(selectedStoryProvider) ?? (null, null);
+        final selection = ref.watch(selectedElementProvider);
+        Widget child;
+
+        switch (selection) {
+          case null:
+            child = const Text('Select Story');
+
+          case DocumentSelection(:final component, :final document):
+            child = const Text('Select Story');
+            child = Text(
+              '${component.meta().displayName} / ${document.name}',
+              style: TextStyle(color: ref.watch(brandColorProvider)),
+            );
+
+          case StorySelection(:final component, :final story):
+            child = Text(
+              '${component.meta().displayName} / ${story.name}',
+              style: TextStyle(color: ref.watch(brandColorProvider)),
+            );
+        }
 
         return FittedBox(
           fit: BoxFit.fitWidth,
-          child: Text(
-            component != null
-                ? '${component.meta().displayName} / ${story!.name}'
-                : 'Select Story',
-            style: TextStyle(
-              color: component != null ? ref.watch(brandColorProvider) : null,
-              fontWeight: FontWeight.w800,
-            ),
+          child: DefaultTextStyle.merge(
+            style: const TextStyle(fontWeight: FontWeight.w800),
+            child: child,
           ),
         );
       },

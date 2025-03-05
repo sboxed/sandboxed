@@ -13,21 +13,26 @@ class ComponentDocumentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Markdown(
-      selectable: true,
-      onTapLink: (text, href, title) async {
-        if (href == null) return;
-        if (await canLaunchUrlString(href)) {
-          launchUrlString(href);
-        } else {
-          Clipboard.setData(ClipboardData(text: href));
-          if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Link copied into clipboard')));
-          }
-        }
-      },
-      data: body,
+    return Center(
+      child: SizedBox(
+        width: 729,
+        child: Markdown(
+          selectable: true,
+          onTapLink: (text, href, title) async {
+            if (href == null) return;
+            if (await canLaunchUrlString(href)) {
+              launchUrlString(href);
+            } else {
+              Clipboard.setData(ClipboardData(text: href));
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Link copied into clipboard')));
+              }
+            }
+          },
+          data: body,
+        ),
+      ),
     );
   }
 }

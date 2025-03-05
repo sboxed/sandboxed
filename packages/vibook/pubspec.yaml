@@ -16,6 +16,9 @@ dependencies:
   google_fonts: ^6.0.0
   iconify_flutter_plus: ^1.0.0
 
+  # routing
+  auto_route: ^10.0.0
+
   # editor
   recursive_tree_flutter: ^1.0.0
   flutter_resizable_container: ^4.0.0
@@ -52,3 +55,4 @@ dev_dependencies:
   # generator
   build_runner: ^2.4.0
   riverpod_generator: ^2.6.0
+  auto_route_generator: ^10.0.0

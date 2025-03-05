@@ -149,11 +149,11 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
           ),
           leading: node.data.buildLeading(context),
           title: node.data.buildTitle(context),
-          selected: ref.watch(selectedStoryNotifierProvider) == node.data.id,
+          selected: ref.watch(selectedElementNotifierProvider) == node.data.id,
           onTap: () {
             if (node.isLeaf) {
               ref
-                  .read(selectedStoryNotifierProvider.notifier)
+                  .read(selectedElementNotifierProvider.notifier)
                   .select(node.data.id);
             } else {
               ref.read(componentTreeNotifierProvider.notifier).toggle(node);

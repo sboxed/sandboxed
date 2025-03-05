@@ -26,10 +26,12 @@ class _ComponentInspectorState extends ConsumerState<ComponentInspector> {
 
   @override
   Widget build(BuildContext context) {
-    final (component, story) = ref.watch(selectedStoryProvider) ?? (null, null);
-    final hasSelection = component != null && story != null;
-    final hasDocumentation = hasSelection &&
-        component.meta().documentation?.trim().isNotEmpty == true;
+    final selection = ref.watch(selectedElementProvider);
+    final hasSelection = selection != null;
+
+    final documents =
+        hasSelection ? selection.component.meta().documentation : null;
+    final hasDocumentation = documents?.isNotEmpty == true;
 
     return DefaultTextStyle.merge(
       style: TextStyle(
@@ -57,7 +59,8 @@ class _ComponentInspectorState extends ConsumerState<ComponentInspector> {
           ),
           if (hasSelection) ...[
             if (showDocumentation) ...[
-              if (component.meta().documentation case String documentation)
+              if (selection.component.meta().documentation?.first.content
+                  case String documentation)
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),

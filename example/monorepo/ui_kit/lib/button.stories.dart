@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/button.dart';
 import 'package:vibook_core/decorator.dart';
+import 'package:vibook_core/document_entry.dart';
 import 'package:vibook_core/meta.dart';
 import 'package:vibook_core/story.dart';
 
@@ -8,7 +9,10 @@ Meta get meta => Meta<Button>(
   name: '01. Button', // optional
   module: 'Features / 01. Core',
   component: Button, // optional
-  documentation: '''
+  documentation: [
+    DocumentEntry(
+      name: 'Docs',
+      content: '''
 A Material Design filled button.
 
 Filled buttons have the most visual impact after the [FloatingActionButton],
@@ -51,6 +55,8 @@ See also:
  * <https://material.io/design/components/buttons.html>
  * <https://m3.material.io/components/buttons>
 ''',
+    ),
+  ],
   parameters: {"golden": true, "fullpage": false},
   decorators: [
     Decorator(

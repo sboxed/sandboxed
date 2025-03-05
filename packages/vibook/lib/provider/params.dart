@@ -8,7 +8,7 @@ part 'params.g.dart';
 @riverpod
 ParamsNotifier params(Ref ref) {
   ref.listen(
-    selectedStoryProvider,
+    selectedElementProvider,
     (previous, next) {
       if (previous != next) ref.invalidateSelf();
     },

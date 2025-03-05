@@ -6,13 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/param_builders/base_param_builders_addon.dart';
 import 'package:vibook/addons/reload/reload_addon.dart';
-import 'package:vibook/layout/mobile_layout.dart';
-import 'package:vibook/layout/tablet_layout.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/provider/component_tree.dart';
 import 'package:vibook/provider/theme_mode.dart';
 import 'package:vibook/provider/title.dart';
+import 'package:vibook/router.dart';
 import 'package:vibook/theme.dart';
 import 'package:vibook_core/component.dart';
 
@@ -28,7 +27,9 @@ class Vibook extends StatelessWidget {
   final List<Component> components;
   final List<Addon> addons;
 
-  const Vibook({
+  final router = AppRouter();
+
+  Vibook({
     super.key,
     required this.components,
     this.title = const Text('VIBOOK'),
@@ -66,22 +67,11 @@ class Vibook extends StatelessWidget {
       ],
       child: Consumer(
         builder: (context, ref, child) {
-          return MaterialApp(
+          return MaterialApp.router(
             themeMode: ref.watch(themeModeNotifierProvider),
             theme: theme ?? buildLightTheme(context, ref),
             darkTheme: darkTheme ?? buildDarkTheme(context, ref),
-            home: LayoutBuilder(
-              builder: (context, constraints) {
-                const dividerWidth = 5;
-                final isMobile = constraints.maxWidth < 900 + dividerWidth * 2;
-
-                if (isMobile) {
-                  return MobileLayout(components: components);
-                } else {
-                  return TabletLayout(components: components);
-                }
-              },
-            ),
+            routerConfig: router.config(),
           );
         },
       ),

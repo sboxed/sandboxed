@@ -6,39 +6,39 @@ part of 'selected.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$selectedStoryHash() => r'121a886b037a6813a33f6310e2f2c290f8a4cc98';
+String _$selectedElementHash() => r'f8d33f85722ff11063d54f8200e621138abb1439';
 
-/// See also [selectedStory].
-@ProviderFor(selectedStory)
-final selectedStoryProvider = AutoDisposeProvider<(Component, Story)?>.internal(
-  selectedStory,
-  name: r'selectedStoryProvider',
+/// See also [selectedElement].
+@ProviderFor(selectedElement)
+final selectedElementProvider = AutoDisposeProvider<Selection?>.internal(
+  selectedElement,
+  name: r'selectedElementProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$selectedStoryHash,
+      : _$selectedElementHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef SelectedStoryRef = AutoDisposeProviderRef<(Component, Story)?>;
-String _$selectedStoryNotifierHash() =>
-    r'34ed9513cd7d04e2b7c520cb0af35ac8a4c9bb2a';
+typedef SelectedElementRef = AutoDisposeProviderRef<Selection?>;
+String _$selectedElementNotifierHash() =>
+    r'f4b5fc001bba4aa6692d96bec421625f6abb5f65';
 
-/// See also [SelectedStoryNotifier].
-@ProviderFor(SelectedStoryNotifier)
-final selectedStoryNotifierProvider =
-    AutoDisposeNotifierProvider<SelectedStoryNotifier, String?>.internal(
-  SelectedStoryNotifier.new,
-  name: r'selectedStoryNotifierProvider',
+/// See also [SelectedElementNotifier].
+@ProviderFor(SelectedElementNotifier)
+final selectedElementNotifierProvider =
+    AutoDisposeNotifierProvider<SelectedElementNotifier, String?>.internal(
+  SelectedElementNotifier.new,
+  name: r'selectedElementNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$selectedStoryNotifierHash,
+      : _$selectedElementNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SelectedStoryNotifier = AutoDisposeNotifier<String?>;
+typedef _$SelectedElementNotifier = AutoDisposeNotifier<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -80,8 +80,28 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
         }
 
         // Skip building stories for single story components.
-        if (component.stories.length <= 1) {
+        if (component.stories.length <= 1 &&
+            component.meta().documentation.isEmpty == true) {
           continue;
+        }
+
+        for (final document in component.meta().documentation) {
+          final name = document.name;
+          var node = TreeType<AbstractComponentTreeNode>(
+            // key: part.trim(), data: part == parts.last ? component : null);
+            data: DocumentationTreeNode(
+              id: [...parts, name.trim()].join('/'),
+              component: component,
+              title: name,
+              level: parts.length + 1,
+              index: parent.children.length,
+              entry: document,
+            ),
+            children: [],
+            parent: parent,
+          );
+          // var node = TreeNode(key: name, data: (component, story()));
+          parent.children.add(node);
         }
 
         for (final (index, story) in component.stories.indexed) {

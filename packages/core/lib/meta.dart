@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:recase/recase.dart';
 import 'package:vibook_core/decorator.dart';
+import 'package:vibook_core/document_entry.dart';
 
 class Meta<T extends Widget> {
   final String? _name;
@@ -8,7 +9,7 @@ class Meta<T extends Widget> {
 
   final String? module;
 
-  final String? documentation;
+  final List<DocumentEntry> documentation;
 
   /// Parameters in JS-like format.
   final Map<String, dynamic> parameters;
@@ -20,7 +21,7 @@ class Meta<T extends Widget> {
     String? name,
     Type? component,
     this.module,
-    this.documentation,
+    this.documentation = const [],
     this.parameters = const {},
     this.decorators = const [],
   })  : _name = name,
@@ -35,7 +36,7 @@ class Meta<T extends Widget> {
 
   Meta<T> copyWith({
     String? name,
-    String? documentation,
+    List<DocumentEntry>? documentation,
     String? module,
   }) {
     return Meta(

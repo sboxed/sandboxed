@@ -19,12 +19,30 @@ class StoryContainer {
 class PackageStories {
   final String package;
   final List<StoryContainer> storyContainers;
+  final String? docs;
 
-  const PackageStories({required this.package, required this.storyContainers});
+  const PackageStories({
+    required this.package,
+    required this.storyContainers,
+    this.docs,
+  });
 }
 
 class ComponentAggregateBuilder extends Builder {
   final String output = 'components.g.dart';
+
+  Future<String?> findDocs(BuildStep buildStep, AssetId target) async {
+    final docAsset = AssetId(
+      target.package,
+      target.path.replaceAll('.stories.dart', '.mdx'),
+    );
+
+    if (await buildStep.canRead(docAsset)) {
+      return buildStep.readAsString(docAsset);
+    }
+
+    return null;
+  }
 
   @override
   Future<void> build(BuildStep buildStep) async {
@@ -38,6 +56,7 @@ class ComponentAggregateBuilder extends Builder {
       final storyContainers = <StoryContainer>[];
 
       final storyContainer = await buildStep.readAsString(asset);
+      final docs = await findDocs(buildStep, asset);
 
       storyContainers.add(
         StoryContainer(
@@ -51,6 +70,7 @@ class ComponentAggregateBuilder extends Builder {
           PackageStories(
             package: buildStep.inputId.package,
             storyContainers: storyContainers,
+            docs: docs,
           ),
         );
       }
@@ -65,6 +85,7 @@ class ComponentAggregateBuilder extends Builder {
           .cast<String>();
 
       final storyContainers = <StoryContainer>[];
+      final docs = await findDocs(buildStep, asset);
 
       for (final path in storyContainerPaths) {
         final asset = AssetId(package.name, path);
@@ -83,6 +104,7 @@ class ComponentAggregateBuilder extends Builder {
           PackageStories(
             package: package.name,
             storyContainers: storyContainers,
+            docs: docs,
           ),
         );
       }
@@ -91,7 +113,7 @@ class ComponentAggregateBuilder extends Builder {
     final library = Library(
       (library) {
         library.directives
-            .add(Directive.import('package:vibook_core/component.dart'));
+            .add(Directive.import('package:vibook_core/vibook_core.dart'));
 
         List<Directive> directives = [];
         List<Code> components = [];
@@ -102,6 +124,7 @@ class ComponentAggregateBuilder extends Builder {
               package: package.package,
               path: storyContainer.path,
               code: storyContainer.content,
+              docs: package.docs,
             );
 
             directives.add(parser.import);

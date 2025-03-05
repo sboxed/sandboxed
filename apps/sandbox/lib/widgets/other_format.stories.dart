@@ -1,20 +1,20 @@
-import 'package:vibook_core/vibook_core.dart';
-import 'package:vibook_sandbox/widgets/button.stories.dart' as widgets_button;
-import 'package:vibook_sandbox/widgets/header.stories.dart' as widgets_header;
-import 'package:vibook_sandbox/widgets/diagrams/button.stories.dart'
-    as widgets_diagrams_button;
-import 'package:vibook_sandbox/widgets/diagrams/card.stories.dart'
-    as widgets_diagrams_card;
-import 'package:vibook_sandbox/widgets/other_format.stories.dart'
-    as widgets_other_format;
+import 'package:flutter/material.dart';
+import 'package:vibook/addons/param_builders/base_param_builders/single_chips_param_builder.dart';
+import 'package:vibook_core/decorator.dart';
+import 'package:vibook_core/document_entry.dart';
+import 'package:vibook_core/meta.dart';
+import 'package:vibook_core/story.dart';
+import 'package:vibook_sandbox/widgets/button.dart';
 
-final components = <Component>[
-  Component(
-    meta: () => widgets_button.meta.copyWith(
+Meta get meta2 => Meta<ViButton>(
+      name: '01. Other Format Examples', // optional
+      module: '_Meta',
+      component: ViButton, // optional
       documentation: [
-        ...widgets_button.meta.documentation,
         DocumentEntry(
-            name: 'Docs', content: '''A Material Design "elevated button".
+          name: 'Docs',
+          content: '''
+A Material Design "elevated button".
 
 Use elevated buttons to add dimension to otherwise mostly flat
 layouts, e.g. in long busy lists of content, or in wide
@@ -54,39 +54,49 @@ See also:
  * [OutlinedButton], a button with an outlined border and no fill color.
  * [TextButton], a button with no outline or fill color.
  * <https://material.io/design/components/buttons.html>
- * <https://m3.material.io/components/buttons>'''),
+ * <https://m3.material.io/components/buttons>
+''',
+        )
       ],
-    ),
-    stories: [
-      () => widgets_button.$Green,
-      () => widgets_button.$Blue,
-    ],
-  ),
-  Component(
-    meta: () => widgets_header.meta,
-    stories: [
-      () => widgets_header.$Default,
-    ],
-  ),
-  Component(
-    meta: () => widgets_diagrams_button.meta,
-    stories: [
-      () => widgets_diagrams_button.$Green,
-      () => widgets_diagrams_button.$Blue,
-    ],
-  ),
-  Component(
-    meta: () => widgets_diagrams_card.meta,
-    stories: [
-      () => widgets_diagrams_card.$Green,
-      () => widgets_diagrams_card.$Blue,
-    ],
-  ),
-  Component(
-    meta: () => widgets_other_format.meta2,
-    stories: [
-      () => widgets_other_format.$Green,
-      () => widgets_other_format.$Blue,
-    ],
-  ),
-];
+      parameters: {
+        "golden": true,
+        "fullpage": false,
+      },
+      decorators: [
+        Decorator(
+          (context, story) => Padding(
+            padding: const EdgeInsets.all(16),
+            child: story,
+          ),
+        ),
+      ],
+    );
+
+final $Green = Story(
+  name: 'Green',
+  builder: (context, params) {
+    return ViButton(
+      title: params.string('title', "Lorem"),
+      color: params.color('color', Colors.green),
+      size: params.single(
+        'size',
+        ViButtonSize.small,
+        ViButtonSize.values,
+        ChipsType(),
+      ),
+    );
+  },
+);
+
+Story get $Blue => Story(
+      name: 'Blue',
+      builder: (context, params) {
+        return ViButton(
+          title: params.string('title', "Lorem"),
+          color: params.color('color', Colors.blue),
+          icon: params.boolean('has_icon', false)
+              ? const Icon(Icons.check, color: Colors.white)
+              : null,
+        );
+      },
+    );

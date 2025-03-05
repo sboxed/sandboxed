@@ -2,8 +2,11 @@
 (A) Url serialize/deserialize #editor
 (A) Write components generator #core
 (A) Write MDX document generator #core
-  Find `**/*.mdx` files, check if it vibook documents, append to components list.
-  Render mdx content and inject interactble stories.
+  Find `{component}.mdx` file, append to components documentation. {cm:2025-03-05}
+  Add ability to define links to mdx files in component meta
+  Render mdx content {cm:2025-03-05}
+  Inject interactable stories
+  Support link navigation betwen components, stories and doc entries.
 (B) Running golden tests from vibook #tests
   (B) Local test runner
   (F) Cloud test runner

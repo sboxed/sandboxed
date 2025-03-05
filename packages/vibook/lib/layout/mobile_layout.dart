@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibook/layout/story_viewport.dart';
 import 'package:vibook/provider/brand_color.dart';
+import 'package:vibook/provider/selected.dart';
+import 'package:vibook/router.gr.dart';
 import 'package:vibook/widgets/story_name.dart';
 import 'package:vibook/widgets/vi_bottom_app_bar.dart';
 import 'package:vibook/widgets/vi_drawer.dart';
@@ -39,7 +41,19 @@ class _MobileLayoutState extends State<MobileLayout> {
           ),
           bottomNavigationBar: const ViBottomAppBar(),
           drawer: const ViDrawer(),
-          body: const StoryViewport(),
+          body: AutoRouter.declarative(
+            routes: (handler) => [
+              switch (ref.watch(selectedElementProvider)) {
+                null => StoryRoute(id: null),
+                DocumentSelection() => DocumentRoute(
+                    id: ref.watch(selectedElementNotifierProvider)!,
+                  ),
+                StorySelection() => StoryRoute(
+                    id: ref.watch(selectedElementNotifierProvider),
+                  ),
+              },
+            ],
+          ),
         );
       },
     );

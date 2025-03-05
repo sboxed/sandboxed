@@ -5,8 +5,6 @@ import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/params.dart';
 import 'package:vibook/provider/selected.dart';
 import 'package:vibook/toolbar/toolbar.dart';
-import 'package:vibook_core/component.dart';
-import 'package:vibook_core/story.dart';
 import 'package:vibook_core/story_view.dart';
 
 class StoryViewport extends ConsumerWidget {
@@ -17,8 +15,8 @@ class StoryViewport extends ConsumerWidget {
     return Column(
       children: [
         const Toolbar(),
-        if (ref.watch(selectedStoryProvider)
-            case (Component component, Story story))
+        if (ref.watch(selectedElementProvider)
+            case StorySelection(:final component, :final story))
           Expanded(
             child: ListenableBuilder(
               listenable: ref.watch(paramsProvider),

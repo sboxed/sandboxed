@@ -3,6 +3,7 @@ import 'package:iconify_flutter_plus/icons/mdi.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 import 'package:vibook/widgets/vi_icon.dart';
 import 'package:vibook_core/component.dart';
+import 'package:vibook_core/document_entry.dart';
 import 'package:vibook_core/story.dart';
 
 typedef Tree = TreeType<AbstractComponentTreeNode>;
@@ -151,6 +152,44 @@ final class ComponentTreeNode extends AbstractComponentTreeNode {
   @override
   Widget buildLeading(BuildContext context) {
     return const ViIcon(Mdi.rhombus_split);
+  }
+
+  @override
+  Widget buildTitle(BuildContext context) {
+    return Text(title);
+  }
+}
+
+final class DocumentationTreeNode extends AbstractComponentTreeNode {
+  @override
+  final int level;
+
+  @override
+  final int index;
+
+  final Component component;
+  final DocumentEntry entry;
+
+  DocumentationTreeNode(
+      {required super.id,
+      required super.title,
+      required this.level,
+      required this.index,
+      required this.component,
+      required this.entry});
+
+  @override
+  bool get isInner => false;
+
+  @override
+  T clone<T extends AbsNodeType>() {
+    // TODO: implement clone
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return const ViIcon(Mdi.file_certificate);
   }
 
   @override
