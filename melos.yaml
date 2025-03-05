@@ -3,3 +3,15 @@ sdkPath: ".fvm/flutter_sdk"
 packages:
   - apps/*
   - packages/*
+  - example/*
+  - example/monorepo/*
+
+scripts:
+  generate:
+    exec: fvm dart run build_runner build -d
+    # run: fvm dart run build_runner build -d
+    # exec:
+      # concurrency: 1
+    packageFilters:
+      dependsOn:
+      - build_runner

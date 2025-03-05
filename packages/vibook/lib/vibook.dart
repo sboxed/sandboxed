@@ -15,11 +15,10 @@ import 'package:vibook/provider/theme_mode.dart';
 import 'package:vibook/provider/title.dart';
 import 'package:vibook/theme.dart';
 import 'package:vibook_core/component.dart';
-import 'package:vibook_core/story.dart';
 
 export 'package:vibook_core/vibook_core.dart';
 
-class Vibook extends StatefulWidget {
+class Vibook extends StatelessWidget {
   final Widget title;
   final Color brandColor;
 
@@ -40,14 +39,6 @@ class Vibook extends StatefulWidget {
   });
 
   @override
-  State<Vibook> createState() => _VibookState();
-}
-
-class _VibookState extends State<Vibook> {
-  Component? component;
-  Story? story;
-
-  @override
   Widget build(BuildContext context) {
     assert(
       () {
@@ -64,12 +55,12 @@ class _VibookState extends State<Vibook> {
 
     return ProviderScope(
       overrides: [
-        titleProvider.overrideWithValue(widget.title),
-        brandColorProvider.overrideWithValue(widget.brandColor),
-        componentsProvider.overrideWithValue(widget.components),
+        titleProvider.overrideWithValue(title),
+        brandColorProvider.overrideWithValue(brandColor),
+        componentsProvider.overrideWithValue(components),
         addonListProvider.overrideWithValue([
           ReloadAddon(),
-          ...widget.addons,
+          ...addons,
           BaseParamBuildersAddon(),
         ]),
       ],
@@ -77,17 +68,17 @@ class _VibookState extends State<Vibook> {
         builder: (context, ref, child) {
           return MaterialApp(
             themeMode: ref.watch(themeModeNotifierProvider),
-            theme: widget.theme ?? buildLightTheme(context, ref),
-            darkTheme: widget.darkTheme ?? buildDarkTheme(context, ref),
+            theme: theme ?? buildLightTheme(context, ref),
+            darkTheme: darkTheme ?? buildDarkTheme(context, ref),
             home: LayoutBuilder(
               builder: (context, constraints) {
                 const dividerWidth = 5;
                 final isMobile = constraints.maxWidth < 900 + dividerWidth * 2;
 
                 if (isMobile) {
-                  return MobileLayout(components: widget.components);
+                  return MobileLayout(components: components);
                 } else {
-                  return TabletLayout(components: widget.components);
+                  return TabletLayout(components: components);
                 }
               },
             ),

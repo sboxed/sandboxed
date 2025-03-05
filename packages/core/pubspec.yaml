@@ -3,7 +3,7 @@ description: "ViBook core components"
 version: 0.0.1
 
 environment:
-  sdk: ^3.5.4
+  sdk: ">=3.5.4 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:

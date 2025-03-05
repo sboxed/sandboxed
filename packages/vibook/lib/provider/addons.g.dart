@@ -6,7 +6,7 @@ part of 'addons.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addonListHash() => r'8a948dbad4c5cb6af18d44af56bd20c2be654854';
+String _$addonListHash() => r'cad38598c82e54b5e77d094b6cf23fc3acb90db7';
 
 /// See also [addonList].
 @ProviderFor(addonList)

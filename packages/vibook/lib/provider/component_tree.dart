@@ -8,7 +8,7 @@ import 'package:vibook_core/component.dart';
 part 'component_tree.g.dart';
 
 @riverpod
-List<Component> components(Ref ref) {
+List<ViElement> components(Ref ref) {
   return [];
 }
 

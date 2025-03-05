@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.5.4
+  sdk: ">=3.5.4 <4.0.0"
 
 dependencies:
   flutter:
@@ -18,6 +18,9 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^4.0.0
+  
+  build_runner: ^2.4.15
+  vibook_generator:
 
 flutter:
   uses-material-design: true

@@ -9,7 +9,7 @@ import 'package:vibook/widgets/vi_drawer.dart';
 import 'package:vibook_core/component.dart';
 
 class TabletLayout extends StatefulWidget {
-  final List<Component> components;
+  final List<ViElement> components;
 
   const TabletLayout({super.key, required this.components});
 

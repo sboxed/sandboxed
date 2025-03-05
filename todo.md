@@ -1,7 +1,12 @@
 
 (A) Url serialize/deserialize #editor
 (A) Write components generator #core
+(A) Write MDX document generator #core
+  Find `**/*.mdx` files, check if it vibook documents, append to components list.
+  Render mdx content and inject interactble stories.
 (B) Running golden tests from vibook #tests
+  (B) Local test runner
+  (F) Cloud test runner
 (B) Checking golden test results from vibook #tests
 (B) Toggleable params #editor
 (B) Toggleable addons Small touchable dot near addon title. Yellow - `off`, Green - `on` #editor

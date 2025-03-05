@@ -5,21 +5,29 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Generator",
+      "cwd": "example/monorepo/ui_book",
+      "request": "launch",
+      "type": "dart",
+      "program": ".dart_tool/build/entrypoint/build.dart",
+      "args": ["build", "-d"]
+    },
+    {
       "name": "material_book",
-      "cwd": "apps/material_book",
+      "cwd": "example/material_book",
       "request": "launch",
       "type": "dart"
     },
     {
       "name": "material_book (profile mode)",
-      "cwd": "apps/material_book",
+      "cwd": "example/material_book",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
       "name": "material_book (release mode)",
-      "cwd": "apps/material_book",
+      "cwd": "example/material_book",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"

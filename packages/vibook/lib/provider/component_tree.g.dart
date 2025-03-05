@@ -6,11 +6,11 @@ part of 'component_tree.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$componentsHash() => r'3c33b0445435aa3cec6ceb7478dc8dc2295b4cdc';
+String _$componentsHash() => r'b9b1d63817519370413a8ebb336ba899ebe152a5';
 
 /// See also [components].
 @ProviderFor(components)
-final componentsProvider = AutoDisposeProvider<List<Component>>.internal(
+final componentsProvider = AutoDisposeProvider<List<ViElement>>.internal(
   components,
   name: r'componentsProvider',
   debugGetCreateSourceHash:
@@ -21,7 +21,7 @@ final componentsProvider = AutoDisposeProvider<List<Component>>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ComponentsRef = AutoDisposeProviderRef<List<Component>>;
+typedef ComponentsRef = AutoDisposeProviderRef<List<ViElement>>;
 String _$componentTreeNotifierHash() =>
     r'b319af994f1c7db58ea40ec7a5862d72277c166f';
 
