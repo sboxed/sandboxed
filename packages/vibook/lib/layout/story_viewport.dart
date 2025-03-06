@@ -8,14 +8,19 @@ import 'package:vibook/toolbar/toolbar.dart';
 import 'package:vibook_core/story_view.dart';
 
 class StoryViewport extends ConsumerWidget {
-  const StoryViewport({super.key});
+  final String id;
+
+  const StoryViewport({
+    super.key,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         const Toolbar(),
-        if (ref.watch(selectedElementProvider)
+        if (ref.watch(selectionProvider(id))
             case StorySelection(:final component, :final story))
           Expanded(
             child: ListenableBuilder(

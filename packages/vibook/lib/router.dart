@@ -21,12 +21,19 @@ class AppRouter extends RootStackRouter {
           page: IndexRoute.page,
           children: [
             AutoRoute(
+              path: 'nothing',
+              page: NothingRoute.page,
+              type: kFadeRouteType,
+            ),
+            AutoRoute(
               path: 'story/:id',
+              usesPathAsKey: true,
               page: StoryRoute.page,
               type: kFadeRouteType,
             ),
             AutoRoute(
               path: 'document/:id',
+              usesPathAsKey: true,
               page: DocumentRoute.page,
               type: kFadeRouteType,
             ),

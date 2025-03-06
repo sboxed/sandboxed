@@ -3,16 +3,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/provider/selected.dart';
 
-class StoryName extends StatelessWidget {
-  const StoryName({super.key});
+class ElementName extends StatelessWidget {
+  final String? id;
+
+  const ElementName({super.key, this.id});
 
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final selection = ref.watch(selectedElementProvider);
-        Widget child;
+        final selection = ref.watch(
+          id != null //
+              ? selectionProvider(id!)
+              : selectedElementProvider,
+        );
 
+        Widget child;
         switch (selection) {
           case null:
             child = const Text('Select Story');

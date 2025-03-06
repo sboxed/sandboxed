@@ -4,8 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/provider/selected.dart';
 import 'package:vibook/router.gr.dart';
-import 'package:vibook/widgets/story_name.dart';
-import 'package:vibook/widgets/vi_bottom_app_bar.dart';
 import 'package:vibook/widgets/vi_drawer.dart';
 import 'package:vibook_core/component.dart';
 
@@ -27,11 +25,6 @@ class _MobileLayoutState extends State<MobileLayout> {
     return Consumer(
       builder: (context, ref, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: const StoryName(),
-            automaticallyImplyLeading: false,
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
-          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.endContained,
           floatingActionButton: FloatingActionButton.extended(
@@ -40,17 +33,16 @@ class _MobileLayoutState extends State<MobileLayout> {
             foregroundColor: Colors.white,
             label: const Text("Share"),
           ),
-          bottomNavigationBar: const ViBottomAppBar(),
           drawer: const ViDrawer(),
           body: AutoRouter.declarative(
             routes: (handler) => [
               switch (ref.watch(selectedElementProvider)) {
-                null => StoryRoute(id: null),
+                null => const NothingRoute(),
                 DocumentSelection() => DocumentRoute(
                     id: ref.watch(selectedElementNotifierProvider)!,
                   ),
                 StorySelection() => StoryRoute(
-                    id: ref.watch(selectedElementNotifierProvider),
+                    id: ref.watch(selectedElementNotifierProvider)!,
                   ),
               },
             ],

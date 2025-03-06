@@ -43,12 +43,12 @@ class _TabletLayoutState extends State<TabletLayout> {
                   builder: (context, ref, child) => AutoRouter.declarative(
                     routes: (handler) => [
                       switch (ref.watch(selectedElementProvider)) {
-                        null => StoryRoute(id: null),
+                        null => const NothingRoute(),
                         DocumentSelection() => DocumentRoute(
                             id: ref.watch(selectedElementNotifierProvider)!,
                           ),
                         StorySelection() => StoryRoute(
-                            id: ref.watch(selectedElementNotifierProvider),
+                            id: ref.watch(selectedElementNotifierProvider)!,
                           ),
                       },
                     ],

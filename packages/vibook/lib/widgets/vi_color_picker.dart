@@ -53,7 +53,7 @@ class _ViColorPickerState extends State<ViColorPicker> {
 
     return Row(
       children: [
-        OverlayPortal(
+        OverlayPortal.targetsRootOverlay(
           controller: overlayController,
           overlayChildBuilder: (BuildContext context) {
             if (!isEditable) {

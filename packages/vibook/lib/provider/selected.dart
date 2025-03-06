@@ -51,11 +51,8 @@ class SelectedElementNotifier extends _$SelectedElementNotifier {
 }
 
 @riverpod
-Selection? selectedElement(Ref ref) {
-  final selected = ref.watch(selectedElementNotifierProvider);
-  if (selected == null) return null;
-
-  final node = ref.watch(nodeProvider(selected));
+Selection? selection(Ref ref, String id) {
+  final node = ref.watch(nodeProvider(id));
   if (node == null) return null;
 
   switch (node.data) {
@@ -80,4 +77,12 @@ Selection? selectedElement(Ref ref) {
     default:
       return null;
   }
+}
+
+@riverpod
+Selection? selectedElement(Ref ref) {
+  final selected = ref.watch(selectedElementNotifierProvider);
+  if (selected == null) return null;
+
+  return ref.watch(selectionProvider(selected));
 }

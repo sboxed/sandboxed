@@ -4,11 +4,16 @@ import 'package:recase/recase.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/params.dart';
 import 'package:vibook/provider/selected.dart';
-import 'package:vibook/widgets/story_name.dart';
+import 'package:vibook/widgets/element_name.dart';
 
 // STOPSHIP(@melvspace): 03/04/25 not params
 class ComponentInspector extends ConsumerStatefulWidget {
-  const ComponentInspector({super.key});
+  final String id;
+
+  const ComponentInspector({
+    super.key,
+    required this.id,
+  });
 
   @override
   ConsumerState<ComponentInspector> createState() => _ComponentInspectorState();
@@ -17,7 +22,7 @@ class ComponentInspector extends ConsumerStatefulWidget {
 class _ComponentInspectorState extends ConsumerState<ComponentInspector> {
   @override
   Widget build(BuildContext context) {
-    final selection = ref.watch(selectedElementProvider);
+    final selection = ref.watch(selectionProvider(widget.id));
     final hasSelection = selection != null;
 
     final documents =
@@ -31,7 +36,7 @@ class _ComponentInspectorState extends ConsumerState<ComponentInspector> {
       child: Column(
         children: [
           AppBar(
-            title: const StoryName(),
+            title: ElementName(id: widget.id),
             backgroundColor: Colors.transparent,
             actions: [
               if (hasDocumentation)

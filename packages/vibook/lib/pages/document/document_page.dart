@@ -2,11 +2,12 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/provider/selected.dart';
+import 'package:vibook/responsive/breakpoints.dart';
 import 'package:vibook/toolbar/toolbar.dart';
 import 'package:vibook/widgets/component_documentation.dart';
+import 'package:vibook/widgets/element_name.dart';
+import 'package:vibook/widgets/vi_bottom_app_bar.dart';
 import 'package:vibook/widgets/wip.dart';
-
-// TODO(@melvspace): 03/05/25 add id
 
 @RoutePage()
 class DocumentPage extends ConsumerWidget {
@@ -19,18 +20,32 @@ class DocumentPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
-      body: _DocumentPageContent(),
+    return Scaffold(
+      appBar: switch (context.breakpoint) {
+        Breakpoints.mobile => AppBar(
+            title: ElementName(id: id),
+            automaticallyImplyLeading: false,
+            backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
+          ),
+        _ => null,
+      },
+      bottomNavigationBar: switch (context.breakpoint) {
+        Breakpoints.mobile => const ViBottomAppBar(),
+        _ => null,
+      },
+      body: _DocumentPageContent(id: id),
     );
   }
 }
 
 class _DocumentPageContent extends ConsumerWidget {
-  const _DocumentPageContent();
+  final String id;
+
+  const _DocumentPageContent({required this.id});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selection = ref.watch(selectedElementProvider);
+    final selection = ref.watch(selectionProvider(id));
     switch (selection) {
       case DocumentSelection(:final component, :final document):
         return Column(

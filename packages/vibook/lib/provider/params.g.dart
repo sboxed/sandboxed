@@ -6,21 +6,21 @@ part of 'params.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$paramsHash() => r'0a23638e381c11bd2f5c77c40efe8200079492db';
+String _$paramsHash() => r'6e5fb6b37ee963bbb299618a58c31610bbfd0bf3';
 
 /// See also [params].
 @ProviderFor(params)
-final paramsProvider = AutoDisposeProvider<ParamsNotifier>.internal(
+final paramsProvider = AutoDisposeProvider<Raw<ParamsNotifier>>.internal(
   params,
   name: r'paramsProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$paramsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ParamsRef = AutoDisposeProviderRef<ParamsNotifier>;
+typedef ParamsRef = AutoDisposeProviderRef<Raw<ParamsNotifier>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
