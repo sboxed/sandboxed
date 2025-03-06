@@ -5,19 +5,18 @@ import 'package:material_book/widgets/bottom_navigation_bar.stories.dart'
     as widgets_bottom_navigation_bar;
 import 'package:material_book/widgets/chips.stories.dart' as widgets_chips;
 
-final components = <Component>[
-  Component(
-    meta: () => widgets_bottom_app_bar.meta.copyWith(
-      documentation: [
-        ...widgets_bottom_app_bar.meta.documentation,
-        DocumentEntry(
-            name: 'Docs',
-            content:
-                '''A container that is typically used with [Scaffold.bottomNavigationBar].
+List<Component> get components => <Component>[
+      Component(
+        meta: widgets_bottom_app_bar.meta.copyWith(
+          documentation: [
+            ...widgets_bottom_app_bar.meta.documentation,
+            DocumentEntry(
+                name: 'Docs',
+                content:
+                    '''A container that is typically used with [Scaffold.bottomNavigationBar].
 
 Typically used with a [Scaffold] and a [FloatingActionButton].
 
-{@tool snippet}
 ```dart
 Scaffold(
   bottomNavigationBar: BottomAppBar(
@@ -27,7 +26,6 @@ Scaffold(
   floatingActionButton: const FloatingActionButton(onPressed: null),
 )
 ```
-{@end-tool}
 
 {@tool dartpad}
 This example shows the [BottomAppBar], which can be configured to have a notch using the
@@ -50,21 +48,20 @@ See also:
 
  * [NotchedShape] which calculates the notch for a notched [BottomAppBar].
  * [FloatingActionButton] which the [BottomAppBar] makes a notch for.
- * [AppBar] for a toolbar that is shown at the top of the screen.'''),
-      ],
-    ),
-    stories: [
-      () => widgets_bottom_app_bar.$Default,
-    ],
-  ),
-  Component(
-    meta: () => widgets_bottom_navigation_bar.meta.copyWith(
-      documentation: [
-        ...widgets_bottom_navigation_bar.meta.documentation,
-        DocumentEntry(
-            name: 'Docs',
-            content:
-                '''A material widget that's displayed at the bottom of an app for selecting
+ * [AppBar] for a toolbar that is shown at the top of the screen.
+'''),
+          ],
+        ),
+        stories: [widgets_bottom_app_bar.$Default],
+      ),
+      Component(
+        meta: widgets_bottom_navigation_bar.meta.copyWith(
+          documentation: [
+            ...widgets_bottom_navigation_bar.meta.documentation,
+            DocumentEntry(
+                name: 'Docs',
+                content:
+                    '''A material widget that's displayed at the bottom of an app for selecting
 among a small number of views, typically between three and five.
 
 There is an updated version of this component, [NavigationBar], that's
@@ -180,18 +177,17 @@ See also:
  * [BottomNavigationBarItem]
  * [Scaffold]
  * <https://material.io/design/components/bottom-navigation.html>
- * [NavigationBar], this widget's replacement in Material Design 3.'''),
-      ],
-    ),
-    stories: [
-      () => widgets_bottom_navigation_bar.$Default,
-    ],
-  ),
-  Component(
-    meta: () => widgets_chips.meta.copyWith(
-      documentation: [
-        ...widgets_chips.meta.documentation,
-        DocumentEntry(name: 'Docs', content: '''A Material Design chip.
+ * [NavigationBar], this widget's replacement in Material Design 3.
+'''),
+          ],
+        ),
+        stories: [widgets_bottom_navigation_bar.$Default],
+      ),
+      Component(
+        meta: widgets_chips.meta.copyWith(
+          documentation: [
+            ...widgets_chips.meta.documentation,
+            DocumentEntry(name: 'Docs', content: '''A Material Design chip.
 
 Chips are compact elements that represent an attribute, text, entity, or
 action.
@@ -204,7 +200,6 @@ Its ancestors must include [Material], [MediaQuery], [Directionality], and
 [MaterialApp] and [Scaffold]. The [label] and [clipBehavior] arguments must
 not be null.
 
-{@tool snippet}
 
 ```dart
 Chip(
@@ -215,7 +210,6 @@ Chip(
   label: const Text('Aaron Burr'),
 )
 ```
-{@end-tool}
 
 See also:
 
@@ -229,15 +223,16 @@ See also:
  * [CircleAvatar], which shows images or initials of entities.
  * [Wrap], A widget that displays its children in multiple horizontal or
    vertical runs.
- * <https://material.io/design/components/chips.html>'''),
-      ],
-    ),
-    stories: [
-      () => widgets_chips.$Chip,
-      () => widgets_chips.$InputChip,
-      () => widgets_chips.$ChoiceChip,
-      () => widgets_chips.$FilterChip,
-      () => widgets_chips.$ActionChip,
-    ],
-  ),
-];
+ * <https://material.io/design/components/chips.html>
+'''),
+          ],
+        ),
+        stories: [
+          widgets_chips.$Chip,
+          widgets_chips.$InputChip,
+          widgets_chips.$ChoiceChip,
+          widgets_chips.$FilterChip,
+          widgets_chips.$ActionChip
+        ],
+      ),
+    ];

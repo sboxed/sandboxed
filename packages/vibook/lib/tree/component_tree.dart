@@ -7,6 +7,7 @@ import 'package:vibook/provider/component_tree.dart';
 import 'package:vibook/provider/selected.dart';
 import 'package:vibook/tree/component_tree_node.dart';
 import 'package:vibook/tree/component_tree_x.dart';
+import 'package:vibook/widgets/search_bar.dart';
 
 class ComponentTree extends ConsumerStatefulWidget {
   final String? id;
@@ -74,9 +75,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
                   right: 16.0,
                   bottom: 8.0,
                 ),
-                child: TextField(
-                  decoration: InputDecoration(label: Text('Search')),
-                ),
+                child: ViSearchBar(),
               ),
             if (widget.id == null)
               Flexible(
@@ -84,6 +83,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
                   builder: (context, constraints) {
                     return InteractiveViewer(
                       constrained: false,
+                      scaleEnabled: false,
                       child: ConstrainedBox(
                         constraints: constraints.copyWith(
                           maxWidth: constraints.maxWidth +

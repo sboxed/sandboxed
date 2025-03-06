@@ -171,9 +171,9 @@
     },
     {
       "name": "pubspec_parse",
-      "rootUri": "file:///home/melvspace/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0",
+      "rootUri": "file:///home/melvspace/.pub-cache/hosted/pub.dev/pubspec_parse-1.4.0",
       "packageUri": "lib/",
-      "languageVersion": "3.6"
+      "languageVersion": "3.2"
     },
     {
       "name": "source_span",
@@ -230,10 +230,10 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-03-05T19:07:47.520585Z",
+  "generated": "2025-03-06T12:24:40.271117Z",
   "generator": "pub",
-  "generatorVersion": "3.7.0",
-  "flutterRoot": "file:///home/melvspace/fvm/versions/stable",
-  "flutterVersion": "3.29.0",
+  "generatorVersion": "3.5.4",
+  "flutterRoot": "file:///home/melvspace/fvm/versions/3.24.5",
+  "flutterVersion": "3.24.5",
   "pubCache": "file:///home/melvspace/.pub-cache"
 }

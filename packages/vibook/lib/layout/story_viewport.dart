@@ -21,7 +21,7 @@ class StoryViewport extends ConsumerWidget {
             child: ListenableBuilder(
               listenable: ref.watch(paramsProvider),
               builder: (context, child) => StoryView(
-                meta: component.meta(),
+                meta: component.meta,
                 story: story,
                 params: ref.watch(paramsProvider),
                 decorators: [

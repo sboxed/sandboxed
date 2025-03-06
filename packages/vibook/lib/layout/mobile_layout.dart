@@ -29,6 +29,7 @@ class _MobileLayoutState extends State<MobileLayout> {
         return Scaffold(
           appBar: AppBar(
             title: const StoryName(),
+            automaticallyImplyLeading: false,
             backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
           ),
           floatingActionButtonLocation:

@@ -1,3 +1,22 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/stable"
+  "dart.flutterSdkPath": ".fvm/versions/3.24.5",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/ios": true,
+    "**/build": true,
+    "**/android": true,
+    "**/.idea": true,
+    "**/.dart_tool": true,
+    "**/linux": true,
+    "**/windows": true,
+    "**/macos": true,
+    "**/*.iml": true,
+    "**/web": true
+  },
+  "explorerExclude.backup": {}
 }

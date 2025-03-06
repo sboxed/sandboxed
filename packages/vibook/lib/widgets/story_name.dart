@@ -20,13 +20,13 @@ class StoryName extends StatelessWidget {
           case DocumentSelection(:final component, :final document):
             child = const Text('Select Story');
             child = Text(
-              '${component.meta().displayName} / ${document.name}',
+              '${component.meta.displayName} / ${document.name}',
               style: TextStyle(color: ref.watch(brandColorProvider)),
             );
 
           case StorySelection(:final component, :final story):
             child = Text(
-              '${component.meta().displayName} / ${story.name}',
+              '${component.meta.displayName} / ${story.name}',
               style: TextStyle(color: ref.watch(brandColorProvider)),
             );
         }

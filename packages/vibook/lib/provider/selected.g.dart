@@ -6,7 +6,7 @@ part of 'selected.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$selectedElementHash() => r'f8d33f85722ff11063d54f8200e621138abb1439';
+String _$selectedElementHash() => r'c146a84d68b68c5bf1f7abdc5bf005b231b5668d';
 
 /// See also [selectedElement].
 @ProviderFor(selectedElement)

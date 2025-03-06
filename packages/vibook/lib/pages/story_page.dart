@@ -20,40 +20,42 @@ class StoryPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        switch (context.breakpoint) {
-          case Breakpoints.mobile:
-            return const StoryViewport();
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          switch (context.breakpoint) {
+            case Breakpoints.mobile:
+              return const StoryViewport();
 
-          case Breakpoints.desktop:
-            return ResizableContainer(
-              key: ValueKey(constraints.maxHeight),
-              direction: Axis.vertical,
-              children: [
-                ResizableChild(
-                  size: const ResizableSize.expand(),
-                  divider: buildResizableDivider(context),
-                  child: const StoryViewport(),
-                ),
-                ResizableChild(
-                  divider: buildResizableDivider(context),
-                  size: ResizableSize.ratio(
-                    1 / 3,
-                    min: 200,
-                    max: constraints.maxHeight * 2 / 3,
+            case Breakpoints.desktop:
+              return ResizableContainer(
+                key: ValueKey(constraints.maxHeight),
+                direction: Axis.vertical,
+                children: [
+                  ResizableChild(
+                    size: const ResizableSize.expand(),
+                    divider: buildResizableDivider(context),
+                    child: const StoryViewport(),
                   ),
-                  child: const SizedBox(
-                    height: double.infinity,
-                    child: Card(
-                      child: ComponentInspector(),
+                  ResizableChild(
+                    divider: buildResizableDivider(context),
+                    size: ResizableSize.ratio(
+                      1 / 3,
+                      min: 200,
+                      max: constraints.maxHeight * 2 / 3,
+                    ),
+                    child: const SizedBox(
+                      height: double.infinity,
+                      child: Card(
+                        child: ComponentInspector(),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            );
-        }
-      },
+                ],
+              );
+          }
+        },
+      ),
     );
   }
 }

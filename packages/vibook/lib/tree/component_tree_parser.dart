@@ -18,8 +18,8 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
     switch (component) {
       case Component component:
         final parts = [
-          ...?component.meta().module?.split('/').map((e) => '[${e.trim()}]'),
-          ...component.meta().name.split('/'),
+          ...?component.meta.module?.split('/').map((e) => '[${e.trim()}]'),
+          ...component.meta.name.split('/'),
         ];
 
         TreeType<AbstractComponentTreeNode> parent = root;
@@ -81,11 +81,11 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
 
         // Skip building stories for single story components.
         if (component.stories.length <= 1 &&
-            component.meta().documentation.isEmpty == true) {
+            component.meta.documentation.isEmpty == true) {
           continue;
         }
 
-        for (final document in component.meta().documentation) {
+        for (final document in component.meta.documentation) {
           final name = document.name;
           var node = TreeType<AbstractComponentTreeNode>(
             // key: part.trim(), data: part == parts.last ? component : null);
@@ -105,13 +105,13 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
         }
 
         for (final (index, story) in component.stories.indexed) {
-          final name = story().name ?? 'Story $index';
+          final name = story.name ?? 'Story $index';
           var node = TreeType<AbstractComponentTreeNode>(
             // key: part.trim(), data: part == parts.last ? component : null);
             data: StoryTreeNode(
               id: [...parts, name.trim()].join('/'),
               component: component,
-              story: story(),
+              story: story,
               title: name,
               level: parts.length + 1,
               index: parent.children.length,

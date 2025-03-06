@@ -17,7 +17,7 @@ import 'package:vibook_core/component.dart';
 
 export 'package:vibook_core/vibook_core.dart';
 
-class Vibook extends StatelessWidget {
+class Vibook extends StatefulWidget {
   final Widget title;
   final Color brandColor;
 
@@ -26,8 +26,6 @@ class Vibook extends StatelessWidget {
 
   final List<Component> components;
   final List<Addon> addons;
-
-  final router = AppRouter();
 
   Vibook({
     super.key,
@@ -38,6 +36,24 @@ class Vibook extends StatelessWidget {
     this.darkTheme,
     this.addons = const [],
   });
+
+  @override
+  State<Vibook> createState() => _VibookState();
+}
+
+class _VibookState extends State<Vibook> {
+  final router = AppRouter();
+
+  // ValueKey generation = const ValueKey(0);
+
+  @override
+  void didUpdateWidget(covariant Vibook oldWidget) {
+    // if (!const ListEquality().equals(oldWidget.components, widget.components)) {
+    //   generation = ValueKey(generation.value + 1);
+    // }
+
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +71,14 @@ class Vibook extends StatelessWidget {
     );
 
     return ProviderScope(
+      // key: generation,
       overrides: [
-        titleProvider.overrideWithValue(title),
-        brandColorProvider.overrideWithValue(brandColor),
-        componentsProvider.overrideWithValue(components),
+        titleProvider.overrideWithValue(widget.title),
+        brandColorProvider.overrideWithValue(widget.brandColor),
+        componentsProvider.overrideWithValue(widget.components),
         addonListProvider.overrideWithValue([
           ReloadAddon(),
-          ...addons,
+          ...widget.addons,
           BaseParamBuildersAddon(),
         ]),
       ],
@@ -69,8 +86,8 @@ class Vibook extends StatelessWidget {
         builder: (context, ref, child) {
           return MaterialApp.router(
             themeMode: ref.watch(themeModeNotifierProvider),
-            theme: theme ?? buildLightTheme(context, ref),
-            darkTheme: darkTheme ?? buildDarkTheme(context, ref),
+            theme: widget.theme ?? buildLightTheme(context, ref),
+            darkTheme: widget.darkTheme ?? buildDarkTheme(context, ref),
             routerConfig: router.config(),
           );
         },

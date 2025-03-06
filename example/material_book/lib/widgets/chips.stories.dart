@@ -5,6 +5,7 @@ import 'package:vibook_core/story.dart';
 
 Meta get meta => Meta<Chip>(
       name: 'Chips', // optional
+      module: 'Controls',
       decorators: [
         Decorator(
           (context, story) => Padding(

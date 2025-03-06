@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -23,11 +22,14 @@ class DocumentRoute extends _i4.PageRouteInfo<DocumentRouteArgs> {
     required String id,
     List<_i4.PageRouteInfo>? children,
   }) : super(
-         DocumentRoute.name,
-         args: DocumentRouteArgs(key: key, id: id),
-         rawPathParams: {'id': id},
-         initialChildren: children,
-       );
+          DocumentRoute.name,
+          args: DocumentRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
 
   static const String name = 'DocumentRoute';
 
@@ -36,15 +38,20 @@ class DocumentRoute extends _i4.PageRouteInfo<DocumentRouteArgs> {
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<DocumentRouteArgs>(
-        orElse: () => DocumentRouteArgs(id: pathParams.getString('id')),
+          orElse: () => DocumentRouteArgs(id: pathParams.getString('id')));
+      return _i1.DocumentPage(
+        key: args.key,
+        id: args.id,
       );
-      return _i1.DocumentPage(key: args.key, id: args.id);
     },
   );
 }
 
 class DocumentRouteArgs {
-  const DocumentRouteArgs({this.key, required this.id});
+  const DocumentRouteArgs({
+    this.key,
+    required this.id,
+  });
 
   final _i5.Key? key;
 
@@ -60,7 +67,10 @@ class DocumentRouteArgs {
 /// [_i2.IndexPage]
 class IndexRoute extends _i4.PageRouteInfo<void> {
   const IndexRoute({List<_i4.PageRouteInfo>? children})
-    : super(IndexRoute.name, initialChildren: children);
+      : super(
+          IndexRoute.name,
+          initialChildren: children,
+        );
 
   static const String name = 'IndexRoute';
 
@@ -80,11 +90,14 @@ class StoryRoute extends _i4.PageRouteInfo<StoryRouteArgs> {
     required String? id,
     List<_i4.PageRouteInfo>? children,
   }) : super(
-         StoryRoute.name,
-         args: StoryRouteArgs(key: key, id: id),
-         rawPathParams: {'id': id},
-         initialChildren: children,
-       );
+          StoryRoute.name,
+          args: StoryRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
 
   static const String name = 'StoryRoute';
 
@@ -93,15 +106,20 @@ class StoryRoute extends _i4.PageRouteInfo<StoryRouteArgs> {
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<StoryRouteArgs>(
-        orElse: () => StoryRouteArgs(id: pathParams.optString('id')),
+          orElse: () => StoryRouteArgs(id: pathParams.optString('id')));
+      return _i3.StoryPage(
+        key: args.key,
+        id: args.id,
       );
-      return _i3.StoryPage(key: args.key, id: args.id);
     },
   );
 }
 
 class StoryRouteArgs {
-  const StoryRouteArgs({this.key, required this.id});
+  const StoryRouteArgs({
+    this.key,
+    required this.id,
+  });
 
   final _i5.Key? key;
 

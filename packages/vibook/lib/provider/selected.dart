@@ -62,7 +62,7 @@ Selection? selectedElement(Ref ref) {
     case ComponentTreeNode data:
       return StorySelection(
         data.component,
-        data.component.stories.first(),
+        data.component.stories.first,
       );
 
     case StoryTreeNode data:

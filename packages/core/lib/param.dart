@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
-
-class Param<TValue> extends ChangeNotifier {
+class Param<TValue> {
   final Object? type;
   TValue value;
 

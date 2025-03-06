@@ -1,17 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:glob/glob.dart';
+import 'package:vibook_generator/docs_cleaner.dart';
 import 'package:vibook_generator/library_parser.dart';
 
 class StoryContainer {
   final String path;
-  final String content;
+  final LibraryElement library;
 
-  StoryContainer({required this.path, required this.content});
+  StoryContainer({required this.path, required this.library});
 
   String get id => path.split('/').last.split('.').first;
 }
@@ -31,6 +33,11 @@ class PackageStories {
 class ComponentAggregateBuilder extends Builder {
   final String output = 'components.g.dart';
 
+  @override
+  Map<String, List<String>> get buildExtensions => {
+        r'$lib$': [output],
+      };
+
   Future<String?> findDocs(BuildStep buildStep, AssetId target) async {
     final docAsset = AssetId(
       target.package,
@@ -38,7 +45,9 @@ class ComponentAggregateBuilder extends Builder {
     );
 
     if (await buildStep.canRead(docAsset)) {
-      return buildStep.readAsString(docAsset);
+      var content = await buildStep.readAsString(docAsset);
+      content = DocsCleaner().clean(content);
+      return content;
     }
 
     return null;
@@ -55,13 +64,13 @@ class ComponentAggregateBuilder extends Builder {
     for (final asset in localStoryContainers) {
       final storyContainers = <StoryContainer>[];
 
-      final storyContainer = await buildStep.readAsString(asset);
+      final library = await buildStep.resolver.libraryFor(asset);
       final docs = await findDocs(buildStep, asset);
 
       storyContainers.add(
         StoryContainer(
           path: asset.path,
-          content: storyContainer,
+          library: library,
         ),
       );
 
@@ -89,12 +98,12 @@ class ComponentAggregateBuilder extends Builder {
 
       for (final path in storyContainerPaths) {
         final asset = AssetId(package.name, path);
-        final storyContainer = await buildStep.readAsString(asset);
+        final library = await buildStep.resolver.libraryFor(asset);
 
         storyContainers.add(
           StoryContainer(
             path: path,
-            content: storyContainer,
+            library: library,
           ),
         );
       }
@@ -123,7 +132,7 @@ class ComponentAggregateBuilder extends Builder {
             final parser = LibraryParser(
               package: package.package,
               path: storyContainer.path,
-              code: storyContainer.content,
+              library: storyContainer.library,
               docs: package.docs,
             );
 
@@ -134,12 +143,14 @@ class ComponentAggregateBuilder extends Builder {
 
         library.directives.addAll(directives);
 
-        final componentsField = Field(
-          (field) {
-            field
+        final componentsField = Method(
+          (method) {
+            method
               ..name = 'components'
-              ..modifier = FieldModifier.final$
-              ..assignment = literalList(components, refer('Component')).code;
+              ..lambda = true
+              ..type = MethodType.getter
+              ..returns = refer('List<Component>')
+              ..body = literalList(components, refer('Component')).code;
           },
         );
 
@@ -151,22 +162,6 @@ class ComponentAggregateBuilder extends Builder {
     String code = library.accept(emitter).toString();
     code = DartFormatter().format(code);
 
-    print(code);
-
     buildStep.writeAsString(outputAsset, code);
   }
-
-  @override
-  Map<String, List<String>> get buildExtensions => {
-        r'$lib$': [output],
-      };
-}
-
-String buildComponent(StoryContainer container) {
-  return '''
-Component(
-  meta: () => ${container.id}.meta,
-  stories: [],
-)
-''';
 }

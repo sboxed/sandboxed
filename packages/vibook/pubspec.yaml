@@ -17,7 +17,7 @@ dependencies:
   iconify_flutter_plus: ^1.0.0
 
   # routing
-  auto_route: ^10.0.0
+  auto_route: ^9.0.0
 
   # editor
   recursive_tree_flutter: ^1.0.0
@@ -49,10 +49,10 @@ dev_dependencies:
 
   # code style
   flutter_lints: ^4.0.0
-  custom_lint: ^0.7.5
-  riverpod_lint: ^2.6.5
+  custom_lint: ^0.7.0
+  riverpod_lint: ^2.6.0
 
   # generator
   build_runner: ^2.4.0
   riverpod_generator: ^2.6.0
-  auto_route_generator: ^10.0.0
+  auto_route_generator: ^9.0.0
