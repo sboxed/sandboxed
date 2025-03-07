@@ -7,6 +7,7 @@
   Render mdx content {cm:2025-03-05}
   Inject interactable stories
   Support link navigation betwen components, stories and doc entries.
+(A) Add `GeneratedStory` and `GeneratedMeta` wrappers #refactoring
 (A) Runtime params linting to find misnamed parameters. 
   Description: In example you have story with params and then renamed params in component, vibook should highlight that no matched params found
   Add warnings panel with all misnamed parameters with links to code to fix it or autofix button.
