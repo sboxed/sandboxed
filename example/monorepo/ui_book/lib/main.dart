@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui_book/components.g.dart';
 import 'package:vibook/addons/alignment/alignment_addon.dart';
-import 'package:vibook/addons/interactive_viewer_addon/interactive_viewer_addon.dart';
+import 'package:vibook/addons/interactive_viewer/interactive_viewer_addon.dart';
 import 'package:vibook/addons/safe_area/safe_area_addon.dart';
 import 'package:vibook/vibook.dart';
 

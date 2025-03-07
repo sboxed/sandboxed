@@ -1,9 +1,18 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: invalid_use_of_visible_for_testing_member, unused_import, duplicate_import, unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
 import 'package:vibook_core/vibook_core.dart';
+import 'package:flutter/material.dart';
 import 'package:material_book/widgets/bottom_app_bar.stories.dart'
     as widgets_bottom_app_bar;
+import 'package:flutter/src/material/bottom_app_bar.dart';
 import 'package:material_book/widgets/bottom_navigation_bar.stories.dart'
     as widgets_bottom_navigation_bar;
+import 'package:flutter/src/material/bottom_navigation_bar.dart';
 import 'package:material_book/widgets/chips.stories.dart' as widgets_chips;
+import 'package:flutter/src/material/chip.dart';
 
 List<Component> get components => <Component>[
       Component(
@@ -52,7 +61,32 @@ See also:
 '''),
           ],
         ),
-        stories: [widgets_bottom_app_bar.$Default],
+        stories: [
+          widgets_bottom_app_bar.$Default.applyGenerated(
+            name: 'Default',
+            builder: (context, params) => DefaultTextStyle(
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+                fontSize: 24,
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          'Component has unsupported parameters and can\'t be built automatically'),
+                      Text('Parameter `clipBehavior` of type [Clip]'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       Component(
         meta: widgets_bottom_navigation_bar.meta.copyWith(
@@ -181,7 +215,40 @@ See also:
 '''),
           ],
         ),
-        stories: [widgets_bottom_navigation_bar.$Default],
+        stories: [
+          widgets_bottom_navigation_bar.$Default.applyGenerated(
+            name: 'Default',
+            builder: (context, params) => BottomNavigationBar(
+              key: params.dynamic$('key', null),
+              items: params.dynamic$('items', []),
+              onTap: params.dynamic$('onTap', null),
+              currentIndex: params.dynamic$('currentIndex', 0),
+              elevation: params.dynamic$('elevation', null),
+              type: params.dynamic$('type', null),
+              fixedColor: params.color('fixedColor', Colors.red),
+              backgroundColor: params.color('backgroundColor', Colors.red),
+              iconSize: params.dynamic$('iconSize', 24.0),
+              selectedItemColor: params.color('selectedItemColor', Colors.red),
+              unselectedItemColor:
+                  params.color('unselectedItemColor', Colors.red),
+              selectedIconTheme: params.dynamic$('selectedIconTheme', null),
+              unselectedIconTheme: params.dynamic$('unselectedIconTheme', null),
+              selectedFontSize: params.dynamic$('selectedFontSize', 14.0),
+              unselectedFontSize: params.dynamic$('unselectedFontSize', 12.0),
+              selectedLabelStyle: params.dynamic$('selectedLabelStyle', null),
+              unselectedLabelStyle:
+                  params.dynamic$('unselectedLabelStyle', null),
+              showSelectedLabels: params.boolean('showSelectedLabels', false),
+              showUnselectedLabels:
+                  params.boolean('showUnselectedLabels', false),
+              mouseCursor: params.dynamic$('mouseCursor', null),
+              enableFeedback: params.boolean('enableFeedback', false),
+              landscapeLayout: params.dynamic$('landscapeLayout', null),
+              useLegacyColorScheme:
+                  params.boolean('useLegacyColorScheme', true),
+            ),
+          ),
+        ],
       ),
       Component(
         meta: widgets_chips.meta.copyWith(
@@ -228,11 +295,126 @@ See also:
           ],
         ),
         stories: [
-          widgets_chips.$Chip,
-          widgets_chips.$InputChip,
-          widgets_chips.$ChoiceChip,
-          widgets_chips.$FilterChip,
-          widgets_chips.$ActionChip
+          widgets_chips.$Chip.applyGenerated(
+            name: 'Chip',
+            builder: (context, params) => DefaultTextStyle(
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+                fontSize: 24,
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          'Component has unsupported parameters and can\'t be built automatically'),
+                      Text('Parameter `clipBehavior` of type [Clip]'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          widgets_chips.$InputChip.applyGenerated(
+            name: 'Input Chip',
+            builder: (context, params) => DefaultTextStyle(
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+                fontSize: 24,
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          'Component has unsupported parameters and can\'t be built automatically'),
+                      Text('Parameter `clipBehavior` of type [Clip]'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          widgets_chips.$ChoiceChip.applyGenerated(
+            name: 'Choice Chip',
+            builder: (context, params) => DefaultTextStyle(
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+                fontSize: 24,
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          'Component has unsupported parameters and can\'t be built automatically'),
+                      Text('Parameter `clipBehavior` of type [Clip]'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          widgets_chips.$FilterChip.applyGenerated(
+            name: 'Filter Chip',
+            builder: (context, params) => DefaultTextStyle(
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+                fontSize: 24,
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          'Component has unsupported parameters and can\'t be built automatically'),
+                      Text('Parameter `clipBehavior` of type [Clip]'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          widgets_chips.$ActionChip.applyGenerated(
+            name: 'Action Chip',
+            builder: (context, params) => DefaultTextStyle(
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+                fontSize: 24,
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          'Component has unsupported parameters and can\'t be built automatically'),
+                      Text('Parameter `clipBehavior` of type [Clip]'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     ];

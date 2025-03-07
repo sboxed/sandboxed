@@ -10,6 +10,7 @@ class ViButton extends StatelessWidget {
   final Widget? icon;
   final Color? color;
   final ViButtonSize size;
+  final VoidCallback? onPressed;
 
   const ViButton({
     super.key,
@@ -17,6 +18,7 @@ class ViButton extends StatelessWidget {
     required this.color,
     this.size = ViButtonSize.small,
     this.icon,
+    this.onPressed,
   });
 
   @override
@@ -27,7 +29,7 @@ class ViButton extends StatelessWidget {
         ViButtonSize.medium => 48,
       },
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: color ?? Colors.green,
           foregroundColor: Colors.white,

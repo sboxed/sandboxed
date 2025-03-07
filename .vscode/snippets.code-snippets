@@ -1,0 +1,22 @@
+{
+
+  "Meta + Story": {
+    "prefix": "metastory",
+    "description": "Creates a new Vibook Story with default Meta",
+    "body": [
+      "import 'package:flutter/widgets.dart';",
+      "import 'package:vibook_core/vibook_core.dart';",
+      "",
+      "Meta get meta => Meta<${1:Widget}>();",
+      "",
+      "Story get $${2:Default} => Story($0);"
+    ]
+  },
+  "Story": {
+    "prefix": "story",
+    "description": "Creates a new Vibook Story",
+    "body": [
+      "Story get $${2:Default} = Story($0);"
+    ]
+  },
+}

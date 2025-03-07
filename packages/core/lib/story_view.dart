@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:vibook_core/constant_params.dart';
 import 'package:vibook_core/decorator.dart';
 import 'package:vibook_core/meta.dart';
 import 'package:vibook_core/params.dart';
-import 'package:vibook_core/params/list_param.dart';
 import 'package:vibook_core/story.dart';
 
-class StoryView extends StatelessWidget {
+class StoryView extends StatefulWidget {
   final Meta meta;
   final Story story;
   final Params? params;
@@ -20,54 +20,30 @@ class StoryView extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final params = this.params ?? ParamsTmp();
-
-    var child = story.builder(context, params);
-    child = story.decorators.decorate(context, child);
-    child = meta.decorators.decorate(context, child);
-    child = decorators.decorate(context, child);
-
-    return child;
-  }
+  State<StoryView> createState() => _StoryViewState();
 }
 
-class ParamsTmp implements Params {
-  @override
-  void update<T>(String id, T value) {}
+class _StoryViewState extends State<StoryView> {
+  late final params = widget.params ?? ConstantParams(defaultValues: widget.story.params);
 
   @override
-  bool boolean(String id, bool value) {
-    return value;
+  void initState() {
+    widget.story.builder(context, params);
+
+    for (final param in widget.story.params.entries) {
+      params.update(param.key, param.value);
+    }
+
+    super.initState();
   }
 
   @override
-  Color color(String id, Color value) {
-    return value;
-  }
+  Widget build(BuildContext context) {
+    var child = widget.story.builder(context, params);
+    child = widget.story.decorators.decorate(context, child);
+    child = widget.meta.decorators.decorate(context, child);
+    child = widget.decorators.decorate(context, child);
 
-  @override
-  double number(String id, double value) {
-    return value;
-  }
-
-  @override
-  String string(String id, String value) {
-    return value;
-  }
-
-  @override
-  List<T> multi<T>(
-    String id,
-    List<T> value,
-    List<T> values, [
-    ListParamType? type,
-  ]) {
-    return value;
-  }
-
-  @override
-  T single<T>(String id, T value, List<T> values, [ListParamType? type]) {
-    return value;
+    return child;
   }
 }

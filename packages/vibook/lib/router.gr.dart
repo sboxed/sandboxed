@@ -15,6 +15,50 @@ import 'package:vibook/pages/index_page.dart' as _i2;
 import 'package:vibook/pages/nothing/nothing_page.dart' as _i3;
 import 'package:vibook/pages/story/story_page.dart' as _i4;
 
+abstract class $AppRouter extends _i5.RootStackRouter {
+  $AppRouter({super.navigatorKey});
+
+  @override
+  final Map<String, _i5.PageFactory> pagesMap = {
+    DocumentRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<DocumentRouteArgs>(
+          orElse: () => DocumentRouteArgs(id: pathParams.getString('id')));
+      return _i5.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i1.DocumentPage(
+          key: args.key,
+          id: args.id,
+        ),
+      );
+    },
+    IndexRoute.name: (routeData) {
+      return _i5.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.IndexPage(),
+      );
+    },
+    NothingRoute.name: (routeData) {
+      return _i5.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.NothingPage(),
+      );
+    },
+    StoryRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<StoryRouteArgs>(
+          orElse: () => StoryRouteArgs(id: pathParams.getString('id')));
+      return _i5.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i4.StoryPage(
+          key: args.key,
+          id: args.id,
+        ),
+      );
+    },
+  };
+}
+
 /// generated route for
 /// [_i1.DocumentPage]
 class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
@@ -34,18 +78,8 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
 
   static const String name = 'DocumentRoute';
 
-  static _i5.PageInfo page = _i5.PageInfo(
-    name,
-    builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<DocumentRouteArgs>(
-          orElse: () => DocumentRouteArgs(id: pathParams.getString('id')));
-      return _i1.DocumentPage(
-        key: args.key,
-        id: args.id,
-      );
-    },
-  );
+  static const _i5.PageInfo<DocumentRouteArgs> page =
+      _i5.PageInfo<DocumentRouteArgs>(name);
 }
 
 class DocumentRouteArgs {
@@ -75,12 +109,7 @@ class IndexRoute extends _i5.PageRouteInfo<void> {
 
   static const String name = 'IndexRoute';
 
-  static _i5.PageInfo page = _i5.PageInfo(
-    name,
-    builder: (data) {
-      return const _i2.IndexPage();
-    },
-  );
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }
 
 /// generated route for
@@ -94,12 +123,7 @@ class NothingRoute extends _i5.PageRouteInfo<void> {
 
   static const String name = 'NothingRoute';
 
-  static _i5.PageInfo page = _i5.PageInfo(
-    name,
-    builder: (data) {
-      return const _i3.NothingPage();
-    },
-  );
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }
 
 /// generated route for
@@ -121,18 +145,8 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
 
   static const String name = 'StoryRoute';
 
-  static _i5.PageInfo page = _i5.PageInfo(
-    name,
-    builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<StoryRouteArgs>(
-          orElse: () => StoryRouteArgs(id: pathParams.getString('id')));
-      return _i4.StoryPage(
-        key: args.key,
-        id: args.id,
-      );
-    },
-  );
+  static const _i5.PageInfo<StoryRouteArgs> page =
+      _i5.PageInfo<StoryRouteArgs>(name);
 }
 
 class StoryRouteArgs {

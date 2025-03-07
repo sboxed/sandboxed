@@ -57,6 +57,7 @@ final class InteractiveViewerAddon extends FlagAddon with ToolbarAddonMixin {
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         border: Border.all(
+                          strokeAlign: BorderSide.strokeAlignOutside,
                           color: Theme.of(context).colorScheme.surfaceBright,
                         ),
                       ),

@@ -4,6 +4,9 @@ import 'package:vibook_core/params.dart';
 
 typedef StoryBuilder = Widget Function(BuildContext context, Params params);
 
+// ignore: non_constant_identifier_names
+Widget AutomaticBuilder(context, params) => const SizedBox();
+
 class Story {
   final String? name;
 
@@ -12,21 +15,40 @@ class Story {
   /// {@macro vibook.decorator}
   final List<Decorator> decorators;
 
+  /// Pre-defined params.
+  final Map<String, dynamic> params;
+
   final int order;
 
   const Story({
     this.name,
     this.decorators = const [],
     this.order = 0,
-    required this.builder,
+    this.builder = AutomaticBuilder,
+    this.params = const {},
   });
 
-  /// To override name by generator.
-  Story withName(String name) {
-    return Story(
-      name: name,
-      decorators: decorators,
+  const Story.apply({
+    required this.name,
+    required this.decorators,
+    required this.order,
+    required this.builder,
+    required this.params,
+  });
+
+  Story applyGenerated({
+    String? name,
+    StoryBuilder? builder,
+  }) {
+    builder = this.builder == AutomaticBuilder
+        ? (builder ?? this.builder)
+        : this.builder;
+    return Story.apply(
+      name: this.name ?? name,
       builder: builder,
+      decorators: decorators,
+      order: order,
+      params: params,
     );
   }
 }

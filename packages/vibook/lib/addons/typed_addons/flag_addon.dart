@@ -5,8 +5,12 @@ import 'package:vibook/addons/decorator_addon.dart';
 abstract base class FlagAddon extends Addon with DecoratorAddon<bool> {
   String get name;
 
+  final bool enabled;
+
+  FlagAddon({this.enabled = false});
+
   @override
-  final notifier = ValueNotifier<bool>(false);
+  late final notifier = ValueNotifier<bool>(enabled);
 
   bool get value => notifier.value;
 
@@ -29,12 +33,12 @@ abstract base class FlagAddon extends Addon with DecoratorAddon<bool> {
   }
 
   @override
-  void deserialize(Map<String, dynamic> json) {
-    notifier.value = json['value'];
+  void deserialize(covariant bool json) {
+    notifier.value = json;
   }
 
   @override
-  Map<String, dynamic> serialize() {
-    return {'value': notifier.value};
+  bool serialize() {
+    return notifier.value;
   }
 }

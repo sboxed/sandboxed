@@ -1,9 +1,14 @@
 abstract base class Addon {
   String get id;
 
-  Map<String, dynamic>? serialize() {
-    return null;
-  }
+  /// Serialize state to json encodable object
+  dynamic serialize() => null;
 
-  void deserialize(Map<String, dynamic> json) {}
+  /// Read state from json-like object
+  ///
+  /// Possible values are:
+  /// - Base DartType - bool, int, double, string, etc.
+  /// - List<DartType> - list of objects of base dart type, list or map
+  /// - Map<String, DartType> - map of objects of base dart type, list or map
+  void deserialize(dynamic json) {}
 }

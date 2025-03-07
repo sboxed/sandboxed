@@ -27,6 +27,7 @@ Story get $Green => Story(
       name: 'Green',
       builder: (context, params) {
         return ViButton(
+          onPressed: () {},
           title: params.string('title', "Lorem"),
           color: params.color('color', Colors.green),
           size: params.single(
@@ -43,6 +44,7 @@ Story get $Blue => Story(
       name: 'Blue',
       builder: (context, params) {
         return ViButton(
+          onPressed: () {},
           title: params.string('title', "Lorem"),
           color: params.color('color', Colors.blue),
           icon: params.boolean('has_icon', false)

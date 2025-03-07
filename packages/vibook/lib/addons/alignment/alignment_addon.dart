@@ -34,6 +34,7 @@ final class AlignmentAddon extends Addon
   @override
   Widget buildEditor(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Alignment'),
         const SizedBox(height: 8),
@@ -66,7 +67,7 @@ final class AlignmentAddon extends Addon
       ];
 
   @override
-  void deserialize(Map<String, dynamic> json) {
+  void deserialize(covariant Map<String, dynamic> json) {
     notifier.value = Alignment(json['x'], json['y']);
   }
 

@@ -39,6 +39,8 @@ class _EditFieldState extends State<_EditField> {
     return TextField(
       controller: controller,
       onChanged: widget.onChanged,
+      minLines: 1,
+      maxLines: null,
     );
   }
 }

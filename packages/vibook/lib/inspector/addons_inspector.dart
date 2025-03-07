@@ -22,7 +22,7 @@ class AddonsInspector extends ConsumerWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
+                      padding: const EdgeInsets.only(bottom: 28),
                       child: KeyedSubtree(
                         key: Key(addon.id),
                         child: editor,

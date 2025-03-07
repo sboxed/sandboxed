@@ -14,9 +14,12 @@ class ParamsNotifier extends ChangeNotifier implements Params {
     return _params.putIfAbsent(id, () => Param<T>(value)) as Param<T>;
   }
 
+  @override
   void update<T>(String id, T value) {
     items[id]?.value = value;
-    notifyListeners();
+
+    // TODO(@melvspace): 03/07/25 detect widget tree is building.
+    Future.microtask(notifyListeners);
   }
 
   @override
@@ -78,5 +81,25 @@ class ParamsNotifier extends ChangeNotifier implements Params {
           ),
         )
         .value;
+  }
+
+  @override
+  DateTime datetime(String id, DateTime value) {
+    return param(id, value).value;
+  }
+
+  @override
+  Duration duration(String id, Duration value) {
+    return param(id, value).value;
+  }
+
+  @override
+  T dynamic$<T>(String id, T value) {
+    return param(id, value).value;
+  }
+
+  @override
+  Gradient gradient(String id, Gradient value) {
+    return param(id, value).value;
   }
 }

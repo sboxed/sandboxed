@@ -1,18 +1,24 @@
 import 'package:analyzer/dart/element/element.dart';
+import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
+import 'package:vibook_generator/parsers/meta_parser.dart';
+import 'package:vibook_generator/story_parser.dart';
 
 class LibraryParser {
+  final Resolver resolver;
+
   final String package;
   final String path;
   final LibraryElement library;
-  final String? docs;
+  final List<String> docs;
 
   LibraryParser({
+    required this.resolver,
     required this.package,
     required this.path,
     required this.library,
-    this.docs,
+    required this.docs,
   });
 
   String get _id {
@@ -50,40 +56,67 @@ class LibraryParser {
     return false;
   }
 
-  String get _meta {
+  TopLevelVariableElement? findMeta() {
     for (final element in library.topLevelElements) {
       if (element case TopLevelVariableElement element) {
         if (checkMeta(element)) {
-          return element.name;
+          return element;
         }
       }
     }
 
-    return 'meta';
+    return null;
   }
 
-  List<String> get _stories {
+  String get _meta {
+    final meta = findMeta();
+    return meta?.name ?? 'meta';
+  }
+
+  Future<MetaDescription?> buildMeta() async {
+    final meta = findMeta();
+    final parser = MetaParser(resolver: resolver);
+    if (meta == null) return null;
+
+    return parser.parse(meta);
+  }
+
+  Future<List<String>> buildStories(MetaDescription? meta) async {
+    final parser = StoryParser(resolver: resolver, meta: meta);
     final stories = library.topLevelElements
         .whereType<TopLevelVariableElement>()
         .where(checkStory);
 
-    return [
-      for (final story in stories) //
-        '$_id.${story.name}',
-    ];
+    final parsed = <String>{};
+    final result = <String>[];
+    for (final story in stories) {
+      if (parsed.contains(story.name)) continue;
+
+      final storyAccessor = await parser.parse(story);
+      result.add('$_id.$storyAccessor');
+      parsed.add(story.name);
+    }
+
+    return result;
   }
 
-  Code build() {
+  Future<(Set<LibraryElement>, Code)> build() async {
+    final metaDescription = await buildMeta();
+    final stories = await buildStories(metaDescription);
+
     final metaIdentifier = '$_id.$_meta';
-    return Code(
-      '''
+    final storiesComma = stories.isNotEmpty ? ',' : '';
+
+    return (
+      metaDescription?.libraries ?? <LibraryElement>{},
+      Code(
+        '''
 Component(
-  meta: $metaIdentifier${withDocs(metaIdentifier, [
-            if (docs case String docs) docs
-          ])},
-  stories: [${_stories.join(',')}],
+  meta: $metaIdentifier${withDocs(metaIdentifier, docs)},
+  stories: [${stories.join(',')}$storiesComma],
 )
 ''',
+      )
     );
   }
 

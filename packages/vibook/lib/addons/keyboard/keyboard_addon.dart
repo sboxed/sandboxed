@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:vibook/addons/typed_addons/flag_addon.dart';
+import 'package:vibook/toolbar/toolbar_addon_mixin.dart';
+import 'package:vibook/toolbar/toolbar_button.dart';
+
+final class KeyboardAddon extends FlagAddon with ToolbarAddonMixin {
+  KeyboardAddon();
+
+  @override
+  String get id => 'keyboard';
+
+  @override
+  String get name => 'Keyboard';
+
+  @override
+  List<Widget> get actions {
+    return [
+      Builder(
+        builder: (context) {
+          final isEnabled = notifier.value;
+
+          return ToolbarButton(
+            onPressed: () => notifier.value = !notifier.value,
+            tooltip: ToolbarTooltip(
+              message: !notifier.value //
+                  ? 'Enable Keyboard'
+                  : 'Disable Keyboard',
+            ),
+            child: Icon(
+              isEnabled ? Icons.keyboard : Icons.keyboard_outlined,
+            ),
+          );
+        },
+      ),
+    ];
+  }
+}

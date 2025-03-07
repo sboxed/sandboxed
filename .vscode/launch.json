@@ -5,14 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Generator",
-      "cwd": "example/monorepo/ui_book",
-      "request": "launch",
-      "type": "dart",
-      "program": ".dart_tool/build/entrypoint/build.dart",
-      "args": ["build", "-d"]
-    },
-    {
       "name": "material_book",
       "cwd": "example/material_book",
       "request": "launch",
@@ -51,6 +43,14 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
+    },
+    {
+      "name": "sandbox (generator)",
+      "cwd": "apps/sandbox",
+      "request": "launch",
+      "type": "dart",
+      "program": ".dart_tool/build/entrypoint/build.dart",
+      "args": ["build", "-d"]
     },
   ]
 }
