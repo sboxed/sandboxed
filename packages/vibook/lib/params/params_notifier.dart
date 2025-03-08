@@ -7,11 +7,22 @@ import 'package:vibook_core/params/list_param.dart';
 
 class ParamsNotifier extends ChangeNotifier implements Params {
   final Map<String, Param> _params = {};
+  final Map<String, dynamic> _defaultValues = {};
 
   Map<String, Param> get items => UnmodifiableMapView(_params);
 
   Param<T> param<T>(String id, T value) {
+    if (!_params.containsKey(id)) {
+      value = _defaultValues[id] ?? value;
+    }
+
     return _params.putIfAbsent(id, () => Param<T>(value)) as Param<T>;
+  }
+
+  @override
+  void updateDefaultValues(Map<String, dynamic> defaultValues) {
+    _defaultValues.clear();
+    _defaultValues.addAll(defaultValues);
   }
 
   @override
@@ -22,13 +33,10 @@ class ParamsNotifier extends ChangeNotifier implements Params {
     Future.microtask(notifyListeners);
   }
 
-  @override
-  bool boolean(String id, bool value) {
-    return param(id, value).value;
-  }
+  // Core types
 
   @override
-  Color color(String id, Color value) {
+  bool boolean(String id, bool value) {
     return param(id, value).value;
   }
 
@@ -42,20 +50,22 @@ class ParamsNotifier extends ChangeNotifier implements Params {
     return param(id, value).value;
   }
 
-  Map<String, dynamic> serialize() {
-    return _params.map(
-      (key, value) => MapEntry(key, value.value),
-    );
+  @override
+  bool? booleanMaybe(String id, bool? value) {
+    return param(id, value).value;
   }
 
-  /// Updates state of notifier.
-  ///
-  /// Should be called after story loaded it's params.
-  void deserialize(Map<String, dynamic> json) {
-    for (final entry in json.entries) {
-      update(entry.key, entry.value);
-    }
+  @override
+  double? numberMaybe(String id, double? value) {
+    return param(id, value).value;
   }
+
+  @override
+  String? stringMaybe(String id, String? value) {
+    return param(id, value).value;
+  }
+
+  // Data types
 
   @override
   T single<T>(String id, T value, List<T> values, [ListParamType? type]) {
@@ -84,6 +94,40 @@ class ParamsNotifier extends ChangeNotifier implements Params {
   }
 
   @override
+  T? singleMaybe<T>(String id, T? value, List<T> values,
+      [ListParamType? type]) {
+    return _params
+        .putIfAbsent(id, () => SingleParam(value, values, type))
+        .value;
+  }
+
+  @override
+  List<T>? multiMaybe<T>(
+    String id,
+    List<T>? value,
+    List<T> values, [
+    ListParamType? type,
+  ]) {
+    return _params
+        .putIfAbsent(
+          id,
+          () => MultiParamNullable(
+            value,
+            values,
+            type,
+          ),
+        )
+        .value;
+  }
+
+  // Framework-specific types
+
+  @override
+  Color color(String id, Color value) {
+    return param(id, value).value;
+  }
+
+  @override
   DateTime datetime(String id, DateTime value) {
     return param(id, value).value;
   }
@@ -94,12 +138,51 @@ class ParamsNotifier extends ChangeNotifier implements Params {
   }
 
   @override
-  T dynamic$<T>(String id, T value) {
+  Gradient gradient(String id, Gradient value) {
     return param(id, value).value;
   }
 
   @override
-  Gradient gradient(String id, Gradient value) {
+  Color? colorMaybe(String id, Color? value) {
     return param(id, value).value;
+  }
+
+  @override
+  DateTime? datetimeMaybe(String id, DateTime? value) {
+    return param(id, value).value;
+  }
+
+  @override
+  Duration? durationMaybe(String id, Duration? value) {
+    return param(id, value).value;
+  }
+
+  @override
+  Gradient? gradientMaybe(String id, Gradient? value) {
+    return param(id, value).value;
+  }
+
+  // Generated
+
+  @override
+  T dynamic$<T>(String id, T value) {
+    return param(id, value).value;
+  }
+
+  // Methods
+
+  Map<String, dynamic> serialize() {
+    return _params.map(
+      (key, value) => MapEntry(key, value.value),
+    );
+  }
+
+  /// Updates state of notifier.
+  ///
+  /// Should be called after story loaded it's params.
+  void deserialize(Map<String, dynamic> json) {
+    for (final entry in json.entries) {
+      update(entry.key, entry.value);
+    }
   }
 }

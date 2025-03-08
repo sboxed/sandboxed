@@ -1,4 +1,4 @@
-import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer/dart/ast/ast.dart' hide Expression;
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
@@ -20,24 +20,38 @@ class StoryParser {
     required this.meta,
   });
 
-  Future<String> parse(TopLevelVariableElement element) async {
-    List<String> generated = [];
+  Future<Expression> parse(TopLevelVariableElement element) async {
+    Map<String, Expression> generated = {};
 
-    generated.add(
-      "name: '${element.name.replaceAll(RegExp(r'^\$'), '').titleCase}'",
+    generated['name'] = literal(
+      element.name.replaceAll(RegExp(r'^\$'), '').titleCase,
     );
 
     if (meta?.widget != null) {
-      generated.add(
-        'builder: (context, params) => ' //
-        '${buildComponent(meta!.widget!)}',
+      generated['builder'] = Method(
+        (method) {
+          method.requiredParameters.addAll([
+            Parameter((param) => param.name = 'context'),
+            Parameter((param) => param.name = 'params'),
+          ]);
+          method.lambda = true;
+          method.body = buildComponent(meta!.widget!).code;
+        },
+      ).closure;
+    }
+
+    Expression story = refer(element.name, element.library.location!.encoding);
+    if (generated.isNotEmpty) {
+      story = story.property('applyGenerated').call(
+        [],
+        {
+          for (final item in generated.entries) //
+            item.key: item.value,
+        },
       );
     }
 
-    return element.name +
-        (generated.isNotEmpty
-            ? '.applyGenerated(${generated.join(',')},)'
-            : '');
+    return story;
   }
 }
 
@@ -60,27 +74,42 @@ class StoryCopyWithBuilder extends RecursiveAstVisitor {
   }
 }
 
-Code buildComponent(ClassElement element) {
+Expression buildComponent(ClassElement element) {
   final constructor = element.constructors.first;
   final constructorName =
       constructor.name.isNotEmpty ? '.${constructor.name}' : '';
 
   try {
-    final parameters = buildParameters(constructor.parameters);
-    return Code('${element.name}$constructorName($parameters)');
+    Expression widget = refer(element.name, element.library.location!.encoding);
+    if (constructorName.isNotEmpty) {
+      widget.property(constructorName);
+    }
+
+    final (positional, named) = buildParameters(constructor.parameters);
+    return widget.call(positional, named);
   } on UnsupportedParametersException catch (e) {
-    return Code(UnsupportedParametersMessage(parameters: e.parameters).build());
+    return CodeExpression(
+        Code(UnsupportedParametersMessage(parameters: e.parameters).build()));
   }
 }
 
-String buildParameters(List<ParameterElement> parameters) {
-  final paramValues = [];
+(List<Expression>, Map<String, Expression>) buildParameters(
+  List<ParameterElement> parameters,
+) {
+  final positional = <Expression>[];
+  final named = <String, Expression>{};
   final unsupported = <String, String>{};
+
   for (final parameter in parameters) {
     try {
       final value = buildParameter(parameter);
       if (value == null) continue;
-      paramValues.add(value);
+
+      if (parameter.isNamed) {
+        named[parameter.name] = value;
+      } else {
+        positional.add(value);
+      }
     } on UnsupportedParameterException catch (e) {
       unsupported[parameter.name] = e.type;
     }
@@ -90,24 +119,32 @@ String buildParameters(List<ParameterElement> parameters) {
     throw UnsupportedParametersException(unsupported);
   }
 
-  return '${paramValues.join(',')}${paramValues.isNotEmpty ? ',' : ''}';
+  return (positional, named);
 }
 
-String? buildParameter(ParameterElement parameter) {
-  String param(String type, dynamic code) {
-    var value = parameter.defaultValueCode;
+Expression? buildParameter(ParameterElement parameter) {
+  Expression param(String type, dynamic code) {
+    Expression? value = parameter.defaultValueCode != null
+        ? CodeExpression(Code(parameter.defaultValueCode!))
+        : null;
+
     if (code is! Raw) {
-      value ??= literal(code).toString();
+      value ??= literal(code);
+    } else if (code case Expression expression) {
+      value ??= expression;
     } else {
-      value ??= code.value.toString();
+      value ??= CodeExpression(Code(code.value.toString()));
     }
 
-    return "params.$type('${parameter.name}', $value)";
+    return refer('params').property(type).call([
+      literal(parameter.name),
+      value,
+    ]);
   }
 
   final colorChecker = TypeChecker.fromUrl('dart:ui#Color');
 
-  final String value = switch (parameter.type) {
+  final Expression value = switch (parameter.type) {
     DartType type when type.isDartCoreString => param('string', 'Text'),
     DartType type when type.isDartCoreBool => param('boolean', false),
     DartType type when colorChecker.isAssignableFromType(type) =>
@@ -115,11 +152,7 @@ String? buildParameter(ParameterElement parameter) {
     _ => param('dynamic\$', defaultValueForType(parameter.type)),
   };
 
-  if (parameter.isNamed) {
-    return '${parameter.name}: $value';
-  } else {
-    return value;
-  }
+  return value;
 }
 
 class Raw<T> {

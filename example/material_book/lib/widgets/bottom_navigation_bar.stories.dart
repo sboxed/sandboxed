@@ -27,22 +27,20 @@ Meta get meta => Meta<BottomNavigationBar>(
 
 Story get $Default => Story(
       name: 'Green',
-      builder: (context, params) {
-        return BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              label: 'Home',
-              icon: Icon(Icons.home),
-            ),
-            BottomNavigationBarItem(
-              label: 'Catalog',
-              icon: Icon(Icons.search),
-            ),
-            BottomNavigationBarItem(
-              label: 'Profile',
-              icon: Icon(Icons.person),
-            ),
-          ],
-        );
+      params: {
+        'items': [
+          BottomNavigationBarItem(
+            label: 'Home',
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            label: 'Catalog',
+            icon: Icon(Icons.search),
+          ),
+          BottomNavigationBarItem(
+            label: 'Profile',
+            icon: Icon(Icons.person),
+          ),
+        ],
       },
     );

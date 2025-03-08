@@ -19,4 +19,13 @@
       "Story get $${2:Default} = Story($0);"
     ]
   },
+  "Story Config": {
+    "prefix": "storyconfig",
+    "description": "Creates a global story config",
+    "body": [
+      "Config get config => Config(",
+      "  module: '',",
+      ");",
+    ]
+  },
 }

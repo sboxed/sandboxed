@@ -21,3 +21,13 @@ class MultiParam<T> extends Param<List<T>> {
     ListParamType? super.type,
   ]);
 }
+
+class MultiParamNullable<T> extends Param<List<T>?> {
+  final List<T>? values;
+
+  MultiParamNullable(
+    super.value,
+    this.values, [
+    ListParamType? super.type,
+  ]);
+}

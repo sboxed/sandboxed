@@ -24,15 +24,11 @@ class StoryView extends StatefulWidget {
 }
 
 class _StoryViewState extends State<StoryView> {
-  late final params = widget.params ?? ConstantParams(defaultValues: widget.story.params);
+  late final params = widget.params ?? ConstantParams();
 
   @override
   void initState() {
-    widget.story.builder(context, params);
-
-    for (final param in widget.story.params.entries) {
-      params.update(param.key, param.value);
-    }
+    params.updateDefaultValues(widget.story.params);
 
     super.initState();
   }

@@ -1,7 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
-import 'package:collection/collection.dart';
 import 'package:vibook_generator/parsers/meta_parser.dart';
 import 'package:vibook_generator/story_parser.dart';
 
@@ -12,6 +11,7 @@ class LibraryParser {
   final String path;
   final LibraryElement library;
   final List<String> docs;
+  final Reference? config;
 
   LibraryParser({
     required this.resolver,
@@ -19,22 +19,16 @@ class LibraryParser {
     required this.path,
     required this.library,
     required this.docs,
+    required this.config,
   });
 
-  String get _id {
-    return path //
-        .replaceAll('lib/', '')
-        .replaceAll('/', '_')
-        .split('.')
-        .first;
-  }
-
-  Directive get import {
-    return Directive.import(
-      'package:$package/${path.replaceAll('lib/', '')}',
-      as: _id, //
-    );
-  }
+  // String get _id {
+  //   return path //
+  //       .replaceAll('lib/', '')
+  //       .replaceAll('/', '_')
+  //       .split('.')
+  //       .first;
+  // }
 
   bool checkMeta(TopLevelVariableElement element) {
     if (element.type.element case ClassElement clazz) {
@@ -68,9 +62,9 @@ class LibraryParser {
     return null;
   }
 
-  String get _meta {
+  Reference get _meta {
     final meta = findMeta();
-    return meta?.name ?? 'meta';
+    return refer(meta?.name ?? 'meta', library.location!.encoding);
   }
 
   Future<MetaDescription?> buildMeta() async {
@@ -81,61 +75,66 @@ class LibraryParser {
     return parser.parse(meta);
   }
 
-  Future<List<String>> buildStories(MetaDescription? meta) async {
+  Future<List<Expression>> buildStories(MetaDescription? meta) async {
     final parser = StoryParser(resolver: resolver, meta: meta);
     final stories = library.topLevelElements
         .whereType<TopLevelVariableElement>()
         .where(checkStory);
 
     final parsed = <String>{};
-    final result = <String>[];
+    final result = <Expression>[];
     for (final story in stories) {
       if (parsed.contains(story.name)) continue;
 
       final storyAccessor = await parser.parse(story);
-      result.add('$_id.$storyAccessor');
+      result.add(storyAccessor);
       parsed.add(story.name);
     }
 
     return result;
   }
 
-  Future<(Set<LibraryElement>, Code)> build() async {
+  Future<Spec> build() async {
     final metaDescription = await buildMeta();
     final stories = await buildStories(metaDescription);
+    final meta = _meta;
 
-    final metaIdentifier = '$_id.$_meta';
-    final storiesComma = stories.isNotEmpty ? ',' : '';
-
-    return (
-      metaDescription?.libraries ?? <LibraryElement>{},
-      Code(
-        '''
-Component(
-  meta: $metaIdentifier${withDocs(metaIdentifier, docs)},
-  stories: [${stories.join(',')}$storiesComma],
-)
-''',
-      )
+    return InvokeExpression.newOf(
+      refer('Component'),
+      [],
+      {
+        'meta': withDocs(meta, docs),
+        if (config != null) //
+          'config': config!,
+        'stories': literalList([
+          for (final story in stories) //
+            story,
+        ]),
+      },
     );
   }
 
-  String withDocs(String metaIdentifier, List<String> docs) {
-    if (docs.isEmpty) return '';
+  Expression withDocs(Reference meta, List<String> docs) {
+    if (docs.isEmpty) return meta;
 
-    final docsComma = docs.isNotEmpty ? ',' : '';
-
-    return '''
-.copyWith(
-  documentation: [
-    ...$metaIdentifier.documentation,
-    ${docs.mapIndexed(
-              (i, e) =>
-                  "DocumentEntry(name: 'Docs${docs.length > 1 ? ' $i' : ''}',"
-                  "content: '''$e''')",
-            ).join(', ')}$docsComma
-  ],
-)
-''';
+    return meta.property('copyWith').call(
+      [],
+      {
+        'documentation': literalList([
+          meta.property('documentation').spread,
+          for (final (i, doc) in docs.indexed)
+            InvokeExpression.newOf(
+              refer('DocumentEntry'),
+              [],
+              {
+                'name': CodeExpression(
+                  Code("'Docs${docs.length > 1 ? ' $i' : ''}'"),
+                ),
+                'content': literal(doc),
+              },
+            ),
+        ]),
+      },
+    );
   }
 }

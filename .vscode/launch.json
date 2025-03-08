@@ -52,5 +52,13 @@
       "program": ".dart_tool/build/entrypoint/build.dart",
       "args": ["build", "-d"]
     },
+    {
+      "name": "monorepo/ui_book (generator)",
+      "cwd": "example/monorepo/ui_book",
+      "request": "launch",
+      "type": "dart",
+      "program": ".dart_tool/build/entrypoint/build.dart",
+      "args": ["build", "-d"]
+    },
   ]
 }

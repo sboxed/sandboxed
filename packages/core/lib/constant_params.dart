@@ -3,12 +3,18 @@ import 'package:vibook_core/params.dart';
 import 'package:vibook_core/params/list_param.dart';
 
 class ConstantParams implements Params {
-  final Map<String, dynamic> defaultValues;
+  final Map<String, dynamic> defaultValues = {};
 
-  const ConstantParams({required this.defaultValues});
+  ConstantParams();
 
   @override
   void update<T>(String id, T value) {}
+
+  @override
+  void updateDefaultValues(Map<String, dynamic> defaultValues) {
+    defaultValues.clear();
+    defaultValues.addAll(defaultValues);
+  }
 
   dynamic param(String id, dynamic value) {
     final defaultValue = defaultValues[id];
@@ -21,13 +27,10 @@ class ConstantParams implements Params {
     return defaultValue;
   }
 
-  @override
-  bool boolean(String id, bool value) {
-    return param(id, value);
-  }
+  // Core types
 
   @override
-  Color color(String id, Color value) {
+  bool boolean(String id, bool value) {
     return param(id, value);
   }
 
@@ -42,17 +45,24 @@ class ConstantParams implements Params {
   }
 
   @override
-  List<T> multi<T>(
-    String id,
-    List<T> value,
-    List<T> values, [
-    ListParamType? type,
-  ]) {
+  bool? booleanMaybe(String id, bool? value) {
     return param(id, value);
   }
 
   @override
-  T single<T>(String id, T value, List<T> values, [ListParamType? type]) {
+  double? numberMaybe(String id, double? value) {
+    return param(id, value);
+  }
+
+  @override
+  String? stringMaybe(String id, String? value) {
+    return param(id, value);
+  }
+
+  // Framework-specific types
+
+  @override
+  Color color(String id, Color value) {
     return param(id, value);
   }
 
@@ -67,12 +77,71 @@ class ConstantParams implements Params {
   }
 
   @override
-  T dynamic$<T>(String id, T value) {
+  Gradient gradient(String id, Gradient value) {
     return param(id, value);
   }
 
   @override
-  Gradient gradient(String id, Gradient value) {
+  Color? colorMaybe(String id, Color? value) {
+    return param(id, value);
+  }
+
+  @override
+  DateTime? datetimeMaybe(String id, DateTime? value) {
+    return param(id, value);
+  }
+
+  @override
+  Duration? durationMaybe(String id, Duration? value) {
+    return param(id, value);
+  }
+
+  @override
+  Gradient? gradientMaybe(String id, Gradient? value) {
+    return param(id, value);
+  }
+
+  // Data types
+
+  @override
+  T single<T>(String id, T value, List<T> values, [ListParamType? type]) {
+    return param(id, value);
+  }
+
+  @override
+  List<T> multi<T>(
+    String id,
+    List<T> value,
+    List<T> values, [
+    ListParamType? type,
+  ]) {
+    return param(id, value);
+  }
+
+  @override
+  T? singleMaybe<T>(
+    String id,
+    T? value,
+    List<T> values, [
+    ListParamType? type,
+  ]) {
+    return param(id, value);
+  }
+
+  @override
+  List<T>? multiMaybe<T>(
+    String id,
+    List<T>? value,
+    List<T> values, [
+    ListParamType? type,
+  ]) {
+    return param(id, value);
+  }
+
+  // Generated
+
+  @override
+  T dynamic$<T>(String id, T value) {
     return param(id, value);
   }
 }

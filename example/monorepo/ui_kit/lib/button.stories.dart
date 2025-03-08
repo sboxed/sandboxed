@@ -6,13 +6,13 @@ import 'package:vibook_core/meta.dart';
 import 'package:vibook_core/story.dart';
 
 Meta get meta => Meta<Button>(
-  name: '01. Button', // optional
-  module: 'Features / 01. Core',
-  component: Button, // optional
-  documentation: [
-    DocumentEntry(
-      name: 'Docs',
-      content: '''
+      name: '01. Button', // optional
+      // module: 'Features / 01. Core',
+      component: Button, // optional
+      documentation: [
+        DocumentEntry(
+          name: 'Docs',
+          content: '''
 A Material Design filled button.
 
 Filled buttons have the most visual impact after the [FloatingActionButton],
@@ -55,43 +55,42 @@ See also:
  * <https://material.io/design/components/buttons.html>
  * <https://m3.material.io/components/buttons>
 ''',
-    ),
-  ],
-  parameters: {"golden": true, "fullpage": false},
-  decorators: [
-    Decorator(
-      (context, story) =>
-          Padding(padding: const EdgeInsets.all(16), child: story),
-    ),
-  ],
-);
+        ),
+      ],
+      parameters: {"golden": true, "fullpage": false},
+      decorators: [
+        Decorator(
+          (context, story) =>
+              Padding(padding: const EdgeInsets.all(16), child: story),
+        ),
+      ],
+    );
 
 Story get $Green => Story(
-  name: 'Green',
-  builder: (context, params) {
-    return Button(
-      text: params.string('title', "Lorem"),
-      color: params.color('color', Colors.green),
-      size: params.single(
-        'size',
-        ButtonSize.small,
-        ButtonSize.values,
-        // ChipsType(),
-      ),
+      name: 'Green',
+      builder: (context, params) {
+        return Button(
+          text: params.string('title', "Lorem"),
+          color: params.color('color', Colors.green),
+          size: params.single(
+            'size',
+            ButtonSize.small,
+            ButtonSize.values,
+            // ChipsType(),
+          ),
+        );
+      },
     );
-  },
-);
 
 Story get $Blue => Story(
-  name: 'Blue',
-  builder: (context, params) {
-    return Button(
-      text: params.string('title', "Lorem"),
-      color: params.color('color', Colors.blue),
-      icon:
-          params.boolean('has_icon', false)
+      name: 'Blue',
+      builder: (context, params) {
+        return Button(
+          text: params.string('title', "Lorem"),
+          color: params.color('color', Colors.blue),
+          icon: params.boolean('has_icon', false)
               ? const Icon(Icons.check, color: Colors.white)
               : null,
+        );
+      },
     );
-  },
-);

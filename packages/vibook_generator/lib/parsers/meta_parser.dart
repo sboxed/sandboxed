@@ -15,24 +15,20 @@ class MetaParser {
     ast?.visitChildren(visitor);
 
     return MetaDescription(
-      libraries: visitor.libraries,
       widget: visitor.componentArgument ?? visitor.componentGeneric,
     );
   }
 }
 
 class MetaDescription {
-  final Set<LibraryElement> libraries;
   final ClassElement? widget;
 
   const MetaDescription({
-    required this.libraries,
     required this.widget,
   });
 }
 
 class MetaVisitor extends RecursiveAstVisitor {
-  final Set<LibraryElement> libraries = {};
   ClassElement? componentGeneric;
   ClassElement? componentArgument;
 
@@ -43,9 +39,6 @@ class MetaVisitor extends RecursiveAstVisitor {
       final typeArguments = node.constructorName.type.typeArguments?.arguments;
       if (typeArguments?.firstOrNull case NamedType type) {
         componentGeneric = type.element as ClassElement?;
-        if (componentGeneric?.library case LibraryElement element) {
-          libraries.add(element);
-        }
       }
 
       // find argument widget type.
@@ -60,9 +53,6 @@ class MetaVisitor extends RecursiveAstVisitor {
               ?.staticElement;
       if (componentArgument case ClassElement component) {
         this.componentArgument = component;
-        if (component.library case LibraryElement element) {
-          libraries.add(element);
-        }
       }
     }
 

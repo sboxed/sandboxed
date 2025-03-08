@@ -15,7 +15,7 @@ Story get $WithParams => Story(
 
 Story get $WithBuilder => Story(
       builder: (context, params) => UnsupportedParameters(
-        padding: EdgeInsets.all(24),
-        style: TextStyle(fontSize: 24),
+        padding: EdgeInsets.all(params.number('padding', 24)),
+        style: TextStyle(fontSize: params.number('fontSize', 24)),
       ),
     );
