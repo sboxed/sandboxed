@@ -31,27 +31,44 @@ Meta get meta => Meta<BottomAppBar>(
       ],
     );
 
-Story get $Default => Story(
-      name: 'Green',
-      // builder: (context, params) {
-      //   return BottomAppBar(
-      //     child: Row(
-      //       children: <Widget>[
-      //         IconButton(
-      //           tooltip: 'Open navigation menu',
-      //           icon: const Icon(Icons.menu),
-      //           onPressed: () {},
-      //         ),
-      //         IconButton(
-      //             tooltip: 'Search',
-      //             icon: const Icon(Icons.search),
-      //             onPressed: () {}),
-      //         IconButton(
-      //             tooltip: 'Favorite',
-      //             icon: const Icon(Icons.favorite),
-      //             onPressed: () {}),
-      //       ],
-      //     ),
-      //   );
-      // },
-    );
+Story get $Default => Story(params: {
+      'child': Row(
+        children: <Widget>[
+          IconButton(
+            tooltip: 'Open navigation menu',
+            icon: const Icon(Icons.menu),
+            onPressed: () {},
+          ),
+          IconButton(
+              tooltip: 'Search',
+              icon: const Icon(Icons.search),
+              onPressed: () {}),
+          IconButton(
+              tooltip: 'Favorite',
+              icon: const Icon(Icons.favorite),
+              onPressed: () {}),
+        ],
+      ),
+    }
+        // builder: (context, params) {
+        //   return BottomAppBar(
+        //     child: Row(
+        //       children: <Widget>[
+        //         IconButton(
+        //           tooltip: 'Open navigation menu',
+        //           icon: const Icon(Icons.menu),
+        //           onPressed: () {},
+        //         ),
+        //         IconButton(
+        //             tooltip: 'Search',
+        //             icon: const Icon(Icons.search),
+        //             onPressed: () {}),
+        //         IconButton(
+        //             tooltip: 'Favorite',
+        //             icon: const Icon(Icons.favorite),
+        //             onPressed: () {}),
+        //       ],
+        //     ),
+        //   );
+        // },
+        );

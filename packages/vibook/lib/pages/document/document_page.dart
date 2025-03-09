@@ -20,17 +20,11 @@ class DocumentPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final parentScaffold = Scaffold.of(context);
+
     return Scaffold(
-      appBar: switch (context.breakpoint) {
-        Breakpoints.mobile => AppBar(
-            title: ElementName(id: id),
-            automaticallyImplyLeading: false,
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
-          ),
-        _ => null,
-      },
       bottomNavigationBar: switch (context.breakpoint) {
-        Breakpoints.mobile => const ViBottomAppBar(),
+        Breakpoints.mobile => ViBottomAppBar(scaffold: parentScaffold),
         _ => null,
       },
       body: _DocumentPageContent(id: id),
@@ -50,7 +44,18 @@ class _DocumentPageContent extends ConsumerWidget {
       case DocumentSelection(:final component, :final document):
         return Column(
           children: [
-            const WIP(child: Toolbar()),
+            Card(
+              child: Column(
+                children: [
+                  AppBar(
+                    title: ElementName(id: id),
+                    automaticallyImplyLeading: false,
+                    backgroundColor: Colors.transparent,
+                  ),
+                  const WIP(child: Toolbar()),
+                ],
+              ),
+            ),
             Flexible(
               child: ComponentDocumentation(
                 body: '# ${component.meta.displayName} / ${document.name}\n\n'

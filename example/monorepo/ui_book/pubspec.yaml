@@ -14,6 +14,7 @@ dependencies:
   vibook_core:
 
   ui_kit:
+  products:
 
 dev_dependencies:
   flutter_test:

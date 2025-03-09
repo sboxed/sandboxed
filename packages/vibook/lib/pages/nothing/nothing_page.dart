@@ -10,6 +10,8 @@ class NothingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final parentScaffold = Scaffold.of(context);
+
     return Scaffold(
       appBar: switch (context.breakpoint) {
         Breakpoints.mobile => AppBar(
@@ -20,7 +22,7 @@ class NothingPage extends StatelessWidget {
         _ => null,
       },
       bottomNavigationBar: switch (context.breakpoint) {
-        Breakpoints.mobile => const ViBottomAppBar(),
+        Breakpoints.mobile => ViBottomAppBar(scaffold: parentScaffold),
         _ => null,
       },
       body: const Center(

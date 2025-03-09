@@ -37,6 +37,7 @@ final class SafeAreaAddon extends FlagAddon with ToolbarAddonMixin {
         listenable: notifier,
         builder: (context, child) {
           return ToolbarButton(
+            selected: notifier.value,
             onPressed: () => notifier.value = !notifier.value,
             tooltip: ToolbarTooltip(
               message: '${value ? 'Disable' : 'Enable'} Safe Area',

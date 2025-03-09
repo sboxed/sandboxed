@@ -2,8 +2,11 @@ import 'package:collection/collection.dart';
 import 'package:device_frame_plus/device_frame_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/decorator_addon.dart';
+import 'package:vibook/addons/interactive_viewer/interactive_viewer_addon.dart';
+import 'package:vibook/provider/addons.dart';
 import 'package:vibook/toolbar/toolbar_addon_mixin.dart';
 import 'package:vibook/widgets/gap.dart';
 import 'package:vibook_core/vibook_core.dart';
@@ -81,20 +84,33 @@ final class ViewportAddon extends Addon
                     runSpacing: 8,
                     children: [
                       for (final device in devices)
-                        ChoiceChip(
-                          label: Text(device.name),
-                          selected: notifier.value.devices.contains(device),
-                          onSelected: (value) =>
+                        Consumer(
+                          builder: (context, ref, child) => ChoiceChip(
+                            label: Text(device.name),
+                            selected: notifier.value.devices.contains(device),
+                            onSelected: (value) {
                               notifier.value = notifier.value.copyWith(
-                            devices: value
-                                ? [...notifier.value.devices, device]
-                                : ([...notifier.value.devices]..remove(device)),
+                                devices: value
+                                    ? [...notifier.value.devices, device]
+                                    : ([...notifier.value.devices]
+                                      ..remove(device)),
+                              );
+
+                              if (notifier.value.devices.length >= 2) {
+                                ref
+                                    .read(addonsProvider)
+                                    .whereType<InteractiveViewerAddon>()
+                                    .firstOrNull
+                                    ?.notifier
+                                    .value = true;
+                              }
+                            },
                           ),
                         ),
                     ],
                   ),
                   const Gap(24),
-                  Text('Orientation'),
+                  const Text('Orientation'),
                   const Gap(16),
                   Wrap(
                     spacing: 8,
@@ -104,11 +120,17 @@ final class ViewportAddon extends Addon
                         ChoiceChip(
                           label: Text(orientation.name),
                           selected: notifier.value.orientation == orientation,
+                          onSelected: (value) {
+                            if (value) {
+                              notifier.value = notifier.value
+                                  .copyWith(orientation: orientation);
+                            }
+                          },
                         ),
                     ],
                   ),
                   const Gap(24),
-                  Text('Show Frame'),
+                  const Text('Show Frame'),
                   const Gap(16),
                   Switch(
                     value: notifier.value.hasFrame,
@@ -137,7 +159,11 @@ final class ViewportAddon extends Addon
               }
 
               final setting = notifier.value;
-              final pickedDevices = notifier.value.devices;
+              final pickedDevices = notifier.value.devices.sortedBy<num>(
+                (element) =>
+                    element.screenSize.width + //
+                    element.screenSize.height,
+              );
 
               if (pickedDevices.length == 1) {
                 return DeviceFrame(
@@ -152,21 +178,49 @@ final class ViewportAddon extends Addon
 
               return Column(
                 children: [
-                  for (final row in pickedDevices.slices(5))
+                  for (final row in pickedDevices.slices(4))
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         for (final device in row)
                           Padding(
                             padding: const EdgeInsets.all(16),
-                            child: SizedBox.fromSize(
-                              size: device.screenSize,
-                              child: DeviceFrame(
-                                device: device,
-                                orientation: setting.orientation,
-                                isFrameVisible: setting.hasFrame,
-                                screen: child!,
-                              ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  device.name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge
+                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                ),
+                                const Gap(12),
+                                SizedBox.fromSize(
+                                  size: switch (notifier.value.orientation) {
+                                    Orientation.portrait => device.frameSize,
+                                    _ => device.frameSize.flipped,
+                                  },
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      border: !setting.hasFrame
+                                          ? Border.all(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .inverseSurface,
+                                            )
+                                          : null,
+                                    ),
+                                    child: DeviceFrame(
+                                      device: device,
+                                      orientation: setting.orientation,
+                                      isFrameVisible: setting.hasFrame,
+                                      screen: child!,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           )
                       ],

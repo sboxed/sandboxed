@@ -26,8 +26,8 @@ Story get $Green => Story(
       name: 'Green',
       builder: (context, params) {
         return ViDiagramButton(
-          title: params.string('title', "Lorem"),
-          color: params.color('color', Colors.green),
+          title: params.string('title').required("Lorem"),
+          color: params.color('color').required(Colors.green),
         );
       },
     );
@@ -36,8 +36,8 @@ Story get $Blue => Story(
       name: 'Blue',
       builder: (context, params) {
         return ViDiagramButton(
-          title: params.string('title', "Lorem"),
-          color: params.color('color', Colors.blue),
+          title: params.string('title').required("Lorem"),
+          color: params.color('color').required(Colors.blue),
         );
       },
     );

@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:vibook/params/param_builder.dart';
 import 'package:vibook/params/params_notifier.dart';
-import 'package:vibook_core/param.dart';
-import 'package:vibook_core/params/list_param.dart';
-
-final class ChipsType extends ListParamType {}
+import 'package:vibook_core/vibook_core.dart';
 
 class SingleChipsParamBuilder<T> extends ParamBuilder<T> {
   @override
-  Widget build(String id, Param<T> param, ParamsNotifier params) {
-    final listParam = param as SingleParam<T>;
+  T? getInitialValueFor(ParamWrapper<T> param) => switch (param) {
+        SingleChoiceParamWrapper(values: final values) => values.first,
+        _ => null,
+      };
+
+  @override
+  Widget build(String id, ParamWrapper<T> param, ParamsNotifier params) {
+    final listParam = param as SingleChoiceParamWrapper<T>;
 
     return Wrap(
-      spacing: 5.0,
+      spacing: 8,
+      runSpacing: 8,
       children: [
         for (final choice in listParam.values)
           ChoiceChip(
@@ -34,22 +38,28 @@ class SingleChipsParamBuilder<T> extends ParamBuilder<T> {
   }
 
   @override
-  bool canBuild(Param param) {
-    return param is SingleParam<T> && param.type is ChipsType;
+  bool canBuild(ParamWrapper param) {
+    return param is SingleChoiceParamWrapper<T>;
   }
 }
 
 class MultiChipsParamBuilder<T> extends ParamBuilder<T> {
   @override
-  Widget build(String id, Param<T> param, ParamsNotifier params) {
-    final multi = param as MultiParam<T>;
+  T? getInitialValueFor(ParamWrapper<T> param) => switch (param) {
+        MultiChoiceParamWrapper(values: final values) => values.first,
+        _ => null,
+      };
+
+  @override
+  Widget build(String id, ParamWrapper param, ParamsNotifier params) {
+    final multi = param as MultiChoiceParamWrapper<T>;
 
     return Wrap(
       spacing: 5.0,
       children: [
         for (final choice in multi.values)
           ChoiceChip(
-            selected: multi.value.contains(choice),
+            selected: multi.value?.contains(choice) == true,
             label: Text(
               switch (choice) {
                 Enum choice => choice.name,
@@ -60,9 +70,11 @@ class MultiChipsParamBuilder<T> extends ParamBuilder<T> {
               // TODO(@melvspace): 03/05/25 fix type errors.
               if (selected) {
                 params.update<List<T>>(
-                    id, ([...multi.value]..remove(choice)).cast<T>());
+                  id,
+                  ([...?multi.value]..remove(choice)).cast<T>(),
+                );
               } else {
-                params.update<List<T>>(id, [...multi.value, choice].cast<T>());
+                params.update<List<T>>(id, [...?multi.value, choice].cast<T>());
               }
             },
           )
@@ -71,7 +83,8 @@ class MultiChipsParamBuilder<T> extends ParamBuilder<T> {
   }
 
   @override
-  bool canBuild(Param param) {
-    return param is MultiParam && param.type is ChipsType;
+  bool canBuild(ParamWrapper param) {
+    return param is MultiChoiceParamWrapper<List<T>> &&
+        param.meta['type'] == 'chips';
   }
 }

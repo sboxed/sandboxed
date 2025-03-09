@@ -6,7 +6,7 @@ part of 'addons.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addonListHash() => r'cad38598c82e54b5e77d094b6cf23fc3acb90db7';
+String _$addonListHash() => r'ea82c6dbc93ecd4dccbedeb7c0142cee81a75b43';
 
 /// See also [addonList].
 @ProviderFor(addonList)
@@ -15,14 +15,14 @@ final addonListProvider = AutoDisposeProvider<List<Addon>>.internal(
   name: r'addonListProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$addonListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AddonListRef = AutoDisposeProviderRef<List<Addon>>;
-String _$addonsHash() => r'540828b2f4ca145ea4452eb73f8ce4a84324149a';
+String _$addonsHash() => r'9498b198dcfee41e05e92a52ac33692515ffda5d';
 
 /// See also [Addons].
 @ProviderFor(Addons)

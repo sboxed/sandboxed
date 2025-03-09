@@ -7,7 +7,7 @@ import 'package:vibook_core/story.dart';
 
 Meta get meta => Meta<Button>(
       name: '01. Button', // optional
-      // module: 'Features / 01. Core',
+      module: 'Buttons',
       component: Button, // optional
       documentation: [
         DocumentEntry(
@@ -70,14 +70,15 @@ Story get $Green => Story(
       name: 'Green',
       builder: (context, params) {
         return Button(
-          text: params.string('title', "Lorem"),
-          color: params.color('color', Colors.green),
-          size: params.single(
-            'size',
-            ButtonSize.small,
-            ButtonSize.values,
-            // ChipsType(),
-          ),
+          text: params.string('title').required("Lorem"),
+          color: params.color('color').required(Colors.green),
+          size: params
+              .single(
+                'size',
+                ButtonSize.values,
+                // ChipsType(),
+              )
+              .required(ButtonSize.small),
         );
       },
     );
@@ -86,9 +87,9 @@ Story get $Blue => Story(
       name: 'Blue',
       builder: (context, params) {
         return Button(
-          text: params.string('title', "Lorem"),
-          color: params.color('color', Colors.blue),
-          icon: params.boolean('has_icon', false)
+          text: params.string('title').required("Lorem"),
+          color: params.color('color').required(Colors.blue),
+          icon: params.boolean('has_icon').required(false)
               ? const Icon(Icons.check, color: Colors.white)
               : null,
         );

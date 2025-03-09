@@ -7,7 +7,6 @@ import 'package:vibook/layout/story_viewport.dart';
 import 'package:vibook/params/params_notifier.dart';
 import 'package:vibook/provider/params.dart';
 import 'package:vibook/responsive/breakpoints.dart';
-import 'package:vibook/widgets/element_name.dart';
 import 'package:vibook/widgets/resizable_divider.dart';
 import 'package:vibook/widgets/vi_bottom_app_bar.dart';
 
@@ -22,22 +21,15 @@ class StoryPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final parentScaffold = Scaffold.of(context);
+
     return ProviderScope(
       overrides: [
         paramsProvider.overrideWith((ref) => ParamsNotifier()),
       ],
       child: Scaffold(
-        appBar: switch (context.breakpoint) {
-          Breakpoints.mobile => AppBar(
-              title: ElementName(id: id),
-              automaticallyImplyLeading: true,
-              backgroundColor:
-                  Theme.of(context).colorScheme.surfaceContainerLow,
-            ),
-          _ => null,
-        },
         bottomNavigationBar: switch (context.breakpoint) {
-          Breakpoints.mobile => const ViBottomAppBar(),
+          Breakpoints.mobile => ViBottomAppBar(scaffold: parentScaffold),
           _ => null,
         },
         body: LayoutBuilder(

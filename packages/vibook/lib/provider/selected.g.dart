@@ -6,7 +6,7 @@ part of 'selected.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$selectionHash() => r'd50732e4459bd6978e9362eacfbd66209c88bb41';
+String _$selectionHash() => r'ceb87b6a33762a939c295109f8d281276400f19e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -56,12 +56,18 @@ class SelectionFamily extends Family<Selection?> {
     );
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
+  static final Iterable<ProviderOrFamily> _dependencies = <ProviderOrFamily>[
+    nodeProvider
+  ];
 
   @override
   Iterable<ProviderOrFamily>? get dependencies => _dependencies;
 
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+  static final Iterable<ProviderOrFamily> _allTransitiveDependencies =
+      <ProviderOrFamily>{
+    nodeProvider,
+    ...?nodeProvider.allTransitiveDependencies
+  };
 
   @override
   Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
@@ -156,7 +162,7 @@ class _SelectionProviderElement extends AutoDisposeProviderElement<Selection?>
   String get id => (origin as SelectionProvider).id;
 }
 
-String _$selectedElementHash() => r'ea42e0e439212bd30b2049e7246c21b513d4da22';
+String _$selectedElementHash() => r'90af3555bfbb2658ff119d681c877f711e8e5417';
 
 /// See also [selectedElement].
 @ProviderFor(selectedElement)
@@ -166,8 +172,11 @@ final selectedElementProvider = AutoDisposeProvider<Selection?>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$selectedElementHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[selectionProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    selectionProvider,
+    ...?selectionProvider.allTransitiveDependencies
+  },
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')

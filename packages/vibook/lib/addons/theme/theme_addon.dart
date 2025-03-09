@@ -54,6 +54,8 @@ final class ThemeAddon<T> extends Addon
         ListenableBuilder(
           listenable: notifier,
           builder: (context, child) => Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
               for (final theme in themes.entries)
                 ChoiceChip(

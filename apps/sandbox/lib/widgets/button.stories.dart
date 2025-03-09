@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vibook/addons/param_builders/base_param_builders/single_chips_param_builder.dart';
 import 'package:vibook_core/decorator.dart';
 import 'package:vibook_core/meta.dart';
 import 'package:vibook_core/story.dart';
@@ -28,14 +27,11 @@ Story get $Green => Story(
       builder: (context, params) {
         return ViButton(
           onPressed: () {},
-          title: params.string('title', "Lorem"),
-          color: params.color('color', Colors.green),
-          size: params.single(
-            'size',
-            ViButtonSize.small,
-            ViButtonSize.values,
-            ChipsType(),
-          ),
+          title: params.string('title').required("Lorem"),
+          color: params.color('color').required(Colors.green),
+          size: params
+              .single('size', ViButtonSize.values)
+              .required(ViButtonSize.small),
         );
       },
     );
@@ -45,9 +41,9 @@ Story get $Blue => Story(
       builder: (context, params) {
         return ViButton(
           onPressed: () {},
-          title: params.string('title', "Lorem"),
-          color: params.color('color', Colors.blue),
-          icon: params.boolean('has_icon', false)
+          title: params.string('title').required("Lorem"),
+          color: params.color('color').required(Colors.blue),
+          icon: params.boolean('has_icon').required(false)
               ? const Icon(Icons.check, color: Colors.white)
               : null,
         );

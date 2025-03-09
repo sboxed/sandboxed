@@ -1,34 +1,33 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:recase/recase.dart';
+import 'package:vibook_generator/config/aggregator_config.dart';
+import 'package:vibook_generator/extension/escape_identifier_x.dart';
 import 'package:vibook_generator/parsers/meta_parser.dart';
 import 'package:vibook_generator/story_parser.dart';
 
 class LibraryParser {
   final Resolver resolver;
+  final AggregatorConfig config;
 
+  final bool isRootPackage;
   final String package;
   final String path;
   final LibraryElement library;
   final List<String> docs;
-  final Reference? config;
+  final Reference? configReference;
 
   LibraryParser({
     required this.resolver,
+    required this.isRootPackage,
     required this.package,
     required this.path,
     required this.library,
     required this.docs,
     required this.config,
+    required this.configReference,
   });
-
-  // String get _id {
-  //   return path //
-  //       .replaceAll('lib/', '')
-  //       .replaceAll('/', '_')
-  //       .split('.')
-  //       .first;
-  // }
 
   bool checkMeta(TopLevelVariableElement element) {
     if (element.type.element case ClassElement clazz) {
@@ -99,13 +98,24 @@ class LibraryParser {
     final stories = await buildStories(metaDescription);
     final meta = _meta;
 
+    final configReference = this.configReference ??
+        InvokeExpression.newOf(
+          refer('Config'),
+          [],
+          {
+            'module': literalString(
+              '${config.packagesModuleName}/${package.titleCase}',
+            ),
+          },
+        );
+
     return InvokeExpression.newOf(
       refer('Component'),
       [],
       {
         'meta': withDocs(meta, docs),
-        if (config != null) //
-          'config': config!,
+        if (this.configReference != null || !isRootPackage) //
+          'config': configReference,
         'stories': literalList([
           for (final story in stories) //
             story,
@@ -130,7 +140,7 @@ class LibraryParser {
                 'name': CodeExpression(
                   Code("'Docs${docs.length > 1 ? ' $i' : ''}'"),
                 ),
-                'content': literal(doc),
+                'content': literalString(doc.escaped),
               },
             ),
         ]),

@@ -17,14 +17,20 @@ class ToolbarButton extends StatelessWidget {
     required this.child,
     required this.onPressed,
     this.tooltip,
+    this.selected = false,
   });
 
   final Widget child;
+  final bool selected;
   final ToolbarTooltip? tooltip;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+
+    // TODO(@melvspace): 03/09/25 use chips for toggleable buttons?
     final button = TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
@@ -32,13 +38,15 @@ class ToolbarButton extends StatelessWidget {
         minimumSize: const Size.square(28),
         maximumSize: const Size.fromHeight(28),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        backgroundColor: selected //
+            ? Theme.of(context).colorScheme.primary.withOpacity(.5)
+            : null,
         alignment: Alignment.center,
       ).copyWith(
-        iconColor: MaterialStateColor.resolveWith(
+        iconColor: WidgetStateColor.resolveWith(
           (states) => switch (states) {
-            _ when states.contains(MaterialState.pressed) =>
-              Theme.of(context).colorScheme.primary,
-            _ => Theme.of(context).iconTheme.color ?? Colors.black,
+            _ when states.contains(WidgetState.pressed) => colors.primary,
+            _ => theme.iconTheme.color ?? Colors.black,
           },
         ),
       ),

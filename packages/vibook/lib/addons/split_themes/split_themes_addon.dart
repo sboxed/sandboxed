@@ -76,11 +76,13 @@ final class SplittedThemesAddon extends FlagAddon with ToolbarAddonMixin {
   @override
   List<Widget> get actions {
     return [
-      Builder(
-        builder: (context) {
+      ListenableBuilder(
+        listenable: notifier,
+        builder: (context, _) {
           final isEnabled = notifier.value;
 
           return ToolbarButton(
+            selected: notifier.value,
             onPressed: () => notifier.value = !notifier.value,
             tooltip: ToolbarTooltip(
               message: !notifier.value

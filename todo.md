@@ -7,6 +7,7 @@
   Render mdx content {cm:2025-03-05}
   Inject interactable stories
   Support link navigation betwen components, stories and doc entries.
+  Parse tokens in [] brackets and search for existsing registerd components, if found make it deeplink
 (A) Add `GeneratedStory` and `GeneratedMeta` wrappers #refactoring
 (A) Runtime params linting to find misnamed parameters. 
   Description: In example you have story with params and then renamed params in component, vibook should highlight that no matched params found
@@ -19,6 +20,7 @@
 (B) Toggleable addons Small touchable dot near addon title. Yellow - `off`, Green - `on` #editor
 (B) Component and story tags #search
 (B) `Param` interface and extensibility should be refined #core
+(B) Params - Support JSON serializable objects via generator
 (B) Params
   (A) Boolean Param {cm:2025-03-05}
   (A) Chips Param {cm:2025-03-05}
@@ -37,6 +39,7 @@
   (A) Double Slider Param
   (B) Date Param
   (B) Duration Param
+  (B) JSON serializable objects 
 (B) Addons
   (A) Alignment {cm:2025-03-05}
   (A) Pan and Zoom {cm:2025-03-05}
@@ -49,6 +52,7 @@
   (C) Time Dilation
   (C) Text Scale
   (C) Accessibility
+  Lockable addons - lock addons by other addons
 (C) Url persistence between sessions #editor
 (C) Settings tab/sheet in sidebar and bottom app bar #editor
 (F) Component auto-documentation #editor

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:vibook/params/param_builder.dart';
 import 'package:vibook/params/params_notifier.dart';
-import 'package:vibook_core/param.dart';
+import 'package:vibook_core/vibook_core.dart';
 
 class StringParamBuilder extends ParamBuilder<String> {
   @override
-  Widget build(String id, Param<String> param, ParamsNotifier params) {
+  String? getInitialValueFor(ParamWrapper<String> param) => 'String';
+
+  @override
+  Widget build(String id, ParamWrapper<String> param, ParamsNotifier params) {
     return _EditField(
       param: param,
       onChanged: (value) => params.update(id, value),
@@ -13,13 +16,13 @@ class StringParamBuilder extends ParamBuilder<String> {
   }
 
   @override
-  bool canBuild(Param param) {
-    return param is Param<String>;
+  bool canBuild(ParamWrapper param) {
+    return param is ParamWrapper<String>;
   }
 }
 
 class _EditField extends StatefulWidget {
-  final Param<String> param;
+  final ParamWrapper<String> param;
   final ValueChanged<String> onChanged;
 
   const _EditField({

@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:vibook/params/param_builder.dart';
 import 'package:vibook/params/params_notifier.dart';
 import 'package:vibook/widgets/vi_color_picker.dart';
-import 'package:vibook_core/param.dart';
+import 'package:vibook_core/vibook_core.dart';
 
 class ColorParamBuilder extends ParamBuilder<Color> {
   @override
-  Widget build(String id, Param<Color> param, ParamsNotifier params) {
+  Color getInitialValueFor(ParamWrapper<Color> param) => Colors.black;
+
+  @override
+  Widget build(String id, ParamWrapper<Color> param, ParamsNotifier params) {
     return ViColorPicker(
-      value: param.value,
+      value: param.rawValue ?? getInitialValueFor(param),
       onChanged: (value) => params.update(id, value),
     );
   }
 
   @override
-  bool canBuild(Param param) {
-    return param is Param<Color>;
+  bool canBuild(ParamWrapper param) {
+    return param is ParamWrapper<Color>;
   }
 }

@@ -6,7 +6,7 @@ class ViSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WIP(
+    return const WIP(
       child: TextField(
         decoration: InputDecoration(label: Text('Search')),
       ),

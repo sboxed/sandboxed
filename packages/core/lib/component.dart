@@ -18,6 +18,13 @@ class Component extends ViElement {
     this.config,
   });
 
+  String? get module {
+    final value = [config?.module, meta.module].whereType<String>().join('/');
+    if (value.trim().isEmpty) return null;
+
+    return value.trim();
+  }
+
   @override
   List<Object?> get props => [meta, stories];
 }

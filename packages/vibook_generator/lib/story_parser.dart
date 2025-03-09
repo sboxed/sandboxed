@@ -123,10 +123,21 @@ Expression buildComponent(ClassElement element) {
 }
 
 Expression? buildParameter(ParameterElement parameter) {
-  Expression param(String type, dynamic code) {
-    Expression? value = parameter.defaultValueCode != null
-        ? CodeExpression(Code(parameter.defaultValueCode!))
-        : null;
+  Expression param(
+    String type,
+    dynamic code, {
+    List<Expression> positionalArgs = const [],
+    Map<String, Expression> namedArgs = const {},
+  }) {
+    Expression? value;
+
+    if (parameter.defaultValueCode case String defaultValue) {
+      if (parameter.type.element case EnumElement enum$) {
+        value = handleEnumDefaultValue(defaultValue, enum$, value);
+      } else {
+        value = CodeExpression(Code(parameter.defaultValueCode!));
+      }
+    }
 
     if (code is! Raw) {
       value ??= literal(code);
@@ -136,22 +147,73 @@ Expression? buildParameter(ParameterElement parameter) {
       value ??= CodeExpression(Code(code.value.toString()));
     }
 
-    return refer('params').property(type).call([
-      literal(parameter.name),
-      value,
-    ]);
+    final param = refer('params') //
+        .property(type)
+        .call(
+      [literalString(parameter.name, raw: true), ...positionalArgs],
+      namedArgs,
+    );
+
+    if (parameter.isOptional && parameter.defaultValueCode == null) {
+      return param.property('optional').call([literal(null)]);
+    } else {
+      return param.property('required').call([value]);
+    }
   }
 
   final colorChecker = TypeChecker.fromUrl('dart:ui#Color');
+  final dateChecker = TypeChecker.fromUrl('dart:core#DateTime');
+  final durationChecker = TypeChecker.fromUrl('dart:core#Duration');
+  final gradientChecker =
+      TypeChecker.fromName('Gradient', packageName: 'flutter');
 
   final Expression value = switch (parameter.type) {
     DartType type when type.isDartCoreString => param('string', 'Text'),
     DartType type when type.isDartCoreBool => param('boolean', false),
+    DartType type when type.isDartCoreNum => param('number', 0.0),
+    DartType type when type.isDartCoreDouble => param('number', 0.0),
+    DartType type when type.isDartCoreInt => param('integer', 0),
+    DartType type when type.element is EnumElement => param(
+        'single',
+        refer(
+          type.element!.name!,
+          type.element!.library!.location!.encoding,
+        ).property('values').property('first'),
+        positionalArgs: [
+          refer(
+            type.element!.name!,
+            type.element!.library!.location!.encoding,
+          ).property('values')
+        ],
+      ),
     DartType type when colorChecker.isAssignableFromType(type) =>
       param('color', Raw('Colors.red')),
-    _ => param('dynamic\$', defaultValueForType(parameter.type)),
+    DartType type when dateChecker.isAssignableFromType(type) =>
+      param('datetime', Raw('DateTime.now()')),
+    DartType type when durationChecker.isAssignableFromType(type) =>
+      param('duration', Raw('Duration.zero')),
+    DartType type when gradientChecker.isAssignableFromType(type) => param(
+        'gradient',
+        Raw("LinearGradient(colors: [Colors.black, Colors.white])"),
+      ),
+    _ => param(
+        'dynamic\$<${parameter.type.getDisplayString(withNullability: false)}>',
+        defaultValueForType(parameter.type),
+      ),
   };
 
+  return value;
+}
+
+Expression? handleEnumDefaultValue(
+    String defaultValue, EnumElement enum$, Expression? value) {
+  if (defaultValue.startsWith('${enum$.name}.')) {
+    final parts = defaultValue.split('.').skip(1);
+    value = refer(enum$.name, enum$.library.location!.encoding);
+    for (final part in parts) {
+      value = value!.property(part);
+    }
+  }
   return value;
 }
 
@@ -177,7 +239,7 @@ dynamic defaultValueForType(DartType type) {
     DartType type when type.isDartCoreList => [],
     DartType type when type.isDartCoreMap => {},
     DartType type when type.isDartCoreNum => 0,
-    DartType type when type.isDartCoreSet => <dynamic>{},
+    DartType type when type.isDartCoreSet => {},
     DartType type when type.isDartCoreString => '',
     _ => defaultValueForFlutterType(type),
   };

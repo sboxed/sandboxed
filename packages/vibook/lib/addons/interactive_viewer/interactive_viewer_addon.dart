@@ -24,9 +24,11 @@ final class InteractiveViewerAddon extends FlagAddon with ToolbarAddonMixin {
   @override
   List<Widget> get actions {
     return [
-      Builder(
-        builder: (context) {
+      ListenableBuilder(
+        listenable: notifier,
+        builder: (context, _) {
           return ToolbarButton(
+            selected: notifier.value,
             onPressed: () => notifier.value = !value,
             tooltip: const ToolbarTooltip(message: 'Pan Tool'),
             child: Icon(value ? Icons.pan_tool : Icons.pan_tool_outlined),
@@ -61,9 +63,11 @@ final class InteractiveViewerAddon extends FlagAddon with ToolbarAddonMixin {
                           color: Theme.of(context).colorScheme.surfaceBright,
                         ),
                       ),
-                      child: SizedBox(
-                        width: constraints.maxWidth,
-                        height: constraints.maxHeight,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minWidth: constraints.maxWidth,
+                          minHeight: constraints.maxHeight,
+                        ),
                         child: child!,
                       ),
                     ),

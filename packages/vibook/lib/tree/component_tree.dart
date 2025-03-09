@@ -16,7 +16,7 @@ class ComponentTree extends ConsumerStatefulWidget {
   const ComponentTree({
     super.key,
     this.id,
-    this.animationDuration = const Duration(milliseconds: 240),
+    this.animationDuration = const Duration(milliseconds: 80),
   });
 
   @override
@@ -168,7 +168,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
     return ClipRect(
       child: SizeTransition(
         axisAlignment: 1,
-        sizeFactor: CurvedAnimation(parent: controller, curve: Curves.ease),
+        sizeFactor: CurvedAnimation(parent: controller, curve: Curves.easeOut),
         child: Column(
           children: generateChildrenNodesWidget(node.children),
         ),

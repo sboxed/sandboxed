@@ -7,7 +7,7 @@ import 'package:vibook_core/component.dart';
 
 part 'component_tree.g.dart';
 
-@riverpod
+@Riverpod(dependencies: [])
 List<ViElement> components(Ref ref) {
   return [];
 }
@@ -37,7 +37,7 @@ class ComponentTreeNotifier extends _$ComponentTreeNotifier {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [ComponentTreeNotifier])
 class Node extends _$Node {
   @override
   Tree? build(String? id) {

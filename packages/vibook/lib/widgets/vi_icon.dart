@@ -17,9 +17,7 @@ class ViIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Iconify(
       icon,
-      color: color ??
-          DefaultTextStyle.of(context).style.color ??
-          IconTheme.of(context).color,
+      color: color ?? IconTheme.of(context).color,
       size: size ?? IconTheme.of(context).size,
     );
   }

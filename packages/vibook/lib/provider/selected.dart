@@ -50,7 +50,7 @@ class SelectedElementNotifier extends _$SelectedElementNotifier {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [Node])
 Selection? selection(Ref ref, String id) {
   final node = ref.watch(nodeProvider(id));
   if (node == null) return null;
@@ -79,7 +79,7 @@ Selection? selection(Ref ref, String id) {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [selection])
 Selection? selectedElement(Ref ref) {
   final selected = ref.watch(selectedElementNotifierProvider);
   if (selected == null) return null;

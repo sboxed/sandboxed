@@ -33,7 +33,7 @@ class _TabletLayoutState extends State<TabletLayout> {
             children: [
               ResizableChild(
                 divider: divider,
-                size: const ResizableSize.pixels(300, min: 300),
+                size: const ResizableSize.pixels(400, min: 300),
                 child: const ViDrawer(),
               ),
               ResizableChild(
@@ -57,7 +57,7 @@ class _TabletLayoutState extends State<TabletLayout> {
               ),
               ResizableChild(
                 divider: divider,
-                size: const ResizableSize.pixels(300, min: 300),
+                size: const ResizableSize.pixels(400, min: 300),
                 child: const Sidebar(
                   tabs: [
                     (Text('Addons'), AddonsInspector()),

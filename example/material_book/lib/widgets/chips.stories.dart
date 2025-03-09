@@ -1,7 +1,8 @@
+// ignore_for_file: implementation_imports
+
 import 'package:flutter/material.dart';
-import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/story.dart';
+import 'package:vibook_core/src/params/use_params.dart';
+import 'package:vibook_core/vibook_core.dart';
 
 Meta get meta => Meta<Chip>(
       name: 'Chips', // optional
@@ -18,52 +19,70 @@ Meta get meta => Meta<Chip>(
 
 Story get $Chip => Story(
       name: 'Chip',
-      // builder: (context, params) {
-      //   return Chip(
-      //     label: Text(params.string('label', 'Label')),
-      //   );
-      // },
+      params: {
+        'label': UseParams(
+          (params) => Text(
+            params
+                .string('labelText')
+                .apply('readonly', true)
+                .required('Label'),
+          ),
+        ),
+      },
     );
 
 Story get $InputChip => Story(
       name: 'InputChip',
-      // builder: (context, params) {
-      //   return InputChip(
-      //     label: Text(params.string('label', 'Label')),
-      //   );
-      // },
+      params: {
+        'label': UseParams(
+          (params) => Text(
+            params
+                .string('labelText')
+                .apply('readonly', true)
+                .required('Label'),
+          ),
+        ),
+      },
     );
 
 Story get $ChoiceChip => Story(
       name: 'ChoiceChip',
-      // builder: (context, params) {
-      //   return ChoiceChip(
-      //     onSelected: (value) => params.update('selected', value),
-      //     selected: params.boolean('selected', false),
-      //     showCheckmark: params.boolean('show_checkmark', true),
-      //     label: Text(params.string('label', 'Label')),
-      //   );
-      // },
+      params: {
+        'label': UseParams(
+          (params) => Text(
+            params
+                .string('labelText')
+                .apply('readonly', true)
+                .required('Label'),
+          ),
+        ),
+      },
     );
 
 Story get $FilterChip => Story(
       name: 'FilterChip',
-      // builder: (context, params) {
-      //   return FilterChip(
-      //     onSelected: (value) => params.update('selected', value),
-      //     selected: params.boolean('selected', false),
-      //     showCheckmark: params.boolean('show_checkmark', true),
-      //     label: Text(params.string('label', 'Label')),
-      //   );
-      // },
+      params: {
+        'label': UseParams(
+          (params) => Text(
+            params
+                .string('labelText')
+                .apply('readonly', true)
+                .required('Label'),
+          ),
+        ),
+      },
     );
 
 Story get $ActionChip => Story(
       name: 'ActionChip',
-      // builder: (context, params) {
-      //   return ActionChip(
-      //     onPressed: () {},
-      //     label: Text(params.string('label', 'Label')),
-      //   );
-      // },
+      params: {
+        'label': UseParams(
+          (params) => Text(
+            params
+                .string('labelText')
+                .apply('readonly', true)
+                .required('Label'),
+          ),
+        ),
+      },
     );

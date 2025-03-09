@@ -17,5 +17,9 @@
     "**/*.iml": true,
     "**/web": true
   },
-  "explorerExclude.backup": {}
+  "explorerExclude.backup": {},
+  "explorer.fileNesting.patterns": {
+    "*.dart": "${capture}.*.dart,${capture}.mdx",
+    "*.stories.dart": "${capture}.mdx"
+  }
 }

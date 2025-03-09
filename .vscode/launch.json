@@ -53,6 +53,12 @@
       "args": ["build", "-d"]
     },
     {
+      "name": "monorepo/ui_book",
+      "cwd": "example/monorepo/ui_book",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
       "name": "monorepo/ui_book (generator)",
       "cwd": "example/monorepo/ui_book",
       "request": "launch",

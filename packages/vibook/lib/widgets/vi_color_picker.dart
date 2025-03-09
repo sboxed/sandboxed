@@ -29,7 +29,7 @@ class _ViColorPickerState extends State<ViColorPicker> {
 
   @override
   void didUpdateWidget(covariant ViColorPicker oldWidget) {
-    if (!isEditable) {
+    if (!isEditable && overlayController.isShowing) {
       overlayController.hide();
     }
 

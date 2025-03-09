@@ -5,6 +5,7 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
+import 'package:vibook_generator/config/aggregator_config.dart';
 import 'package:vibook_generator/docs_cleaner.dart';
 import 'package:vibook_generator/library_parser.dart';
 import 'package:vibook_generator/parsers/type_checker.dart';
@@ -38,7 +39,10 @@ class PackageStories {
 }
 
 class ComponentAggregateBuilder extends Builder {
-  final String output = 'components.g.dart';
+  final AggregatorConfig config;
+  late final String output = config.outputPath;
+
+  ComponentAggregateBuilder(this.config);
 
   @override
   Map<String, List<String>> get buildExtensions => {
@@ -50,8 +54,6 @@ class ComponentAggregateBuilder extends Builder {
       target.package,
       target.path.replaceAll('.stories.dart', '.mdx'),
     );
-
-    print('Searching docs for ${target.path}');
 
     if (await buildStep.canRead(docAsset)) {
       var content = await buildStep.readAsString(docAsset);
@@ -139,8 +141,10 @@ class ComponentAggregateBuilder extends Builder {
       for (final storyContainer in package.storyContainers) {
         final parser = LibraryParser(
           resolver: buildStep.resolver,
+          config: config,
+          isRootPackage: buildStep.inputId.package == package.package,
           package: package.package,
-          config: package.config,
+          configReference: package.config,
           path: storyContainer.path,
           library: storyContainer.library,
           docs: storyContainer.docs,
@@ -183,8 +187,11 @@ class ComponentAggregateBuilder extends Builder {
     final allocator = Allocator.simplePrefixing();
     final emitter = DartEmitter(allocator: allocator);
     String code = library.accept(emitter).toString();
-    print(code);
-    code = DartFormatter().format(code);
+    try {
+      code = DartFormatter().format(code);
+    } catch (e) {
+      print(e);
+    }
 
     buildStep.writeAsString(outputAsset, code);
   }

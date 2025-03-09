@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 import 'package:vibook/tree/component_tree_node.dart';
 import 'package:vibook_core/component.dart';
@@ -18,7 +19,7 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
     switch (component) {
       case Component component:
         final parts = [
-          ...?component.meta.module?.split('/').map((e) => '[${e.trim()}]'),
+          ...?component.module?.split('/').map((e) => '[${e.trim()}]'),
           ...component.meta.name.split('/'),
         ];
 
@@ -50,7 +51,6 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
               }
 
               return TreeType<AbstractComponentTreeNode>(
-                // key: part.trim(), data: part == parts.last ? component : null);
                 data: part == parts.last
                     ? ComponentTreeNode(
                         id: id,
@@ -88,7 +88,6 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
         for (final document in component.meta.documentation) {
           final name = document.name;
           var node = TreeType<AbstractComponentTreeNode>(
-            // key: part.trim(), data: part == parts.last ? component : null);
             data: DocumentationTreeNode(
               id: [...parts, name.trim()].join('/'),
               component: component,
@@ -100,14 +99,13 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
             children: [],
             parent: parent,
           );
-          // var node = TreeNode(key: name, data: (component, story()));
+
           parent.children.add(node);
         }
 
         for (final (index, story) in component.stories.indexed) {
           final name = story.name ?? 'Story $index';
           var node = TreeType<AbstractComponentTreeNode>(
-            // key: part.trim(), data: part == parts.last ? component : null);
             data: StoryTreeNode(
               id: [...parts, name.trim()].join('/'),
               component: component,
@@ -119,11 +117,28 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
             children: [],
             parent: parent,
           );
-          // var node = TreeNode(key: name, data: (component, story()));
           parent.children.add(node);
         }
     }
   }
 
+  sort(root);
+
   return root;
+}
+
+void sort(Tree tree) {
+  tree.children.sortBy((element) => element.data.title);
+  tree.children.sortBy<num>(
+    (element) => switch (element.data) {
+      ModuleTreeNode _ => 0,
+      FolderTreeNode _ => 10,
+      DocumentationTreeNode _ => 50,
+      _ => 1000,
+    },
+  );
+
+  for (final child in tree.children) {
+    sort(child);
+  }
 }

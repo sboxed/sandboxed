@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter_plus/icons/mdi.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
@@ -78,7 +79,11 @@ final class ModuleTreeNode extends AbstractComponentTreeNode {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return const ViIcon(Mdi.cube);
+    return const Tooltip(
+      message: 'Module',
+      waitDuration: Duration(milliseconds: 240),
+      child: ViIcon(Mdi.cube),
+    );
   }
 
   @override
@@ -151,7 +156,20 @@ final class ComponentTreeNode extends AbstractComponentTreeNode {
 
   @override
   Widget buildLeading(BuildContext context) {
-    return const ViIcon(Mdi.rhombus_split);
+    return Tooltip(
+      message: [
+        'Component',
+        if (!kReleaseMode && component.meta.warnings.isNotEmpty)
+          ...component.meta.warnings.map((e) => '• $e'),
+      ].join('\n'),
+      waitDuration: const Duration(milliseconds: 240),
+      child: !kReleaseMode && component.meta.warnings.isNotEmpty
+          ? ViIcon(
+              Mdi.warning_circle,
+              color: Theme.of(context).colorScheme.error,
+            )
+          : const ViIcon(Mdi.rhombus_split),
+    );
   }
 
   @override
@@ -170,13 +188,14 @@ final class DocumentationTreeNode extends AbstractComponentTreeNode {
   final Component component;
   final DocumentEntry entry;
 
-  DocumentationTreeNode(
-      {required super.id,
-      required super.title,
-      required this.level,
-      required this.index,
-      required this.component,
-      required this.entry});
+  DocumentationTreeNode({
+    required super.id,
+    required super.title,
+    required this.level,
+    required this.index,
+    required this.component,
+    required this.entry,
+  });
 
   @override
   bool get isInner => false;
@@ -189,7 +208,11 @@ final class DocumentationTreeNode extends AbstractComponentTreeNode {
 
   @override
   Widget buildLeading(BuildContext context) {
-    return const ViIcon(Mdi.file_certificate);
+    return const Tooltip(
+      message: 'Documentation Entry',
+      waitDuration: Duration(milliseconds: 240),
+      child: ViIcon(Mdi.file_certificate),
+    );
   }
 
   @override
@@ -228,7 +251,11 @@ final class StoryTreeNode extends AbstractComponentTreeNode {
 
   @override
   Widget buildLeading(BuildContext context) {
-    return const ViIcon(Mdi.rhombus);
+    return const Tooltip(
+      message: 'Component Story or Scenario',
+      waitDuration: Duration(milliseconds: 240),
+      child: ViIcon(Mdi.rhombus),
+    );
   }
 
   @override

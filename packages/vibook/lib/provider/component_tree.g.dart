@@ -6,7 +6,7 @@ part of 'component_tree.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$componentsHash() => r'b9b1d63817519370413a8ebb336ba899ebe152a5';
+String _$componentsHash() => r'feec9fa6d48892659f67228ea0f8c41dc0e445ac';
 
 /// See also [components].
 @ProviderFor(components)
@@ -15,8 +15,8 @@ final componentsProvider = AutoDisposeProvider<List<ViElement>>.internal(
   name: r'componentsProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$componentsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
@@ -42,7 +42,7 @@ final componentTreeNotifierProvider = NotifierProvider<ComponentTreeNotifier,
 );
 
 typedef _$ComponentTreeNotifier = Notifier<TreeType<AbstractComponentTreeNode>>;
-String _$nodeHash() => r'698455fc12833d7525dbc17e37f01d60ded47813';
+String _$nodeHash() => r'6dfed7c9b7361f803c273c996ebe1e3285242723';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -100,12 +100,18 @@ class NodeFamily extends Family<Tree?> {
     );
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
+  static final Iterable<ProviderOrFamily> _dependencies = <ProviderOrFamily>[
+    componentTreeNotifierProvider
+  ];
 
   @override
   Iterable<ProviderOrFamily>? get dependencies => _dependencies;
 
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+  static final Iterable<ProviderOrFamily> _allTransitiveDependencies =
+      <ProviderOrFamily>{
+    componentTreeNotifierProvider,
+    ...?componentTreeNotifierProvider.allTransitiveDependencies
+  };
 
   @override
   Iterable<ProviderOrFamily>? get allTransitiveDependencies =>

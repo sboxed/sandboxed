@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      vibook_generator:vibook_generator:
+        options:
+          packages_module_name: Features
+

@@ -1,5 +1,4 @@
 {
-
   "Meta + Story": {
     "prefix": "metastory",
     "description": "Creates a new Vibook Story with default Meta",
@@ -16,7 +15,7 @@
     "prefix": "story",
     "description": "Creates a new Vibook Story",
     "body": [
-      "Story get $${2:Default} = Story($0);"
+      "Story get $${2:Default} => Story($0);"
     ]
   },
   "Story Config": {

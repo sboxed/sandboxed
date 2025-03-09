@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:vibook_core/constant_params.dart';
 import 'package:vibook_core/decorator.dart';
 import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/params.dart';
+import 'package:vibook_core/src/params/constant_params.dart';
+import 'package:vibook_core/src/params/params_store.dart';
 import 'package:vibook_core/story.dart';
 
 class StoryView extends StatefulWidget {

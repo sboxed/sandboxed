@@ -27,7 +27,7 @@ class Vibook extends StatefulWidget {
   final List<Component> components;
   final List<Addon> addons;
 
-  Vibook({
+  const Vibook({
     super.key,
     required this.components,
     this.title = const Text('VIBOOK'),
@@ -43,17 +43,6 @@ class Vibook extends StatefulWidget {
 
 class _VibookState extends State<Vibook> {
   final router = AppRouter();
-
-  // ValueKey generation = const ValueKey(0);
-
-  @override
-  void didUpdateWidget(covariant Vibook oldWidget) {
-    // if (!const ListEquality().equals(oldWidget.components, widget.components)) {
-    //   generation = ValueKey(generation.value + 1);
-    // }
-
-    super.didUpdateWidget(oldWidget);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,16 +60,17 @@ class _VibookState extends State<Vibook> {
     );
 
     return ProviderScope(
-      // key: generation,
       overrides: [
         titleProvider.overrideWithValue(widget.title),
         brandColorProvider.overrideWithValue(widget.brandColor),
         componentsProvider.overrideWithValue(widget.components),
-        addonListProvider.overrideWithValue([
-          ReloadAddon(),
-          ...widget.addons,
-          BaseParamBuildersAddon(),
-        ]),
+        addonListProvider.overrideWith(
+          (ref) => [
+            ReloadAddon(),
+            ...widget.addons,
+            BaseParamBuildersAddon(),
+          ],
+        ),
       ],
       child: Consumer(
         builder: (context, ref, child) {
@@ -88,6 +78,10 @@ class _VibookState extends State<Vibook> {
             themeMode: ref.watch(themeModeNotifierProvider),
             theme: widget.theme ?? buildLightTheme(context, ref),
             darkTheme: widget.darkTheme ?? buildDarkTheme(context, ref),
+            builder: (context, child) => GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus,
+              child: child,
+            ),
             routerConfig: router.config(),
           );
         },
