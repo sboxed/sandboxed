@@ -1,0 +1,25 @@
+name: vibook_ui_kit
+description: "ViBook components library"
+version: 0.0.1
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ui
+
+  iconify_flutter_plus: ^1.0.0
+
+  # stories
+  faker: ^2.0.0
+  vibook_core:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+

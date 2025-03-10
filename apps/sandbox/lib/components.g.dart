@@ -30,6 +30,12 @@ import 'package:vibook_sandbox/widgets/markdown/markdown_documentation.stories.d
 import 'package:flutter/src/widgets/text.dart' as _i17;
 import 'dart:ui' as _i18;
 import 'package:flutter/src/painting/text_painter.dart' as _i19;
+import 'package:vibook_sandbox/widgets/tags/tagged_component.stories.dart'
+    as _i20;
+import 'package:vibook_sandbox/widgets/tags/tagged_component.dart' as _i21;
+import 'package:vibook_sandbox/widgets/tags/tagged_stories.stories.dart'
+    as _i22;
+import 'package:vibook_sandbox/widgets/tags/tagged_stories.dart' as _i23;
 import 'package:vibook_core/vibook_core.dart';
 import 'package:flutter/material.dart';
 
@@ -420,6 +426,43 @@ List<Component> get components => <Component>[
               selectionColor: params.color(r'selectionColor').optional(null),
             ),
           )
+        ],
+      ),
+      Component(
+        meta: _i20.meta,
+        stories: [
+          _i20.$Default.applyGenerated(
+            name: 'Default',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i21.TaggedComponent(
+                    key: params.dynamic$<Key>(r'key').optional(null)),
+          )
+        ],
+      ),
+      Component(
+        meta: _i22.meta,
+        stories: [
+          _i22.$New.applyGenerated(
+            name: 'New',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i23.TaggedStories(
+                    key: params.dynamic$<Key>(r'key').optional(null)),
+          ),
+          _i22.$Deprecated.applyGenerated(
+            name: 'Deprecated',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i23.TaggedStories(
+                    key: params.dynamic$<Key>(r'key').optional(null)),
+          ),
         ],
       ),
     ];

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibook/addons/decorator_addon.dart';
+import 'package:vibook/addons/mixins/decorator_addon.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/params.dart';
 import 'package:vibook/provider/selected.dart';
@@ -27,6 +27,7 @@ class StoryViewport extends ConsumerWidget {
             children: [
               AppBar(
                 title: ElementName(id: id),
+                scrolledUnderElevation: 0,
                 backgroundColor: Colors.transparent,
                 // ignore: prefer_const_literals_to_create_immutables
                 actions: [

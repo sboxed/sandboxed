@@ -4,8 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/addons/addon.dart';
-import 'package:vibook/addons/decorator_addon.dart';
 import 'package:vibook/addons/interactive_viewer/interactive_viewer_addon.dart';
+import 'package:vibook/addons/mixins/decorator_addon.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/toolbar/toolbar_addon_mixin.dart';
 import 'package:vibook/widgets/gap.dart';
@@ -71,6 +71,9 @@ final class ViewportAddon extends Addon
           const Text('Viewport'),
           const Gap(16),
           Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
             color: Theme.of(context).colorScheme.surfaceContainerHigh,
             child: Padding(
               padding: const EdgeInsets.all(16),

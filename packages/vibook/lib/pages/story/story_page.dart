@@ -41,7 +41,6 @@ class StoryPage extends ConsumerWidget {
 
               case Breakpoints.desktop:
                 return ResizableContainer(
-                  key: ValueKey(constraints.maxHeight),
                   direction: Axis.vertical,
                   children: [
                     ResizableChild(

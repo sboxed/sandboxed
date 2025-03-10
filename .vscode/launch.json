@@ -45,6 +45,26 @@
       "flutterMode": "release"
     },
     {
+      "name": "ViBook Library",
+      "cwd": "apps/vibook_library",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "ViBook Library (profile mode)",
+      "cwd": "apps/vibook_library",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "ViBook Library (release mode)",
+      "cwd": "apps/vibook_library",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
       "name": "sandbox (generator)",
       "cwd": "apps/sandbox",
       "request": "launch",

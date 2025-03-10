@@ -22,13 +22,32 @@ final componentsProvider = AutoDisposeProvider<List<ViElement>>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ComponentsRef = AutoDisposeProviderRef<List<ViElement>>;
+String _$filteredTreeHash() => r'6de67a4b8e4a514d93fe6cbc16b710d2537a499b';
+
+/// See also [filteredTree].
+@ProviderFor(filteredTree)
+final filteredTreeProvider = AutoDisposeProvider<Tree?>.internal(
+  filteredTree,
+  name: r'filteredTreeProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$filteredTreeHash,
+  dependencies: <ProviderOrFamily>[componentTreeNotifierProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    componentTreeNotifierProvider,
+    ...?componentTreeNotifierProvider.allTransitiveDependencies
+  },
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef FilteredTreeRef = AutoDisposeProviderRef<Tree?>;
 String _$componentTreeNotifierHash() =>
-    r'b319af994f1c7db58ea40ec7a5862d72277c166f';
+    r'efffff9a3eb9a7397a3572e28a18a11e81b6a6e4';
 
 /// See also [ComponentTreeNotifier].
 @ProviderFor(ComponentTreeNotifier)
-final componentTreeNotifierProvider = NotifierProvider<ComponentTreeNotifier,
-    TreeType<AbstractComponentTreeNode>>.internal(
+final componentTreeNotifierProvider =
+    NotifierProvider<ComponentTreeNotifier, TreeType<NodeData>>.internal(
   ComponentTreeNotifier.new,
   name: r'componentTreeNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -41,7 +60,7 @@ final componentTreeNotifierProvider = NotifierProvider<ComponentTreeNotifier,
   },
 );
 
-typedef _$ComponentTreeNotifier = Notifier<TreeType<AbstractComponentTreeNode>>;
+typedef _$ComponentTreeNotifier = Notifier<TreeType<NodeData>>;
 String _$nodeHash() => r'6dfed7c9b7361f803c273c996ebe1e3285242723';
 
 /// Copied from Dart SDK
@@ -207,5 +226,169 @@ class _NodeProviderElement
   @override
   String? get id => (origin as NodeProvider).id;
 }
+
+String _$treeNodeHash() => r'cd2a994d6c9d233f1c57ace0fbf5965f6542d26f';
+
+abstract class _$TreeNode extends BuildlessAutoDisposeNotifier<Tree?> {
+  late final String? id;
+
+  Tree? build(
+    String? id,
+  );
+}
+
+/// See also [TreeNode].
+@ProviderFor(TreeNode)
+const treeNodeProvider = TreeNodeFamily();
+
+/// See also [TreeNode].
+class TreeNodeFamily extends Family<Tree?> {
+  /// See also [TreeNode].
+  const TreeNodeFamily();
+
+  /// See also [TreeNode].
+  TreeNodeProvider call(
+    String? id,
+  ) {
+    return TreeNodeProvider(
+      id,
+    );
+  }
+
+  @override
+  TreeNodeProvider getProviderOverride(
+    covariant TreeNodeProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static final Iterable<ProviderOrFamily> _dependencies = <ProviderOrFamily>[
+    filteredTreeProvider
+  ];
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static final Iterable<ProviderOrFamily> _allTransitiveDependencies =
+      <ProviderOrFamily>{
+    filteredTreeProvider,
+    ...?filteredTreeProvider.allTransitiveDependencies
+  };
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'treeNodeProvider';
+}
+
+/// See also [TreeNode].
+class TreeNodeProvider
+    extends AutoDisposeNotifierProviderImpl<TreeNode, Tree?> {
+  /// See also [TreeNode].
+  TreeNodeProvider(
+    String? id,
+  ) : this._internal(
+          () => TreeNode()..id = id,
+          from: treeNodeProvider,
+          name: r'treeNodeProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$treeNodeHash,
+          dependencies: TreeNodeFamily._dependencies,
+          allTransitiveDependencies: TreeNodeFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  TreeNodeProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String? id;
+
+  @override
+  Tree? runNotifierBuild(
+    covariant TreeNode notifier,
+  ) {
+    return notifier.build(
+      id,
+    );
+  }
+
+  @override
+  Override overrideWith(TreeNode Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: TreeNodeProvider._internal(
+        () => create()..id = id,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeNotifierProviderElement<TreeNode, Tree?> createElement() {
+    return _TreeNodeProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is TreeNodeProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin TreeNodeRef on AutoDisposeNotifierProviderRef<Tree?> {
+  /// The parameter `id` of this provider.
+  String? get id;
+}
+
+class _TreeNodeProviderElement
+    extends AutoDisposeNotifierProviderElement<TreeNode, Tree?>
+    with TreeNodeRef {
+  _TreeNodeProviderElement(super.provider);
+
+  @override
+  String? get id => (origin as TreeNodeProvider).id;
+}
+
+String _$searchQueryHash() => r'de2e8ad0652b0646b5174f604903d7af51dde890';
+
+/// See also [SearchQuery].
+@ProviderFor(SearchQuery)
+final searchQueryProvider = NotifierProvider<SearchQuery, String>.internal(
+  SearchQuery.new,
+  name: r'searchQueryProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$searchQueryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SearchQuery = Notifier<String>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

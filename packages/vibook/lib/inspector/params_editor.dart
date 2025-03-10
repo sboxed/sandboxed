@@ -69,17 +69,26 @@ class ParamsEditor extends ConsumerWidget {
               TableRow(
                 children: [
                   cell(
-                    Text(
-                      param.key,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    Tooltip(
+                      message: param.key,
+                      waitDuration: const Duration(milliseconds: 250),
+                      child: Text(
+                        param.key,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                   if (context.breakpoint != Breakpoints.mobile) ...[
                     cell(
                       Text(
-                        '${param.value.runtimeType}'
-                        '${!param.value.isRequired ? '?' : ''}',
+                        switch (param.value.meta['description']) {
+                          String description
+                              when description.trim().isNotEmpty =>
+                            description,
+                          _ => '${param.value.runtimeType}'
+                              '${!param.value.isRequired ? '?' : ''}',
+                        },
                       ),
                     ),
                     cell(const WIP(child: Text('-'))),

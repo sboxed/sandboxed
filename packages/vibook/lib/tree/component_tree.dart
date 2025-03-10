@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 import 'package:vibook/provider/component_tree.dart';
 import 'package:vibook/provider/selected.dart';
 import 'package:vibook/tree/component_tree_node.dart';
 import 'package:vibook/tree/component_tree_x.dart';
+import 'package:vibook/vibook.dart';
 import 'package:vibook/widgets/search_bar.dart';
 
 class ComponentTree extends ConsumerStatefulWidget {
@@ -28,7 +28,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
   late final controller = AnimationController(vsync: this, value: 1);
 
   void toggle(WidgetRef ref) {
-    final node = ref.read(nodeProvider(widget.id));
+    final node = ref.read(treeNodeProvider(widget.id));
     if (node == null) return;
 
     controller.duration = Duration(
@@ -46,7 +46,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
 
   @override
   void initState() {
-    final node = ref.read(nodeProvider(widget.id));
+    final node = ref.read(treeNodeProvider(widget.id));
     if (node != null) {
       controller.value = node.data.isExpanded ? 1 : 0;
     }
@@ -58,7 +58,8 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final node = ref.watch(nodeProvider(widget.id))!;
+        final node = ref.watch(treeNodeProvider(widget.id));
+
         ref.listen(
           componentTreeNotifierProvider,
           (previous, next) => toggle(ref),
@@ -81,22 +82,36 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
               Flexible(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
+                    if (node == null) {
+                      return const Center(
+                        child: Text("Nothing found"),
+                      );
+                    }
+
+                    final parent = buildNode(ref, node);
+                    final children = generateChildrenNodesWidget(node.children);
+
                     return InteractiveViewer(
                       constrained: false,
                       scaleEnabled: false,
-                      child: ConstrainedBox(
-                        constraints: constraints.copyWith(
-                          maxWidth: constraints.maxWidth +
-                              (node.root.data as RootTreeNode).depth * 16,
-                          maxHeight: double.infinity,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.sizeOf(context).height / 3,
                         ),
-                        child: Column(
-                          children: [
-                            if (buildNode(ref, node) case Widget node) //
-                              node,
-                            if (node.children.isNotEmpty) //
-                              buildChildrenNodes(node),
-                          ],
+                        child: ConstrainedBox(
+                          constraints: constraints.copyWith(
+                            maxWidth: constraints.maxWidth +
+                                node.root.data.depth * 16,
+                            maxHeight: double.infinity,
+                          ),
+                          child: Column(
+                            children: [
+                              if (parent case Widget node) //
+                                node,
+                              if (node.children.isNotEmpty) //
+                                buildChildrenNodes(node, children),
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -104,14 +119,31 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
                 ),
               )
             else
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (buildNode(ref, node) case Widget node) //
-                    node,
-                  if (node.children.isNotEmpty) //
-                    buildChildrenNodes(node),
-                ],
+              Builder(
+                builder: (context) {
+                  if (node == null) {
+                    return const Center(
+                      child: Text("Nothing found"),
+                    );
+                  }
+
+                  final parent = buildNode(ref, node);
+                  final children = generateChildrenNodesWidget(node.children);
+
+                  if (node.children.isNotEmpty && children.isEmpty) {
+                    return const SizedBox();
+                  }
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (parent case Widget node) //
+                        node,
+                      if (node.children.isNotEmpty) //
+                        buildChildrenNodes(node, children),
+                    ],
+                  );
+                },
               ),
           ],
         );
@@ -124,63 +156,61 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
       return null;
     }
 
-    final isDense = node.data is! ModuleTreeNode;
-    final leadingSize = isDense ? 20.0 : null;
+    final leading = node.data.data.buildLeading(context, ref);
+    final title = node.data.data.buildTitle(context, ref);
 
-    return IconTheme.merge(
-      data: IconThemeData(size: leadingSize),
-      child: Material(
-        color: Theme.of(context).colorScheme.surfaceContainerLow,
-        child: ListTile(
-          dense: isDense,
-          minLeadingWidth: leadingSize,
-          contentPadding: EdgeInsets.only(
-            left: 16.0 * node.data.level,
-            top: switch (node.data) {
-              ModuleTreeNode data => switch (data.level) {
-                  1 => 32,
-                  _ => switch (data.index) {
-                      0 => 0,
-                      _ => 16,
-                    }
-                },
-              _ => 0,
-            },
-          ),
-          leading: node.data.buildLeading(context),
-          title: node.data.buildTitle(context),
-          selected: ref.watch(selectedElementNotifierProvider) == node.data.id,
-          onTap: () {
-            if (node.isLeaf) {
-              ref
-                  .read(selectedElementNotifierProvider.notifier)
-                  .select(node.data.id);
-            } else {
-              ref.read(componentTreeNotifierProvider.notifier).toggle(node);
-            }
+    return ElementTile(
+      icon: leading,
+      title: title,
+      depth: node.data.data.level,
+      selected: ref.watch(selectedElementNotifierProvider) == node.data.id,
+      onPressed: () {
+        if (node.isLeaf) {
+          ref
+              .read(selectedElementNotifierProvider.notifier)
+              .select(node.data.id);
+        } else {
+          ref.read(componentTreeNotifierProvider.notifier).toggle(node);
+        }
+      },
+      size: switch (node.data) {
+        ModuleNode data => switch (data.level) {
+            1 => ElementTileSize.large,
+            _ => switch (data.index) {
+                0 => ElementTileSize.small,
+                _ => ElementTileSize.medium,
+              }
           },
-        ),
-      ),
+        _ => ElementTileSize.small,
+      },
     );
   }
 
-  Widget buildChildrenNodes(Tree node) {
+  Widget buildChildrenNodes(Tree node, List<Widget> items) {
     return ClipRect(
       child: SizeTransition(
         axisAlignment: 1,
         sizeFactor: CurvedAnimation(parent: controller, curve: Curves.easeOut),
         child: Column(
-          children: generateChildrenNodesWidget(node.children),
+          children: items,
         ),
       ),
     );
   }
 
   List<Widget> generateChildrenNodesWidget(
-    List<TreeType<AbstractComponentTreeNode>> list,
-  ) =>
-      List.generate(
-        list.length,
-        (int index) => ComponentTree(id: list[index].data.id),
-      );
+    List<Tree> list,
+  ) {
+    final items = [
+      for (final child in list) //
+        child,
+    ];
+
+    return List.generate(
+      items.length,
+      (index) => ComponentTree(
+        id: items[index].data.id,
+      ),
+    );
+  }
 }

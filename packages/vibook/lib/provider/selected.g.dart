@@ -6,7 +6,7 @@ part of 'selected.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$selectionHash() => r'ceb87b6a33762a939c295109f8d281276400f19e';
+String _$selectionHash() => r'bbe0f5f83efb158b1a0e6b55656dc2cf1ad1e393';
 
 /// Copied from Dart SDK
 class _SystemHash {

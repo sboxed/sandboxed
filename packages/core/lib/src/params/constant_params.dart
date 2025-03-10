@@ -14,8 +14,8 @@ class ConstantParams implements Params {
 
   @override
   void updateDefaultValues(Map<String, dynamic> defaultValues) {
-    defaultValues.clear();
-    defaultValues.addAll(defaultValues);
+    this.defaultValues.clear();
+    this.defaultValues.addAll(defaultValues);
   }
 
   @override

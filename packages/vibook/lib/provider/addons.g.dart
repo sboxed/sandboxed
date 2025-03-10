@@ -22,12 +22,11 @@ final addonListProvider = AutoDisposeProvider<List<Addon>>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AddonListRef = AutoDisposeProviderRef<List<Addon>>;
-String _$addonsHash() => r'9498b198dcfee41e05e92a52ac33692515ffda5d';
+String _$addonsHash() => r'f00bb36db2c6798f937506f55cdc4624c9a72e3f';
 
 /// See also [Addons].
 @ProviderFor(Addons)
-final addonsProvider =
-    AutoDisposeNotifierProvider<Addons, List<Addon>>.internal(
+final addonsProvider = NotifierProvider<Addons, List<Addon>>.internal(
   Addons.new,
   name: r'addonsProvider',
   debugGetCreateSourceHash:
@@ -39,6 +38,6 @@ final addonsProvider =
   },
 );
 
-typedef _$Addons = AutoDisposeNotifier<List<Addon>>;
+typedef _$Addons = Notifier<List<Addon>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

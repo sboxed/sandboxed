@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vibook/addons/addon.dart';
-import 'package:vibook/addons/param_builder_addon.dart';
+import 'package:vibook/addons/mixins/param_builder_addon.dart';
 import 'package:vibook/params/param_builder.dart';
 import 'package:vibook_core/vibook_core.dart';
 

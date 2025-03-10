@@ -27,6 +27,8 @@ To increase speed of creation new stories add these snippets to your project
     "prefix": "storyconfig",
     "description": "Creates a global story config",
     "body": [
+      "import 'package:vibook_core/vibook_core.dart';",
+      "",
       "Config get config => Config(",
       "  module: '',",
       ");",

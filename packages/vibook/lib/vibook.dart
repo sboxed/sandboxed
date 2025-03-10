@@ -14,8 +14,10 @@ import 'package:vibook/provider/title.dart';
 import 'package:vibook/router.dart';
 import 'package:vibook/theme.dart';
 import 'package:vibook_core/component.dart';
+import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 export 'package:vibook_core/vibook_core.dart';
+export 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 class Vibook extends StatefulWidget {
   final Widget title;
@@ -76,8 +78,18 @@ class _VibookState extends State<Vibook> {
         builder: (context, ref, child) {
           return MaterialApp.router(
             themeMode: ref.watch(themeModeNotifierProvider),
-            theme: widget.theme ?? buildLightTheme(context, ref),
-            darkTheme: widget.darkTheme ?? buildDarkTheme(context, ref),
+            theme: widget.theme?.copyWith(
+                  extensions: [
+                    VibookTheme(brandColor: widget.brandColor),
+                  ],
+                ) ??
+                buildLightTheme(context, ref),
+            darkTheme: widget.darkTheme?.copyWith(
+                  extensions: [
+                    VibookTheme(brandColor: widget.brandColor),
+                  ],
+                ) ??
+                buildDarkTheme(context, ref),
             builder: (context, child) => GestureDetector(
               onTap: () => FocusScope.of(context).unfocus,
               child: child,

@@ -1,15 +1,22 @@
 import 'dart:math';
 
 import 'package:collection/collection.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 import 'package:vibook/tree/component_tree_node.dart';
 import 'package:vibook_core/component.dart';
 
-TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
-  var root = TreeType<AbstractComponentTreeNode>(
+Tree parse(List<ViElement> components) {
+  var root = Tree(
     children: [],
     parent: null,
-    data: RootTreeNode(id: 'root', title: 'VIBOOK'),
+    data: NodeData(
+      const RootNode(
+        id: 'root',
+        title: 'VIBOOK',
+        level: 0,
+        index: 0,
+        isExpanded: true,
+      ),
+    ),
   );
 
   var nodes = <String, Tree>{};
@@ -23,9 +30,8 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
           ...component.meta.name.split('/'),
         ];
 
-        TreeType<AbstractComponentTreeNode> parent = root;
-        (root.data as RootTreeNode).depth =
-            max((root.data as RootTreeNode).depth, parts.length);
+        Tree parent = root;
+        root.data.depth = max(root.data.depth, parts.length);
 
         for (final (index, part) in parts.indexed) {
           final key = parts.take(index + 1).join('/');
@@ -38,34 +44,40 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
               final childIndex = parent.children.length;
 
               if (part.startsWith('[') && part.endsWith(']')) {
-                return TreeType<AbstractComponentTreeNode>(
-                  data: ModuleTreeNode(
-                    id: id,
-                    title: part.replaceAll(RegExp(r'(^\[|\]$)'), '').trim(),
-                    level: level,
-                    index: childIndex,
+                return Tree(
+                  data: NodeData(
+                    ModuleNode(
+                      id: id,
+                      title: part.replaceAll(RegExp(r'(^\[|\]$)'), '').trim(),
+                      level: level,
+                      index: childIndex,
+                      isExpanded: true,
+                    ),
                   ),
                   children: [],
                   parent: parent,
                 );
               }
 
-              return TreeType<AbstractComponentTreeNode>(
-                data: part == parts.last
-                    ? ComponentTreeNode(
-                        id: id,
-                        title: part.trim(),
-                        level: level,
-                        index: childIndex,
-                        isLeaf: component.stories.length == 1,
-                        component: component,
-                      )
-                    : FolderTreeNode(
-                        id: id,
-                        title: part.trim(),
-                        level: level,
-                        index: childIndex,
-                      ),
+              return Tree(
+                data: NodeData(
+                  part == parts.last
+                      ? ComponentNode(
+                          id: id,
+                          title: part.trim(),
+                          level: level,
+                          index: childIndex,
+                          component: component,
+                          isExpanded: true,
+                        )
+                      : FolderNode(
+                          id: id,
+                          title: part.trim(),
+                          level: level,
+                          index: childIndex,
+                          isExpanded: true,
+                        ),
+                ),
                 children: [],
                 parent: parent,
               );
@@ -87,14 +99,16 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
 
         for (final document in component.meta.documentation) {
           final name = document.name;
-          var node = TreeType<AbstractComponentTreeNode>(
-            data: DocumentationTreeNode(
-              id: [...parts, name.trim()].join('/'),
-              component: component,
-              title: name,
-              level: parts.length + 1,
-              index: parent.children.length,
-              entry: document,
+          var node = Tree(
+            data: NodeData(
+              DocumentationNode(
+                id: [...parts, name.trim()].join('/'),
+                component: component,
+                title: name,
+                level: parts.length + 1,
+                index: parent.children.length,
+                document: document,
+              ),
             ),
             children: [],
             parent: parent,
@@ -105,18 +119,21 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
 
         for (final (index, story) in component.stories.indexed) {
           final name = story.name ?? 'Story $index';
-          var node = TreeType<AbstractComponentTreeNode>(
-            data: StoryTreeNode(
-              id: [...parts, name.trim()].join('/'),
-              component: component,
-              story: story,
-              title: name,
-              level: parts.length + 1,
-              index: parent.children.length,
+          var node = Tree(
+            data: NodeData(
+              StoryNode(
+                id: [...parts, name.trim()].join('/'),
+                component: component,
+                story: story,
+                title: name,
+                level: parts.length + 1,
+                index: parent.children.length,
+              ),
             ),
             children: [],
             parent: parent,
           );
+
           parent.children.add(node);
         }
     }
@@ -130,10 +147,10 @@ TreeType<AbstractComponentTreeNode> parse(List<ViElement> components) {
 void sort(Tree tree) {
   tree.children.sortBy((element) => element.data.title);
   tree.children.sortBy<num>(
-    (element) => switch (element.data) {
-      ModuleTreeNode _ => 0,
-      FolderTreeNode _ => 10,
-      DocumentationTreeNode _ => 50,
+    (element) => switch (element.data.data) {
+      ModuleNode _ => 0,
+      FolderNode _ => 10,
+      DocumentationNode _ => 50,
       _ => 1000,
     },
   );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vibook/provider/brand_color.dart';
+import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 const kDrawerTheme = DrawerThemeData(
   shape: Border(),
@@ -48,6 +49,9 @@ ThemeData buildLightTheme(BuildContext context, WidgetRef ref) => ThemeData(
         selectedColor: Colors.white,
         selectedTileColor: ref.watch(brandColorProvider),
       ),
+      extensions: [
+        VibookTheme(brandColor: ref.watch(brandColorProvider)),
+      ],
     );
 
 ThemeData buildDarkTheme(BuildContext context, WidgetRef ref) => ThemeData(
@@ -70,4 +74,7 @@ ThemeData buildDarkTheme(BuildContext context, WidgetRef ref) => ThemeData(
         selectedColor: Colors.white,
         selectedTileColor: ref.watch(brandColorProvider),
       ),
+      extensions: [
+        VibookTheme(brandColor: ref.watch(brandColorProvider)),
+      ],
     );

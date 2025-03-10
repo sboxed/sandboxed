@@ -49,6 +49,7 @@ class _DocumentPageContent extends ConsumerWidget {
                 children: [
                   AppBar(
                     title: ElementName(id: id),
+                    scrolledUnderElevation: 0,
                     automaticallyImplyLeading: false,
                     backgroundColor: Colors.transparent,
                   ),

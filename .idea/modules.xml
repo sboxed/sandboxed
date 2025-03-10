@@ -9,7 +9,9 @@
       <module fileurl="file://$PROJECT_DIR$/packages/vibook/melos_vibook.iml" filepath="$PROJECT_DIR$/packages/vibook/melos_vibook.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/core/melos_vibook_core.iml" filepath="$PROJECT_DIR$/packages/core/melos_vibook_core.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/vibook_generator/melos_vibook_generator.iml" filepath="$PROJECT_DIR$/packages/vibook_generator/melos_vibook_generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/vibook_library/melos_vibook_library.iml" filepath="$PROJECT_DIR$/apps/vibook_library/melos_vibook_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/apps/sandbox/melos_vibook_sandbox.iml" filepath="$PROJECT_DIR$/apps/sandbox/melos_vibook_sandbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/vibook_ui_kit/melos_vibook_ui_kit.iml" filepath="$PROJECT_DIR$/packages/vibook_ui_kit/melos_vibook_ui_kit.iml" />
       <module fileurl="file://$PROJECT_DIR$/melos_vibook_workspace.iml" filepath="$PROJECT_DIR$/melos_vibook_workspace.iml" />
     </modules>
   </component>

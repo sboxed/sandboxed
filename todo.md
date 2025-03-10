@@ -18,7 +18,7 @@
 (B) Checking golden test results from vibook #tests
 (B) Toggleable params #editor
 (B) Toggleable addons Small touchable dot near addon title. Yellow - `off`, Green - `on` #editor
-(B) Component and story tags #search
+(B) Component and story tags #search {cm:2025-03-09}
 (B) `Param` interface and extensibility should be refined #core
 (B) Params - Support JSON serializable objects via generator
 (B) Params

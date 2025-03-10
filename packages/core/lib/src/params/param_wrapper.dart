@@ -83,3 +83,10 @@ bool _isPlainDataType(dynamic value) {
     return false;
   }
 }
+
+extension ParamWrapperX<T> on ParamWrapper<T> {
+  ParamWrapper<T> describe(String description) {
+    _meta['description'] = description;
+    return this;
+  }
+}

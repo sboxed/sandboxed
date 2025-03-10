@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibook/addons/decorator_addon.dart';
+import 'package:vibook/addons/mixins/decorator_addon.dart';
 import 'package:vibook/provider/addons.dart';
 
 class AddonsInspector extends ConsumerWidget {

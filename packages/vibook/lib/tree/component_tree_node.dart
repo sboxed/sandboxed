@@ -1,265 +1,231 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:iconify_flutter_plus/icons/mdi.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
-import 'package:vibook/widgets/vi_icon.dart';
-import 'package:vibook_core/component.dart';
-import 'package:vibook_core/document_entry.dart';
-import 'package:vibook_core/story.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+// import 'package:vibook/addons/mixins/editor_addon.dart';
+// import 'package:vibook/provider/addons.dart';
+// import 'package:vibook/vibook.dart';
 
-typedef Tree = TreeType<AbstractComponentTreeNode>;
+import 'package:recursive_tree_flutter/models/tree_type.dart';
+import 'package:vibook/tree/component_tree_node_2.dart';
 
-sealed class AbstractComponentTreeNode extends AbsNodeType {
-  int get level;
-  int get index;
+export 'package:vibook/tree/component_tree_node_2.dart';
 
-  AbstractComponentTreeNode({
-    required super.id,
-    required super.title,
-  });
+typedef Tree = TreeType<NodeData>;
 
-  Widget? buildLeading(BuildContext context);
+// sealed class AbstractComponentNode extends AbsNodeType {
+//   int get level;
+//   int get index;
 
-  Widget buildTitle(BuildContext context);
-}
+//   AbstractComponentNode({
+//     required super.id,
+//     required super.title,
+//   });
 
-final class RootTreeNode extends AbstractComponentTreeNode {
-  RootTreeNode({required super.id, required super.title});
+//   Widget? buildLeading(BuildContext context, WidgetRef ref);
 
-  @override
-  int get level => 0;
+//   Widget buildTitle(BuildContext context, WidgetRef ref);
+// }
 
-  @override
-  int get index => 0;
+// final class RootNode extends AbstractComponentNode {
+//   RootNode({required super.id, required super.title});
 
-  int depth = 0;
+//   @override
+//   int get level => 0;
 
-  @override
-  bool get isShowedInSearching => false;
+//   @override
+//   int get index => 0;
 
-  @override
-  bool get isExpanded => true;
+//   int depth = 0;
 
-  @override
-  T clone<T extends AbsNodeType>() {
-    // TODO: implement clone
-    throw UnimplementedError();
-  }
+//   @override
+//   bool get isShowedInSearching => false;
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return const SizedBox.shrink();
-  }
+//   @override
+//   bool get isExpanded => true;
 
-  @override
-  Widget buildTitle(BuildContext context) {
-    return const SizedBox.shrink();
-  }
-}
+//   @override
+//   T clone<T extends AbsNodeType>() {
+//     // TODO: implement clone
+//     throw UnimplementedError();
+//   }
 
-final class ModuleTreeNode extends AbstractComponentTreeNode {
-  @override
-  final int level;
+//   @override
+//   Widget buildLeading(BuildContext context, WidgetRef ref) {
+//     return const SizedBox.shrink();
+//   }
 
-  @override
-  final int index;
+//   @override
+//   Widget buildTitle(BuildContext context, WidgetRef ref) {
+//     return const SizedBox.shrink();
+//   }
+// }
 
-  ModuleTreeNode({
-    required super.id,
-    required super.title,
-    required this.level,
-    required this.index,
-  });
+// final class ModuleNode extends AbstractComponentNode {
+//   @override
+//   final int level;
 
-  @override
-  T clone<T extends AbsNodeType>() {
-    // TODO: implement clone
-    throw UnimplementedError();
-  }
+//   @override
+//   final int index;
 
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return const Tooltip(
-      message: 'Module',
-      waitDuration: Duration(milliseconds: 240),
-      child: ViIcon(Mdi.cube),
-    );
-  }
+//   ModuleNode({
+//     required super.id,
+//     required super.title,
+//     required this.level,
+//     required this.index,
+//   });
 
-  @override
-  Widget buildTitle(BuildContext context) {
-    return Text(title);
-  }
-}
 
-final class FolderTreeNode extends AbstractComponentTreeNode {
-  @override
-  final int level;
 
-  @override
-  final int index;
+// final class FolderNode extends AbstractComponentNode {
+//   @override
+//   final int level;
 
-  FolderTreeNode({
-    required super.id,
-    required super.title,
-    required this.level,
-    required this.index,
-  });
+//   @override
+//   final int index;
 
-  @override
-  T clone<T extends AbsNodeType>() {
-    // TODO: implement clone
-    throw UnimplementedError();
-  }
+//   FolderNode({
+//     required super.id,
+//     required super.title,
+//     required this.level,
+//     required this.index,
+//   });
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return ViIcon(isExpanded ? Mdi.folder_open : Mdi.folder);
-  }
+//   @override
+//   T clone<T extends AbsNodeType>() {
+//     // TODO: implement clone
+//     throw UnimplementedError();
+//   }
 
-  @override
-  Widget buildTitle(BuildContext context) {
-    return Text(title);
-  }
-}
 
-final class ComponentTreeNode extends AbstractComponentTreeNode {
-  @override
-  final int level;
-  final Component component;
+//   @override
+//   Widget buildTitle(BuildContext context, WidgetRef ref) {
+//     return Text(title);
+//   }
+// }
 
-  @override
-  final int index;
+// final class ComponentNode extends AbstractComponentNode {
+//   @override
+//   final int level;
+//   final Component component;
 
-  final bool _isInner;
+//   @override
+//   final int index;
 
-  ComponentTreeNode({
-    required super.id,
-    required super.title,
-    required this.level,
-    required this.index,
-    required this.component,
-    bool isLeaf = false,
-  }) : _isInner = !isLeaf;
+//   final bool _isInner;
 
-  @override
-  bool get isExpanded => true;
+//   ComponentNode({
+//     required super.id,
+//     required super.title,
+//     required this.level,
+//     required this.index,
+//     required this.component,
+//     bool isLeaf = false,
+//   }) : _isInner = !isLeaf;
 
-  @override
-  bool get isInner => _isInner;
+//   @override
+//   bool get isExpanded => true;
 
-  @override
-  T clone<T extends AbsNodeType>() {
-    // TODO: implement clone
-    throw UnimplementedError();
-  }
+//   @override
+//   bool get isInner => _isInner;
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return Tooltip(
-      message: [
-        'Component',
-        if (!kReleaseMode && component.meta.warnings.isNotEmpty)
-          ...component.meta.warnings.map((e) => '• $e'),
-      ].join('\n'),
-      waitDuration: const Duration(milliseconds: 240),
-      child: !kReleaseMode && component.meta.warnings.isNotEmpty
-          ? ViIcon(
-              Mdi.warning_circle,
-              color: Theme.of(context).colorScheme.error,
-            )
-          : const ViIcon(Mdi.rhombus_split),
-    );
-  }
+//   @override
+//   T clone<T extends AbsNodeType>() {
+//     // TODO: implement clone
+//     throw UnimplementedError();
+//   }
 
-  @override
-  Widget buildTitle(BuildContext context) {
-    return Text(title);
-  }
-}
 
-final class DocumentationTreeNode extends AbstractComponentTreeNode {
-  @override
-  final int level;
 
-  @override
-  final int index;
+//   @override
+//   Widget buildTitle(BuildContext context, WidgetRef ref) {
+//     Widget titleWidget = Text(title);
 
-  final Component component;
-  final DocumentEntry entry;
+//     for (final addon in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+//       titleWidget =
+//           addon.visitComponentTitle(context, component, titleWidget) ?? //
+//               titleWidget;
+//     }
 
-  DocumentationTreeNode({
-    required super.id,
-    required super.title,
-    required this.level,
-    required this.index,
-    required this.component,
-    required this.entry,
-  });
+//     return titleWidget;
+//   }
+// }
 
-  @override
-  bool get isInner => false;
+// final class DocumentationNode extends AbstractComponentNode {
+//   @override
+//   final int level;
 
-  @override
-  T clone<T extends AbsNodeType>() {
-    // TODO: implement clone
-    throw UnimplementedError();
-  }
+//   @override
+//   final int index;
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return const Tooltip(
-      message: 'Documentation Entry',
-      waitDuration: Duration(milliseconds: 240),
-      child: ViIcon(Mdi.file_certificate),
-    );
-  }
+//   final Component component;
+//   final DocumentEntry entry;
 
-  @override
-  Widget buildTitle(BuildContext context) {
-    return Text(title);
-  }
-}
+//   DocumentationNode({
+//     required super.id,
+//     required super.title,
+//     required this.level,
+//     required this.index,
+//     required this.component,
+//     required this.entry,
+//   });
 
-final class StoryTreeNode extends AbstractComponentTreeNode {
-  @override
-  final int level;
+//   @override
+//   bool get isInner => false;
 
-  @override
-  final int index;
+//   @override
+//   T clone<T extends AbsNodeType>() {
+//     // TODO: implement clone
+//     throw UnimplementedError();
+//   }
 
-  final Component component;
-  final Story story;
 
-  StoryTreeNode({
-    required super.id,
-    required super.title,
-    required this.level,
-    required this.index,
-    required this.component,
-    required this.story,
-  });
 
-  @override
-  bool get isInner => false;
+//   @override
+//   Widget buildTitle(BuildContext context, WidgetRef ref) {
+//     return Text(title);
+//   }
+// }
 
-  @override
-  T clone<T extends AbsNodeType>() {
-    // TODO: implement clone
-    throw UnimplementedError();
-  }
+// final class StoryNode extends AbstractComponentNode {
+//   @override
+//   final int level;
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return const Tooltip(
-      message: 'Component Story or Scenario',
-      waitDuration: Duration(milliseconds: 240),
-      child: ViIcon(Mdi.rhombus),
-    );
-  }
+//   @override
+//   final int index;
 
-  @override
-  Widget buildTitle(BuildContext context) {
-    return Text(title);
-  }
-}
+//   final Component component;
+//   final Story story;
+
+//   StoryNode({
+//     required super.id,
+//     required super.title,
+//     required this.level,
+//     required this.index,
+//     required this.component,
+//     required this.story,
+//   });
+
+//   @override
+//   bool get isInner => false;
+
+//   @override
+//   T clone<T extends AbsNodeType>() {
+//     // TODO: implement clone
+//     throw UnimplementedError();
+//   }
+
+
+//   @override
+//   Widget buildTitle(BuildContext context, WidgetRef ref) {
+//     Widget titleWidget = Text(title);
+
+//     for (final addon in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+//       titleWidget =
+//           addon.visitStoryTitle(context, component, story, titleWidget) ?? //
+//               titleWidget;
+//     }
+
+//     return titleWidget;
+//   }
+// }

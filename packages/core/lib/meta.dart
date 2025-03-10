@@ -20,6 +20,8 @@ class Meta<T extends Widget> {
   /// {@macro vibook.decorator}
   final List<Decorator> decorators;
 
+  final List<String> tags;
+
   const Meta({
     String? name,
     Type? component,
@@ -27,6 +29,7 @@ class Meta<T extends Widget> {
     this.documentation = const [],
     this.parameters = const {},
     this.decorators = const [],
+    this.tags = const [],
   })  : _name = name,
         _component = component;
 

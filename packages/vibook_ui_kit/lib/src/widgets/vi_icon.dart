@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 
+export 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+
 class ViIcon extends StatelessWidget {
   final String icon;
   final Color? color;

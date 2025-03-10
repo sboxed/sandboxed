@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vibook/addons/addon.dart';
-import 'package:vibook/addons/decorator_addon.dart';
+import 'package:vibook/addons/mixins/decorator_addon.dart';
 import 'package:vibook_core/decorator.dart';
 
 final class BannerAddon extends Addon with DecoratorAddon {

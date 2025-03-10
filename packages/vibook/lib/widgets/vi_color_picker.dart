@@ -79,6 +79,7 @@ class _ViColorPickerState extends State<ViColorPicker> {
                         width: 300,
                         child: IntrinsicHeight(
                           child: ColorPicker(
+                            color: color,
                             pickersEnabled: const {ColorPickerType.wheel: true},
                             onColorChanged: widget.onChanged!,
                           ),

@@ -1,4 +1,6 @@
-# melos_managed_dependency_overrides: vibook_core
+# melos_managed_dependency_overrides: vibook_core,vibook_ui_kit
 dependency_overrides:
   vibook_core:
     path: ../core
+  vibook_ui_kit:
+    path: ../vibook_ui_kit

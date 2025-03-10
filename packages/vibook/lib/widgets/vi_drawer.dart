@@ -15,6 +15,7 @@ class ViDrawer extends StatelessWidget {
     return Consumer(
       builder: (context, ref, child) {
         return Drawer(
+          width: 400,
           child: Column(
             children: [
               Consumer(

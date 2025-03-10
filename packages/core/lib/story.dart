@@ -18,6 +18,8 @@ class Story {
   /// Pre-defined params.
   final Map<String, dynamic> params;
 
+  final List<String> tags;
+
   final int order;
 
   const Story({
@@ -26,6 +28,7 @@ class Story {
     this.order = 0,
     this.builder = AutomaticBuilder,
     this.params = const {},
+    this.tags = const [],
   });
 
   const Story.apply({
@@ -34,6 +37,7 @@ class Story {
     required this.order,
     required this.builder,
     required this.params,
+    required this.tags,
   });
 
   Story applyGenerated({
@@ -43,12 +47,14 @@ class Story {
     builder = this.builder == AutomaticBuilder
         ? (builder ?? this.builder)
         : this.builder;
+
     return Story.apply(
       name: this.name ?? name,
       builder: builder,
       decorators: decorators,
       order: order,
       params: params,
+      tags: tags,
     );
   }
 }

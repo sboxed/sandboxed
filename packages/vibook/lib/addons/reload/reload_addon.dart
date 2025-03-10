@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vibook/addons/addon.dart';
-import 'package:vibook/addons/decorator_addon.dart';
+import 'package:vibook/addons/mixins/decorator_addon.dart';
 import 'package:vibook/toolbar/toolbar_addon_mixin.dart';
 import 'package:vibook/toolbar/toolbar_button.dart';
 import 'package:vibook_core/decorator.dart';
