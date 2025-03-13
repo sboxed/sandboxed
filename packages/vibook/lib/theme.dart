@@ -28,6 +28,13 @@ final kFilledButtonTheme = FilledButtonThemeData(
 
 const kOutlinedButtonTheme = OutlinedButtonThemeData();
 
+VibookTheme buildVibookTheme(BuildContext context, WidgetRef ref) {
+  return VibookTheme(
+    brandColor: ref.watch(brandColorProvider),
+    codeStyle: GoogleFonts.jetBrainsMono(),
+  );
+}
+
 ThemeData buildLightTheme(BuildContext context, WidgetRef ref) => ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
@@ -50,7 +57,7 @@ ThemeData buildLightTheme(BuildContext context, WidgetRef ref) => ThemeData(
         selectedTileColor: ref.watch(brandColorProvider),
       ),
       extensions: [
-        VibookTheme(brandColor: ref.watch(brandColorProvider)),
+        buildVibookTheme(context, ref),
       ],
     );
 
@@ -75,6 +82,6 @@ ThemeData buildDarkTheme(BuildContext context, WidgetRef ref) => ThemeData(
         selectedTileColor: ref.watch(brandColorProvider),
       ),
       extensions: [
-        VibookTheme(brandColor: ref.watch(brandColorProvider)),
+        buildVibookTheme(context, ref),
       ],
     );

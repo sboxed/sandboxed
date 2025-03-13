@@ -10,6 +10,10 @@ import 'package:vibook_ui_kit/src/widgets/tags/tag_chip.dart' as _i3;
 import 'package:vibook_ui_kit/src/widgets/tiles/element_tile.stories.dart'
     as _i4;
 import 'package:vibook_ui_kit/src/widgets/tiles/element_tile.dart' as _i5;
+import 'package:vibook_ui_kit/src/layout/responsive_layout.stories.dart' as _i6;
+import 'package:vibook_ui_kit/src/layout/responsive_layout.dart' as _i7;
+import 'package:vibook_ui_kit/src/widgets/layout/vi_drawer.stories.dart' as _i8;
+import 'package:vibook_ui_kit/src/widgets/layout/vi_drawer.dart' as _i9;
 import 'package:vibook_core/vibook_core.dart';
 import 'package:flutter/material.dart';
 
@@ -102,6 +106,52 @@ List<Component> get components => <Component>[
                   .required(const SizedBox.shrink()),
             ),
           ),
+        ],
+      ),
+      Component(
+        meta: _i6.meta,
+        config: _i2.config,
+        stories: [
+          _i6.$Default.applyGenerated(
+            name: 'Default',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i7.ResponsiveLayout(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              drawer: params
+                  .dynamic$<Widget>(r'drawer')
+                  .required(const SizedBox.shrink()),
+              viewport: params
+                  .dynamic$<Widget>(r'viewport')
+                  .required(const SizedBox.shrink()),
+              sidebar: params.dynamic$<Widget>(r'sidebar').optional(null),
+            ),
+          )
+        ],
+      ),
+      Component(
+        meta: _i8.meta,
+        config: _i2.config,
+        stories: [
+          _i8.$Drawer.applyGenerated(
+            name: 'Drawer',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i9.ViDrawer(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              title: params
+                  .dynamic$<Widget>(r'title')
+                  .required(const SizedBox.shrink()),
+              actions: params.dynamic$<List<Widget>>(r'actions').required([]),
+              body: params
+                  .dynamic$<Widget>(r'body')
+                  .required(const SizedBox.shrink()),
+            ),
+          )
         ],
       ),
     ];

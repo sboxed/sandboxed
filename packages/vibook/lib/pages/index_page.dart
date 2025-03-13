@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibook/layout/mobile_layout.dart';
-import 'package:vibook/layout/tablet_layout.dart';
-import 'package:vibook/provider/component_tree.dart';
-import 'package:vibook/widgets/resizable_divider.dart';
+import 'package:vibook/inspector/addons_inspector.dart';
+import 'package:vibook/layout/vibook_viewport.dart';
+import 'package:vibook/widgets/vibook_drawer.dart';
+import 'package:vibook/widgets/vibook_sidebar.dart';
+import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 @RoutePage()
 class IndexPage extends ConsumerWidget {
@@ -12,15 +13,22 @@ class IndexPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final components = ref.watch(componentsProvider);
-
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 900 + kDividerWidth * 2;
         if (isMobile) {
-          return MobileLayout(components: components);
+          return const MobileLayout(
+            drawer: VibookDrawer(),
+            viewport: VibookViewport(),
+          );
         } else {
-          return TabletLayout(components: components);
+          return const TabletLayout(
+            drawer: VibookDrawer(),
+            viewport: VibookViewport(),
+            sidebar: VibookSidebar(
+              tabs: [(Text('Addons'), AddonsInspector())],
+            ),
+          );
         }
       },
     );

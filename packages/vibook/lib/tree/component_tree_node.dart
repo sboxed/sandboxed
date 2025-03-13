@@ -1,231 +1,251 @@
-// import 'package:flutter/foundation.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
-// import 'package:vibook/addons/mixins/editor_addon.dart';
-// import 'package:vibook/provider/addons.dart';
-// import 'package:vibook/vibook.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+import 'package:vibook/addons/mixins/editor_addon.dart';
+import 'package:vibook/provider/addons.dart';
+import 'package:vibook/vibook.dart';
 
-import 'package:recursive_tree_flutter/models/tree_type.dart';
-import 'package:vibook/tree/component_tree_node_2.dart';
-
-export 'package:vibook/tree/component_tree_node_2.dart';
+part 'component_tree_node.freezed.dart';
 
 typedef Tree = TreeType<NodeData>;
 
-// sealed class AbstractComponentNode extends AbsNodeType {
-//   int get level;
-//   int get index;
+// ignore: must_be_immutable
+class NodeData with EquatableMixin implements AbsNodeType {
+  ElementNode data;
 
-//   AbstractComponentNode({
-//     required super.id,
-//     required super.title,
-//   });
+  NodeData(this.data);
 
-//   Widget? buildLeading(BuildContext context, WidgetRef ref);
+  @override
+  dynamic get id => data.id;
 
-//   Widget buildTitle(BuildContext context, WidgetRef ref);
-// }
+  @override
+  set id(dynamic value) => data = data.copyWith(id: value);
 
-// final class RootNode extends AbstractComponentNode {
-//   RootNode({required super.id, required super.title});
+  @override
+  String get title => data.title;
 
-//   @override
-//   int get level => 0;
+  @override
+  set title(String value) {
+    data = data.copyWith(title: title);
+  }
 
-//   @override
-//   int get index => 0;
+  int get depth => data.level;
 
-//   int depth = 0;
+  set depth(int value) {
+    data = data.copyWith(level: value);
+  }
 
-//   @override
-//   bool get isShowedInSearching => false;
+  @override
+  bool get isExpanded => data.isExpanded;
 
-//   @override
-//   bool get isExpanded => true;
+  @override
+  set isExpanded(bool value) => data = data.copyWith(isExpanded: value);
 
-//   @override
-//   T clone<T extends AbsNodeType>() {
-//     // TODO: implement clone
-//     throw UnimplementedError();
-//   }
+  @override
+  bool get isInner {
+    return switch (data) {
+      ComponentNode node => node.component.stories.length > 1,
+      StoryNode _ => false,
+      DocumentationNode _ => false,
+      _ => true,
+    };
+  }
 
-//   @override
-//   Widget buildLeading(BuildContext context, WidgetRef ref) {
-//     return const SizedBox.shrink();
-//   }
+  bool get isLeaf => !isInner;
 
-//   @override
-//   Widget buildTitle(BuildContext context, WidgetRef ref) {
-//     return const SizedBox.shrink();
-//   }
-// }
+// #region Unused
+  @override
+  set isInner(bool value) {}
 
-// final class ModuleNode extends AbstractComponentNode {
-//   @override
-//   final int level;
+  @override
+  bool get isBlurred => false;
 
-//   @override
-//   final int index;
+  @override
+  set isBlurred(bool value) {}
 
-//   ModuleNode({
-//     required super.id,
-//     required super.title,
-//     required this.level,
-//     required this.index,
-//   });
+  @override
+  bool? get isChosen => false;
 
+  @override
+  set isChosen(bool? value) {}
 
+  @override
+  bool get isFavorite => false;
 
-// final class FolderNode extends AbstractComponentNode {
-//   @override
-//   final int level;
+  @override
+  set isFavorite(bool value) {}
 
-//   @override
-//   final int index;
+  @override
+  bool get isShowedInSearching => data is! RootNode;
 
-//   FolderNode({
-//     required super.id,
-//     required super.title,
-//     required this.level,
-//     required this.index,
-//   });
+  @override
+  set isShowedInSearching(bool value) {}
 
-//   @override
-//   T clone<T extends AbsNodeType>() {
-//     // TODO: implement clone
-//     throw UnimplementedError();
-//   }
+  @override
+  bool get isUnavailable => false;
 
+  @override
+  set isUnavailable(bool value) {}
+// #endregion
 
-//   @override
-//   Widget buildTitle(BuildContext context, WidgetRef ref) {
-//     return Text(title);
-//   }
-// }
+  @override
+  T clone<T extends AbsNodeType>() {
+    return NodeData(data.copyWith()) as T;
+  }
 
-// final class ComponentNode extends AbstractComponentNode {
-//   @override
-//   final int level;
-//   final Component component;
+  @override
+  List<Object?> get props => [data];
+}
 
-//   @override
-//   final int index;
+@freezed
+sealed class ElementNode with _$ElementNode {
+  const ElementNode._();
 
-//   final bool _isInner;
+  const factory ElementNode.root({
+    required int level,
+    required int index,
+    required String id,
+    required String title,
+    required bool isExpanded,
+  }) = RootNode;
 
-//   ComponentNode({
-//     required super.id,
-//     required super.title,
-//     required this.level,
-//     required this.index,
-//     required this.component,
-//     bool isLeaf = false,
-//   }) : _isInner = !isLeaf;
+  const factory ElementNode.module({
+    required int level,
+    required int index,
+    required String id,
+    required String title,
+    required bool isExpanded,
+  }) = ModuleNode;
 
-//   @override
-//   bool get isExpanded => true;
+  const factory ElementNode.folder({
+    required int level,
+    required int index,
+    required String id,
+    required String title,
+    required bool isExpanded,
+  }) = FolderNode;
 
-//   @override
-//   bool get isInner => _isInner;
+  const factory ElementNode.component({
+    required int level,
+    required int index,
+    required String id,
+    required String title,
+    @Default(true) bool isExpanded,
+    required Component component,
+  }) = ComponentNode;
 
-//   @override
-//   T clone<T extends AbsNodeType>() {
-//     // TODO: implement clone
-//     throw UnimplementedError();
-//   }
+  const factory ElementNode.documentation({
+    required int level,
+    required int index,
+    required String id,
+    required String title,
+    @Default(false) bool isExpanded,
+    required Component component,
+    required DocumentEntry document,
+  }) = DocumentationNode;
 
+  const factory ElementNode.story({
+    required int level,
+    required int index,
+    required String id,
+    required String title,
+    @Default(false) bool isExpanded,
+    required Component component,
+    required Story story,
+  }) = StoryNode;
 
+  Widget buildLeading(BuildContext context, WidgetRef ref) {
+    switch (this) {
+      case ModuleNode():
+        return Tooltip(
+          message: 'Module',
+          waitDuration: const Duration(milliseconds: 240),
+          child: ElementTileIcons.module.icon,
+        );
 
-//   @override
-//   Widget buildTitle(BuildContext context, WidgetRef ref) {
-//     Widget titleWidget = Text(title);
+      case FolderNode():
+        return (isExpanded
+                ? ElementTileIcons.folderOpen
+                : ElementTileIcons.folder)
+            .icon;
 
-//     for (final addon in ref.watch(addonsProvider).whereType<EditorAddon>()) {
-//       titleWidget =
-//           addon.visitComponentTitle(context, component, titleWidget) ?? //
-//               titleWidget;
-//     }
+      case ComponentNode(:final component):
+        Widget icon = Tooltip(
+          message: [
+            'Component',
+            if (!kReleaseMode && component.meta.warnings.isNotEmpty)
+              ...component.meta.warnings.map((e) => '• $e'),
+          ].join('\n'),
+          waitDuration: const Duration(milliseconds: 240),
+          child: !kReleaseMode && component.meta.warnings.isNotEmpty
+              ? ElementTileIcons.warning.icon
+              : ElementTileIcons.component.icon,
+        );
 
-//     return titleWidget;
-//   }
-// }
+        for (final addon
+            in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+          icon = addon.visitComponentIcon(context, component, icon) ?? icon;
+        }
 
-// final class DocumentationNode extends AbstractComponentNode {
-//   @override
-//   final int level;
+        return icon;
 
-//   @override
-//   final int index;
+      case DocumentationNode():
+        return Tooltip(
+          message: 'Documentation Entry',
+          waitDuration: const Duration(milliseconds: 240),
+          child: ElementTileIcons.document.icon,
+        );
 
-//   final Component component;
-//   final DocumentEntry entry;
+      case StoryNode(:final component, :final story):
+        Widget icon = Tooltip(
+          message: 'Component Story or Scenario',
+          waitDuration: const Duration(milliseconds: 240),
+          child: ElementTileIcons.story.icon,
+        );
 
-//   DocumentationNode({
-//     required super.id,
-//     required super.title,
-//     required this.level,
-//     required this.index,
-//     required this.component,
-//     required this.entry,
-//   });
+        for (final addon
+            in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+          icon = addon.visitStoryIcon(context, component, story, icon) ?? icon;
+        }
 
-//   @override
-//   bool get isInner => false;
+        return icon;
 
-//   @override
-//   T clone<T extends AbsNodeType>() {
-//     // TODO: implement clone
-//     throw UnimplementedError();
-//   }
+      default:
+        return const SizedBox.shrink();
+    }
+  }
 
+  Widget buildTitle(BuildContext context, WidgetRef ref) {
+    switch (this) {
+      case ComponentNode(:final component):
+        Widget titleWidget = Text(title);
 
+        for (final addon
+            in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+          titleWidget =
+              addon.visitComponentTitle(context, component, titleWidget) ?? //
+                  titleWidget;
+        }
 
-//   @override
-//   Widget buildTitle(BuildContext context, WidgetRef ref) {
-//     return Text(title);
-//   }
-// }
+        return titleWidget;
 
-// final class StoryNode extends AbstractComponentNode {
-//   @override
-//   final int level;
+      case StoryNode(:final component, :final story):
+        Widget titleWidget = Text(title);
 
-//   @override
-//   final int index;
+        for (final addon
+            in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+          titleWidget = addon.visitStoryTitle(
+                  context, component, story, titleWidget) ?? //
+              titleWidget;
+        }
 
-//   final Component component;
-//   final Story story;
+        return titleWidget;
 
-//   StoryNode({
-//     required super.id,
-//     required super.title,
-//     required this.level,
-//     required this.index,
-//     required this.component,
-//     required this.story,
-//   });
-
-//   @override
-//   bool get isInner => false;
-
-//   @override
-//   T clone<T extends AbsNodeType>() {
-//     // TODO: implement clone
-//     throw UnimplementedError();
-//   }
-
-
-//   @override
-//   Widget buildTitle(BuildContext context, WidgetRef ref) {
-//     Widget titleWidget = Text(title);
-
-//     for (final addon in ref.watch(addonsProvider).whereType<EditorAddon>()) {
-//       titleWidget =
-//           addon.visitStoryTitle(context, component, story, titleWidget) ?? //
-//               titleWidget;
-//     }
-
-//     return titleWidget;
-//   }
-// }
+      default:
+        return Text(title);
+    }
+  }
+}

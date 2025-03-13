@@ -44,8 +44,8 @@ Story get $Default => Story(
 Story get $Tree => Story(
       decorators: [
         Decorator(
-          (context, story) => SizedBox(
-            width: 390,
+          (context, story) => ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 390),
             child: story,
           ),
         ),

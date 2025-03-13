@@ -1,12 +1,10 @@
 // ignore_for_file: implementation_imports
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:markdown/src/ast.dart' as md;
-import 'package:url_launcher/url_launcher_string.dart';
-import 'package:vibook/widgets/scroll_controller_builder.dart';
+import 'package:vibook_ui_kit/src/utility/scroll_controller_builder.dart';
+import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 class ViMarkdown extends StatelessWidget {
   final String data;
@@ -71,19 +69,8 @@ class ViMarkdown extends StatelessWidget {
     String? href,
     String title,
   ) async {
-    if (href == null) return;
-    if (await canLaunchUrlString(href)) {
-      launchUrlString(href);
-    } else {
-      Clipboard.setData(ClipboardData(text: href));
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Link copied into clipboard'),
-          ),
-        );
-      }
-    }
+    ViMarkdownLinkTappedNotification(text: text, href: href, title: title)
+        .dispatch(context);
   }
 }
 
@@ -93,7 +80,7 @@ MarkdownStyleSheet buildMarkdownStyleSheet(BuildContext context) {
   const double kQuotePadding = 8;
 
   return MarkdownStyleSheet(
-    code: GoogleFonts.jetBrainsMono(),
+    code: VibookTheme.of(context).codeStyle,
     codeblockDecoration: BoxDecoration(
       borderRadius: BorderRadius.circular(8),
       color: Theme.of(context).colorScheme.surfaceContainer,

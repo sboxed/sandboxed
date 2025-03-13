@@ -11,8 +11,12 @@ dependencies:
     sdk: flutter
 
   # ui
-
+  flutter_markdown_plus: ^1.0.0
   iconify_flutter_plus: ^1.0.0
+  flutter_resizable_container: ^4.0.0
+
+  # core
+  markdown: ^7.0.0
 
   # stories
   faker: ^2.0.0

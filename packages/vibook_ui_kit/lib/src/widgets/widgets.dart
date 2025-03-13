@@ -1,3 +1,8 @@
+export 'layout/resizable_divider.dart';
+export 'layout/vi_drawer.dart';
+export 'markdown/vi_markdown.dart';
+export 'markdown/vi_markdown_link_tapped_notification.dart';
+export 'settings/theme_mode_button.dart';
 export 'tags/tag_chip.dart';
 export 'tiles/element_tile.dart';
 export 'tiles/element_tile_icons.dart';

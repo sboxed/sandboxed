@@ -13,6 +13,7 @@ import 'package:vibook/provider/theme_mode.dart';
 import 'package:vibook/provider/title.dart';
 import 'package:vibook/router.dart';
 import 'package:vibook/theme.dart';
+import 'package:vibook/widgets/vi_notification_listener.dart';
 import 'package:vibook_core/component.dart';
 import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
@@ -61,42 +62,44 @@ class _VibookState extends State<Vibook> {
       'Vibook should be used in context with root ProviderScope',
     );
 
-    return ProviderScope(
-      overrides: [
-        titleProvider.overrideWithValue(widget.title),
-        brandColorProvider.overrideWithValue(widget.brandColor),
-        componentsProvider.overrideWithValue(widget.components),
-        addonListProvider.overrideWith(
-          (ref) => [
-            ReloadAddon(),
-            ...widget.addons,
-            BaseParamBuildersAddon(),
-          ],
+    return ViNotificationListener(
+      child: ProviderScope(
+        overrides: [
+          titleProvider.overrideWithValue(widget.title),
+          brandColorProvider.overrideWithValue(widget.brandColor),
+          componentsProvider.overrideWithValue(widget.components),
+          addonListProvider.overrideWith(
+            (ref) => [
+              ReloadAddon(),
+              ...widget.addons,
+              BaseParamBuildersAddon(),
+            ],
+          ),
+        ],
+        child: Consumer(
+          builder: (context, ref, child) {
+            return MaterialApp.router(
+              themeMode: ref.watch(themeModeNotifierProvider),
+              theme: widget.theme?.copyWith(
+                    extensions: [
+                      VibookTheme(brandColor: widget.brandColor),
+                    ],
+                  ) ??
+                  buildLightTheme(context, ref),
+              darkTheme: widget.darkTheme?.copyWith(
+                    extensions: [
+                      VibookTheme(brandColor: widget.brandColor),
+                    ],
+                  ) ??
+                  buildDarkTheme(context, ref),
+              builder: (context, child) => GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus,
+                child: child,
+              ),
+              routerConfig: router.config(),
+            );
+          },
         ),
-      ],
-      child: Consumer(
-        builder: (context, ref, child) {
-          return MaterialApp.router(
-            themeMode: ref.watch(themeModeNotifierProvider),
-            theme: widget.theme?.copyWith(
-                  extensions: [
-                    VibookTheme(brandColor: widget.brandColor),
-                  ],
-                ) ??
-                buildLightTheme(context, ref),
-            darkTheme: widget.darkTheme?.copyWith(
-                  extensions: [
-                    VibookTheme(brandColor: widget.brandColor),
-                  ],
-                ) ??
-                buildDarkTheme(context, ref),
-            builder: (context, child) => GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus,
-              child: child,
-            ),
-            routerConfig: router.config(),
-          );
-        },
       ),
     );
   }

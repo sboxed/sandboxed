@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class Sidebar extends StatelessWidget {
+class ViSidebar extends StatelessWidget {
   final List<(Widget, Widget)> tabs;
 
-  const Sidebar({
+  const ViSidebar({
     super.key,
     required this.tabs,
   });

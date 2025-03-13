@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vibook/tree/component_tree_node.dart';
-import 'package:vibook/tree/component_tree_node_2.dart';
 import 'package:vibook/tree/component_tree_parser.dart';
 import 'package:vibook_core/component.dart';
 

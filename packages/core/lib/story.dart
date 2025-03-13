@@ -1,11 +1,4 @@
-import 'package:flutter/widgets.dart';
-import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/src/params/params_store.dart';
-
-typedef StoryBuilder = Widget Function(BuildContext context, Params params);
-
-// ignore: non_constant_identifier_names
-Widget AutomaticBuilder(context, params) => const SizedBox();
+import 'package:vibook_core/vibook_core.dart';
 
 class Story {
   final String? name;

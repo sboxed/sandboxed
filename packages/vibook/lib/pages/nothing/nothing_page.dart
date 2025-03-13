@@ -1,8 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:vibook/responsive/breakpoints.dart';
 import 'package:vibook/widgets/element_name.dart';
 import 'package:vibook/widgets/vi_bottom_app_bar.dart';
+import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 @RoutePage()
 class NothingPage extends StatelessWidget {

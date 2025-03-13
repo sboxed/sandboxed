@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vibook/widgets/vi_markdown.dart';
+import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 class ComponentDocumentation extends StatelessWidget {
   final String body;
@@ -13,8 +13,10 @@ class ComponentDocumentation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 1000,
-        child: ViMarkdown.scrollable(body),
+        width: 960,
+        child: ViMarkdown.scrollable(
+          body,
+        ),
       ),
     );
   }

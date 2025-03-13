@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vibook/provider/component_tree.dart';
-import 'package:vibook/tree/component_tree_node_2.dart';
+import 'package:vibook/tree/component_tree_node.dart';
 import 'package:vibook_core/component.dart';
 import 'package:vibook_core/document_entry.dart';
 import 'package:vibook_core/story.dart';

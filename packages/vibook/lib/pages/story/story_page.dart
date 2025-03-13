@@ -6,9 +6,8 @@ import 'package:vibook/inspector/component_inspector.dart';
 import 'package:vibook/layout/story_viewport.dart';
 import 'package:vibook/params/params_notifier.dart';
 import 'package:vibook/provider/params.dart';
-import 'package:vibook/responsive/breakpoints.dart';
-import 'package:vibook/widgets/resizable_divider.dart';
 import 'package:vibook/widgets/vi_bottom_app_bar.dart';
+import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 @RoutePage()
 class StoryPage extends ConsumerWidget {

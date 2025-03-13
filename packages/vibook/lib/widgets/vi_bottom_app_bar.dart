@@ -6,7 +6,7 @@ import 'package:vibook/inspector/addons_inspector.dart';
 import 'package:vibook/inspector/component_inspector.dart';
 import 'package:vibook/provider/params.dart';
 import 'package:vibook/provider/selected.dart';
-import 'package:vibook_ui_kit/src/widgets/vi_icon.dart';
+import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 class ViBottomAppBar extends ConsumerWidget {
   final ScaffoldState? scaffold;

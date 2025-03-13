@@ -6,14 +6,14 @@ import 'package:vibook_core/src/params/params_store.dart';
 import 'package:vibook_core/story.dart';
 
 class StoryView extends StatefulWidget {
-  final Meta meta;
+  final Meta? meta;
   final Story story;
   final Params? params;
   final List<Decorator> decorators;
 
   const StoryView({
     super.key,
-    required this.meta,
+    this.meta,
     required this.story,
     this.decorators = const [],
     this.params,
@@ -37,7 +37,7 @@ class _StoryViewState extends State<StoryView> {
   Widget build(BuildContext context) {
     var child = widget.story.builder(context, params);
     child = widget.story.decorators.decorate(context, child);
-    child = widget.meta.decorators.decorate(context, child);
+    child = widget.meta?.decorators.decorate(context, child) ?? child;
     child = widget.decorators.decorate(context, child);
 
     return child;

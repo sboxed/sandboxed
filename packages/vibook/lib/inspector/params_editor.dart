@@ -3,9 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/inspector/component_inspector.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/params.dart';
-import 'package:vibook/responsive/breakpoints.dart';
 import 'package:vibook/vibook.dart';
-import 'package:vibook/widgets/vi_markdown.dart';
 import 'package:vibook/widgets/wip.dart';
 
 class ParamsEditor extends ConsumerWidget {

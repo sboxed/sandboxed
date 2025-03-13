@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vibook/widgets/resizable_divider.dart';
+import 'package:vibook_ui_kit/src/widgets/widgets.dart';
 
 enum Breakpoints { mobile, desktop }
 
