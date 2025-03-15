@@ -1,9 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:vibook/provider/tags.dart';
 import 'package:vibook/tree/component_tree_node.dart';
 import 'package:vibook/tree/component_tree_parser.dart';
-import 'package:vibook_core/component.dart';
+import 'package:vibook/vibook.dart';
 
 part 'component_tree.g.dart';
 
@@ -87,12 +88,34 @@ class SearchQuery extends _$SearchQuery {
 Tree? filteredTree(Ref ref) {
   final tree = ref.watch(componentTreeNotifierProvider);
   final query = ref.watch(searchQueryProvider);
+  final selectedTags = ref.watch(tagFilterProvider);
 
-  if (query.isEmpty) return tree;
+  if (query.isEmpty && selectedTags.isEmpty) return tree;
 
   return filterTree(
     tree,
-    (node) => node.data.title.toLowerCase().contains(query.toLowerCase()),
+    (node) {
+      bool condition = true;
+      if (selectedTags.isNotEmpty) {
+        switch (node.data.data) {
+          case StoryNode(story: Story(:final tags)):
+          case ComponentNode(component: Component(meta: Meta(:final tags))):
+            condition = tags.isNotEmpty &&
+                tags.toSet().intersection(selectedTags).isNotEmpty;
+
+          default:
+            condition = true;
+        }
+      }
+
+      if (query.trim().isNotEmpty) {
+        condition &= node.data.title //
+            .toLowerCase()
+            .contains(query.toLowerCase());
+      }
+
+      return condition;
+    },
   );
 }
 

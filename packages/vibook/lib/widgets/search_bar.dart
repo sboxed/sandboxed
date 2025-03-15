@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconify_flutter_plus/icons/mdi.dart';
 import 'package:vibook/provider/component_tree.dart';
 import 'package:vibook/provider/tags.dart';
+import 'package:vibook/vibook.dart';
 import 'package:vibook/widgets/gap.dart';
 
 class ViSearchBar extends ConsumerStatefulWidget {
@@ -76,7 +78,7 @@ class _ViSearchBarState extends ConsumerState<ViSearchBar> {
             ],
             child: IconButton(
               onPressed: () => tagMenuController.open(),
-              icon: const Icon(Icons.tag),
+              icon: const ViIcon(Mdi.tag_find),
             ),
           ),
         ],
