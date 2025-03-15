@@ -19,6 +19,10 @@ Tree parse(List<ViElement> components) {
     ),
   );
 
+  String format(String identifier) {
+    return identifier.replaceAll('.', '').replaceAll(' ', '-');
+  }
+
   var nodes = <String, Tree>{};
 
   for (final component in components) {
@@ -28,18 +32,19 @@ Tree parse(List<ViElement> components) {
         final parts = [
           ...?component.module?.split('/').map((e) => '[${e.trim()}]'),
           ...component.meta.name.split('/'),
-        ];
+        ].map((e) => e.trim()).toList();
 
         Tree parent = root;
         root.data.depth = max(root.data.depth, parts.length);
 
         for (final (index, part) in parts.indexed) {
-          final key = parts.take(index + 1).join('/');
-          final wasProcessed = nodes.containsKey(key);
+          final id = format(parts.take(index + 1).join('/'));
+          // final id = format([key, part.trim()].join('/'));
+
+          final wasProcessed = nodes.containsKey(id);
           var node = nodes.putIfAbsent(
-            key,
+            id,
             () {
-              final id = [key, part.trim()].join('/');
               final level = index + 1;
               final childIndex = parent.children.length;
 
@@ -122,7 +127,7 @@ Tree parse(List<ViElement> components) {
           var node = Tree(
             data: NodeData(
               StoryNode(
-                id: [...parts, name.trim()].join('/'),
+                id: format([...parts, name.trim()].join('/')),
                 component: component,
                 story: story,
                 title: name,
