@@ -11,11 +11,11 @@ import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 @RoutePage()
 class DocumentPage extends ConsumerWidget {
-  final String id;
+  final String? id;
 
   const DocumentPage({
     super.key,
-    @PathParam() required this.id,
+    @QueryParam('path') this.id,
   });
 
   @override
@@ -33,12 +33,17 @@ class DocumentPage extends ConsumerWidget {
 }
 
 class _DocumentPageContent extends ConsumerWidget {
-  final String id;
+  final String? id;
 
-  const _DocumentPageContent({required this.id});
+  const _DocumentPageContent({this.id});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final id = this.id;
+    if (id == null) {
+      return ErrorWidget(StateError("Story ID not provided"));
+    }
+
     final selection = ref.watch(selectionProvider(id));
     switch (selection) {
       case DocumentSelection(:final component, :final document):

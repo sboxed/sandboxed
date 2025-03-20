@@ -9,7 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+  flutter_web_plugins:
+    sdk: flutter
+
   vibook_core:
 
   # ui
@@ -17,6 +19,7 @@ dependencies:
   iconify_flutter_plus: ^1.0.0
 
   # routing
+  # TODO(@melvspace): 03/20/25 auto_route dependency constraints usage of package
   auto_route: ^7.0.0
 
   # editor

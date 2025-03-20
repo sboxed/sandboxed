@@ -11,16 +11,29 @@ import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 @RoutePage()
 class StoryPage extends ConsumerWidget {
-  final String id;
+  final String? id;
 
   const StoryPage({
     super.key,
-    @PathParam() required this.id,
+    @QueryParam('path') this.id,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final parentScaffold = Scaffold.of(context);
+    final id = this.id;
+    final parentScaffold = Scaffold.maybeOf(context);
+
+    if (id == null) {
+      return Scaffold(
+        body: ErrorWidget(
+          StateError("Story ID not provided"),
+        ),
+        bottomNavigationBar: switch (context.breakpoint) {
+          Breakpoints.mobile => ViBottomAppBar(scaffold: parentScaffold),
+          _ => null,
+        },
+      );
+    }
 
     return ProviderScope(
       overrides: [

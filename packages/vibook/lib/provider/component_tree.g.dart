@@ -22,7 +22,7 @@ final componentsProvider = AutoDisposeProvider<List<ViElement>>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ComponentsRef = AutoDisposeProviderRef<List<ViElement>>;
-String _$filteredTreeHash() => r'6de67a4b8e4a514d93fe6cbc16b710d2537a499b';
+String _$filteredTreeHash() => r'd53650f8dbdcb5ec926fc79154de1d5d31bfd591';
 
 /// See also [filteredTree].
 @ProviderFor(filteredTree)

@@ -39,7 +39,6 @@ Tree parse(List<ViElement> components) {
 
         for (final (index, part) in parts.indexed) {
           final id = format(parts.take(index + 1).join('/'));
-          // final id = format([key, part.trim()].join('/'));
 
           final wasProcessed = nodes.containsKey(id);
           var node = nodes.putIfAbsent(

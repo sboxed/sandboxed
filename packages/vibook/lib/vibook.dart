@@ -1,8 +1,10 @@
 // ignore_for_file: scoped_providers_should_specify_dependencies
 library vibook;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/param_builders/base_param_builders_addon.dart';
 import 'package:vibook/addons/reload/reload_addon.dart';
@@ -46,6 +48,15 @@ class Vibook extends StatefulWidget {
 
 class _VibookState extends State<Vibook> {
   final router = AppRouter();
+
+  @override
+  void initState() {
+    if (kIsWeb) {
+      usePathUrlStrategy();
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

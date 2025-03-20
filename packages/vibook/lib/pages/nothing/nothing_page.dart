@@ -10,7 +10,7 @@ class NothingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final parentScaffold = Scaffold.of(context);
+    final parentScaffold = Scaffold.maybeOf(context);
 
     return Scaffold(
       appBar: switch (context.breakpoint) {

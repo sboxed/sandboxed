@@ -21,9 +21,9 @@ abstract class $AppRouter extends _i5.RootStackRouter {
   @override
   final Map<String, _i5.PageFactory> pagesMap = {
     DocumentRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
+      final queryParams = routeData.queryParams;
       final args = routeData.argsAs<DocumentRouteArgs>(
-          orElse: () => DocumentRouteArgs(id: pathParams.getString('id')));
+          orElse: () => DocumentRouteArgs(id: queryParams.optString('path')));
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.DocumentPage(
@@ -45,9 +45,9 @@ abstract class $AppRouter extends _i5.RootStackRouter {
       );
     },
     StoryRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
+      final queryParams = routeData.queryParams;
       final args = routeData.argsAs<StoryRouteArgs>(
-          orElse: () => StoryRouteArgs(id: pathParams.getString('id')));
+          orElse: () => StoryRouteArgs(id: queryParams.optString('path')));
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i4.StoryPage(
@@ -64,7 +64,7 @@ abstract class $AppRouter extends _i5.RootStackRouter {
 class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
   DocumentRoute({
     _i6.Key? key,
-    required String id,
+    String? id,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           DocumentRoute.name,
@@ -72,7 +72,7 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
             key: key,
             id: id,
           ),
-          rawPathParams: {'id': id},
+          rawQueryParams: {'path': id},
           initialChildren: children,
         );
 
@@ -85,12 +85,12 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
 class DocumentRouteArgs {
   const DocumentRouteArgs({
     this.key,
-    required this.id,
+    this.id,
   });
 
   final _i6.Key? key;
 
-  final String id;
+  final String? id;
 
   @override
   String toString() {
@@ -131,7 +131,7 @@ class NothingRoute extends _i5.PageRouteInfo<void> {
 class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
   StoryRoute({
     _i6.Key? key,
-    required String id,
+    String? id,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           StoryRoute.name,
@@ -139,7 +139,7 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
             key: key,
             id: id,
           ),
-          rawPathParams: {'id': id},
+          rawQueryParams: {'path': id},
           initialChildren: children,
         );
 
@@ -152,12 +152,12 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
 class StoryRouteArgs {
   const StoryRouteArgs({
     this.key,
-    required this.id,
+    this.id,
   });
 
   final _i6.Key? key;
 
-  final String id;
+  final String? id;
 
   @override
   String toString() {

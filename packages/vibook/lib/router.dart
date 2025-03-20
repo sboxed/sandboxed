@@ -26,14 +26,12 @@ class AppRouter extends $AppRouter {
               type: kFadeRouteType,
             ),
             AutoRoute(
-              path: 'story/:id',
-              usesPathAsKey: true,
+              path: 'story',
               page: StoryRoute.page,
               type: kFadeRouteType,
             ),
             AutoRoute(
-              path: 'document/:id',
-              usesPathAsKey: true,
+              path: 'document',
               page: DocumentRoute.page,
               type: kFadeRouteType,
             ),
