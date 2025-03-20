@@ -17,6 +17,7 @@ dependencies:
   # ui
   google_fonts: ^6.0.0
   iconify_flutter_plus: ^1.0.0
+  nested: ^1.0.0
 
   # routing
   # TODO(@melvspace): 03/20/25 auto_route dependency constraints usage of package
@@ -47,6 +48,7 @@ dependencies:
   recase: ^4.0.0
   equatable: ^2.0.0
   markdown: any
+  flat: ^0.5.0
 
   # internal
   vibook_ui_kit:

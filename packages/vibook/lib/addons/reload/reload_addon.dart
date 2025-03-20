@@ -11,7 +11,7 @@ final class ReloadAddon extends Addon
   String get id => 'reload';
 
   @override
-  final notifier = ValueNotifier(0);
+  int get initialValue => 0;
 
   @override
   Widget? buildEditor(BuildContext context) {
@@ -24,9 +24,9 @@ final class ReloadAddon extends Addon
       Decorator(
         (context, story) {
           return ListenableBuilder(
-            listenable: notifier,
+            listenable: this,
             builder: (context, child) => KeyedSubtree(
-              key: ValueKey(notifier.value),
+              key: ValueKey(value),
               child: story,
             ),
           );
@@ -39,7 +39,7 @@ final class ReloadAddon extends Addon
   List<Widget> get actions => [
         ToolbarButton(
           child: const Icon(Icons.replay_outlined),
-          onPressed: () => notifier.value++,
+          onPressed: () => value++,
         )
       ];
 }

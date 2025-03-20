@@ -48,7 +48,7 @@ final class ViewportAddon extends Addon
   String get id => 'viewport';
 
   @override
-  late final notifier = ValueNotifier(ViewportState(devices: initialDevices));
+  ViewportState get initialValue => ViewportState(devices: initialDevices);
 
   ViewportAddon({
     required this.devices,
@@ -64,7 +64,7 @@ final class ViewportAddon extends Addon
   @override
   Widget? buildEditor(BuildContext context) {
     return ListenableBuilder(
-      listenable: notifier,
+      listenable: this,
       builder: (context, child) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -90,22 +90,21 @@ final class ViewportAddon extends Addon
                         Consumer(
                           builder: (context, ref, child) => ChoiceChip(
                             label: Text(device.name),
-                            selected: notifier.value.devices.contains(device),
+                            selected: value.devices.contains(device),
                             onSelected: (value) {
-                              notifier.value = notifier.value.copyWith(
-                                devices: value
-                                    ? [...notifier.value.devices, device]
-                                    : ([...notifier.value.devices]
-                                      ..remove(device)),
-                              );
+                              this.value = this.value.copyWith(
+                                    devices: value
+                                        ? [...this.value.devices, device]
+                                        : ([...this.value.devices]
+                                          ..remove(device)),
+                                  );
 
-                              if (notifier.value.devices.length >= 2) {
+                              if (this.value.devices.length >= 2) {
                                 ref
                                     .read(addonsProvider)
                                     .whereType<InteractiveViewerAddon>()
                                     .firstOrNull
-                                    ?.notifier
-                                    .value = true;
+                                    ?.value = true;
                               }
                             },
                           ),
@@ -122,11 +121,11 @@ final class ViewportAddon extends Addon
                       for (final orientation in Orientation.values)
                         ChoiceChip(
                           label: Text(orientation.name),
-                          selected: notifier.value.orientation == orientation,
+                          selected: value.orientation == orientation,
                           onSelected: (value) {
                             if (value) {
-                              notifier.value = notifier.value
-                                  .copyWith(orientation: orientation);
+                              this.value =
+                                  this.value.copyWith(orientation: orientation);
                             }
                           },
                         ),
@@ -136,9 +135,9 @@ final class ViewportAddon extends Addon
                   const Text('Show Frame'),
                   const Gap(16),
                   Switch(
-                    value: notifier.value.hasFrame,
-                    onChanged: (value) => notifier.value =
-                        notifier.value.copyWith(hasFrame: value),
+                    value: value.hasFrame,
+                    onChanged: (value) =>
+                        this.value = this.value.copyWith(hasFrame: value),
                   ),
                 ],
               ),
@@ -155,14 +154,14 @@ final class ViewportAddon extends Addon
       Decorator(
         (context, story) {
           return ListenableBuilder(
-            listenable: notifier,
+            listenable: this,
             builder: (context, child) {
-              if (notifier.value.devices.isEmpty) {
+              if (value.devices.isEmpty) {
                 return child!;
               }
 
-              final setting = notifier.value;
-              final pickedDevices = notifier.value.devices.sortedBy<num>(
+              final setting = value;
+              final pickedDevices = value.devices.sortedBy<num>(
                 (element) =>
                     element.screenSize.width + //
                     element.screenSize.height,
@@ -201,7 +200,7 @@ final class ViewportAddon extends Addon
                                 ),
                                 const Gap(12),
                                 SizedBox.fromSize(
-                                  size: switch (notifier.value.orientation) {
+                                  size: switch (value.orientation) {
                                     Orientation.portrait => device.frameSize,
                                     _ => device.frameSize.flipped,
                                   },
@@ -265,5 +264,14 @@ final class ViewportAddon extends Addon
       //   ),
       // const VerticalDivider(),
     ];
+  }
+
+  @override
+  Map<String, dynamic> serialize() {
+    return {
+      "devices": value.devices.map((e) => e.name).toList(),
+      "frame": value.hasFrame,
+      "orientation": value.orientation.name,
+    };
   }
 }

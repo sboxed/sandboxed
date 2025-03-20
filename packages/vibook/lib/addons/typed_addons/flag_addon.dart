@@ -10,9 +10,7 @@ abstract base class FlagAddon extends Addon with DecoratorAddon<bool> {
   FlagAddon({this.enabled = false});
 
   @override
-  late final notifier = ValueNotifier<bool>(enabled);
-
-  bool get value => notifier.value;
+  bool get initialValue => enabled;
 
   @override
   Widget buildEditor(BuildContext context) {
@@ -22,10 +20,10 @@ abstract base class FlagAddon extends Addon with DecoratorAddon<bool> {
         Text(name),
         const SizedBox(height: 8),
         ListenableBuilder(
-          listenable: notifier,
+          listenable: this,
           builder: (context, child) => Switch(
             value: value,
-            onChanged: (value) => notifier.value = value,
+            onChanged: (value) => this.value = value,
           ),
         ),
       ],
@@ -34,11 +32,11 @@ abstract base class FlagAddon extends Addon with DecoratorAddon<bool> {
 
   @override
   void deserialize(covariant bool json) {
-    notifier.value = json;
+    value = json;
   }
 
   @override
   bool serialize() {
-    return notifier.value;
+    return value;
   }
 }

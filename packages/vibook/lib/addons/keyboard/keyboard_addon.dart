@@ -16,15 +16,15 @@ final class KeyboardAddon extends FlagAddon with ToolbarAddonMixin {
   List<Widget> get actions {
     return [
       ListenableBuilder(
-        listenable: notifier,
+        listenable: this,
         builder: (context, _) {
-          final isEnabled = notifier.value;
+          final isEnabled = value;
 
           return ToolbarButton(
-            selected: notifier.value,
-            onPressed: () => notifier.value = !notifier.value,
+            selected: value,
+            onPressed: () => value = !value,
             tooltip: ToolbarTooltip(
-              message: !notifier.value //
+              message: !value //
                   ? 'Enable Keyboard'
                   : 'Disable Keyboard',
             ),

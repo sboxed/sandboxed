@@ -16,7 +16,7 @@ final class SafeAreaAddon extends FlagAddon with ToolbarAddonMixin {
     return [
       Decorator(
         (context, story) => ListenableBuilder(
-          listenable: notifier,
+          listenable: this,
           builder: (context, child) {
             if (value) {
               return SafeArea(child: child!);
@@ -34,18 +34,16 @@ final class SafeAreaAddon extends FlagAddon with ToolbarAddonMixin {
   List<Widget> get actions {
     return [
       ListenableBuilder(
-        listenable: notifier,
+        listenable: this,
         builder: (context, child) {
           return ToolbarButton(
-            selected: notifier.value,
-            onPressed: () => notifier.value = !notifier.value,
+            selected: value,
+            onPressed: () => value = !value,
             tooltip: ToolbarTooltip(
               message: '${value ? 'Disable' : 'Enable'} Safe Area',
             ),
             child: Icon(
-              notifier.value
-                  ? Icons.border_top_rounded
-                  : Icons.border_clear_rounded,
+              value ? Icons.border_top_rounded : Icons.border_clear_rounded,
             ),
           );
         },

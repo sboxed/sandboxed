@@ -35,9 +35,9 @@ final class SplittedThemesAddon extends FlagAddon with ToolbarAddonMixin {
       Decorator(
         (context, story) {
           return ListenableBuilder(
-            listenable: notifier,
+            listenable: this,
             builder: (context, child) {
-              if (notifier.value) {
+              if (value) {
                 return ConstrainedBox(
                   constraints: BoxConstraints.tight(MediaQuery.sizeOf(context)),
                   child: Flex(
@@ -77,17 +77,16 @@ final class SplittedThemesAddon extends FlagAddon with ToolbarAddonMixin {
   List<Widget> get actions {
     return [
       ListenableBuilder(
-        listenable: notifier,
+        listenable: this,
         builder: (context, _) {
-          final isEnabled = notifier.value;
+          final isEnabled = value;
 
           return ToolbarButton(
-            selected: notifier.value,
-            onPressed: () => notifier.value = !notifier.value,
+            selected: value,
+            onPressed: () => value = !value,
             tooltip: ToolbarTooltip(
-              message: !notifier.value
-                  ? 'Enable splitted themes'
-                  : 'Disable splitted themes',
+              message:
+                  !value ? 'Enable splitted themes' : 'Disable splitted themes',
             ),
             child: Icon(isEnabled ? Icons.domain_disabled : Icons.domain),
           );

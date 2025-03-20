@@ -23,7 +23,7 @@ final class ThemeAddon<T> extends Addon
   final ThemeBuilder<T> builder;
 
   @override
-  late final notifier = ValueNotifier<T>(themes.values.first);
+  T get initialValue => themes.values.first;
 
   @override
   List<Decorator> decorate(BuildContext context) {
@@ -31,10 +31,10 @@ final class ThemeAddon<T> extends Addon
       Decorator(
         (context, story) {
           return ListenableBuilder(
-            listenable: notifier,
+            listenable: this,
             builder: (context, child) => builder(
               context,
-              notifier.value,
+              value,
               child!,
             ),
             child: story,
@@ -52,7 +52,7 @@ final class ThemeAddon<T> extends Addon
         const Text('Theme'),
         const SizedBox(height: 8),
         ListenableBuilder(
-          listenable: notifier,
+          listenable: this,
           builder: (context, child) => Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -60,8 +60,8 @@ final class ThemeAddon<T> extends Addon
               for (final theme in themes.entries)
                 ChoiceChip(
                   label: Text(theme.key),
-                  selected: theme.value == notifier.value,
-                  onSelected: (value) => notifier.value = theme.value,
+                  selected: theme.value == value,
+                  onSelected: (value) => this.value = theme.value,
                 )
             ],
           ),

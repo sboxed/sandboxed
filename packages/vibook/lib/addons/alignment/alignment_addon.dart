@@ -13,16 +13,16 @@ final class AlignmentAddon extends Addon
   String get id => 'alignment';
 
   @override
-  final notifier = ValueNotifier<Alignment>(Alignment.center);
+  Alignment get initialValue => Alignment.center;
 
   @override
   List<Decorator> decorate(BuildContext context) {
     return [
       Decorator(
         (context, story) => ListenableBuilder(
-          listenable: notifier,
+          listenable: this,
           builder: (context, child) => Align(
-            alignment: notifier.value,
+            alignment: value,
             child: child,
           ),
           child: story,
@@ -39,10 +39,10 @@ final class AlignmentAddon extends Addon
         const Text('Alignment'),
         const SizedBox(height: 8),
         ListenableBuilder(
-          listenable: notifier,
+          listenable: this,
           builder: (context, child) => AlignmentPicker(
-            onChanged: (value) => notifier.value = value,
-            value: notifier.value,
+            onChanged: (value) => this.value = value,
+            value: value,
           ),
         ),
       ],
@@ -55,10 +55,10 @@ final class AlignmentAddon extends Addon
           tooltip: const ToolbarTooltip(message: 'Alignment'),
           overlay: (context) {
             return ListenableBuilder(
-              listenable: notifier,
+              listenable: this,
               builder: (context, child) => AlignmentPicker(
-                onChanged: (value) => notifier.value = value,
-                value: notifier.value,
+                onChanged: (value) => this.value = value,
+                value: value,
               ),
             );
           },
@@ -68,14 +68,14 @@ final class AlignmentAddon extends Addon
 
   @override
   void deserialize(covariant Map<String, dynamic> json) {
-    notifier.value = Alignment(json['x'], json['y']);
+    value = Alignment(json['x'], json['y']);
   }
 
   @override
   Map<String, dynamic> serialize() {
     return {
-      'x': notifier.value.x,
-      'y': notifier.value.y,
+      'x': value.x,
+      'y': value.y,
     };
   }
 }

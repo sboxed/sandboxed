@@ -10,6 +10,9 @@ final class BannerAddon extends Addon with DecoratorAddon {
   final BannerLocation location;
 
   @override
+  get initialValue => null;
+
+  @override
   String get id => 'label';
 
   BannerAddon({
@@ -40,7 +43,4 @@ final class BannerAddon extends Addon with DecoratorAddon {
       ),
     ];
   }
-
-  @override
-  ValueNotifier<void> get notifier => ValueNotifier(null);
 }

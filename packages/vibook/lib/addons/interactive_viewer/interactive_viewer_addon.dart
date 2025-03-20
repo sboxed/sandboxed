@@ -25,11 +25,11 @@ final class InteractiveViewerAddon extends FlagAddon with ToolbarAddonMixin {
   List<Widget> get actions {
     return [
       ListenableBuilder(
-        listenable: notifier,
+        listenable: this,
         builder: (context, _) {
           return ToolbarButton(
-            selected: notifier.value,
-            onPressed: () => notifier.value = !value,
+            selected: value,
+            onPressed: () => value = !value,
             tooltip: const ToolbarTooltip(message: 'Pan Tool'),
             child: Icon(value ? Icons.pan_tool : Icons.pan_tool_outlined),
           );
@@ -45,7 +45,7 @@ final class InteractiveViewerAddon extends FlagAddon with ToolbarAddonMixin {
         (context, story) {
           return LayoutBuilder(
             builder: (context, constraints) => ListenableBuilder(
-              listenable: notifier,
+              listenable: this,
               builder: (context, child) {
                 if (value) {
                   return InteractiveViewer(

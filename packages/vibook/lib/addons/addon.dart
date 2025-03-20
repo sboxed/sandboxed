@@ -1,4 +1,6 @@
-abstract base class Addon {
+import 'package:flutter/foundation.dart';
+
+abstract base class Addon extends ChangeNotifier {
   String get id;
 
   /// Serialize state to json encodable object
