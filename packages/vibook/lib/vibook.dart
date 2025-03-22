@@ -1,16 +1,19 @@
 // ignore_for_file: scoped_providers_should_specify_dependencies
 library vibook;
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/param_builders/base_param_builders_addon.dart';
 import 'package:vibook/addons/reload/reload_addon.dart';
+import 'package:vibook/observers/delegate_route_observer.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/provider/component_tree.dart';
 import 'package:vibook/provider/params.dart';
+import 'package:vibook/provider/persistence.dart';
 import 'package:vibook/provider/selected.dart';
 import 'package:vibook/provider/theme_mode.dart';
 import 'package:vibook/provider/title.dart';
@@ -87,7 +90,13 @@ class _VibookState extends State<Vibook> {
         ],
         child: Consumer(
           builder: (context, ref, child) {
+            final path = ref.watch(pathPersistenceProvider);
+            if (path is AsyncLoading) {
+              return const SizedBox();
+            }
+
             return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
               themeMode: ref.watch(themeModeNotifierProvider),
               theme: widget.theme?.copyWith(
                     extensions: [
@@ -108,30 +117,24 @@ class _VibookState extends State<Vibook> {
                 );
               },
               routerConfig: router.config(
+                navigatorObservers: () => [
+                  DelegateRouteObserver(
+                    onChange: () {
+                      ref
+                          .read(pathPersistenceProvider.notifier)
+                          .updatePath(router.urlState.url);
+                    },
+                  )
+                ],
                 deepLinkBuilder: (deepLink) async {
-                  await Future.microtask(() {
-                    if (deepLink.isValid) {
-                      if (deepLink.uri.queryParameters['path'] case String id) {
-                        ref
-                            .read(selectedElementNotifierProvider.notifier)
-                            .select(id);
+                  if (deepLink.path == '/' && path.valueOrNull != null) {
+                    await handleDeepLink(Uri.parse(path.valueOrNull!), ref);
+                    return DeepLink.path(path.valueOrNull!);
+                  }
 
-                        if (deepLink.uri.queryParameters['params']
-                            case String params) {
-                          ref
-                              .read(paramsQueryProvider(id).notifier)
-                              .applyDeeplink(params);
-                        }
-                      }
-
-                      if (deepLink.uri.queryParameters['global']
-                          case String global) {
-                        ref
-                            .read(addonQueryProvider.notifier)
-                            .applyDeeplink(global);
-                      }
-                    }
-                  });
+                  if (deepLink.isValid) {
+                    await handleDeepLink(deepLink.uri, ref);
+                  }
 
                   return deepLink;
                 },
@@ -141,5 +144,21 @@ class _VibookState extends State<Vibook> {
         ),
       ),
     );
+  }
+
+  Future<void> handleDeepLink(Uri uri, WidgetRef ref) async {
+    await Future.microtask(() {
+      if (uri.queryParameters['path'] case String id) {
+        ref.read(selectedElementNotifierProvider.notifier).select(id);
+
+        if (uri.queryParameters['params'] case String params) {
+          ref.read(paramsQueryProvider(id).notifier).applyDeeplink(params);
+        }
+      }
+
+      if (uri.queryParameters['global'] case String global) {
+        ref.read(addonQueryProvider.notifier).applyDeeplink(global);
+      }
+    });
   }
 }

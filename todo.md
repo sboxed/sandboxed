@@ -1,5 +1,5 @@
 
-(A) Url serialize/deserialize #editor
+(A) Url serialize/deserialize #editor {cm:2025-03-22}
 (A) Write components generator #core
 (A) Write MDX document generator #core
   Find `{component}.mdx` file, append to components documentation. {cm:2025-03-05}
@@ -53,7 +53,7 @@
   (C) Text Scale
   (C) Accessibility
   Lockable addons - lock addons by other addons
-(C) Url persistence between sessions #editor
+(C) Url persistence between sessions #editor {cm:2025-03-22}
 (C) Settings tab/sheet in sidebar and bottom app bar #editor
 (F) Component auto-documentation #editor
 (F) Allow passing pre-defined filters for search bar #editor

@@ -28,6 +28,9 @@ dependencies:
   flutter_resizable_container: ^4.0.0
   two_dimensional_scrollables: ^0.3.0
 
+  # persistence
+  shared_preferences: ^2.0.0
+
   # component utility
   flutter_markdown_plus: ^1.0.0
   url_launcher: ^6.0.0
