@@ -150,3 +150,103 @@ Tree? filterTree(Tree tree, bool Function(Tree node) predicate) {
     parent: tree.parent,
   );
 }
+
+@Riverpod(dependencies: [ComponentTreeNotifier])
+List<TreeViewNode<ElementNode>> tree2(Ref ref) {
+  final node = ref.watch(componentTreeNotifierProvider);
+  List<TreeViewNode<ElementNode>> getNodes(List<Tree> tree) {
+    return [
+      for (final node in tree)
+        TreeViewNode(
+          node.data.data,
+          children: getNodes(node.children),
+          expanded: node.data.isExpanded,
+        ),
+    ];
+  }
+
+  return getNodes(node.children);
+}
+
+@Riverpod(dependencies: [tree2, ComponentTreeNotifier])
+List<TreeViewNode<ElementNode>> filteredTree2(Ref ref) {
+  final tree = ref.watch(tree2Provider);
+  final originalTree = ref.watch(componentTreeNotifierProvider);
+  final query = ref.watch(searchQueryProvider);
+  final selectedTags = ref.watch(tagFilterProvider);
+
+  if (query.isEmpty && selectedTags.isEmpty) return tree;
+
+  final root = filterTree(
+    originalTree,
+    (node) {
+      bool condition = true;
+      if (selectedTags.isNotEmpty) {
+        switch (node.data.data) {
+          case StoryNode(story: Story(:final tags)):
+          case ComponentNode(component: Component(meta: Meta(:final tags))):
+            condition = tags.isNotEmpty &&
+                tags.toSet().intersection(selectedTags).isNotEmpty;
+
+          default:
+            condition = true;
+        }
+      }
+
+      if (query.trim().isNotEmpty) {
+        condition &= node.data.title //
+            .toLowerCase()
+            .contains(query.toLowerCase());
+      }
+
+      return condition;
+    },
+  );
+
+  List<TreeViewNode<ElementNode>> getNodes(List<Tree> tree) {
+    return [
+      for (final node in tree)
+        TreeViewNode(
+          node.data.data,
+          children: getNodes(node.children),
+          expanded: node.data.isExpanded,
+        ),
+    ];
+  }
+
+  return getNodes(root?.children ?? []);
+}
+
+@Riverpod(dependencies: [tree2])
+TreeViewNode<ElementNode> largestNode(Ref ref) {
+  final tree = ref.watch(tree2Provider);
+
+  double maxWeight = 0;
+  TreeViewNode<ElementNode> maxNode = tree.first;
+  for (final node in flatten(tree)) {
+    var weight = (node.depth ?? 0) * 16 +
+        node.content.title.length +
+        switch (node.content) {
+          ComponentNode component => component.component.meta.tags
+              .fold(0, (acc, tag) => acc + tag.length),
+          StoryNode story =>
+            story.story.tags.fold(0, (acc, tag) => acc + tag.length),
+          _ => 0
+        };
+
+    if (weight > maxWeight) {
+      maxNode = node;
+      maxWeight = weight.toDouble();
+    }
+  }
+
+  return maxNode;
+}
+
+Iterable<TreeViewNode<ElementNode>> flatten(
+    List<TreeViewNode<ElementNode>> roots) sync* {
+  for (final root in roots) {
+    yield root;
+    yield* flatten(root.children);
+  }
+}

@@ -8,6 +8,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/param_builders/base_param_builders_addon.dart';
 import 'package:vibook/addons/reload/reload_addon.dart';
+import 'package:vibook/feature_flags.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/provider/component_tree.dart';
@@ -17,6 +18,7 @@ import 'package:vibook/provider/selected.dart';
 import 'package:vibook/provider/theme_mode.dart';
 import 'package:vibook/provider/title.dart';
 import 'package:vibook/router.dart';
+import 'package:vibook/src/provider/feature_flags.dart';
 import 'package:vibook/theme.dart';
 import 'package:vibook/widgets/vi_notification_listener.dart';
 import 'package:vibook_core/component.dart';
@@ -34,6 +36,7 @@ class Vibook extends StatefulWidget {
 
   final List<Component> components;
   final List<Addon> addons;
+  final Set<FeatureFlags> flags;
 
   const Vibook({
     super.key,
@@ -43,6 +46,7 @@ class Vibook extends StatefulWidget {
     this.theme,
     this.darkTheme,
     this.addons = const [],
+    this.flags = const {},
   });
 
   @override
@@ -55,6 +59,7 @@ class _VibookState extends State<Vibook> {
   @override
   void initState() {
     usePathUrlStrategy();
+
     super.initState();
   }
 
@@ -79,6 +84,7 @@ class _VibookState extends State<Vibook> {
           titleProvider.overrideWithValue(widget.title),
           brandColorProvider.overrideWithValue(widget.brandColor),
           componentsProvider.overrideWithValue(widget.components),
+          featureFlagsProvider.overrideWithValue(widget.flags),
           addonListProvider.overrideWith(
             (ref) => [
               ReloadAddon(),

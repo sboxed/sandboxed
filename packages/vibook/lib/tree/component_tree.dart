@@ -211,6 +211,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
       items.length,
       (index) => ComponentTree(
         id: items[index].data.id,
+        animationDuration: widget.animationDuration,
       ),
     );
   }

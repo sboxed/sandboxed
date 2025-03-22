@@ -6,6 +6,7 @@ import 'package:vibook/addons/safe_area/safe_area_addon.dart';
 import 'package:vibook/addons/split_themes/split_themes_addon.dart';
 import 'package:vibook/addons/tags/tags_renderer_addon.dart';
 import 'package:vibook/addons/viewport/viewport_addon.dart';
+import 'package:vibook/feature_flags.dart';
 import 'package:vibook/vibook.dart';
 import 'package:vibook_sandbox/components.g.dart';
 
@@ -24,6 +25,7 @@ class MainApp extends StatelessWidget {
       ),
       child: Vibook(
         components: components,
+        flags: const {FeatureFlags.elementTreeNext},
         addons: [
           // Editor
           TagsRendererAddon(

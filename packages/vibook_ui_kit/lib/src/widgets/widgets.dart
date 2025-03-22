@@ -1,7 +1,10 @@
+export 'inspector/inspector.dart';
 export 'layout/resizable_divider.dart';
 export 'layout/vi_drawer.dart';
+export 'layout/vi_sidebar.dart';
 export 'markdown/vi_markdown.dart';
 export 'markdown/vi_markdown_link_tapped_notification.dart';
+export 'scrollable/vi_tree_view.dart';
 export 'settings/theme_mode_button.dart';
 export 'tags/tag_chip.dart';
 export 'tiles/element_tile.dart';

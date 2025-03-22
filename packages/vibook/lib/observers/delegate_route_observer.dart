@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/src/widgets/navigator.dart';
 

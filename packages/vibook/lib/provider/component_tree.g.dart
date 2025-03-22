@@ -41,6 +41,73 @@ final filteredTreeProvider = AutoDisposeProvider<Tree?>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef FilteredTreeRef = AutoDisposeProviderRef<Tree?>;
+String _$tree2Hash() => r'9fd9eaccf00606e449edac6e8049dac53ef2d14c';
+
+/// See also [tree2].
+@ProviderFor(tree2)
+final tree2Provider =
+    AutoDisposeProvider<List<TreeViewNode<ElementNode>>>.internal(
+  tree2,
+  name: r'tree2Provider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$tree2Hash,
+  dependencies: <ProviderOrFamily>[componentTreeNotifierProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    componentTreeNotifierProvider,
+    ...?componentTreeNotifierProvider.allTransitiveDependencies
+  },
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef Tree2Ref = AutoDisposeProviderRef<List<TreeViewNode<ElementNode>>>;
+String _$filteredTree2Hash() => r'373f049f65aeba4f1d754c57010946fd1cbf79be';
+
+/// See also [filteredTree2].
+@ProviderFor(filteredTree2)
+final filteredTree2Provider =
+    AutoDisposeProvider<List<TreeViewNode<ElementNode>>>.internal(
+  filteredTree2,
+  name: r'filteredTree2Provider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredTree2Hash,
+  dependencies: <ProviderOrFamily>[
+    tree2Provider,
+    componentTreeNotifierProvider
+  ],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    tree2Provider,
+    ...?tree2Provider.allTransitiveDependencies,
+    componentTreeNotifierProvider,
+    ...?componentTreeNotifierProvider.allTransitiveDependencies
+  },
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef FilteredTree2Ref
+    = AutoDisposeProviderRef<List<TreeViewNode<ElementNode>>>;
+String _$largestNodeHash() => r'8d12f48ce55658928508960fe2d7b61ad7485b39';
+
+/// See also [largestNode].
+@ProviderFor(largestNode)
+final largestNodeProvider =
+    AutoDisposeProvider<TreeViewNode<ElementNode>>.internal(
+  largestNode,
+  name: r'largestNodeProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$largestNodeHash,
+  dependencies: <ProviderOrFamily>[tree2Provider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    tree2Provider,
+    ...?tree2Provider.allTransitiveDependencies
+  },
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef LargestNodeRef = AutoDisposeProviderRef<TreeViewNode<ElementNode>>;
 String _$componentTreeNotifierHash() =>
     r'efffff9a3eb9a7397a3572e28a18a11e81b6a6e4';
 
