@@ -36,6 +36,18 @@ import 'package:vibook_sandbox/widgets/tags/tagged_component.dart' as _i21;
 import 'package:vibook_sandbox/widgets/tags/tagged_stories.stories.dart'
     as _i22;
 import 'package:vibook_sandbox/widgets/tags/tagged_stories.dart' as _i23;
+import 'package:vibook_ui_kit/src/widgets/tags/tag_chip.stories.dart' as _i24;
+import 'package:vibook_ui_kit/stories/config.dart' as _i25;
+import 'package:vibook_ui_kit/src/widgets/tags/tag_chip.dart' as _i26;
+import 'package:vibook_ui_kit/src/widgets/tiles/element_tile.stories.dart'
+    as _i27;
+import 'package:vibook_ui_kit/src/widgets/tiles/element_tile.dart' as _i28;
+import 'package:vibook_ui_kit/src/widgets/layout/vi_drawer.stories.dart'
+    as _i29;
+import 'package:vibook_ui_kit/src/widgets/layout/vi_drawer.dart' as _i30;
+import 'package:vibook_ui_kit/src/layout/responsive_layout.stories.dart'
+    as _i31;
+import 'package:vibook_ui_kit/src/layout/responsive_layout.dart' as _i32;
 import 'package:vibook_core/vibook_core.dart';
 import 'package:flutter/material.dart';
 
@@ -73,6 +85,27 @@ List<Component> get components => <Component>[
           ),
           _i1.$Blue.applyGenerated(
             name: 'Blue',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i2.ViButton(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              title: params.string(r'title').required('Text'),
+              color: params.color(r'color').required(Colors.red),
+              size: params
+                  .single(
+                    r'size',
+                    _i2.ViButtonSize.values,
+                  )
+                  .required(_i2.ViButtonSize.small),
+              icon: params.dynamic$<Widget>(r'icon').optional(null),
+              onPressed:
+                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+            ),
+          ),
+          _i1.$Yellow.applyGenerated(
+            name: 'Yellow',
             builder: (
               context,
               params,
@@ -463,6 +496,142 @@ List<Component> get components => <Component>[
                 _i23.TaggedStories(
                     key: params.dynamic$<Key>(r'key').optional(null)),
           ),
+        ],
+      ),
+      Component(
+        meta: _i24.meta,
+        config: _i25.config,
+        stories: [
+          _i24.$Default.applyGenerated(
+            name: 'Default',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i26.TagChip(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              tag: params
+                  .dynamic$<Widget>(r'tag')
+                  .required(const SizedBox.shrink()),
+              color: params.color(r'color').optional(null),
+            ),
+          ),
+          _i24.$InTile.applyGenerated(
+            name: 'In Tile',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i26.TagChip(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              tag: params
+                  .dynamic$<Widget>(r'tag')
+                  .required(const SizedBox.shrink()),
+              color: params.color(r'color').optional(null),
+            ),
+          ),
+        ],
+      ),
+      Component(
+        meta: _i27.meta,
+        config: _i25.config,
+        stories: [
+          _i27.$Default.applyGenerated(
+            name: 'Default',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i28.ElementTile(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              depth: params.integer(r'depth').required(1),
+              onPressed:
+                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              tooltip: params.string(r'tooltip').required(''),
+              selected: params.boolean(r'selected').required(false),
+              size: params
+                  .single(
+                    r'size',
+                    _i28.ElementTileSize.values,
+                  )
+                  .required(_i28.ElementTileSize.small),
+              icon: params.dynamic$<Widget>(r'icon').optional(null),
+              title: params
+                  .dynamic$<Widget>(r'title')
+                  .required(const SizedBox.shrink()),
+            ),
+          ),
+          _i27.$Tree.applyGenerated(
+            name: 'Tree',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i28.ElementTile(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              depth: params.integer(r'depth').required(1),
+              onPressed:
+                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              tooltip: params.string(r'tooltip').required(''),
+              selected: params.boolean(r'selected').required(false),
+              size: params
+                  .single(
+                    r'size',
+                    _i28.ElementTileSize.values,
+                  )
+                  .required(_i28.ElementTileSize.small),
+              icon: params.dynamic$<Widget>(r'icon').optional(null),
+              title: params
+                  .dynamic$<Widget>(r'title')
+                  .required(const SizedBox.shrink()),
+            ),
+          ),
+        ],
+      ),
+      Component(
+        meta: _i29.meta,
+        config: _i25.config,
+        stories: [
+          _i29.$Drawer.applyGenerated(
+            name: 'Drawer',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i30.ViDrawer(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              title: params
+                  .dynamic$<Widget>(r'title')
+                  .required(const SizedBox.shrink()),
+              actions: params.dynamic$<List<Widget>>(r'actions').required([]),
+              body: params
+                  .dynamic$<Widget>(r'body')
+                  .required(const SizedBox.shrink()),
+            ),
+          )
+        ],
+      ),
+      Component(
+        meta: _i31.meta,
+        config: _i25.config,
+        stories: [
+          _i31.$Default.applyGenerated(
+            name: 'Default',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i32.ResponsiveLayout(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              drawer: params
+                  .dynamic$<Widget>(r'drawer')
+                  .required(const SizedBox.shrink()),
+              viewport: params
+                  .dynamic$<Widget>(r'viewport')
+                  .required(const SizedBox.shrink()),
+              sidebar: params.dynamic$<Widget>(r'sidebar').optional(null),
+            ),
+          )
         ],
       ),
     ];

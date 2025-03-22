@@ -67,14 +67,10 @@ class MultiChipsParamBuilder<T> extends ParamBuilder<T> {
               },
             ),
             onSelected: (selected) {
-              // TODO(@melvspace): 03/05/25 fix type errors.
-              if (selected) {
-                params.update<List<T>>(
-                  id,
-                  ([...?multi.value]..remove(choice)).cast<T>(),
-                );
+              if (!selected) {
+                params.update<List<T>>(id, ([...?multi.value]..remove(choice)));
               } else {
-                params.update<List<T>>(id, [...?multi.value, choice].cast<T>());
+                params.update<List<T>>(id, [...?multi.value, choice]);
               }
             },
           )
@@ -84,7 +80,6 @@ class MultiChipsParamBuilder<T> extends ParamBuilder<T> {
 
   @override
   bool canBuild(ParamWrapper param) {
-    return param is MultiChoiceParamWrapper<List<T>> &&
-        param.meta['type'] == 'chips';
+    return param is MultiChoiceParamWrapper<T>;
   }
 }

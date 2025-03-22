@@ -1,7 +1,7 @@
 
 (A) Url serialize/deserialize #editor {cm:2025-03-22}
-(A) Write components generator #core
-(A) Write MDX document generator #core
+(A) Write components generator #core {cm:2025-03-22}
+(A) Write MDX document generator #core {c}
   Find `{component}.mdx` file, append to components documentation. {cm:2025-03-05}
   Add ability to define links to mdx files in component meta
   Render mdx content {cm:2025-03-05}
@@ -9,22 +9,22 @@
   Support link navigation betwen components, stories and doc entries.
   Parse tokens in [] brackets and search for existsing registerd components, if found make it deeplink
 (A) Add `GeneratedStory` and `GeneratedMeta` wrappers #refactoring
-(A) Runtime params linting to find misnamed parameters. 
+(A) Runtime params linting to find misnamed parameters.
   Description: In example you have story with params and then renamed params in component, vibook should highlight that no matched params found
   Add warnings panel with all misnamed parameters with links to code to fix it or autofix button.
-(B) Running golden tests from vibook #tests
+(B) Running golden tests from vibook #tests {c}
   (B) Local test runner
   (F) Cloud test runner
 (B) Checking golden test results from vibook #tests
-(B) Toggleable params #editor
+(B) Toggleable params #editor {cm:2025-03-22}
 (B) Toggleable addons Small touchable dot near addon title. Yellow - `off`, Green - `on` #editor
 (B) Component and story tags #search {cm:2025-03-09}
 (B) `Param` interface and extensibility should be refined #core
 (B) Params - Support JSON serializable objects via generator
-(B) Params
+(B) Params {c}
   (A) Boolean Param {cm:2025-03-05}
   (A) Chips Param {cm:2025-03-05}
-  (B) Multiple Chips Param
+  (B) Multiple Chips Param {cm:2025-03-22}
   (A) Color Param {cm:2025-03-05}
   (A) String Param {cm:2025-03-05}
   (C) Action Trigger Param
@@ -40,15 +40,15 @@
   (B) Date Param
   (B) Duration Param
   (B) JSON serializable objects 
-(B) Addons
+(B) Addons {c}
   (A) Alignment {cm:2025-03-05}
   (A) Pan and Zoom {cm:2025-03-05}
   (A) Reload {cm:2025-03-05}
   (A) Safe Area {cm:2025-03-05}
   (A) Param Builders {cm:2025-03-05}
-  (A) Device Preview
+  (A) Device Preview {cm:2025-03-22}
   (A) Locale
-  (A) Theme Mode
+  (A) Theme Mode {cm:2025-03-22}
   (C) Time Dilation
   (C) Text Scale
   (C) Accessibility

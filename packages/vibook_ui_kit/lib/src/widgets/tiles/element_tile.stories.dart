@@ -4,7 +4,7 @@ import 'package:vibook_core/vibook_core.dart';
 import 'package:vibook_ui_kit/src/widgets/tiles/element_tile.dart';
 import 'package:vibook_ui_kit/src/widgets/tiles/element_tile_icons.dart';
 
-Meta get meta => const Meta<ElementTile>();
+Meta get meta => const Meta<ElementTile>(name: 'Element Tile');
 
 Story get $Default => Story(
       decorators: [

@@ -49,3 +49,21 @@ Story get $Blue => Story(
         );
       },
     );
+
+Story get $Yellow => Story(
+      name: 'Yellow',
+      builder: (context, params) {
+        return ViButton(
+          onPressed: () {},
+          title: params.string('title').required("Lorem"),
+          color: params.color('color').required(Colors.yellow),
+          icon: params.boolean('has_icon').required(false)
+              ? const Icon(Icons.check, color: Colors.white)
+              : null,
+          size: params
+                  .multi('size', ViButtonSize.values)
+                  .required([ViButtonSize.small]).firstOrNull ??
+              ViButtonSize.small,
+        );
+      },
+    );

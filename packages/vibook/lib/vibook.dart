@@ -8,7 +8,6 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/param_builders/base_param_builders_addon.dart';
 import 'package:vibook/addons/reload/reload_addon.dart';
-import 'package:vibook/observers/delegate_route_observer.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/provider/component_tree.dart';
@@ -117,15 +116,6 @@ class _VibookState extends State<Vibook> {
                 );
               },
               routerConfig: router.config(
-                navigatorObservers: () => [
-                  DelegateRouteObserver(
-                    onChange: () {
-                      ref
-                          .read(pathPersistenceProvider.notifier)
-                          .updatePath(router.urlState.url);
-                    },
-                  )
-                ],
                 deepLinkBuilder: (deepLink) async {
                   if (deepLink.path == '/' && path.valueOrNull != null) {
                     await handleDeepLink(Uri.parse(path.valueOrNull!), ref);

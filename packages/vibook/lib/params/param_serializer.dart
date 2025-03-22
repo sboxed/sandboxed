@@ -10,7 +10,7 @@ class ParamSerializer {
   dynamic encode<T>(ParamWrapper<T> param, T value) {
     for (final delegate in delegates) {
       if (delegate.canProcess(param)) {
-        return delegate.encode(value);
+        return delegate.encode(param, value);
       }
     }
 
@@ -20,7 +20,7 @@ class ParamSerializer {
   T? decode<T>(ParamWrapper<T> param, dynamic data) {
     for (final delegate in delegates) {
       if (delegate.canProcess(param)) {
-        return delegate.decode(data);
+        return delegate.decode(param, data);
       }
     }
 
@@ -31,15 +31,15 @@ class ParamSerializer {
 abstract class ParamValueSerializer<T> {
   bool canProcess(ParamWrapper value);
 
-  dynamic encode(T? value);
+  dynamic encode(ParamWrapper param, T? value);
 
-  T? decode(dynamic data);
+  T? decode(ParamWrapper param, dynamic data);
 }
 
 final class DelegateParamValueSerializer<T> implements ParamValueSerializer<T> {
   final bool Function(ParamWrapper value)? check;
-  final T? Function(dynamic data) decoder;
-  final dynamic Function(T? value) encoder;
+  final T? Function(ParamWrapper param, dynamic data) decoder;
+  final dynamic Function(ParamWrapper param, T? value) encoder;
 
   DelegateParamValueSerializer({
     this.check,
@@ -53,13 +53,13 @@ final class DelegateParamValueSerializer<T> implements ParamValueSerializer<T> {
   }
 
   @override
-  dynamic encode(T? value) {
-    final state = encoder(value);
+  dynamic encode(ParamWrapper param, T? value) {
+    final state = encoder(param, value);
     return state;
   }
 
   @override
-  T? decode(dynamic data) {
-    return decoder(data);
+  T? decode(ParamWrapper param, dynamic data) {
+    return decoder(param, data);
   }
 }

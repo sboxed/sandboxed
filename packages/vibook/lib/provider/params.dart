@@ -5,6 +5,7 @@ import 'package:vibook/params/default_serializers.dart';
 import 'package:vibook/params/param_serializer.dart';
 import 'package:vibook/params/params_notifier.dart';
 import 'package:vibook/provider/selected.dart';
+import 'package:vibook/widgets/revive.dart';
 
 part 'params.g.dart';
 
@@ -70,8 +71,18 @@ class ParamsQuery extends _$ParamsQuery {
   }
 
   void applyDeeplink(String params) {
-    for (final part in params.split(';')) {
-      final [id, value] = part.split(':');
+    final parts = params.split(';');
+    final entries = parts.map(
+      (e) {
+        final [key, value] = e.split(':');
+        return MapEntry(key, revive(value));
+      },
+    );
+
+    final map = unflatten(Map.fromEntries(entries));
+
+    for (final entry in map.entries) {
+      final [id, value] = [entry.key, entry.value];
       final param = _params.items[id];
 
       if (param == null) {

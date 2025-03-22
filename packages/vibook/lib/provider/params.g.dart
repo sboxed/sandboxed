@@ -194,7 +194,7 @@ final serializerProvider = AutoDisposeProvider<ParamSerializer>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SerializerRef = AutoDisposeProviderRef<ParamSerializer>;
-String _$paramsQueryHash() => r'db5adf508abb629afa562a353145c7710ad08dbc';
+String _$paramsQueryHash() => r'299fda81b36b21a421aa54b5238240742da92c3a';
 
 abstract class _$ParamsQuery extends BuildlessNotifier<String?> {
   late final String id;

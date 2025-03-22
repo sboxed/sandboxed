@@ -7,6 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/mixins/param_builder_addon.dart';
 import 'package:vibook/params/param_builder.dart';
+import 'package:vibook/widgets/revive.dart';
 import 'package:vibook_core/vibook_core.dart';
 
 part 'addons.g.dart';
@@ -107,35 +108,5 @@ class AddonQuery extends _$AddonQuery {
     state = global;
 
     ref.notifyListeners();
-  }
-}
-
-// TODO(@melvspace): 03/22/25 revive another types
-dynamic revive(dynamic object) {
-  switch (object) {
-    case Map map:
-      return {
-        for (final entry in map.entries) //
-          entry.key: revive(entry.value),
-      };
-
-    case List list:
-      return [
-        for (final item in list) //
-          revive(item),
-      ];
-
-    case "true":
-    case "false":
-      return object == "true";
-
-    case String integer when RegExp(r'^\d+$').hasMatch(integer):
-      return int.parse(integer);
-
-    case String number when RegExp(r'^\d+\.\d+$').hasMatch(number):
-      return double.tryParse(number);
-
-    default:
-      return object;
   }
 }

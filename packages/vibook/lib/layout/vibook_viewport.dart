@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/params.dart';
+import 'package:vibook/provider/persistence.dart';
 import 'package:vibook/provider/selected.dart';
 import 'package:vibook/router.gr.dart';
 
@@ -11,8 +12,12 @@ class VibookViewport extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final router = AutoRouter.of(context);
     final selected = ref.watch(selectedElementProvider);
     final id = ref.watch(selectedElementNotifierProvider);
+    final pathPersistence = ref.read(pathPersistenceProvider.notifier);
+
+    Future.microtask(() => pathPersistence.updatePath(router.urlState.url));
 
     return AutoRouter.declarative(
       routes: (handler) {
