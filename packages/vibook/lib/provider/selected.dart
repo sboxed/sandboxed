@@ -37,7 +37,7 @@ final class StorySelection extends Selection with EquatableMixin {
   List<Object?> get props => [component, story];
 }
 
-@riverpod
+@Riverpod(keepAlive: true, dependencies: [])
 class SelectedElementNotifier extends _$SelectedElementNotifier {
   @override
   String? build() {
@@ -79,7 +79,7 @@ Selection? selection(Ref ref, String id) {
   }
 }
 
-@Riverpod(dependencies: [selection])
+@Riverpod(dependencies: [selection, SelectedElementNotifier])
 Selection? selectedElement(Ref ref) {
   final selected = ref.watch(selectedElementNotifierProvider);
   if (selected == null) return null;

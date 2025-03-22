@@ -2,6 +2,7 @@ import 'package:vibook_core/vibook_core.dart';
 import 'package:vibook_sandbox/widgets/tags/tagged_component.dart';
 
 Meta get meta => const Meta<TaggedComponent>(
+      name: 'Tagged Component',
       module: 'Tags',
       tags: [
         'autodocs',

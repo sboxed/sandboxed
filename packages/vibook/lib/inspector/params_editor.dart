@@ -55,7 +55,10 @@ class ParamsEditor extends ConsumerWidget {
                       const Text('Control'),
                       const Spacer(),
                       IconButton(
-                          onPressed: () => ref.read(paramsProvider).reset(),
+                          onPressed: () => ref
+                              .read(paramsProvider(
+                                  ref.watch(paramsScopeIdProvider)))
+                              .reset(),
                           icon: const Icon(Icons.replay))
                     ],
                   ),
@@ -63,7 +66,10 @@ class ParamsEditor extends ConsumerWidget {
                 ),
               ],
             ),
-            for (final param in ref.watch(paramsProvider).items.entries)
+            for (final param in ref
+                .watch(paramsProvider(ref.watch(paramsScopeIdProvider)))
+                .items
+                .entries)
               TableRow(
                 children: [
                   cell(
@@ -113,7 +119,7 @@ class ParamEditorCell extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final params = ref.watch(paramsProvider);
+    final params = ref.watch(paramsProvider(ref.watch(paramsScopeIdProvider)));
     final builder = ref.watch(addonsProvider.notifier).findParamBuilder(param);
     final editor = builder?.buildEditor(id, param, params, ref);
 
@@ -144,7 +150,8 @@ class ParamEditorCell extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: ListenableBuilder(
-                  listenable: ref.watch(paramsProvider),
+                  listenable: ref
+                      .watch(paramsProvider(ref.watch(paramsScopeIdProvider))),
                   builder: (context, child) => NullSwitcher(
                     id: id,
                     builder: builder,

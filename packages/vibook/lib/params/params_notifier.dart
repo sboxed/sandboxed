@@ -3,6 +3,7 @@
 import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:vibook_core/src/params/use_params.dart';
 import 'package:vibook_core/vibook_core.dart';
 
@@ -24,6 +25,9 @@ class ParamsNotifier extends ChangeNotifier implements Params {
   final Map<String, dynamic> _initialValues = {};
 
   Map<String, ParamWrapper> get items => UnmodifiableMapView(_params);
+
+  final PublishSubject<String> _added = PublishSubject();
+  Stream<String> get onParamAdded => _added;
 
   TWrapper register<TWrapper extends ParamWrapper<TParam>, TParam>(
     String id, {
@@ -56,6 +60,8 @@ class ParamsNotifier extends ChangeNotifier implements Params {
           _initialValues[id] = value;
         }
       });
+
+      _added.add(id);
     }
 
     return wrapper;

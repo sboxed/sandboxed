@@ -1,10 +1,9 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_resizable_container/flutter_resizable_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibook/inspector/component_inspector.dart';
 import 'package:vibook/layout/story_viewport.dart';
-import 'package:vibook/params/params_notifier.dart';
 import 'package:vibook/provider/params.dart';
 import 'package:vibook/widgets/vi_bottom_app_bar.dart';
 import 'package:vibook_ui_kit/vibook_ui_kit.dart';
@@ -12,11 +11,14 @@ import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 @RoutePage()
 class StoryPage extends ConsumerWidget {
   final String? id;
+  final String? params;
 
   const StoryPage({
     super.key,
     @QueryParam('path') this.id,
-  });
+    @QueryParam() this.params,
+    @QueryParam() String? global,
+  }) : assert(id != null, 'id cant be null');
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,7 +39,7 @@ class StoryPage extends ConsumerWidget {
 
     return ProviderScope(
       overrides: [
-        paramsProvider.overrideWith((ref) => ParamsNotifier()),
+        paramsScopeIdProvider.overrideWith((ref) => id),
       ],
       child: Scaffold(
         bottomNavigationBar: switch (context.breakpoint) {

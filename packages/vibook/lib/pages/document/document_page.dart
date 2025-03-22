@@ -16,7 +16,8 @@ class DocumentPage extends ConsumerWidget {
   const DocumentPage({
     super.key,
     @QueryParam('path') this.id,
-  });
+    @QueryParam() String? global,
+  }) : assert(id != null, 'id cant be null');
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

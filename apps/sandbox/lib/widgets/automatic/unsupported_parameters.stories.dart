@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:vibook_core/vibook_core.dart';
 import 'package:vibook_sandbox/widgets/automatic/unsupported_parameters.dart';
 
-Meta get meta => const Meta<UnsupportedParameters>();
+Meta get meta => const Meta<UnsupportedParameters>(
+      name: 'Unsupported Params',
+    );
 
 Story get $Default => const Story();
 

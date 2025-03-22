@@ -2,6 +2,7 @@ import 'package:vibook_core/vibook_core.dart';
 import 'package:vibook_sandbox/widgets/tags/tagged_stories.dart';
 
 Meta get meta => const Meta<TaggedStories>(
+      name: 'Tagged Stories',
       module: 'Tags',
       tags: [
         'experimental',

@@ -15,28 +15,30 @@ final kFadeRouteType = CustomRouteType(
 @AutoRouterConfig()
 class AppRouter extends $AppRouter {
   @override
-  List<AutoRoute> get routes => [
-        AutoRoute(
-          path: '/',
-          page: IndexRoute.page,
-          children: [
-            AutoRoute(
-              path: 'nothing',
-              page: NothingRoute.page,
-              type: kFadeRouteType,
-            ),
-            AutoRoute(
-              path: 'story',
-              page: StoryRoute.page,
-              type: kFadeRouteType,
-            ),
-            AutoRoute(
-              path: 'document',
-              page: DocumentRoute.page,
-              type: kFadeRouteType,
-            ),
-          ],
-        ),
-        RedirectRoute(path: '*', redirectTo: '/'),
-      ];
+  List<AutoRoute> get routes {
+    return [
+      AutoRoute(
+        path: '/',
+        page: IndexRoute.page,
+        children: [
+          AutoRoute(
+            path: 'nothing',
+            page: NothingRoute.page,
+            type: kFadeRouteType,
+          ),
+          AutoRoute(
+            path: 'story',
+            page: StoryRoute.page,
+            type: kFadeRouteType,
+          ),
+          AutoRoute(
+            path: 'document',
+            page: DocumentRoute.page,
+            type: kFadeRouteType,
+          ),
+        ],
+      ),
+      RedirectRoute(path: '*', redirectTo: '/'),
+    ];
+  }
 }

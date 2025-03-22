@@ -3,6 +3,7 @@ import 'package:device_frame_plus/device_frame_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:slugify/slugify.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/interactive_viewer/interactive_viewer_addon.dart';
 import 'package:vibook/addons/mixins/decorator_addon.dart';
@@ -267,11 +268,33 @@ final class ViewportAddon extends Addon
   }
 
   @override
-  Map<String, dynamic> serialize() {
+  Map<String, dynamic> encode() {
     return {
-      "devices": value.devices.map((e) => e.name).toList(),
+      "devices": value.devices.map((e) => slugify(e.name)).toList(),
       "frame": value.hasFrame,
       "orientation": value.orientation.name,
     };
+  }
+
+  @override
+  void decode(state) {
+    final devices = (state['devices'] as List?)?.cast<String>();
+    final frame = state['frame'] as bool?;
+    final orientation = state['orientation'] as String?;
+
+    value = value.copyWith(
+      devices: devices != null
+          ? this
+              .devices
+              .where((element) => devices.contains(slugify(element.name)))
+              .toList()
+          : null,
+      hasFrame: frame,
+      orientation: orientation != null //
+          ? Orientation.values.byName(orientation)
+          : null,
+    );
+
+    super.decode(state);
   }
 }

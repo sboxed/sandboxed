@@ -67,12 +67,12 @@ final class AlignmentAddon extends Addon
       ];
 
   @override
-  void deserialize(covariant Map<String, dynamic> json) {
-    value = Alignment(json['x'], json['y']);
+  void decode(covariant Map<String, dynamic> state) {
+    value = Alignment(state['x'], state['y']);
   }
 
   @override
-  Map<String, dynamic> serialize() {
+  Map<String, dynamic> encode() {
     return {
       'x': value.x,
       'y': value.y,

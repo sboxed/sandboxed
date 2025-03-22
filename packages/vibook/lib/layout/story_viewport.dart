@@ -5,8 +5,9 @@ import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/params.dart';
 import 'package:vibook/provider/selected.dart';
 import 'package:vibook/toolbar/toolbar.dart';
+import 'package:vibook/vibook.dart';
 import 'package:vibook/widgets/element_name.dart';
-import 'package:vibook_core/story_view.dart';
+import 'package:vibook/widgets/vi_share_button.dart';
 
 class StoryViewport extends ConsumerWidget {
   final String id;
@@ -29,18 +30,25 @@ class StoryViewport extends ConsumerWidget {
                 title: ElementName(id: id),
                 scrolledUnderElevation: 0,
                 backgroundColor: Colors.transparent,
-                // ignore: prefer_const_literals_to_create_immutables
                 actions: [
-                  // ignore: prefer_const_constructors
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    // ignore: prefer_const_constructors
-                    child: ActionChip(
+                    padding: EdgeInsets.only(
+                      left: 16.0,
+                      right: context.breakpoint == Breakpoints.desktop
+                          ? 8.0
+                          : 16.0,
+                    ),
+                    child: const ActionChip(
                       // TODO(@melvspace): 03/06/25 navigate to docs.
                       // onPressed: () => AutoRouter.of(context).navigate(),
-                      label: const Text('Docs'),
+                      label: Text('Docs'),
                     ),
-                  )
+                  ),
+                  if (context.breakpoint == Breakpoints.desktop)
+                    const Padding(
+                      padding: EdgeInsets.only(right: 16),
+                      child: ViShareButton(),
+                    ),
                 ],
               ),
               const Toolbar(),
@@ -52,11 +60,13 @@ class StoryViewport extends ConsumerWidget {
           Expanded(
             child: ClipRect(
               child: ListenableBuilder(
-                listenable: ref.watch(paramsProvider),
+                listenable:
+                    ref.watch(paramsProvider(ref.watch(paramsScopeIdProvider))),
                 builder: (context, child) => StoryView(
                   meta: component.meta,
                   story: story,
-                  params: ref.watch(paramsProvider),
+                  params: ref
+                      .watch(paramsProvider(ref.watch(paramsScopeIdProvider))),
                   decorators: [
                     for (final addon in ref.watch(addonsProvider))
                       if (addon case DecoratorAddon decorator)

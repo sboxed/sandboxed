@@ -6,7 +6,10 @@ import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
 @RoutePage()
 class NothingPage extends StatelessWidget {
-  const NothingPage({super.key});
+  const NothingPage({
+    super.key,
+    @QueryParam() String? global,
+  });
 
   @override
   Widget build(BuildContext context) {

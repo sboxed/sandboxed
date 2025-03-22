@@ -162,7 +162,7 @@ class _SelectionProviderElement extends AutoDisposeProviderElement<Selection?>
   String get id => (origin as SelectionProvider).id;
 }
 
-String _$selectedElementHash() => r'90af3555bfbb2658ff119d681c877f711e8e5417';
+String _$selectedElementHash() => r'5100ef9135f30789202557e4d1c87147909f0e2c';
 
 /// See also [selectedElement].
 @ProviderFor(selectedElement)
@@ -172,10 +172,15 @@ final selectedElementProvider = AutoDisposeProvider<Selection?>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$selectedElementHash,
-  dependencies: <ProviderOrFamily>[selectionProvider],
+  dependencies: <ProviderOrFamily>[
+    selectionProvider,
+    selectedElementNotifierProvider
+  ],
   allTransitiveDependencies: <ProviderOrFamily>{
     selectionProvider,
-    ...?selectionProvider.allTransitiveDependencies
+    ...?selectionProvider.allTransitiveDependencies,
+    selectedElementNotifierProvider,
+    ...?selectedElementNotifierProvider.allTransitiveDependencies
   },
 );
 
@@ -183,21 +188,21 @@ final selectedElementProvider = AutoDisposeProvider<Selection?>.internal(
 // ignore: unused_element
 typedef SelectedElementRef = AutoDisposeProviderRef<Selection?>;
 String _$selectedElementNotifierHash() =>
-    r'f4b5fc001bba4aa6692d96bec421625f6abb5f65';
+    r'04f4161447c22efb82eea3a274ba35a8d1aedc58';
 
 /// See also [SelectedElementNotifier].
 @ProviderFor(SelectedElementNotifier)
 final selectedElementNotifierProvider =
-    AutoDisposeNotifierProvider<SelectedElementNotifier, String?>.internal(
+    NotifierProvider<SelectedElementNotifier, String?>.internal(
   SelectedElementNotifier.new,
   name: r'selectedElementNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$selectedElementNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
-typedef _$SelectedElementNotifier = AutoDisposeNotifier<String?>;
+typedef _$SelectedElementNotifier = Notifier<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

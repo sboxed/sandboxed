@@ -43,12 +43,14 @@ dependencies:
   riverpod_annotation: ^2.6.0
 
   # utility
+  slugify: ^2.0.0
   freezed_annotation: ^2.0.0
   collection: ^1.18.0
   recase: ^4.0.0
   equatable: ^2.0.0
   markdown: any
   flat: ^0.5.0
+  rxdart: ^0.28.0
 
   # internal
   vibook_ui_kit:

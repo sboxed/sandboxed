@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vibook_core/vibook_core.dart';
 import 'package:vibook_ui_kit/vibook_ui_kit.dart';
 
-Meta get meta => const Meta<TagChip>();
+Meta get meta => const Meta<TagChip>(name: 'TagChip');
 
 Story get $Default => Story(
       builder: (context, params) {

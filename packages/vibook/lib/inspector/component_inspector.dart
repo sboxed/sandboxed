@@ -31,7 +31,10 @@ class _ComponentInspectorState extends ConsumerState<ComponentInspector> {
       child: Column(
         children: [
           if (hasSelection) ...[
-            if (ref.watch(paramsProvider).items.isNotEmpty)
+            if (ref
+                .watch(paramsProvider(ref.watch(paramsScopeIdProvider)))
+                .items
+                .isNotEmpty)
               const Flexible(child: ParamsEditor()),
           ] else
             const SizedBox(),
@@ -53,7 +56,7 @@ class NullSwitcher extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final params = ref.watch(paramsProvider);
+    final params = ref.watch(paramsProvider(ref.watch(paramsScopeIdProvider)));
     final param = params.items[id];
 
     if (param == null) return const SizedBox();

@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconify_flutter_plus/icons/fa.dart';
 import 'package:iconify_flutter_plus/icons/mdi.dart';
@@ -16,7 +18,7 @@ class ViBottomAppBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scaffold = this.scaffold ?? Scaffold.of(context);
-    final params = ref.watch(paramsProvider);
+    final params = ref.watch(paramsProvider(ref.watch(paramsScopeIdProvider)));
 
     return BottomAppBar(
       child: ListenableBuilder(
@@ -76,7 +78,19 @@ class ViBottomAppBar extends ConsumerWidget {
             ),
             const Spacer(),
             FilledButton(
-              onPressed: () {},
+              onPressed: () {
+                Clipboard.setData(
+                  ClipboardData(
+                    text: Uri.base.origin + AutoRouter.of(context).urlState.url,
+                  ),
+                );
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Link copied to clipboard"),
+                  ),
+                );
+              },
               child: const Text("Share"),
             )
           ],

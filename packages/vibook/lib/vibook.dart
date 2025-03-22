@@ -10,11 +10,12 @@ import 'package:vibook/addons/reload/reload_addon.dart';
 import 'package:vibook/provider/addons.dart';
 import 'package:vibook/provider/brand_color.dart';
 import 'package:vibook/provider/component_tree.dart';
+import 'package:vibook/provider/params.dart';
+import 'package:vibook/provider/selected.dart';
 import 'package:vibook/provider/theme_mode.dart';
 import 'package:vibook/provider/title.dart';
 import 'package:vibook/router.dart';
 import 'package:vibook/theme.dart';
-import 'package:vibook/widgets/addon_query_manager.dart';
 import 'package:vibook/widgets/vi_notification_listener.dart';
 import 'package:vibook_core/component.dart';
 import 'package:vibook_ui_kit/vibook_ui_kit.dart';
@@ -86,26 +87,54 @@ class _VibookState extends State<Vibook> {
         ],
         child: Consumer(
           builder: (context, ref, child) {
-            return AddonQueryManager(
-              child: MaterialApp.router(
-                themeMode: ref.watch(themeModeNotifierProvider),
-                theme: widget.theme?.copyWith(
-                      extensions: [
-                        VibookTheme(brandColor: widget.brandColor),
-                      ],
-                    ) ??
-                    buildLightTheme(context, ref),
-                darkTheme: widget.darkTheme?.copyWith(
-                      extensions: [
-                        VibookTheme(brandColor: widget.brandColor),
-                      ],
-                    ) ??
-                    buildDarkTheme(context, ref),
-                builder: (context, child) => GestureDetector(
+            return MaterialApp.router(
+              themeMode: ref.watch(themeModeNotifierProvider),
+              theme: widget.theme?.copyWith(
+                    extensions: [
+                      VibookTheme(brandColor: widget.brandColor),
+                    ],
+                  ) ??
+                  buildLightTheme(context, ref),
+              darkTheme: widget.darkTheme?.copyWith(
+                    extensions: [
+                      VibookTheme(brandColor: widget.brandColor),
+                    ],
+                  ) ??
+                  buildDarkTheme(context, ref),
+              builder: (context, child) {
+                return GestureDetector(
                   onTap: () => FocusScope.of(context).unfocus,
                   child: child,
-                ),
-                routerConfig: router.config(),
+                );
+              },
+              routerConfig: router.config(
+                deepLinkBuilder: (deepLink) async {
+                  await Future.microtask(() {
+                    if (deepLink.isValid) {
+                      if (deepLink.uri.queryParameters['path'] case String id) {
+                        ref
+                            .read(selectedElementNotifierProvider.notifier)
+                            .select(id);
+
+                        if (deepLink.uri.queryParameters['params']
+                            case String params) {
+                          ref
+                              .read(paramsQueryProvider(id).notifier)
+                              .applyDeeplink(params);
+                        }
+                      }
+
+                      if (deepLink.uri.queryParameters['global']
+                          case String global) {
+                        ref
+                            .read(addonQueryProvider.notifier)
+                            .applyDeeplink(global);
+                      }
+                    }
+                  });
+
+                  return deepLink;
+                },
               ),
             );
           },

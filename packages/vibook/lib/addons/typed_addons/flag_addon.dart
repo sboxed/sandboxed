@@ -31,12 +31,12 @@ abstract base class FlagAddon extends Addon with DecoratorAddon<bool> {
   }
 
   @override
-  void deserialize(covariant bool json) {
-    value = json;
+  void decode(covariant bool state) {
+    value = state;
   }
 
   @override
-  bool serialize() {
+  bool encode() {
     return value;
   }
 }

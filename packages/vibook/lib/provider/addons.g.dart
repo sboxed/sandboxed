@@ -39,5 +39,22 @@ final addonsProvider = NotifierProvider<Addons, List<Addon>>.internal(
 );
 
 typedef _$Addons = Notifier<List<Addon>>;
+String _$addonQueryHash() => r'd7b592b25b1bd4a40103627ea23cd01afc908810';
+
+/// See also [AddonQuery].
+@ProviderFor(AddonQuery)
+final addonQueryProvider = NotifierProvider<AddonQuery, String?>.internal(
+  AddonQuery.new,
+  name: r'addonQueryProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$addonQueryHash,
+  dependencies: <ProviderOrFamily>[addonsProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    addonsProvider,
+    ...?addonsProvider.allTransitiveDependencies
+  },
+);
+
+typedef _$AddonQuery = Notifier<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

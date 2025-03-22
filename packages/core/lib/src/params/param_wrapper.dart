@@ -10,9 +10,12 @@ class ParamWrapper<T> {
   final Completer<T?> _completer = Completer();
   Future<T?> get completed => _completer.future;
 
+  T? _initialValue;
   T? _value;
   T? get value => null$ ? null : this._value;
   T? get rawValue => this._value;
+  T? get initialValue => _initialValue;
+
   set value(T? value) => this._value = value;
 
   bool _null = true;
@@ -38,6 +41,7 @@ class ParamWrapper<T> {
     _null = false;
 
     this._value = value;
+    _initialValue = value;
 
     _completer.complete(value);
 
@@ -56,6 +60,7 @@ class ParamWrapper<T> {
     _resolved = true;
     _null = value == null;
     this._value = value;
+    _initialValue = value;
 
     _completer.complete(value);
 

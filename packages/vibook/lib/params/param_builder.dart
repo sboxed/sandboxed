@@ -18,7 +18,7 @@ abstract class ParamBuilder<TValue> {
     WidgetRef ref,
   ) {
     return ListenableBuilder(
-      listenable: ref.watch(paramsProvider),
+      listenable: ref.watch(paramsProvider(ref.watch(paramsScopeIdProvider))),
       builder: (context, _) => build(id, param, params),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:vibook_core/vibook_core.dart';
 import 'package:vibook_sandbox/widgets/nullable_and_required/nullable_and_required_params.dart';
 
-Meta get meta => const Meta<NullableAndRequiredParamsWidget>();
+Meta get meta => const Meta<NullableAndRequiredParamsWidget>(
+      name: 'Params Table',
+    );
 
 Story get $Automatic => const Story();
 

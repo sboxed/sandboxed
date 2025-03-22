@@ -26,7 +26,9 @@ class IndexPage extends ConsumerWidget {
             drawer: VibookDrawer(),
             viewport: VibookViewport(),
             sidebar: VibookSidebar(
-              tabs: [(Text('Addons'), AddonsInspector())],
+              tabs: [
+                (Text('Addons'), AddonsInspector()),
+              ],
             ),
           );
         }

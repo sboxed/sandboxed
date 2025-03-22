@@ -23,12 +23,16 @@ abstract class $AppRouter extends _i5.RootStackRouter {
     DocumentRoute.name: (routeData) {
       final queryParams = routeData.queryParams;
       final args = routeData.argsAs<DocumentRouteArgs>(
-          orElse: () => DocumentRouteArgs(id: queryParams.optString('path')));
+          orElse: () => DocumentRouteArgs(
+                id: queryParams.optString('path'),
+                global: queryParams.optString('global'),
+              ));
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.DocumentPage(
           key: args.key,
           id: args.id,
+          global: args.global,
         ),
       );
     },
@@ -39,20 +43,33 @@ abstract class $AppRouter extends _i5.RootStackRouter {
       );
     },
     NothingRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<NothingRouteArgs>(
+          orElse: () =>
+              NothingRouteArgs(global: queryParams.optString('global')));
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.NothingPage(),
+        child: _i3.NothingPage(
+          key: args.key,
+          global: args.global,
+        ),
       );
     },
     StoryRoute.name: (routeData) {
       final queryParams = routeData.queryParams;
       final args = routeData.argsAs<StoryRouteArgs>(
-          orElse: () => StoryRouteArgs(id: queryParams.optString('path')));
+          orElse: () => StoryRouteArgs(
+                id: queryParams.optString('path'),
+                params: queryParams.optString('params'),
+                global: queryParams.optString('global'),
+              ));
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i4.StoryPage(
           key: args.key,
           id: args.id,
+          params: args.params,
+          global: args.global,
         ),
       );
     },
@@ -65,14 +82,19 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
   DocumentRoute({
     _i6.Key? key,
     String? id,
+    String? global,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           DocumentRoute.name,
           args: DocumentRouteArgs(
             key: key,
             id: id,
+            global: global,
           ),
-          rawQueryParams: {'path': id},
+          rawQueryParams: {
+            'path': id,
+            'global': global,
+          },
           initialChildren: children,
         );
 
@@ -86,15 +108,18 @@ class DocumentRouteArgs {
   const DocumentRouteArgs({
     this.key,
     this.id,
+    this.global,
   });
 
   final _i6.Key? key;
 
   final String? id;
 
+  final String? global;
+
   @override
   String toString() {
-    return 'DocumentRouteArgs{key: $key, id: $id}';
+    return 'DocumentRouteArgs{key: $key, id: $id, global: $global}';
   }
 }
 
@@ -114,16 +139,41 @@ class IndexRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.NothingPage]
-class NothingRoute extends _i5.PageRouteInfo<void> {
-  const NothingRoute({List<_i5.PageRouteInfo>? children})
-      : super(
+class NothingRoute extends _i5.PageRouteInfo<NothingRouteArgs> {
+  NothingRoute({
+    _i6.Key? key,
+    String? global,
+    List<_i5.PageRouteInfo>? children,
+  }) : super(
           NothingRoute.name,
+          args: NothingRouteArgs(
+            key: key,
+            global: global,
+          ),
+          rawQueryParams: {'global': global},
           initialChildren: children,
         );
 
   static const String name = 'NothingRoute';
 
-  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
+  static const _i5.PageInfo<NothingRouteArgs> page =
+      _i5.PageInfo<NothingRouteArgs>(name);
+}
+
+class NothingRouteArgs {
+  const NothingRouteArgs({
+    this.key,
+    this.global,
+  });
+
+  final _i6.Key? key;
+
+  final String? global;
+
+  @override
+  String toString() {
+    return 'NothingRouteArgs{key: $key, global: $global}';
+  }
 }
 
 /// generated route for
@@ -132,14 +182,22 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
   StoryRoute({
     _i6.Key? key,
     String? id,
+    String? params,
+    String? global,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           StoryRoute.name,
           args: StoryRouteArgs(
             key: key,
             id: id,
+            params: params,
+            global: global,
           ),
-          rawQueryParams: {'path': id},
+          rawQueryParams: {
+            'path': id,
+            'params': params,
+            'global': global,
+          },
           initialChildren: children,
         );
 
@@ -153,14 +211,20 @@ class StoryRouteArgs {
   const StoryRouteArgs({
     this.key,
     this.id,
+    this.params,
+    this.global,
   });
 
   final _i6.Key? key;
 
   final String? id;
 
+  final String? params;
+
+  final String? global;
+
   @override
   String toString() {
-    return 'StoryRouteArgs{key: $key, id: $id}';
+    return 'StoryRouteArgs{key: $key, id: $id, params: $params, global: $global}';
   }
 }

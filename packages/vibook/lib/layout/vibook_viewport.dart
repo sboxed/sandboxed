@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vibook/provider/addons.dart';
+import 'package:vibook/provider/params.dart';
 import 'package:vibook/provider/selected.dart';
 import 'package:vibook/router.gr.dart';
 
@@ -14,34 +16,21 @@ class VibookViewport extends ConsumerWidget {
 
     return AutoRouter.declarative(
       routes: (handler) {
-        final pending = handler.initialPendingRoutes ?? [];
-        if (pending.isNotEmpty) {
-          final route = pending.first;
-          final params = route.queryParams;
-
-          if ({StoryRoute.name, DocumentRoute.name}.contains(route.routeName)) {
-            if (params.getString('path') case String path) {
-              Future.microtask(
-                () => ref
-                    .read(selectedElementNotifierProvider.notifier)
-                    .select(path),
-              );
-
-              return [];
-            }
-          }
-        }
-
         return [
           switch (selected) {
-            null => const NothingRoute(),
+            null => NothingRoute(
+                global: ref.watch(addonQueryProvider),
+              ),
             DocumentSelection() => DocumentRoute(
                 key: Key(id!),
                 id: id,
+                global: ref.watch(addonQueryProvider),
               ),
             StorySelection() => StoryRoute(
                 key: Key(id!),
                 id: id,
+                global: ref.watch(addonQueryProvider),
+                params: ref.watch(paramsQueryProvider(id)),
               ),
           },
         ];
