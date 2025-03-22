@@ -1,5 +1,5 @@
-import 'package:vibook_core/vibook_core.dart';
-import 'package:vibook_sandbox/widgets/automatic/with_enum.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
+import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart';
 
 Meta get meta => const Meta<WithEnum>(name: 'Enum Support');
 

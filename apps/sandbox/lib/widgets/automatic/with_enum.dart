@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vibook_sandbox/data/some_enum.dart';
+import 'package:sandboxed_sandbox/data/some_enum.dart';
 
 class WithEnum extends StatelessWidget {
   final SomeEnum enumValue;

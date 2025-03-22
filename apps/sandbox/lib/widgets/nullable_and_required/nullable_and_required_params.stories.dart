@@ -1,5 +1,5 @@
-import 'package:vibook_core/vibook_core.dart';
-import 'package:vibook_sandbox/widgets/nullable_and_required/nullable_and_required_params.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
+import 'package:sandboxed_sandbox/widgets/nullable_and_required/nullable_and_required_params.dart';
 
 Meta get meta => const Meta<NullableAndRequiredParamsWidget>(
       name: 'Params Table',

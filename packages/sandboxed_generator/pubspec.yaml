@@ -1,0 +1,31 @@
+name: sandboxed_generator
+description: Generate components.
+version: 1.0.0
+
+environment:
+  sdk: ">=3.5.4 <4.0.0"
+
+# Add regular dependencies here.
+dependencies:
+  analyzer: ^6.0.0
+  build: ^2.4.1
+  code_builder: ^4.8.0
+  collection: ^1.15.0
+  crypto: ^3.0.0
+  dart_style: ^2.3.0
+  glob: ^2.1.0
+  meta: ^1.7.0
+  path: ^1.8.0
+  source_gen: ^1.5.0
+  yaml: ^3.1.2
+
+  # utility
+  recase: ^4.0.0
+
+  sandboxed_core: 
+
+
+  source_span: any
+dev_dependencies:
+  lints: ^4.0.0
+  test: ^1.24.0

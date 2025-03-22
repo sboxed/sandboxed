@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   
-  vibook_core:
+  sandboxed_core:
 
 dev_dependencies:
   flutter_test:

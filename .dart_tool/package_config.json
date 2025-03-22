@@ -224,13 +224,13 @@
       "languageVersion": "3.1"
     },
     {
-      "name": "vibook_workspace",
+      "name": "sandboxed_workspace",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-03-06T12:24:40.271117Z",
+  "generated": "2025-03-22T23:41:49.200402Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///home/melvspace/fvm/versions/3.24.5",

@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = vibook_sandbox
+PRODUCT_NAME = sandboxed_sandbox
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = space.melv.vibookSandbox
+PRODUCT_BUNDLE_IDENTIFIER = space.melv.sandboxedSandbox
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2025 space.melv. All rights reserved.

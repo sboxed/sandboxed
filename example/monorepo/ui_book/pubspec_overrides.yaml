@@ -1,14 +1,14 @@
-# melos_managed_dependency_overrides: vibook,vibook_core,vibook_generator,ui_kit,products,vibook_ui_kit
+# melos_managed_dependency_overrides: sandboxed,sandboxed_core,sandboxed_generator,ui_kit,products,sandboxed_ui_kit
 dependency_overrides:
   products:
     path: ../products
   ui_kit:
     path: ../ui_kit
-  vibook:
-    path: ../../../packages/vibook
-  vibook_core:
-    path: ../../../packages/core
-  vibook_generator:
-    path: ../../../packages/vibook_generator
-  vibook_ui_kit:
-    path: ../../../packages/vibook_ui_kit
+  sandboxed:
+    path: ../../../packages/sandboxed
+  sandboxed_core:
+    path: ../../../packages/sandboxed_core
+  sandboxed_generator:
+    path: ../../../packages/sandboxed_generator
+  sandboxed_ui_kit:
+    path: ../../../packages/sandboxed_ui_kit

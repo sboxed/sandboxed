@@ -4,51 +4,52 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, unused_import, duplicate_import, unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:vibook_sandbox/widgets/button.stories.dart' as _i1;
-import 'package:vibook_sandbox/widgets/button.dart' as _i2;
-import 'package:vibook_sandbox/widgets/header.stories.dart' as _i3;
-import 'package:vibook_sandbox/widgets/header.dart' as _i4;
-import 'package:vibook_sandbox/widgets/diagrams/button.stories.dart' as _i5;
-import 'package:vibook_sandbox/widgets/diagrams/card.stories.dart' as _i6;
-import 'package:vibook_sandbox/widgets/other_format.stories.dart' as _i7;
-import 'package:vibook_sandbox/widgets/automatic/automatic_generation.stories.dart'
+import 'package:sandboxed_sandbox/widgets/button.stories.dart' as _i1;
+import 'package:sandboxed_sandbox/widgets/button.dart' as _i2;
+import 'package:sandboxed_sandbox/widgets/header.stories.dart' as _i3;
+import 'package:sandboxed_sandbox/widgets/header.dart' as _i4;
+import 'package:sandboxed_sandbox/widgets/diagrams/button.stories.dart' as _i5;
+import 'package:sandboxed_sandbox/widgets/diagrams/card.stories.dart' as _i6;
+import 'package:sandboxed_sandbox/widgets/other_format.stories.dart' as _i7;
+import 'package:sandboxed_sandbox/widgets/automatic/automatic_generation.stories.dart'
     as _i8;
-import 'package:vibook_sandbox/widgets/automatic/automatic_generation.dart'
+import 'package:sandboxed_sandbox/widgets/automatic/automatic_generation.dart'
     as _i9;
-import 'package:vibook_sandbox/widgets/automatic/unsupported_parameters.stories.dart'
+import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.stories.dart'
     as _i10;
-import 'package:vibook_sandbox/widgets/automatic/with_enum.stories.dart'
+import 'package:sandboxed_sandbox/widgets/automatic/with_enum.stories.dart'
     as _i11;
-import 'package:vibook_sandbox/widgets/automatic/with_enum.dart' as _i12;
-import 'package:vibook_sandbox/data/some_enum.dart' as _i13;
-import 'package:vibook_sandbox/widgets/nullable_and_required/nullable_and_required_params.stories.dart'
+import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i12;
+import 'package:sandboxed_sandbox/data/some_enum.dart' as _i13;
+import 'package:sandboxed_sandbox/widgets/nullable_and_required/nullable_and_required_params.stories.dart'
     as _i14;
-import 'package:vibook_sandbox/widgets/nullable_and_required/nullable_and_required_params.dart'
+import 'package:sandboxed_sandbox/widgets/nullable_and_required/nullable_and_required_params.dart'
     as _i15;
-import 'package:vibook_sandbox/widgets/markdown/markdown_documentation.stories.dart'
+import 'package:sandboxed_sandbox/widgets/markdown/markdown_documentation.stories.dart'
     as _i16;
 import 'package:flutter/src/widgets/text.dart' as _i17;
 import 'dart:ui' as _i18;
 import 'package:flutter/src/painting/text_painter.dart' as _i19;
-import 'package:vibook_sandbox/widgets/tags/tagged_component.stories.dart'
+import 'package:sandboxed_sandbox/widgets/tags/tagged_component.stories.dart'
     as _i20;
-import 'package:vibook_sandbox/widgets/tags/tagged_component.dart' as _i21;
-import 'package:vibook_sandbox/widgets/tags/tagged_stories.stories.dart'
+import 'package:sandboxed_sandbox/widgets/tags/tagged_component.dart' as _i21;
+import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.stories.dart'
     as _i22;
-import 'package:vibook_sandbox/widgets/tags/tagged_stories.dart' as _i23;
-import 'package:vibook_ui_kit/src/widgets/tags/tag_chip.stories.dart' as _i24;
-import 'package:vibook_ui_kit/stories/config.dart' as _i25;
-import 'package:vibook_ui_kit/src/widgets/tags/tag_chip.dart' as _i26;
-import 'package:vibook_ui_kit/src/widgets/tiles/element_tile.stories.dart'
+import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.dart' as _i23;
+import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.stories.dart'
+    as _i24;
+import 'package:sandboxed_ui_kit/stories/config.dart' as _i25;
+import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.dart' as _i26;
+import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.stories.dart'
     as _i27;
-import 'package:vibook_ui_kit/src/widgets/tiles/element_tile.dart' as _i28;
-import 'package:vibook_ui_kit/src/widgets/layout/vi_drawer.stories.dart'
+import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.dart' as _i28;
+import 'package:sandboxed_ui_kit/src/layout/responsive_layout.stories.dart'
     as _i29;
-import 'package:vibook_ui_kit/src/widgets/layout/vi_drawer.dart' as _i30;
-import 'package:vibook_ui_kit/src/layout/responsive_layout.stories.dart'
+import 'package:sandboxed_ui_kit/src/layout/responsive_layout.dart' as _i30;
+import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.stories.dart'
     as _i31;
-import 'package:vibook_ui_kit/src/layout/responsive_layout.dart' as _i32;
-import 'package:vibook_core/vibook_core.dart';
+import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.dart' as _i32;
+import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
 List<Component> get components => <Component>[
@@ -68,16 +69,16 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i2.ViButton(
+                _i2.SandboxButton(
               key: params.dynamic$<Key>(r'key').optional(null),
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i2.ViButtonSize.values,
+                    _i2.SandboxButtonSize.values,
                   )
-                  .required(_i2.ViButtonSize.small),
+                  .required(_i2.SandboxButtonSize.small),
               icon: params.dynamic$<Widget>(r'icon').optional(null),
               onPressed:
                   params.dynamic$<void Function()>(r'onPressed').optional(null),
@@ -89,16 +90,16 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i2.ViButton(
+                _i2.SandboxButton(
               key: params.dynamic$<Key>(r'key').optional(null),
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i2.ViButtonSize.values,
+                    _i2.SandboxButtonSize.values,
                   )
-                  .required(_i2.ViButtonSize.small),
+                  .required(_i2.SandboxButtonSize.small),
               icon: params.dynamic$<Widget>(r'icon').optional(null),
               onPressed:
                   params.dynamic$<void Function()>(r'onPressed').optional(null),
@@ -110,16 +111,16 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i2.ViButton(
+                _i2.SandboxButton(
               key: params.dynamic$<Key>(r'key').optional(null),
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i2.ViButtonSize.values,
+                    _i2.SandboxButtonSize.values,
                   )
-                  .required(_i2.ViButtonSize.small),
+                  .required(_i2.SandboxButtonSize.small),
               icon: params.dynamic$<Widget>(r'icon').optional(null),
               onPressed:
                   params.dynamic$<void Function()>(r'onPressed').optional(null),
@@ -163,16 +164,16 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i2.ViButton(
+                _i2.SandboxButton(
               key: params.dynamic$<Key>(r'key').optional(null),
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i2.ViButtonSize.values,
+                    _i2.SandboxButtonSize.values,
                   )
-                  .required(_i2.ViButtonSize.small),
+                  .required(_i2.SandboxButtonSize.small),
               icon: params.dynamic$<Widget>(r'icon').optional(null),
               onPressed:
                   params.dynamic$<void Function()>(r'onPressed').optional(null),
@@ -184,16 +185,16 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i2.ViButton(
+                _i2.SandboxButton(
               key: params.dynamic$<Key>(r'key').optional(null),
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i2.ViButtonSize.values,
+                    _i2.SandboxButtonSize.values,
                   )
-                  .required(_i2.ViButtonSize.small),
+                  .required(_i2.SandboxButtonSize.small),
               icon: params.dynamic$<Widget>(r'icon').optional(null),
               onPressed:
                   params.dynamic$<void Function()>(r'onPressed').optional(null),
@@ -592,36 +593,13 @@ List<Component> get components => <Component>[
         meta: _i29.meta,
         config: _i25.config,
         stories: [
-          _i29.$Drawer.applyGenerated(
-            name: 'Drawer',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i30.ViDrawer(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              title: params
-                  .dynamic$<Widget>(r'title')
-                  .required(const SizedBox.shrink()),
-              actions: params.dynamic$<List<Widget>>(r'actions').required([]),
-              body: params
-                  .dynamic$<Widget>(r'body')
-                  .required(const SizedBox.shrink()),
-            ),
-          )
-        ],
-      ),
-      Component(
-        meta: _i31.meta,
-        config: _i25.config,
-        stories: [
-          _i31.$Default.applyGenerated(
+          _i29.$Default.applyGenerated(
             name: 'Default',
             builder: (
               context,
               params,
             ) =>
-                _i32.ResponsiveLayout(
+                _i30.ResponsiveLayout(
               key: params.dynamic$<Key>(r'key').optional(null),
               drawer: params
                   .dynamic$<Widget>(r'drawer')
@@ -630,6 +608,29 @@ List<Component> get components => <Component>[
                   .dynamic$<Widget>(r'viewport')
                   .required(const SizedBox.shrink()),
               sidebar: params.dynamic$<Widget>(r'sidebar').optional(null),
+            ),
+          )
+        ],
+      ),
+      Component(
+        meta: _i31.meta,
+        config: _i25.config,
+        stories: [
+          _i31.$Drawer.applyGenerated(
+            name: 'Drawer',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i32.SBDrawer(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              title: params
+                  .dynamic$<Widget>(r'title')
+                  .required(const SizedBox.shrink()),
+              actions: params.dynamic$<List<Widget>>(r'actions').required([]),
+              body: params
+                  .dynamic$<Widget>(r'body')
+                  .required(const SizedBox.shrink()),
             ),
           )
         ],

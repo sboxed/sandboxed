@@ -1,5 +1,5 @@
-name: vibook_workspace
-description: ViBook is place where you store your components and stories
+name: sandboxed_workspace
+description: Sandboxed is place where you store your components and stories
 
 environment:
   sdk: ">=3.5.4 <4.0.0"

@@ -1,5 +1,5 @@
 import 'package:ui_kit/heading.dart';
-import 'package:vibook_core/vibook_core.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 
 Meta get meta => Meta<Heading>(module: 'Typography');
 

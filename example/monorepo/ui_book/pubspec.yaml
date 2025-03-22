@@ -10,8 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  vibook:
-  vibook_core:
+  sandboxed:
+  sandboxed_core:
 
   ui_kit:
   products:
@@ -23,7 +23,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
   build_runner: ^2.4.13
-  vibook_generator:
+  sandboxed_generator:
 
 flutter:
   uses-material-design: true

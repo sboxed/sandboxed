@@ -1,6 +1,6 @@
 {
-    "name": "vibook_sandbox",
-    "short_name": "vibook_sandbox",
+    "name": "sandboxed_sandbox",
+    "short_name": "sandboxed_sandbox",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

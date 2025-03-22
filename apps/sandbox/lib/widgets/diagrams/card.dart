@@ -2,17 +2,17 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-enum ViDiagramCardStats {
+enum SandboxDiagramCardStats {
   max,
   total,
 }
 
-class ViDiagramCard extends StatelessWidget {
+class SandboxDiagramCard extends StatelessWidget {
   final String title;
   final Color? color;
-  final List<ViDiagramCardStats> stats;
+  final List<SandboxDiagramCardStats> stats;
 
-  const ViDiagramCard({
+  const SandboxDiagramCard({
     super.key,
     required this.title,
     required this.color,

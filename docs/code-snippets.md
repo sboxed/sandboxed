@@ -6,10 +6,10 @@ To increase speed of creation new stories add these snippets to your project
 {
   "Meta + Story": {
     "prefix": "metastory",
-    "description": "Creates a new Vibook Story with default Meta",
+    "description": "Creates a new Sandboxed Story with default Meta",
     "body": [
       "import 'package:flutter/widgets.dart';",
-      "import 'package:vibook_core/vibook_core.dart';",
+      "import 'package:sandboxed_core/sandboxed_core.dart';",
       "",
       "Meta get meta => Meta<${1:Widget}>();",
       "",
@@ -18,7 +18,7 @@ To increase speed of creation new stories add these snippets to your project
   },
   "Story": {
     "prefix": "story",
-    "description": "Creates a new Vibook Story",
+    "description": "Creates a new Sandboxed Story",
     "body": [
       "Story get $${2:Default} => Story($0);"
     ]
@@ -27,7 +27,7 @@ To increase speed of creation new stories add these snippets to your project
     "prefix": "storyconfig",
     "description": "Creates a global story config",
     "body": [
-      "import 'package:vibook_core/vibook_core.dart';",
+      "import 'package:sandboxed_core/sandboxed_core.dart';",
       "",
       "Config get config => Config(",
       "  module: '',",
@@ -49,7 +49,7 @@ It will add simple story export to your file.
 
 ## Package configuration
 
-If you want to configure your package to use in monorepo vibook structure, 
+If you want to configure your package to use in monorepo sandboxed structure, 
 you should create `lib/stories/config.dart` file and use `storyconfig` snippet there.
 
 See API Reference to check what options you have.

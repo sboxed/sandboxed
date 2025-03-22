@@ -10,12 +10,12 @@
   Parse tokens in [] brackets and search for existsing registerd components, if found make it deeplink
 (A) Add `GeneratedStory` and `GeneratedMeta` wrappers #refactoring
 (A) Runtime params linting to find misnamed parameters.
-  Description: In example you have story with params and then renamed params in component, vibook should highlight that no matched params found
+  Description: In example you have story with params and then renamed params in component, sandboxed should highlight that no matched params found
   Add warnings panel with all misnamed parameters with links to code to fix it or autofix button.
-(B) Running golden tests from vibook #tests {c}
+(B) Running golden tests from sandboxed #tests {c}
   (B) Local test runner
   (F) Cloud test runner
-(B) Checking golden test results from vibook #tests
+(B) Checking golden test results from sandboxed #tests
 (B) Toggleable params #editor {cm:2025-03-22}
 (B) Toggleable addons Small touchable dot near addon title. Yellow - `off`, Green - `on` #editor
 (B) Component and story tags #search {cm:2025-03-09}

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-enum ViButtonSize {
+enum SandboxButtonSize {
   small,
   medium,
 }
 
-class ViButton extends StatelessWidget {
+class SandboxButton extends StatelessWidget {
   final String title;
   final Widget? icon;
   final Color? color;
-  final ViButtonSize size;
+  final SandboxButtonSize size;
   final VoidCallback? onPressed;
 
-  const ViButton({
+  const SandboxButton({
     super.key,
     required this.title,
     required this.color,
-    this.size = ViButtonSize.small,
+    this.size = SandboxButtonSize.small,
     this.icon,
     this.onPressed,
   });
@@ -25,8 +25,8 @@ class ViButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: switch (size) {
-        ViButtonSize.small => 32,
-        ViButtonSize.medium => 48,
+        SandboxButtonSize.small => 32,
+        SandboxButtonSize.medium => 48,
       },
       child: ElevatedButton(
         onPressed: onPressed,

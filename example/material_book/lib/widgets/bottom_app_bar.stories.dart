@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/story.dart';
+import 'package:sandboxed_core/decorator.dart';
+import 'package:sandboxed_core/meta.dart';
+import 'package:sandboxed_core/story.dart';
 
 Meta get meta => Meta<BottomAppBar>(
       name: 'Bottom App Bar', // optional

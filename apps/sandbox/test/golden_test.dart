@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/story.dart';
-import 'package:vibook_core/story_view.dart';
-import 'package:vibook_sandbox/widgets/button.dart';
-import 'package:vibook_sandbox/widgets/button.stories.dart';
+import 'package:sandboxed_core/meta.dart';
+import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_core/story_view.dart';
+import 'package:sandboxed_sandbox/widgets/button.dart';
+import 'package:sandboxed_sandbox/widgets/button.stories.dart';
 
 void main() {
   testStory(meta, $Blue);
@@ -30,7 +30,7 @@ Future<void> testStory(Meta meta, Story story) async {
       );
 
       await expectLater(
-        find.byType(ViButton),
+        find.byType(SandboxButton),
         matchesGoldenFile('goldens/${meta.name}-${story.name}.png'),
       );
     },

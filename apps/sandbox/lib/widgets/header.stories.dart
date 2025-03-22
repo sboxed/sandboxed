@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/story.dart';
-import 'package:vibook_sandbox/widgets/header.dart';
+import 'package:sandboxed_core/decorator.dart';
+import 'package:sandboxed_core/meta.dart';
+import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_sandbox/widgets/header.dart';
 
 Meta get meta => Meta<Header>(
       name: '02. Very Long Name for Header', // optional

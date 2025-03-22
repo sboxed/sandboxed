@@ -1,0 +1,19 @@
+builders:
+  sandboxed_gatherer:
+    import: "package:sandboxed_generator/builder.dart"
+    builder_factories: ["gatherer"]
+    build_extensions: { ".stories.dart": [".json"] }
+    runs_before: [":sandboxed_generator"]
+    auto_apply: all_packages
+    build_to: cache
+
+  sandboxed_generator:
+    import: "package:sandboxed_generator/builder.dart"
+    builder_factories: ["builder"]
+    build_extensions: { ".dart": [".g.dart"] }
+    auto_apply: dependents
+    build_to: source
+    defaults:
+      options:
+        output_path: components.g.dart
+        packages_module_name: Packages

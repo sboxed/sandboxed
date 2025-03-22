@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/story.dart';
-import 'package:vibook_sandbox/widgets/button.dart';
+import 'package:sandboxed_core/decorator.dart';
+import 'package:sandboxed_core/meta.dart';
+import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_sandbox/widgets/button.dart';
 
-Meta get meta => Meta<ViButton>(
+Meta get meta => Meta<SandboxButton>(
       name: '01. Button', // optional
       module: 'Features / 01. Core',
-      component: ViButton, // optional
+      component: SandboxButton, // optional
       parameters: {
         "golden": true,
         "fullpage": false,
@@ -25,13 +25,13 @@ Meta get meta => Meta<ViButton>(
 Story get $Green => Story(
       name: 'Green',
       builder: (context, params) {
-        return ViButton(
+        return SandboxButton(
           onPressed: () {},
           title: params.string('title').required("Lorem"),
           color: params.color('color').required(Colors.green),
           size: params
-              .single('size', ViButtonSize.values)
-              .required(ViButtonSize.small),
+              .single('size', SandboxButtonSize.values)
+              .required(SandboxButtonSize.small),
         );
       },
     );
@@ -39,7 +39,7 @@ Story get $Green => Story(
 Story get $Blue => Story(
       name: 'Blue',
       builder: (context, params) {
-        return ViButton(
+        return SandboxButton(
           onPressed: () {},
           title: params.string('title').required("Lorem"),
           color: params.color('color').required(Colors.blue),
@@ -53,7 +53,7 @@ Story get $Blue => Story(
 Story get $Yellow => Story(
       name: 'Yellow',
       builder: (context, params) {
-        return ViButton(
+        return SandboxButton(
           onPressed: () {},
           title: params.string('title').required("Lorem"),
           color: params.color('color').required(Colors.yellow),
@@ -61,9 +61,9 @@ Story get $Yellow => Story(
               ? const Icon(Icons.check, color: Colors.white)
               : null,
           size: params
-                  .multi('size', ViButtonSize.values)
-                  .required([ViButtonSize.small]).firstOrNull ??
-              ViButtonSize.small,
+                  .multi('size', SandboxButtonSize.values)
+                  .required([SandboxButtonSize.small]).firstOrNull ??
+              SandboxButtonSize.small,
         );
       },
     );

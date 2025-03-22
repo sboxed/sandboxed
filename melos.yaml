@@ -1,4 +1,4 @@
-name: vibook_workspace
+name: sandboxed_workspace
 sdkPath: ".fvm/flutter_sdk"
 packages:
   - apps/*

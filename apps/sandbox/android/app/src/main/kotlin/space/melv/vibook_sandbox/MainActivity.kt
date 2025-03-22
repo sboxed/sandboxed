@@ -1,4 +1,4 @@
-package space.melv.vibook_sandbox
+package space.melv.sandboxed_sandbox
 
 import io.flutter.embedding.android.FlutterActivity
 

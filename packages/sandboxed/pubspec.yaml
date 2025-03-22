@@ -1,0 +1,77 @@
+name: sandboxed
+description: "A new Flutter package project."
+version: 0.0.1
+
+environment:
+  sdk: ">=3.5.4 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+
+  sandboxed_core:
+
+  # ui
+  google_fonts: ^6.0.0
+  iconify_flutter_plus: ^1.0.0
+  nested: ^1.0.0
+
+  # routing
+  # TODO(@melvspace): 03/20/25 auto_route dependency constraints usage of package
+  auto_route: ^7.0.0
+
+  # editor
+  recursive_tree_flutter: ^1.0.0
+  flutter_resizable_container: ^4.0.0
+  two_dimensional_scrollables: ^0.3.0
+
+  # persistence
+  shared_preferences: ^2.0.0
+
+  # component utility
+  flutter_markdown_plus: ^1.0.0
+  url_launcher: ^6.0.0
+
+  # story params
+  flex_color_picker: ^3.0.0
+
+  # addons dependencies
+  device_frame_plus: ^1.0.0
+
+  # riverpod
+  flutter_riverpod: ^2.6.0
+  riverpod_annotation: ^2.6.0
+
+  # utility
+  slugify: ^2.0.0
+  freezed_annotation: ^2.0.0
+  collection: ^1.18.0
+  recase: ^4.0.0
+  equatable: ^2.0.0
+  markdown: any
+  flat: ^0.5.0
+  rxdart: ^0.28.0
+
+  # internal
+  sandboxed_ui_kit:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # test
+  checks: ^0.3.0
+
+  # code style
+  flutter_lints: ^4.0.0
+  custom_lint: ^0.7.0
+  riverpod_lint: ^2.6.0
+
+  # generator
+  build_runner: ^2.4.0
+  freezed: ^2.0.0
+  riverpod_generator: ^2.6.0
+  auto_route_generator: ^7.0.0

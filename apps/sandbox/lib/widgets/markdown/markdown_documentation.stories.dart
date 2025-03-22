@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:vibook_core/vibook_core.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 
 Meta get meta => const Meta<Text>(name: 'Markdown Documentation');
 

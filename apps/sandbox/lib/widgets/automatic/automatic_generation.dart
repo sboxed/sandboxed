@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vibook/widgets/gap.dart';
-import 'package:vibook_sandbox/widgets/button.dart';
+import 'package:sandboxed/widgets/gap.dart';
+import 'package:sandboxed_sandbox/widgets/button.dart';
 
 class AutomaticGeneration extends StatelessWidget {
   final String text;
@@ -29,7 +29,7 @@ class AutomaticGeneration extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         IntrinsicWidth(
-          child: ViButton(
+          child: SandboxButton(
             title: text,
             color: color,
             onPressed: unsupported,

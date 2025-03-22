@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:vibook/addons/alignment/alignment_addon.dart';
-import 'package:vibook/addons/banner/banner_addon.dart';
-import 'package:vibook/addons/interactive_viewer/interactive_viewer_addon.dart';
-import 'package:vibook/addons/safe_area/safe_area_addon.dart';
-import 'package:vibook/addons/split_themes/split_themes_addon.dart';
-import 'package:vibook/addons/tags/tags_renderer_addon.dart';
-import 'package:vibook/addons/viewport/viewport_addon.dart';
-import 'package:vibook/feature_flags.dart';
-import 'package:vibook/vibook.dart';
-import 'package:vibook_sandbox/components.g.dart';
+import 'package:sandboxed/addons/alignment/alignment_addon.dart';
+import 'package:sandboxed/addons/banner/banner_addon.dart';
+import 'package:sandboxed/addons/interactive_viewer/interactive_viewer_addon.dart';
+import 'package:sandboxed/addons/safe_area/safe_area_addon.dart';
+import 'package:sandboxed/addons/split_themes/split_themes_addon.dart';
+import 'package:sandboxed/addons/tags/tags_renderer_addon.dart';
+import 'package:sandboxed/addons/viewport/viewport_addon.dart';
+import 'package:sandboxed/feature_flags.dart';
+import 'package:sandboxed/sandboxed.dart';
+import 'package:sandboxed_sandbox/components.g.dart';
 
 void main() {
   runApp(const MainApp());
@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
       data: MediaQuery.of(context).copyWith(
         textScaler: const TextScaler.linear(1.0),
       ),
-      child: Vibook(
+      child: Sandboxed(
         components: components,
         flags: const {FeatureFlags.elementTreeNext},
         addons: [

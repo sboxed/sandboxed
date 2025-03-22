@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/story.dart';
-import 'package:vibook_sandbox/widgets/diagrams/button.dart';
+import 'package:sandboxed_core/decorator.dart';
+import 'package:sandboxed_core/meta.dart';
+import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_sandbox/widgets/diagrams/button.dart';
 
-final meta = Meta<ViDiagramButton>(
+final meta = Meta<SandboxDiagramButton>(
   name: 'Buttons / 01. Diagram Button', // optional
   module: 'Features / 02. Diagrams',
-  component: ViDiagramButton, // optional
+  component: SandboxDiagramButton, // optional
   parameters: {
     "golden": true,
     "fullpage": true,
@@ -25,7 +25,7 @@ final meta = Meta<ViDiagramButton>(
 Story get $Green => Story(
       name: 'Green',
       builder: (context, params) {
-        return ViDiagramButton(
+        return SandboxDiagramButton(
           title: params.string('title').required("Lorem"),
           color: params.color('color').required(Colors.green),
         );
@@ -35,7 +35,7 @@ Story get $Green => Story(
 Story get $Blue => Story(
       name: 'Blue',
       builder: (context, params) {
-        return ViDiagramButton(
+        return SandboxDiagramButton(
           title: params.string('title').required("Lorem"),
           color: params.color('color').required(Colors.blue),
         );

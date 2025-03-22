@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ViDiagramButton extends StatelessWidget {
+class SandboxDiagramButton extends StatelessWidget {
   final String title;
   final Color? color;
 
-  const ViDiagramButton({
+  const SandboxDiagramButton({
     super.key,
     required this.title,
     required this.color,

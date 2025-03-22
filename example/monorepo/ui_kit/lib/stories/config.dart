@@ -1,4 +1,4 @@
-import 'package:vibook_core/config.dart';
+import 'package:sandboxed_core/config.dart';
 
 Config get config => Config(
       module: 'UI Kit',

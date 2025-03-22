@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/button.dart';
-import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/document_entry.dart';
-import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/story.dart';
+import 'package:sandboxed_core/decorator.dart';
+import 'package:sandboxed_core/document_entry.dart';
+import 'package:sandboxed_core/meta.dart';
+import 'package:sandboxed_core/story.dart';
 
 Meta get meta => Meta<Button>(
       name: '01. Button', // optional

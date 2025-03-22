@@ -1,8 +1,8 @@
 // ignore_for_file: implementation_imports
 
 import 'package:flutter/material.dart';
-import 'package:vibook_core/src/params/use_params.dart';
-import 'package:vibook_core/vibook_core.dart';
+import 'package:sandboxed_core/src/params/use_params.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 
 Meta get meta => Meta<Chip>(
       name: 'Chips', // optional

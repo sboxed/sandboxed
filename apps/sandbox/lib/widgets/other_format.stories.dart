@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:vibook_core/decorator.dart';
-import 'package:vibook_core/meta.dart';
-import 'package:vibook_core/story.dart';
-import 'package:vibook_sandbox/widgets/button.dart';
+import 'package:sandboxed_core/decorator.dart';
+import 'package:sandboxed_core/meta.dart';
+import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_sandbox/widgets/button.dart';
 
-Meta get meta2 => Meta<ViButton>(
+Meta get meta2 => Meta<SandboxButton>(
       name: '01. Other Format Examples', // optional
       module: '_Meta',
-      component: ViButton, // optional
+      component: SandboxButton, // optional
       parameters: {
         "golden": true,
         "fullpage": false,
@@ -25,13 +25,13 @@ Meta get meta2 => Meta<ViButton>(
 final $Green = Story(
   name: 'Green',
   builder: (context, params) {
-    return ViButton(
+    return SandboxButton(
       onPressed: () {},
       title: params.string('title').required("Lorem"),
       color: params.color('color').required(Colors.green),
       size: params
-          .single('size', ViButtonSize.values)
-          .required(ViButtonSize.small),
+          .single('size', SandboxButtonSize.values)
+          .required(SandboxButtonSize.small),
     );
   },
 );
@@ -39,7 +39,7 @@ final $Green = Story(
 Story get $Blue => Story(
       name: 'Blue',
       builder: (context, params) {
-        return ViButton(
+        return SandboxButton(
           onPressed: () {},
           title: params.string('title').required("Lorem"),
           color: params.color('color').required(Colors.blue),

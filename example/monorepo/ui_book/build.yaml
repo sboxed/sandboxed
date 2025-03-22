@@ -1,7 +1,7 @@
 targets:
   $default:
     builders:
-      vibook_generator:vibook_generator:
+      sandboxed_generator:sandboxed_generator:
         options:
           packages_module_name: Features
 
