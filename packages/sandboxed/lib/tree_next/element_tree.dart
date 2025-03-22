@@ -59,8 +59,12 @@ class _ElementTreeState extends ConsumerState<ElementTree>
                 },
                 nodeBuilder: (node) {
                   ref.watch(componentTreeNotifierProvider);
-                  final leading = node.content.buildLeading(context, ref);
                   final title = node.content.buildTitle(context, ref);
+                  final leading = node.content.buildLeading(
+                    context,
+                    ref,
+                    expanded: node.isExpanded,
+                  );
 
                   return SizedBox(
                     height: switch (node.content) {

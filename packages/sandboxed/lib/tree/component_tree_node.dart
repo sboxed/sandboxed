@@ -161,7 +161,7 @@ sealed class ElementNode with _$ElementNode {
     required Story story,
   }) = StoryNode;
 
-  Widget buildLeading(BuildContext context, WidgetRef ref) {
+  Widget buildLeading(BuildContext context, WidgetRef ref, {bool? expanded}) {
     switch (this) {
       case ModuleNode():
         return Tooltip(
@@ -171,7 +171,7 @@ sealed class ElementNode with _$ElementNode {
         );
 
       case FolderNode():
-        return (isExpanded
+        return (expanded ?? isExpanded
                 ? ElementTileIcons.folderOpen
                 : ElementTileIcons.folder)
             .icon;
