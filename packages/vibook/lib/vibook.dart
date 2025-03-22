@@ -1,10 +1,9 @@
 // ignore_for_file: scoped_providers_should_specify_dependencies
 library vibook;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:vibook/addons/addon.dart';
 import 'package:vibook/addons/param_builders/base_param_builders_addon.dart';
 import 'package:vibook/addons/reload/reload_addon.dart';
@@ -52,10 +51,7 @@ class _VibookState extends State<Vibook> {
 
   @override
   void initState() {
-    if (kIsWeb) {
-      usePathUrlStrategy();
-    }
-
+    usePathUrlStrategy();
     super.initState();
   }
 

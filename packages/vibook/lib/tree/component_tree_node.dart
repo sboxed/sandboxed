@@ -47,7 +47,11 @@ class NodeData with EquatableMixin implements AbsNodeType {
   @override
   bool get isInner {
     return switch (data) {
-      ComponentNode node => node.component.stories.length > 1,
+      ComponentNode node => [
+            ...node.component.meta.documentation,
+            ...node.component.stories
+          ].length >
+          1,
       StoryNode _ => false,
       DocumentationNode _ => false,
       _ => true,

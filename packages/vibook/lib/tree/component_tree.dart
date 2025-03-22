@@ -156,6 +156,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
       return null;
     }
 
+    ref.watch(componentTreeNotifierProvider);
     final leading = node.data.data.buildLeading(context, ref);
     final title = node.data.data.buildTitle(context, ref);
 
@@ -173,7 +174,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
           ref.read(componentTreeNotifierProvider.notifier).toggle(node);
         }
       },
-      size: switch (node.data) {
+      size: switch (node.data.data) {
         ModuleNode data => switch (data.level) {
             1 => ElementTileSize.large,
             _ => switch (data.index) {
