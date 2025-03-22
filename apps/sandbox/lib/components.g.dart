@@ -43,12 +43,12 @@ import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.dart' as _i26;
 import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.stories.dart'
     as _i27;
 import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.dart' as _i28;
-import 'package:sandboxed_ui_kit/src/layout/responsive_layout.stories.dart'
-    as _i29;
-import 'package:sandboxed_ui_kit/src/layout/responsive_layout.dart' as _i30;
 import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.stories.dart'
+    as _i29;
+import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.dart' as _i30;
+import 'package:sandboxed_ui_kit/src/layout/responsive_layout.stories.dart'
     as _i31;
-import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.dart' as _i32;
+import 'package:sandboxed_ui_kit/src/layout/responsive_layout.dart' as _i32;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -593,36 +593,13 @@ List<Component> get components => <Component>[
         meta: _i29.meta,
         config: _i25.config,
         stories: [
-          _i29.$Default.applyGenerated(
-            name: 'Default',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i30.ResponsiveLayout(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              drawer: params
-                  .dynamic$<Widget>(r'drawer')
-                  .required(const SizedBox.shrink()),
-              viewport: params
-                  .dynamic$<Widget>(r'viewport')
-                  .required(const SizedBox.shrink()),
-              sidebar: params.dynamic$<Widget>(r'sidebar').optional(null),
-            ),
-          )
-        ],
-      ),
-      Component(
-        meta: _i31.meta,
-        config: _i25.config,
-        stories: [
-          _i31.$Drawer.applyGenerated(
+          _i29.$Drawer.applyGenerated(
             name: 'Drawer',
             builder: (
               context,
               params,
             ) =>
-                _i32.SBDrawer(
+                _i30.SBDrawer(
               key: params.dynamic$<Key>(r'key').optional(null),
               title: params
                   .dynamic$<Widget>(r'title')
@@ -631,6 +608,29 @@ List<Component> get components => <Component>[
               body: params
                   .dynamic$<Widget>(r'body')
                   .required(const SizedBox.shrink()),
+            ),
+          )
+        ],
+      ),
+      Component(
+        meta: _i31.meta,
+        config: _i25.config,
+        stories: [
+          _i31.$Default.applyGenerated(
+            name: 'Default',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i32.ResponsiveLayout(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              drawer: params
+                  .dynamic$<Widget>(r'drawer')
+                  .required(const SizedBox.shrink()),
+              viewport: params
+                  .dynamic$<Widget>(r'viewport')
+                  .required(const SizedBox.shrink()),
+              sidebar: params.dynamic$<Widget>(r'sidebar').optional(null),
             ),
           )
         ],
