@@ -9,6 +9,7 @@ import 'package:sandboxed_generator/config/aggregator_config.dart';
 import 'package:sandboxed_generator/docs_cleaner.dart';
 import 'package:sandboxed_generator/library_parser.dart';
 import 'package:sandboxed_generator/parsers/type_checker.dart';
+import 'package:yaml/yaml.dart';
 
 class StoryContainer {
   final String path;
@@ -88,21 +89,32 @@ class ComponentAggregateBuilder extends Builder {
     return null;
   }
 
+  bool checkDependency(String package, YamlMap pubspec) {
+    final dependencies = pubspec['dependencies'] as YamlMap?;
+    if (dependencies == null) return false;
+
+    return dependencies.containsKey(package);
+  }
+
   @override
   Future<void> build(BuildStep buildStep) async {
     final outputAsset = AssetId(buildStep.inputId.package, 'lib/$output');
     final List<PackageStories> packageStories = [];
+    final packageConfig = await buildStep.packageConfig;
+    final pubspec = loadYaml(await buildStep.readAsString(
+      AssetId(buildStep.inputId.package, 'pubspec.yaml'),
+    ));
 
-    final packages = {
-      buildStep.inputId.package,
-      ...(await buildStep.packageConfig).packages.map((e) => e.name),
-    };
+    for (final package in packageConfig.packages) {
+      final asset = AssetId(package.name, 'lib/stories.json');
 
-    for (final package in packages) {
-      final asset = AssetId(package, 'lib/stories.json');
       if (await buildStep.canRead(asset) == false) continue;
+      if (package.name != buildStep.inputId.package &&
+          !checkDependency(package.name, pubspec)) {
+        continue;
+      }
 
-      final config = await readConfig(buildStep, package);
+      final config = await readConfig(buildStep, package.name);
 
       final jsonContent = await buildStep.readAsString(asset);
       final storyContainerPaths = (jsonDecode(jsonContent) as List) //
@@ -111,14 +123,14 @@ class ComponentAggregateBuilder extends Builder {
       final storyContainers = <StoryContainer>[];
 
       for (final path in storyContainerPaths) {
-        final asset = AssetId(package, path);
+        final asset = AssetId(package.name, path);
         final library = await buildStep.resolver.libraryFor(asset);
         final docs = await findDocs(buildStep, asset);
 
         storyContainers.add(
           StoryContainer(
             path: path,
-            package: package,
+            package: package.name,
             library: library,
             docs: [if (docs case String docs) docs],
           ),
@@ -129,7 +141,7 @@ class ComponentAggregateBuilder extends Builder {
         packageStories.add(
           PackageStories(
             config: config,
-            package: package,
+            package: package.name,
             storyContainers: storyContainers,
           ),
         );

@@ -8,23 +8,11 @@ import 'package:products/product_card.stories.dart' as _i1;
 import 'package:products/product_card.dart' as _i2;
 import 'package:products/favorite_button.stories.dart' as _i3;
 import 'package:products/favorite_button.dart' as _i4;
-import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.stories.dart' as _i5;
-import 'package:sandboxed_ui_kit/stories/config.dart' as _i6;
-import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.dart' as _i7;
-import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.stories.dart'
-    as _i8;
-import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.dart' as _i9;
-import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.stories.dart'
-    as _i10;
-import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.dart' as _i11;
-import 'package:sandboxed_ui_kit/src/layout/responsive_layout.stories.dart'
-    as _i12;
-import 'package:sandboxed_ui_kit/src/layout/responsive_layout.dart' as _i13;
-import 'package:ui_kit/button.stories.dart' as _i14;
-import 'package:ui_kit/stories/config.dart' as _i15;
-import 'package:ui_kit/button.dart' as _i16;
-import 'package:ui_kit/heading.stories.dart' as _i17;
-import 'package:ui_kit/heading.dart' as _i18;
+import 'package:ui_kit/button.stories.dart' as _i5;
+import 'package:ui_kit/stories/config.dart' as _i6;
+import 'package:ui_kit/button.dart' as _i7;
+import 'package:ui_kit/heading.stories.dart' as _i8;
+import 'package:ui_kit/heading.dart' as _i9;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -63,32 +51,42 @@ List<Component> get components => <Component>[
         meta: _i5.meta,
         config: _i6.config,
         stories: [
-          _i5.$Default.applyGenerated(
-            name: 'Default',
+          _i5.$Green.applyGenerated(
+            name: 'Green',
             builder: (
               context,
               params,
             ) =>
-                _i7.TagChip(
+                _i7.Button(
               key: params.dynamic$<Key>(r'key').optional(null),
-              tag: params
-                  .dynamic$<Widget>(r'tag')
-                  .required(const SizedBox.shrink()),
-              color: params.color(r'color').optional(null),
+              text: params.string(r'text').required('Text'),
+              size: params
+                  .single(
+                    r'size',
+                    _i7.ButtonSize.values,
+                  )
+                  .required(_i7.ButtonSize.medium),
+              color: params.color(r'color').required(Colors.green),
+              icon: params.dynamic$<Widget>(r'icon').optional(null),
             ),
           ),
-          _i5.$InTile.applyGenerated(
-            name: 'In Tile',
+          _i5.$Blue.applyGenerated(
+            name: 'Blue',
             builder: (
               context,
               params,
             ) =>
-                _i7.TagChip(
+                _i7.Button(
               key: params.dynamic$<Key>(r'key').optional(null),
-              tag: params
-                  .dynamic$<Widget>(r'tag')
-                  .required(const SizedBox.shrink()),
-              color: params.color(r'color').optional(null),
+              text: params.string(r'text').required('Text'),
+              size: params
+                  .single(
+                    r'size',
+                    _i7.ButtonSize.values,
+                  )
+                  .required(_i7.ButtonSize.medium),
+              color: params.color(r'color').required(Colors.green),
+              icon: params.dynamic$<Widget>(r'icon').optional(null),
             ),
           ),
         ],
@@ -103,153 +101,7 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i9.ElementTile(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              depth: params.integer(r'depth').required(1),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
-              tooltip: params.string(r'tooltip').required(''),
-              selected: params.boolean(r'selected').required(false),
-              size: params
-                  .single(
-                    r'size',
-                    _i9.ElementTileSize.values,
-                  )
-                  .required(_i9.ElementTileSize.small),
-              icon: params.dynamic$<Widget>(r'icon').optional(null),
-              title: params
-                  .dynamic$<Widget>(r'title')
-                  .required(const SizedBox.shrink()),
-            ),
-          ),
-          _i8.$Tree.applyGenerated(
-            name: 'Tree',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i9.ElementTile(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              depth: params.integer(r'depth').required(1),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
-              tooltip: params.string(r'tooltip').required(''),
-              selected: params.boolean(r'selected').required(false),
-              size: params
-                  .single(
-                    r'size',
-                    _i9.ElementTileSize.values,
-                  )
-                  .required(_i9.ElementTileSize.small),
-              icon: params.dynamic$<Widget>(r'icon').optional(null),
-              title: params
-                  .dynamic$<Widget>(r'title')
-                  .required(const SizedBox.shrink()),
-            ),
-          ),
-        ],
-      ),
-      Component(
-        meta: _i10.meta,
-        config: _i6.config,
-        stories: [
-          _i10.$Drawer.applyGenerated(
-            name: 'Drawer',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i11.SBDrawer(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              title: params
-                  .dynamic$<Widget>(r'title')
-                  .required(const SizedBox.shrink()),
-              actions: params.dynamic$<List<Widget>>(r'actions').required([]),
-              body: params
-                  .dynamic$<Widget>(r'body')
-                  .required(const SizedBox.shrink()),
-            ),
-          )
-        ],
-      ),
-      Component(
-        meta: _i12.meta,
-        config: _i6.config,
-        stories: [
-          _i12.$Default.applyGenerated(
-            name: 'Default',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i13.ResponsiveLayout(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              drawer: params
-                  .dynamic$<Widget>(r'drawer')
-                  .required(const SizedBox.shrink()),
-              viewport: params
-                  .dynamic$<Widget>(r'viewport')
-                  .required(const SizedBox.shrink()),
-              sidebar: params.dynamic$<Widget>(r'sidebar').optional(null),
-            ),
-          )
-        ],
-      ),
-      Component(
-        meta: _i14.meta,
-        config: _i15.config,
-        stories: [
-          _i14.$Green.applyGenerated(
-            name: 'Green',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i16.Button(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              text: params.string(r'text').required('Text'),
-              size: params
-                  .single(
-                    r'size',
-                    _i16.ButtonSize.values,
-                  )
-                  .required(_i16.ButtonSize.medium),
-              color: params.color(r'color').required(Colors.green),
-              icon: params.dynamic$<Widget>(r'icon').optional(null),
-            ),
-          ),
-          _i14.$Blue.applyGenerated(
-            name: 'Blue',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i16.Button(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              text: params.string(r'text').required('Text'),
-              size: params
-                  .single(
-                    r'size',
-                    _i16.ButtonSize.values,
-                  )
-                  .required(_i16.ButtonSize.medium),
-              color: params.color(r'color').required(Colors.green),
-              icon: params.dynamic$<Widget>(r'icon').optional(null),
-            ),
-          ),
-        ],
-      ),
-      Component(
-        meta: _i17.meta,
-        config: _i15.config,
-        stories: [
-          _i17.$Default.applyGenerated(
-            name: 'Default',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i18.Heading(key: params.dynamic$<Key>(r'key').optional(null)),
+                _i9.Heading(key: params.dynamic$<Key>(r'key').optional(null)),
           )
         ],
       ),
