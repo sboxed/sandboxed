@@ -12,6 +12,7 @@
 (A) Runtime params linting to find misnamed parameters.
   Description: In example you have story with params and then renamed params in component, sandboxed should highlight that no matched params found
   Add warnings panel with all misnamed parameters with links to code to fix it or autofix button.
+(B) Lower count of dependencies
 (B) Running golden tests from sandboxed #tests {c}
   (B) Local test runner
   (F) Cloud test runner
