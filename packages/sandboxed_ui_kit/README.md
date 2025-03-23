@@ -1,39 +1,41 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# 🎨 sandboxed_ui_kit
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+**`sandboxed_ui_kit`** provides shared UI components used by the [**Sandboxed**](https://github.com/your-username/sandboxed) viewer —  
+a tool for developing, testing, and documenting Flutter UI components in isolation.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+This package contains layout, navigation, styling, and helper widgets used in the runtime app.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
-## Features
+## 📦 Installation
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Add as a local path dependency in your `pubspec.yaml`:
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  sandboxed_ui_kit:
+    path: {PATH_TO_REPO}/packages/sandboxed_ui_kit
 ```
 
-## Additional information
+> Replace `{PATH_TO_REPO}` with the path to your local clone.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+---
+
+## 🎯 Purpose
+
+This package is **internal** to Sandboxed and not intended for general use.  
+However, you can use or extend it when customizing your own viewer or building custom tooling around Sandboxed.
+
+---
+
+## 🔗 Related Packages
+
+- [`sandboxed`](../sandboxed/README.md) — Main viewer and runtime
+- [`sandboxed_core`](../sandboxed_core/README.md) — Core definitions
+- [`sandboxed_generator`](../sandboxed_generator/README.md) — Code generation
+
+---
+
+## 📄 License
+
+MIT License © 2025 [Sandboxed](https://github.com/sboxed), [Vadim Melnikov](https://github.com/rIIh)

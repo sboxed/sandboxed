@@ -53,6 +53,7 @@
   (C) Time Dilation
   (C) Text Scale
   (C) Accessibility
+  (D) Panel Addons. Addons that can inject extra widgets to panels
   Lockable addons - lock addons by other addons
 (C) Url persistence between sessions #editor {cm:2025-03-22}
 (C) Settings tab/sheet in sidebar and bottom app bar #editor

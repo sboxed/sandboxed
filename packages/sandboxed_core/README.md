@@ -1,39 +1,63 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# 🧩 Sandboxed Core
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+Core primitives for [**Sandboxed**](https://github.com/your-username/sandboxed) —  
+a Flutter tool for developing, testing, and documenting UI components in isolation.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+This package contains the core types used to define and organize components and stories, including:
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+- `Meta` — component metadata
+- `Story` — interactive use-case definitions
+- `Params` — runtime param interfaces
+- `DocumentEntry` — documentation support (e.g. MDX)
+- `Decorator` — widget wrappers for layout and context
+- `Config` — global configuration for storybooks
 
-## Features
+---
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## 📦 Installation
 
-## Getting started
+Add to your `pubspec.yaml`:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  sandboxed_core:
+    path: {PATH_TO_REPO}/packages/core
 ```
 
-## Additional information
+> Replace `{PATH_TO_REPO}` with the path to the local clone of the repo.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+---
+
+## 🧱 Example
+
+```dart
+import 'package:sandboxed_core/sandboxed_core.dart';
+
+Meta get meta => Meta<MyButton>(
+  name: 'My Button',
+  module: 'UI / Buttons',
+  parameters: {
+    'golden': true,
+  },
+  decorators: [
+    Decorator((context, child) => Padding(
+      padding: const EdgeInsets.all(16),
+      child: child,
+    )),
+  ],
+);
+
+Story get $Primary => Story(
+  name: 'Primary',
+  builder: (context, params) => MyButton(
+    title: params.string('title').required('Click Me'),
+    color: params.color('color').required(Colors.blue),
+  ),
+);
+```
+
+---
+
+## 📄 License
+
+MIT License © 2025 [Sandboxed](https://github.com/sboxed), [Vadim Melnikov](https://github.com/rIIh)

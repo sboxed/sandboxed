@@ -1,39 +1,97 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# ⚙️ Sandboxed Generator
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+**`sandboxed_generator`** is the code generation package for [**Sandboxed**](https://github.com/sboxed/sandboxed),  
+a Flutter tool for building, testing, and documenting UI components in isolation.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+This package generates the component and story registry used by the `sandboxed` viewer.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
-## Features
+## 📦 Installation
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Add to your `pubspec.yaml` using a local path and add `build_runner`:
 
-## Getting started
+```yaml
+dev_dependencies:
+  build_runner: any
+  sandboxed_generator:
+    path: {PATH_TO_REPO}/packages/sandboxed_generator
+```
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+> Replace `{PATH_TO_REPO}` with the path to your local clone.
+
+---
+
+## 🚀 What It Does
+
+- Scans for all `Meta` and `Story` declarations
+- Automatically generates a full component registry
+- Supports `.mdx` documentation attachment
+- Merges with optional manual config
+- Fully hot-reload compatible after initial generation
+
+> [!NOTE]
+> The generator searches for `Meta` and `Story` in the **current package** and all **transitive dependencies**.  
+> This allows modular story definitions across packages in a monorepo setup.
+
+---
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+1. Define your stories:
 
 ```dart
-const like = 'sample';
+Meta get meta => Meta<MyWidget>(name: 'My Widget');
+
+Story get $Primary => Story(
+  builder: (context, params) => MyWidget(),
+);
 ```
 
-## Additional information
+2. Run the generator:
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```bash
+flutter pub run build_runner build
+```
+
+3. The generated registry will be picked placed at `lib/components.g.dart` files. You can pass it to Sandboxed.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:sandboxed/sandboxed.dart';
+import 'package:{your_package}/components.g.dart';
+
+void main() {
+  runApp(
+    Sandboxed(
+      title: Text("Brand Name"),
+      components: components,
+    ),
+  );
+}
+
+```
+
+---
+
+## 🛠 Configuration
+
+You can optionally configure the generator with a `build.yaml` file to change:
+
+- Output location *(WIP)*
+- Entry point scanning behavior *(WIP)*
+- Filtering rules *(WIP)*
+
+---
+
+## 🔗 Related Packages
+
+- [`sandboxed`](../sandboxed/README.md) — Storybook-like viewer UI
+- [`sandboxed_core`](../sandboxed_core/README.md) — Meta / Story primitives
+- [`sandboxed_ui_kit`](../sandboxed_ui_kit/README.md) — Viewer UI components
+
+---
+
+## 📄 License
+
+MIT License © 2025 [Sandboxed](https://github.com/sboxed), [Vadim Melnikov](https://github.com/rIIh)

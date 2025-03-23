@@ -1,39 +1,102 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# 🧪 sandboxed
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+**`sandboxed`** is the main runtime and viewer package for [**Sandboxed**](https://github.com/your-username/sandboxed) —  
+a tool for building, testing, and documenting Flutter UI components in isolation.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+This package powers the core experience: the live preview UI, interactive controls, addons, and component explorer.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
-## Features
+## 📦 Installation
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Add a local path dependency in your `pubspec.yaml`:
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  sandboxed:
+    path: {PATH_TO_REPO}/packages/sandboxed
 ```
 
-## Additional information
+> Replace `{PATH_TO_REPO}` with the full path to the cloned repo on your machine.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+You will also need:
+- [`sandboxed_core`](../sandboxed_core)
+- [`sandboxed_generator`](../sandboxed_generator) (for codegen)
+
+---
+
+## 🧰 What It Includes
+
+- Viewer UI with sidebar navigation, search, and preview
+- Runtime param editors and controls
+- Built-in addons (safe area, theme switcher, device preview, etc.)
+- Layout engine for stories and decorators
+- Tag filtering, golden test support, and more
+
+---
+
+## ▶️ Example Usage
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:sandboxed/sandboxed.dart';
+
+void main() {
+  runApp(
+    Sandboxed(
+      title: Text("Brand Name"),
+      brandColor: Colors.green,
+      components: components,
+      addons: [
+        InteractiveViewerAddon(constrained: false),
+        SafeAreaAddon(),
+        AlignmentAddon(),
+      ],
+    ),
+  );
+}
+```
+
+Register your components and stories using `Meta` and `Story`, then run the app to browse and test your widgets interactively.
+
+---
+
+## 🧩 Addons
+
+This package includes several built-in addons:
+
+- ✅ Safe Area
+- ✅ Pan & Zoom
+- ✅ Reload
+- ✅ Param Builders
+- ✅ Device Preview
+- ✅ Theme Mode
+- ✅ Tag Renderer
+
+More addons can be added by extending the `Addon` interface and registering them via providers.
+
+---
+
+## ⚙️ Dev Notes
+
+When you add, rename or remove a `Meta` or `Story` getters, make sure to rebuild the registry:
+
+```bash
+flutter pub run build_runner build
+```
+
+All other changes support hot reload out of the box.
+
+---
+
+## 📄 Related Packages
+
+- [`sandboxed_core`](../sandboxed_core/README.md) — Primitives: Meta, Story, Params, Decorators
+- [`sandboxed_generator`](../sandboxed_generator/README.md) — Builder that generates component registry
+- [`sandboxed_ui_kit`](../sandboxed_ui_kit/README.md) — UI components used by the viewer
+
+---
+
+## 📄 License
+
+MIT License © 2025 [Sandboxed](https://github.com/sboxed), [Vadim Melnikov](https://github.com/rIIh)
