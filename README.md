@@ -1,4 +1,4 @@
-# Sandboxed 🧪
+# <img src="https://raw.githubusercontent.com/sboxed/sandboxed-assets/main/logos/logo-64.png" alt="logo" /> Sandboxed
 
 **Sandboxed** is a Flutter tool for developing, testing, and showcasing  
 UI components in isolation — like Storybook, but built for Flutter.  
