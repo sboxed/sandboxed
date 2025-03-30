@@ -45,9 +45,12 @@ class ParamsEditor extends ConsumerWidget {
                 cell(const Text('Name'),
                     const TextStyle(fontWeight: FontWeight.bold)),
                 if (context.breakpoint != Breakpoints.mobile) ...[
-                  cell(const Text('Description'),
-                      const TextStyle(fontWeight: FontWeight.bold)),
+                  if (!kIsWeb)
+                    // TODO(@melvspace): 03/30/25 get types at generation step
+                    cell(const Text('Description'),
+                        const TextStyle(fontWeight: FontWeight.bold)),
                   if (kDebugMode)
+                    // TODO(@melvspace): 03/30/25 get default at generation step
                     cell(const Text('Default'),
                         const TextStyle(fontWeight: FontWeight.bold)),
                 ],
@@ -86,17 +89,18 @@ class ParamsEditor extends ConsumerWidget {
                     ),
                   ),
                   if (context.breakpoint != Breakpoints.mobile) ...[
-                    cell(
-                      Text(
-                        switch (param.value.meta['description']) {
-                          String description
-                              when description.trim().isNotEmpty =>
-                            description,
-                          _ => '${param.value.runtimeType}'
-                              '${!param.value.isRequired ? '?' : ''}',
-                        },
+                    if (!kIsWeb)
+                      cell(
+                        Text(
+                          switch (param.value.meta['description']) {
+                            String description
+                                when description.trim().isNotEmpty =>
+                              description,
+                            _ => '${param.value.runtimeType}'
+                                '${!param.value.isRequired ? '?' : ''}',
+                          },
+                        ),
                       ),
-                    ),
                     if (kDebugMode) //
                       cell(const WIP(child: Text('-'))),
                   ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sandboxed/sandboxed.dart';
 
 Meta get meta => Meta<AppBar>(
+      name: 'App Bar',
       decorators: [
         Decorator(
           (context, story) => Padding(

@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
       brandColor: Colors.blue,
       components: components,
       addons: [
-        InteractiveViewerAddon(constrained: false),
+        InteractiveViewerAddon(constrained: true),
         SafeAreaAddon(),
         AlignmentAddon(),
       ],
