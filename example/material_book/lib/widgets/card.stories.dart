@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
-Meta get meta => Meta<Card>();
+Meta get meta => Meta<Card>(name: "Card");
 
-Story get $Default => Story();
+Story get $Default => Story(
+      params: {
+        "child": Padding(
+          padding: EdgeInsets.all(8),
+          child: Text("Hello world"),
+        ),
+      },
+    );
 
 Story get $Nested => Story(
       builder: (context, params) {

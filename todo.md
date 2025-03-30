@@ -9,6 +9,7 @@
   Support link navigation betwen components, stories and doc entries.
   Parse tokens in [] brackets and search for existsing registerd components, if found make it deeplink
 (A) Add `GeneratedStory` and `GeneratedMeta` wrappers #refactoring
+(A) #Generator - Provide name of component to meta with `applyGenerated`
 (A) Runtime params linting to find misnamed parameters.
   Description: In example you have story with params and then renamed params in component, sandboxed should highlight that no matched params found
   Add warnings panel with all misnamed parameters with links to code to fix it or autofix button.
