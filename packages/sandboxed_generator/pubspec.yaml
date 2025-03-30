@@ -1,6 +1,6 @@
 name: sandboxed_generator
 description: Generate components.
-version: 1.0.0
+version: 0.1.0
 
 environment:
   sdk: ">=3.5.4 <4.0.0"

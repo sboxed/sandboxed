@@ -1,6 +1,6 @@
 name: sandboxed_core
 description: "Sandboxed core components"
-version: 0.0.1
+version: 0.1.0
 
 environment:
   sdk: ">=3.5.4 <4.0.0"

@@ -1,6 +1,6 @@
 name: sandboxed_ui_kit
 description: "Sandboxed components library"
-version: 0.0.1
+version: 0.1.0
 
 environment:
   sdk: ^3.5.4
