@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/inspector/component_inspector.dart';
@@ -46,8 +47,9 @@ class ParamsEditor extends ConsumerWidget {
                 if (context.breakpoint != Breakpoints.mobile) ...[
                   cell(const Text('Description'),
                       const TextStyle(fontWeight: FontWeight.bold)),
-                  cell(const Text('Default'),
-                      const TextStyle(fontWeight: FontWeight.bold)),
+                  if (kDebugMode)
+                    cell(const Text('Default'),
+                        const TextStyle(fontWeight: FontWeight.bold)),
                 ],
                 cell(
                   Row(
@@ -95,7 +97,8 @@ class ParamsEditor extends ConsumerWidget {
                         },
                       ),
                     ),
-                    cell(const WIP(child: Text('-'))),
+                    if (kDebugMode) //
+                      cell(const WIP(child: Text('-'))),
                   ],
                   cell(ParamEditorCell(id: param.key, param: param.value)),
                 ],

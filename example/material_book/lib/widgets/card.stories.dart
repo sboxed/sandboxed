@@ -19,6 +19,7 @@ Story get $Nested => Story(
         Widget build(int level) {
           if (level == 0) return Text("Card content");
           return Card.filled(
+            elevation: 8,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: build(level - 1),

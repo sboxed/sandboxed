@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/provider/selected.dart';
@@ -59,7 +60,8 @@ class _DocumentPageContent extends ConsumerWidget {
                     automaticallyImplyLeading: false,
                     backgroundColor: Colors.transparent,
                   ),
-                  const WIP(child: Toolbar()),
+                  if (kDebugMode) //
+                    const WIP(child: Toolbar()),
                 ],
               ),
             ),

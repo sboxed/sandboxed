@@ -7,11 +7,16 @@ class SBShareButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var origin = switch (Uri.base.scheme) {
+      'https' || 'http' => Uri.base.origin,
+      _ => ''
+    };
+
     return FilledButton(
       onPressed: () {
         Clipboard.setData(
           ClipboardData(
-            text: Uri.base.origin + AutoRouter.of(context).urlState.url,
+            text: origin + AutoRouter.of(context).urlState.url,
           ),
         );
 

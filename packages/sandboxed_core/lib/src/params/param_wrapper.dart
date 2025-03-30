@@ -48,7 +48,7 @@ class ParamWrapper<T> {
     return value;
   }
 
-  T? optional(T? value) {
+  T? optional([T? value]) {
     if (_resolved) {
       return this.value;
     }

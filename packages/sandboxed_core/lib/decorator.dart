@@ -29,6 +29,15 @@ class Decorator {
   const Decorator(this.decorator);
 }
 
+abstract class DecoratorInterface implements Decorator {
+  const DecoratorInterface();
+
+  @override
+  DecoratorCallback get decorator => decorate;
+
+  Widget decorate(BuildContext context, Widget story);
+}
+
 extension DecoratorListX on Iterable<Decorator> {
   Widget decorate(BuildContext context, Widget child) {
     final decorators = toList().reversed;

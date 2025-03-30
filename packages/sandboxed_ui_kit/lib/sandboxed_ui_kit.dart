@@ -1,5 +1,6 @@
 library sandboxed_ui_kit;
 
+export 'src/decorators/decorators.dart';
 export 'src/layout/layout.dart';
 export 'src/notification/notification.dart';
 export 'src/responsive/responsive.dart';
