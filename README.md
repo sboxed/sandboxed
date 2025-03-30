@@ -1,7 +1,12 @@
 # <img src="https://raw.githubusercontent.com/sboxed/sandboxed-assets/main/logos/logo-64.png" alt="logo" /> Sandboxed
 
+[![pub package](https://img.shields.io/pub/v/sandboxed.svg)](https://pub.dev/packages/sandboxed)
+[![pub points](https://img.shields.io/pub/points/sandboxed)](https://pub.dev/packages/sandboxed/score)
+[![likes](https://img.shields.io/pub/likes/sandboxed)](https://pub.dev/packages/sandboxed/score)
+<!-- [![popularity](https://img.shields.io/pub/popularity/sandboxed)](https://pub.dev/packages/sandboxed/score) -->
+
 **Sandboxed** is a Flutter tool for developing, testing, and showcasing  
-UI components in isolation — like Storybook, but built for Flutter.  
+UI components in isolation.  
  
 - 🛠️ Design. ⚡ Build. 🔁 Preview.  
 - ✨ Speed up development. 🧼 Improve maintainability. 📤 Share confidently.

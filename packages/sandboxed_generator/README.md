@@ -85,7 +85,7 @@ You can optionally configure the generator with a `build.yaml` file to change:
 
 ## 🔗 Related Packages
 
-- [`sandboxed`](../sandboxed/README.md) — Storybook-like viewer UI
+- [`sandboxed`](../sandboxed/README.md) — Viewer App
 - [`sandboxed_core`](../sandboxed_core/README.md) — Meta / Story primitives
 - [`sandboxed_ui_kit`](../sandboxed_ui_kit/README.md) — Viewer UI components
 
