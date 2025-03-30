@@ -808,17 +808,19 @@ packages:
   sandboxed_core:
     dependency: "direct main"
     description:
-      path: "../sandboxed_core"
-      relative: true
-    source: path
-    version: "0.0.1"
+      name: sandboxed_core
+      sha256: f0ff9a712c418dad2d4ee65654b76105e08eb43a7878e56ad2be194a4756805f
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   sandboxed_ui_kit:
     dependency: "direct main"
     description:
-      path: "../sandboxed_ui_kit"
-      relative: true
-    source: path
-    version: "0.0.1"
+      name: sandboxed_ui_kit
+      sha256: "1823fd9a735254b37778f819229e00bdb6625003f79e4da9d9e9cfb6a939696d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   shared_preferences:
     dependency: "direct main"
     description:

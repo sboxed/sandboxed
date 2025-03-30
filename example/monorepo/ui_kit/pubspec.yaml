@@ -1,5 +1,6 @@
 name: ui_kit
 description: "A new Flutter package project."
+publish_to: none
 version: 0.1.0
 
 environment:

@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: sandboxed_core,sandboxed_ui_kit
-dependency_overrides:
-  sandboxed_core:
-    path: ../sandboxed_core
-  sandboxed_ui_kit:
-    path: ../sandboxed_ui_kit

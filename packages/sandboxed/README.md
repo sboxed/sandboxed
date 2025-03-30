@@ -1,99 +1,205 @@
-# 🧪 sandboxed
+# <img src="https://raw.githubusercontent.com/sboxed/sandboxed-assets/main/logos/logo-64.png" alt="logo" /> Sandboxed
 
-**`sandboxed`** is the main runtime and viewer package for [**Sandboxed**](https://github.com/your-username/sandboxed) —  
-a tool for building, testing, and documenting Flutter UI components in isolation.
-
-This package powers the core experience: the live preview UI, interactive controls, addons, and component explorer.
+**Sandboxed** is a Flutter tool for developing, testing, and showcasing  UI components in isolation.
+ 
+- 🛠️ Design. ⚡ Build. 🔁 Preview.  
+- ✨ Speed up development. 🧼 Improve maintainability. 📤 Share confidently.
 
 ---
+
+> ⚠️ **Disclaimer**  
+> This package is currently in an **unstable** state and may introduce **breaking changes** without notice.  
+> It also includes extra dependencies that may make integration into real projects more difficult. These will be removed or streamlined in future releases to improve usability.
+
+---
+
+## 🚀 Features
+
+- 📦 Isolate widgets for independent development and testing  
+- 🎨 Live preview with hot reload support  
+- 🧪 Interactive params: bool, color, sliders, etc.
+- 🧩 Built-in addons: pan, theme, safe area, viewport, reload
+- 🏷️ Tags & searchable component catalog
+- 🔗 Deep linking between stories and docs
+- 📄 MDX docs with live stories *(WIP)*
+- 🧹 Linting for invalid/missing params *(WIP)*
+- 📸 Golden test integration *(WIP)*
+
+---
+
+## 📦 Packages
+
+- [`sandboxed`](packages/sandboxed/README.md) — Main runtime & viewer UI  
+- [`sandboxed_core`](packages/sandboxed_core/README.md) — Core primitives: `Meta`, `Story`, `Params`, etc.  
+- [`sandboxed_generator`](packages/sandboxed_generator/README.md) — Code generation for story/component registry  
+- [`sandboxed_ui_kit`](packages/sandboxed_ui_kit/README.md) — UI components used in the viewer (sidebar, layout, etc.)
 
 ## 📦 Installation
 
-Add a local path dependency in your `pubspec.yaml`:
+1. **Add it in your `pubspec.yaml`**:
 
-```yaml
-dependencies:
-  sandboxed:
-    path: {PATH_TO_REPO}/packages/sandboxed
-```
+    ```yaml
+    dependencies:
+      sandboxed_core:
+      sandboxed:
 
-> Replace `{PATH_TO_REPO}` with the full path to the cloned repo on your machine.
-
-You will also need:
-- [`sandboxed_core`](../sandboxed_core)
-- [`sandboxed_generator`](../sandboxed_generator) (for codegen)
-
----
-
-## 🧰 What It Includes
-
-- Viewer UI with sidebar navigation, search, and preview
-- Runtime param editors and controls
-- Built-in addons (safe area, theme switcher, device preview, etc.)
-- Layout engine for stories and decorators
-- Tag filtering, golden test support, and more
+    dev_dependencies:
+      sandboxed_generator:
+    ```
+2. **Install dependencies**:
+    ```bash
+    flutter pub get
+    ```
+3. **Write Meta and stories**
+4. **Run build_runner** (required only when adding, renaming, removing `Meta` or `Story`):
+    ```bash
+    flutter pub run build_runner build
+    ```
 
 ---
 
-## ▶️ Example Usage
+## 🧰 Usage
+
+
+To create and preview a widget in sandboxed, define a `Meta` and one or more `Story` objects:
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:sandboxed/sandboxed.dart';
+Meta get meta => Meta<SandboxButton>(
+  name: 'Button',
+  module: 'Features / Core',
+  component: SandboxButton,
+  decorators: [
+    Decorator((context, story) => Padding(
+      padding: const EdgeInsets.all(16),
+      child: story,
+    )),
+  ],
+);
+```
 
-void main() {
-  runApp(
-    Sandboxed(
-      title: Text("Brand Name"),
-      brandColor: Colors.green,
-      components: components,
-      addons: [
-        InteractiveViewerAddon(constrained: false),
-        SafeAreaAddon(),
-        AlignmentAddon(),
-      ],
-    ),
-  );
+Then define stories with configurable parameters:
+
+```dart
+Story get $Green => Story(
+  name: 'Green',
+  builder: (context, params) {
+    return SandboxButton(
+      onPressed: () {},
+      title: params.string('title').required("Lorem"),
+      color: params.color('color').required(Colors.green),
+      size: params.single('size', SandboxButtonSize.values)
+                .required(SandboxButtonSize.small),
+    );
+  },
+);
+```
+
+Use `params.boolean`, `params.color`, `params.string`, `params.single`, or `params.multi` to make your widget interactive in the UI.  
+Stories will be listed in the visual explorer and updated live via hot reload.
+
+> [!WARNING]
+> **Important**
+> 
+> Run `flutter pub run build_runner build` after adding, renaming, removing `Meta` or `Story` getters to update the component registry.
+>
+> ♻️ **Hot reload friendly:** All other changes (e.g. story content, styling, params) are picked up automatically with hot reload.
+
+### 💡 VS Code Snippets
+
+You can add these snippets to your VS Code to speed up writing stories and meta definitions.
+
+<details>
+<summary>Expand</summary>
+
+#### How to add:
+
+1. Open Command Palette → `Preferences: Configure User Snippets`
+2. Create or open a global or workspace snippet file
+3. Paste the following:
+
+```json
+{
+  "Meta + Story": {
+    "prefix": "metastory",
+    "description": "Creates a new Sandboxed Story with default Meta",
+    "body": [
+      "import 'package:flutter/widgets.dart';",
+      "import 'package:sandboxed_core/sandboxed_core.dart';",
+      "",
+      "Meta get meta => Meta<${1:Widget}>();",
+      "",
+      "Story get $${2:Default} => Story($0);"
+    ]
+  },
+  "Story": {
+    "prefix": "story",
+    "description": "Creates a new Sandboxed Story",
+    "body": [
+      "Story get $${2:Default} => Story($0);"
+    ]
+  },
+  "Story Config": {
+    "prefix": "storyconfig",
+    "description": "Creates a global story config",
+    "body": [
+      "import 'package:sandboxed_core/sandboxed_core.dart';",
+      "",
+      "Config get config => Config(",
+      "  module: '',",
+      ");"
+    ]
+  }
 }
 ```
 
-Register your components and stories using `Meta` and `Story`, then run the app to browse and test your widgets interactively.
+</details>
 
 ---
 
-## 🧩 Addons
+## 📁 Project Structure
 
-This package includes several built-in addons:
+```
+apps/
+├── sandbox/                  # App for testing sandboxed components in isolation
+├── sandboxed_library/        # App for testing Sandboxed UI Kit
 
-- ✅ Safe Area
-- ✅ Pan & Zoom
-- ✅ Reload
-- ✅ Param Builders
-- ✅ Device Preview
-- ✅ Theme Mode
-- ✅ Tag Renderer
+packages/
+├── sandboxed/                # Main UI and logic for the sandbox viewer
+├── sandboxed_core/           # Low-level primitives for stories, components, params
+├── sandboxed_generator/      # Code generation tools for component discovery
+├── sandboxed_ui_kit/         # UI kit used internally by sandboxed apps
 
-More addons can be added by extending the `Addon` interface and registering them via providers.
+example/
+├── material_book/            # Demo showcasing Material widgets
+├── monorepo/                 # Example of integrating Sandboxed into a monorepo
 
----
-
-## ⚙️ Dev Notes
-
-When you add, rename or remove a `Meta` or `Story` getters, make sure to rebuild the registry:
-
-```bash
-flutter pub run build_runner build
+docs/                         # Developer documentation and guides
+.vscode/                      # VSCode workspace configuration
+melos.yaml                    # Melos workspace config for multi-package setup
+pubspec.yaml                  # Root pubspec for tool-level dependencies
 ```
 
-All other changes support hot reload out of the box.
+---
+
+## 📅 Roadmap
+
+- 🌐 URL state & session persistence (Done)
+- 🛠 Generated docs from source/meta (Partial)
+- 🧠 Param mismatch detection + fixes
+- 🧪 Golden test runner (local & cloud)
+- 🧰 Extended param types (select, JSON, code)
+- 🛎 Settings panel in UI
+- 🧭 Pre-filled search filters
+- 🧩 Lockable & toggleable addons
+- 🧠 VS Code preview plugin (Maybe)
+- ♻️ Reduce dependency footprint
 
 ---
 
-## 📄 Related Packages
+## 🧑‍💻 Contributing
 
-- [`sandboxed_core`](../sandboxed_core/README.md) — Primitives: Meta, Story, Params, Decorators
-- [`sandboxed_generator`](../sandboxed_generator/README.md) — Builder that generates component registry
-- [`sandboxed_ui_kit`](../sandboxed_ui_kit/README.md) — UI components used by the viewer
+Contributions are welcome!  
+Feel free to open issues, submit PRs, or suggest features.
 
 ---
 

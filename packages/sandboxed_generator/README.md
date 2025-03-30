@@ -9,13 +9,12 @@ This package generates the component and story registry used by the `sandboxed` 
 
 ## 📦 Installation
 
-Add to your `pubspec.yaml` using a local path and add `build_runner`:
+Add *sandboxed_generator* and `build_runner` to your `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
   build_runner: any
-  sandboxed_generator:
-    path: {PATH_TO_REPO}/packages/sandboxed_generator
+  sandboxed_generator: 
 ```
 
 > Replace `{PATH_TO_REPO}` with the path to your local clone.
@@ -54,7 +53,7 @@ Story get $Primary => Story(
 flutter pub run build_runner build
 ```
 
-3. The generated registry will be picked placed at `lib/components.g.dart` files. You can pass it to Sandboxed.
+3. The generated registry will be picked placed at `lib/components.g.dart` files. You can pass it to `Sandboxed`.
 
 ```dart
 import 'package:flutter/material.dart';

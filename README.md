@@ -31,39 +31,25 @@ UI components in isolation — like Storybook, but built for Flutter.
 
 ## 📦 Installation
 
-Sandboxed is currently in development and not yet published to pub.dev.
-
-To use it locally:
-
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-username/sandboxed.git
-    ```
-
-2. **Link it in your `pubspec.yaml` using local paths**:
+1. **Add it in your `pubspec.yaml`**:
 
     ```yaml
     dependencies:
       sandboxed_core:
-        path: {PATH_TO_REPO}/packages/core
       sandboxed:
-        path: {PATH_TO_REPO}/packages/sandboxed
-      sandboxed_generator:
-        path: {PATH_TO_REPO}/packages/sandboxed_generator
-    ```
 
-3. **Install dependencies**:
+    dev_dependencies:
+      sandboxed_generator:
+    ```
+2. **Install dependencies**:
     ```bash
     flutter pub get
     ```
-
+3. **Write Meta and stories**
 4. **Run build_runner** (required only when adding, renaming, removing `Meta` or `Story`):
     ```bash
     flutter pub run build_runner build
     ```
-
-> [!NOTE]
-> Replace `{PATH_TO_REPO}` with the local path to your cloned `sandboxed` repo.
 
 ---
 

@@ -699,28 +699,28 @@ packages:
       path: "../../packages/sandboxed"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   sandboxed_core:
     dependency: "direct overridden"
     description:
       path: "../../packages/sandboxed_core"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   sandboxed_generator:
     dependency: "direct dev"
     description:
       path: "../../packages/sandboxed_generator"
       relative: true
     source: path
-    version: "1.0.0"
+    version: "0.1.0"
   sandboxed_ui_kit:
     dependency: "direct main"
     description:
       path: "../../packages/sandboxed_ui_kit"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   shared_preferences:
     dependency: transitive
     description:

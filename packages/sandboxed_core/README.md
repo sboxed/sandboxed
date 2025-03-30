@@ -21,10 +21,7 @@ Add to your `pubspec.yaml`:
 ```yaml
 dependencies:
   sandboxed_core:
-    path: {PATH_TO_REPO}/packages/core
 ```
-
-> Replace `{PATH_TO_REPO}` with the path to the local clone of the repo.
 
 ---
 

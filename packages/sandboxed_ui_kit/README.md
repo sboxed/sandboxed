@@ -13,11 +13,8 @@ Add as a local path dependency in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  sandboxed_ui_kit:
-    path: {PATH_TO_REPO}/packages/sandboxed_ui_kit
+  sandboxed_ui_kit: 
 ```
-
-> Replace `{PATH_TO_REPO}` with the path to your local clone.
 
 ---
 
