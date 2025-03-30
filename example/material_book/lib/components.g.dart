@@ -144,6 +144,73 @@ List<Component> get components => <Component>[
           ),
         ]),
         stories: [
+          _i6.$Playground.applyGenerated(
+            name: 'Playground',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i7.Chip(
+              key: params.dynamic$<Key>(r'key').optional(null),
+              avatar: params.dynamic$<Widget>(r'avatar').optional(null),
+              label: params
+                  .dynamic$<Widget>(r'label')
+                  .required(const SizedBox.shrink()),
+              labelStyle:
+                  params.dynamic$<TextStyle>(r'labelStyle').optional(null),
+              labelPadding: params
+                  .dynamic$<EdgeInsetsGeometry>(r'labelPadding')
+                  .optional(null),
+              deleteIcon: params.dynamic$<Widget>(r'deleteIcon').optional(null),
+              onDeleted:
+                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              deleteIconColor: params.color(r'deleteIconColor').optional(null),
+              deleteButtonTooltipMessage:
+                  params.string(r'deleteButtonTooltipMessage').optional(null),
+              side: params.dynamic$<BorderSide>(r'side').optional(null),
+              shape: params.dynamic$<OutlinedBorder>(r'shape').optional(null),
+              clipBehavior: params
+                  .single(
+                    r'clipBehavior',
+                    _i3.Clip.values,
+                  )
+                  .required(_i3.Clip.none),
+              focusNode:
+                  params.dynamic$<FocusNode>(r'focusNode').optional(null),
+              autofocus: params.boolean(r'autofocus').required(false),
+              color: params
+                  .dynamic$<WidgetStateProperty<Color>>(r'color')
+                  .optional(null),
+              backgroundColor: params.color(r'backgroundColor').optional(null),
+              padding: params
+                  .dynamic$<EdgeInsetsGeometry>(r'padding')
+                  .optional(null),
+              visualDensity: params
+                  .dynamic$<VisualDensity>(r'visualDensity')
+                  .optional(null),
+              materialTapTargetSize: params
+                  .single(
+                    r'materialTapTargetSize',
+                    _i8.MaterialTapTargetSize.values,
+                  )
+                  .optional(null),
+              elevation: params.number(r'elevation').optional(null),
+              shadowColor: params.color(r'shadowColor').optional(null),
+              surfaceTintColor:
+                  params.color(r'surfaceTintColor').optional(null),
+              iconTheme:
+                  params.dynamic$<IconThemeData>(r'iconTheme').optional(null),
+              avatarBoxConstraints: params
+                  .dynamic$<BoxConstraints>(r'avatarBoxConstraints')
+                  .optional(null),
+              deleteIconBoxConstraints: params
+                  .dynamic$<BoxConstraints>(r'deleteIconBoxConstraints')
+                  .optional(null),
+              chipAnimationStyle: params
+                  .dynamic$<ChipAnimationStyle>(r'chipAnimationStyle')
+                  .optional(null),
+            ),
+          ),
           _i6.$Chip.applyGenerated(
             name: 'Chip',
             builder: (

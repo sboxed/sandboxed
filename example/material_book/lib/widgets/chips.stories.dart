@@ -1,8 +1,8 @@
 // ignore_for_file: implementation_imports
 
 import 'package:flutter/material.dart';
-import 'package:sandboxed_core/src/params/use_params.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
+import 'package:sandboxed_core/src/params/use_params.dart';
 
 Meta get meta => Meta<Chip>(
       name: 'Chips', // optional
@@ -17,72 +17,65 @@ Meta get meta => Meta<Chip>(
       ],
     );
 
-Story get $Chip => Story(
-      name: 'Chip',
+Story get $Playground => Story(
+      name: 'Playground',
       params: {
         'label': UseParams(
           (params) => Text(
-            params
-                .string('labelText')
-                .apply('readonly', true)
-                .required('Label'),
+            params.string('labelText').required('Label'),
           ),
         ),
       },
+    );
+
+Story get $Chip => Story(
+      name: 'Chip',
+      builder: (context, params) => Chip(
+        label: Text(
+          params.string('labelText').required('Label'),
+        ),
+      ),
     );
 
 Story get $InputChip => Story(
       name: 'InputChip',
-      params: {
-        'label': UseParams(
-          (params) => Text(
-            params
-                .string('labelText')
-                .apply('readonly', true)
-                .required('Label'),
-          ),
+      builder: (context, params) => InputChip(
+        onPressed: () {},
+        selected: params.boolean('selected').required(false),
+        label: Text(
+          params.string('labelText').required('Label'),
         ),
-      },
+      ),
     );
 
 Story get $ChoiceChip => Story(
       name: 'ChoiceChip',
-      params: {
-        'label': UseParams(
-          (params) => Text(
-            params
-                .string('labelText')
-                .apply('readonly', true)
-                .required('Label'),
-          ),
+      builder: (context, params) => ChoiceChip(
+        onSelected: (value) {},
+        label: Text(
+          params.string('labelText').apply('readonly', true).required('Label'),
         ),
-      },
+        selected: params.boolean('selected').required(false),
+      ),
     );
 
 Story get $FilterChip => Story(
       name: 'FilterChip',
-      params: {
-        'label': UseParams(
-          (params) => Text(
-            params
-                .string('labelText')
-                .apply('readonly', true)
-                .required('Label'),
-          ),
+      builder: (context, params) => FilterChip(
+        label: Text(
+          params.string('labelText').apply('readonly', true).required('Label'),
         ),
-      },
+        selected: params.boolean('selected').required(false),
+        onSelected: (value) {},
+      ),
     );
 
 Story get $ActionChip => Story(
       name: 'ActionChip',
-      params: {
-        'label': UseParams(
-          (params) => Text(
-            params
-                .string('labelText')
-                .apply('readonly', true)
-                .required('Label'),
-          ),
+      builder: (context, params) => ActionChip(
+        onPressed: () {},
+        label: Text(
+          params.string('labelText').apply('readonly', true).required('Label'),
         ),
-      },
+      ),
     );
