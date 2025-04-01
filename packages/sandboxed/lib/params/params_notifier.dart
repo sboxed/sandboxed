@@ -4,8 +4,9 @@ import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:sandboxed_core/src/params/use_params.dart';
+import 'package:sandboxed/params/param_builder.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
+import 'package:sandboxed_core/src/params/use_params.dart';
 
 void safeAssign(void Function(dynamic value) assign, dynamic value) {
   try {
@@ -23,6 +24,9 @@ class ParamsNotifier extends ChangeNotifier implements Params {
   final Map<String, ParamWrapper> _params = {};
   final Map<String, dynamic> _defaultValues = {};
   final Map<String, dynamic> _initialValues = {};
+  final List<ParamBuilder> _builders;
+
+  ParamsNotifier({required List<ParamBuilder> builders}) : _builders = builders;
 
   Map<String, ParamWrapper> get items => UnmodifiableMapView(_params);
 
@@ -36,7 +40,7 @@ class ParamsNotifier extends ChangeNotifier implements Params {
     var isCreation = !_params.containsKey(id);
     final wrapper = _params.putIfAbsent(
       id,
-      () => wrapperFactory?.call() ?? ParamWrapper<TParam>(),
+      () => (wrapperFactory?.call() ?? ParamWrapper<TParam>()).bind(id, this),
     ) as TWrapper;
 
     if (isCreation && _defaultValues.containsKey(id)) {
@@ -172,5 +176,16 @@ class ParamsNotifier extends ChangeNotifier implements Params {
   @override
   ParamWrapper<T> dynamic$<T>(String id) {
     return register<ParamWrapper<T>, T>(id);
+  }
+
+  @override
+  T defaultFor<T>(ParamWrapper<T> param) {
+    for (final builder in _builders) {
+      if (builder.canBuild(param)) {
+        return builder.getInitialValueFor(param);
+      }
+    }
+
+    throw UnsupportedParamException(param);
   }
 }

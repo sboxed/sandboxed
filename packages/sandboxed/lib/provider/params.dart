@@ -1,9 +1,11 @@
 import 'package:flat/flat.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:sandboxed/addons/mixins/param_builder_addon.dart';
 import 'package:sandboxed/params/default_serializers.dart';
 import 'package:sandboxed/params/param_serializer.dart';
 import 'package:sandboxed/params/params_notifier.dart';
+import 'package:sandboxed/provider/addons.dart';
 import 'package:sandboxed/provider/selected.dart';
 import 'package:sandboxed/widgets/revive.dart';
 
@@ -14,9 +16,16 @@ String paramsScopeId(Ref ref) {
   return ref.watch(selectedElementNotifierProvider) ?? '';
 }
 
-@Riverpod(dependencies: [])
+@Riverpod(dependencies: [Addons])
 Raw<ParamsNotifier> params(Ref ref, String id) {
-  return ParamsNotifier();
+  final addons = ref.watch(addonsProvider);
+  final paramBuilders = addons
+      .whereType<ParamBuilderAddon>()
+      .map((addon) => addon.paramBuilders)
+      .expand((element) => element)
+      .toList();
+
+  return ParamsNotifier(builders: paramBuilders);
 }
 
 @riverpod

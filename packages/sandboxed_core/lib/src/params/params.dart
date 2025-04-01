@@ -1,3 +1,4 @@
+export '../exception/exception.dart';
 export 'constant_params.dart';
 export 'list_param.dart';
 export 'param_wrapper.dart';

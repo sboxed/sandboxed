@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sandboxed/params/param_builder.dart';
 import 'package:sandboxed/params/params_notifier.dart';
-import 'package:sandboxed/widgets/sb_color_picker.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
+import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 
 class ColorParamBuilder extends ParamBuilder<Color> {
   @override

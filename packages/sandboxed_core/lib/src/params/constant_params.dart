@@ -93,4 +93,9 @@ class ConstantParams implements Params {
   ParamWrapper<T> dynamic$<T>(String id) {
     return param(id);
   }
+
+  @override
+  T defaultFor<T>(ParamWrapper<T> param) {
+    throw UnimplementedError();
+  }
 }

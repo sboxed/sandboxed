@@ -11,6 +11,18 @@ import 'package:sandboxed_generator/parsers/meta_parser.dart';
 import 'package:sandboxed_generator/parsers/type_checker.dart';
 import 'package:sandboxed_generator/ui/unsupported_parameters_message.dart';
 
+extension on Element {
+  String? get url {
+    return library?.location!.components.first;
+  }
+}
+
+extension on DartType {
+  String? get url {
+    return (alias?.element ?? element)?.url;
+  }
+}
+
 class StoryParser {
   final Resolver resolver;
   final MetaDescription? meta;
@@ -40,7 +52,11 @@ class StoryParser {
       ).closure;
     }
 
-    Expression story = refer(element.name, element.library.location!.encoding);
+    Expression story = refer(
+      element.name,
+      element.url,
+    );
+
     if (generated.isNotEmpty) {
       story = story.property('applyGenerated').call(
         [],
@@ -80,7 +96,11 @@ Expression buildComponent(ClassElement element) {
       constructor.name.isNotEmpty ? '.${constructor.name}' : '';
 
   try {
-    Expression widget = refer(element.name, element.library.location!.encoding);
+    Expression widget = refer(
+      element.name,
+      element.url,
+    );
+
     if (constructorName.isNotEmpty) {
       widget.property(constructorName);
     }
@@ -122,9 +142,25 @@ Expression buildComponent(ClassElement element) {
   return (positional, named);
 }
 
+Reference buildTypeReference(DartType type) {
+  return TypeReference(
+    (b) {
+      final typeArgs = type.alias?.typeArguments;
+      b.url = type.url;
+      b.symbol = switch (type) {
+        DartType(:final alias) when alias != null => alias.element.name,
+        _ => type.getDisplayString(withNullability: false),
+      };
+      for (final childType in typeArgs ?? <DartType>[]) {
+        b.types.add(buildTypeReference(childType));
+      }
+    },
+  );
+}
+
 Expression? buildParameter(ParameterElement parameter) {
   Expression param(
-    String type,
+    dynamic type,
     dynamic code, {
     List<Expression> positionalArgs = const [],
     Map<String, Expression> namedArgs = const {},
@@ -139,25 +175,40 @@ Expression? buildParameter(ParameterElement parameter) {
       }
     }
 
-    if (code is! Raw) {
-      value ??= literal(code);
+    if (code case Raw code) {
+      value ??= CodeExpression(Code(code.value.toString()));
     } else if (code case Expression expression) {
       value ??= expression;
-    } else {
-      value ??= CodeExpression(Code(code.value.toString()));
+    } else if (code != null) {
+      value ??= literal(code);
     }
 
-    final param = refer('params') //
-        .property(type)
-        .call(
-      [literalString(parameter.name, raw: true), ...positionalArgs],
-      namedArgs,
-    );
+    final param = switch (type) {
+      String internal => refer('params') //
+            .property(internal)
+            .call(
+          [literalString(parameter.name, raw: true), ...positionalArgs],
+          namedArgs,
+        ),
+      DartType type => refer('params') //
+          .property('dynamic\$')
+          .call(
+            [literalString(parameter.name, raw: true), ...positionalArgs],
+            namedArgs,
+            [buildTypeReference(type)],
+          ),
+      Object() => throw UnimplementedError(),
+      null => throw UnimplementedError(),
+    };
 
     if (parameter.isOptional && parameter.defaultValueCode == null) {
       return param.property('optional').call([literal(null)]);
     } else {
-      return param.property('required').call([value]);
+      if (value == null) {
+        return param.property('default\$').call([]);
+      } else {
+        return param.property('required').call([value]);
+      }
     }
   }
 
@@ -177,12 +228,12 @@ Expression? buildParameter(ParameterElement parameter) {
         'single',
         refer(
           type.element!.name!,
-          type.element!.library!.location!.encoding,
+          type.url,
         ).property('values').property('first'),
         positionalArgs: [
           refer(
             type.element!.name!,
-            type.element!.library!.location!.encoding,
+            type.url,
           ).property('values')
         ],
       ),
@@ -197,7 +248,7 @@ Expression? buildParameter(ParameterElement parameter) {
         Raw("LinearGradient(colors: [Colors.black, Colors.white])"),
       ),
     _ => param(
-        'dynamic\$<${parameter.type.getDisplayString(withNullability: false)}>',
+        parameter.type,
         defaultValueForType(parameter.type),
       ),
   };
@@ -209,7 +260,7 @@ Expression? handleEnumDefaultValue(
     String defaultValue, EnumElement enum$, Expression? value) {
   if (defaultValue.startsWith('${enum$.name}.')) {
     final parts = defaultValue.split('.').skip(1);
-    value = refer(enum$.name, enum$.library.location!.encoding);
+    value = refer(enum$.name, enum$.library.location!.components.first);
     for (final part in parts) {
       value = value!.property(part);
     }
@@ -251,5 +302,5 @@ dynamic defaultValueForFlutterType(DartType type) {
     return Raw('const SizedBox.shrink()');
   }
 
-  return throw UnsupportedParameterException(type.getDisplayString());
+  return null;
 }

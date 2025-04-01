@@ -25,4 +25,7 @@ abstract interface class Params {
 
   // Generated
   ParamWrapper<T> dynamic$<T>(String id);
+
+  // Default
+  T defaultFor<T>(ParamWrapper<T> param);
 }

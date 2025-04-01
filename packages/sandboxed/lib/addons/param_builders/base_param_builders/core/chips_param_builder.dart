@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sandboxed/params/param_builder.dart';
 import 'package:sandboxed/params/params_notifier.dart';
-import 'package:sandboxed_core/sandboxed_core.dart';
+import 'package:sandboxed/sandboxed.dart';
 
 class SingleChipsParamBuilder<T> extends ParamBuilder<T> {
   @override
@@ -14,24 +14,17 @@ class SingleChipsParamBuilder<T> extends ParamBuilder<T> {
   Widget build(String id, ParamWrapper<T> param, ParamsNotifier params) {
     final listParam = param as SingleChoiceParamWrapper<T>;
 
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: [
-        for (final choice in listParam.values)
-          ChoiceChip(
-            selected: choice == param.value,
-            label: Text(
-              switch (choice) {
-                Enum choice => choice.name,
-                _ => choice.toString(),
-              },
-            ),
-            onSelected: (selected) {
-              if (selected) {
-                params.update(id, choice);
-              }
-            },
+    return ChipsPicker(
+      onSelected: (selected) => params.update(id, selected),
+      value: param.value,
+      values: [
+        for (final value in listParam.values)
+          (
+            value,
+            switch (value) {
+              Enum choice => choice.name,
+              _ => value.toString(),
+            }
           )
       ],
     );
@@ -54,27 +47,26 @@ class MultiChipsParamBuilder<T> extends ParamBuilder<T> {
   Widget build(String id, ParamWrapper param, ParamsNotifier params) {
     final multi = param as MultiChoiceParamWrapper<T>;
 
-    return Wrap(
-      spacing: 5.0,
-      children: [
-        for (final choice in multi.values)
-          ChoiceChip(
-            selected: multi.value?.contains(choice) == true,
-            label: Text(
-              switch (choice) {
-                Enum choice => choice.name,
-                _ => choice.toString(),
-              },
-            ),
-            onSelected: (selected) {
-              if (!selected) {
-                params.update<List<T>>(id, ([...?multi.value]..remove(choice)));
-              } else {
-                params.update<List<T>>(id, [...?multi.value, choice]);
-              }
-            },
+    return MultiChipsPicker(
+      selected: multi.value?.toSet() ?? const {},
+      values: [
+        for (final value in param.values)
+          (
+            value,
+            switch (value) {
+              Enum choice => choice.name,
+              _ => value.toString(),
+            }
           )
       ],
+      onSelected: (value) => params.update<List<T>>(
+        id,
+        [...?multi.value, value],
+      ),
+      onDeselected: (value) => params.update<List<T>>(
+        id,
+        ([...?multi.value]..remove(value)),
+      ),
     );
   }
 

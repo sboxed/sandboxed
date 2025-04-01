@@ -1,8 +1,8 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:sandboxed_core/decorator.dart';
 import 'package:sandboxed_core/meta.dart';
-import 'package:sandboxed_core/src/params/constant_params.dart';
-import 'package:sandboxed_core/src/params/params_store.dart';
+import 'package:sandboxed_core/src/params/params.dart';
+import 'package:sandboxed_core/src/widgets/unsupported_param_widget.dart';
 import 'package:sandboxed_core/story.dart';
 
 class StoryView extends StatefulWidget {
@@ -35,11 +35,15 @@ class _StoryViewState extends State<StoryView> {
 
   @override
   Widget build(BuildContext context) {
-    var child = widget.story.builder(context, params);
-    child = widget.story.decorators.decorate(context, child);
-    child = widget.meta?.decorators.decorate(context, child) ?? child;
-    child = widget.decorators.decorate(context, child);
+    try {
+      var child = widget.story.builder(context, params);
+      child = widget.story.decorators.decorate(context, child);
+      child = widget.meta?.decorators.decorate(context, child) ?? child;
+      child = widget.decorators.decorate(context, child);
 
-    return child;
+      return child;
+    } on UnsupportedParamException catch (exception) {
+      return UnsupportedParamWidget(exception: exception);
+    }
   }
 }

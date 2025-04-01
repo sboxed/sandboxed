@@ -26,7 +26,7 @@ final paramsScopeIdProvider = AutoDisposeProvider<String>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ParamsScopeIdRef = AutoDisposeProviderRef<String>;
-String _$paramsHash() => r'79eb36356eb3d0e5d8c86ad3a88c98cf7d19c695';
+String _$paramsHash() => r'a1e9b06d01ac0977c3bf5f0efe5babadfff354c8';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -76,14 +76,18 @@ class ParamsFamily extends Family<Raw<ParamsNotifier>> {
     );
   }
 
-  static final Iterable<ProviderOrFamily> _dependencies =
-      const <ProviderOrFamily>[];
+  static final Iterable<ProviderOrFamily> _dependencies = <ProviderOrFamily>[
+    addonsProvider
+  ];
 
   @override
   Iterable<ProviderOrFamily>? get dependencies => _dependencies;
 
   static final Iterable<ProviderOrFamily> _allTransitiveDependencies =
-      const <ProviderOrFamily>{};
+      <ProviderOrFamily>{
+    addonsProvider,
+    ...?addonsProvider.allTransitiveDependencies
+  };
 
   @override
   Iterable<ProviderOrFamily>? get allTransitiveDependencies =>

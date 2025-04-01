@@ -3,12 +3,19 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:sandboxed_core/sandboxed_core.dart';
+
 class ParamWrapper<T> {
   final Map<String, dynamic> _meta = {};
   Map<String, dynamic> get meta => UnmodifiableMapView(_meta);
 
   final Completer<T?> _completer = Completer();
   Future<T?> get completed => _completer.future;
+
+  String? _id;
+  Params? _params;
+
+  String get id => _id ?? '<has no id>';
 
   T? _initialValue;
   T? _value;
@@ -26,6 +33,12 @@ class ParamWrapper<T> {
   bool _resolved = false;
 
   bool get isRequired => _required;
+
+  ParamWrapper<T> bind(String id, Params params) {
+    _id = id;
+    _params = params;
+    return this;
+  }
 
   T required(T value) {
     if (_resolved) {
@@ -65,6 +78,23 @@ class ParamWrapper<T> {
     _completer.complete(value);
 
     return value;
+  }
+
+  T default$() {
+    if (_resolved) {
+      return this.value!;
+    }
+
+    final defaultValue = _params!.defaultFor<T>(this);
+
+    _resolved = true;
+    _null = defaultValue == null;
+    this._value = defaultValue;
+    _initialValue = defaultValue;
+
+    _completer.complete(defaultValue);
+
+    return defaultValue;
   }
 
   ParamWrapper<T> apply(String key, dynamic value) {

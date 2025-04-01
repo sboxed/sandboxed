@@ -25,6 +25,14 @@
       "flutterMode": "release"
     },
     {
+      "name": "material_book (generator)",
+      "cwd": "example/material_book",
+      "request": "launch",
+      "type": "dart",
+      "program": ".dart_tool/build/entrypoint/build.dart",
+      "args": ["build", "-d"]
+    },
+    {
       "name": "sandbox",
       "cwd": "apps/sandbox",
       "request": "launch",
@@ -45,6 +53,14 @@
       "flutterMode": "release"
     },
     {
+      "name": "sandbox (generator)",
+      "cwd": "apps/sandbox",
+      "request": "launch",
+      "type": "dart",
+      "program": ".dart_tool/build/entrypoint/build.dart",
+      "args": ["build", "-d"]
+    },
+    {
       "name": "Sandboxed Library",
       "cwd": "apps/sandboxed_library",
       "request": "launch",
@@ -63,14 +79,6 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
-    },
-    {
-      "name": "sandbox (generator)",
-      "cwd": "apps/sandbox",
-      "request": "launch",
-      "type": "dart",
-      "program": ".dart_tool/build/entrypoint/build.dart",
-      "args": ["build", "-d"]
     },
     {
       "name": "monorepo/ui_book",

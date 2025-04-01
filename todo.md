@@ -30,18 +30,21 @@
   (A) Color Param {cm:2025-03-05}
   (A) String Param {cm:2025-03-05}
   (C) Action Trigger Param
+  (B) Flutter params
+    Alignment {cm:2025-04-01}
+    EdgeInsets - partially
+    TextStyle - partially
   (B) Select Field Param
   (B) Multiple Select Field Param
-  (A) Alignment Param
   (B) Multiline Text Param
   (C) Code Param - param to edit code snippets in textarea #addon
-  (A) Integer Param
+  (A) Integer Param {cm:2025-03-05}
   (A) Integer Slider Param
-  (A) Double Param
+  (A) Double Param {cm:2025-03-05}
   (A) Double Slider Param
   (B) Date Param
   (B) Duration Param
-  (B) JSON serializable objects 
+  (B) JSON serializable objects
 (B) Addons {c}
   (A) Alignment {cm:2025-03-05}
   (A) Pan and Zoom {cm:2025-03-05}

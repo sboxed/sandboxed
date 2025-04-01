@@ -6,17 +6,39 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:material_book/widgets/bottom_app_bar.stories.dart' as _i1;
 import 'package:flutter/src/material/bottom_app_bar.dart' as _i2;
-import 'dart:ui' as _i3;
+import 'package:flutter/src/foundation/key.dart' as _i3;
+import 'package:flutter/src/painting/notched_shapes.dart' as _i4;
+import 'dart:ui' as _i5;
+import 'package:flutter/src/widgets/framework.dart' as _i6;
+import 'package:flutter/src/painting/edge_insets.dart' as _i7;
 import 'package:material_book/widgets/bottom_navigation_bar.stories.dart'
-    as _i4;
-import 'package:flutter/src/material/bottom_navigation_bar.dart' as _i5;
-import 'package:material_book/widgets/chips.stories.dart' as _i6;
-import 'package:flutter/src/material/chip.dart' as _i7;
-import 'package:flutter/src/material/theme_data.dart' as _i8;
-import 'package:material_book/widgets/app_bar.stories.dart' as _i9;
-import 'package:material_book/widgets/scaffold.stories.dart' as _i10;
-import 'package:material_book/widgets/card.stories.dart' as _i11;
-import 'package:flutter/src/material/card.dart' as _i12;
+    as _i8;
+import 'package:flutter/src/material/bottom_navigation_bar.dart' as _i9;
+import 'package:flutter/src/foundation/basic_types.dart' as _i10;
+import 'package:flutter/src/widgets/icon_theme_data.dart' as _i11;
+import 'package:flutter/src/painting/text_style.dart' as _i12;
+import 'package:flutter/src/services/mouse_cursor.dart' as _i13;
+import 'package:material_book/widgets/chips.stories.dart' as _i14;
+import 'package:flutter/src/material/chip.dart' as _i15;
+import 'package:flutter/src/painting/borders.dart' as _i16;
+import 'package:flutter/src/widgets/focus_manager.dart' as _i17;
+import 'package:flutter/src/material/material_state.dart' as _i18;
+import 'package:flutter/src/material/theme_data.dart' as _i19;
+import 'package:flutter/src/rendering/box.dart' as _i20;
+import 'package:material_book/widgets/app_bar.stories.dart' as _i21;
+import 'package:flutter/src/material/app_bar.dart' as _i22;
+import 'package:flutter/src/widgets/preferred_size.dart' as _i23;
+import 'package:flutter/src/widgets/scroll_notification.dart' as _i24;
+import 'package:flutter/src/services/system_chrome.dart' as _i25;
+import 'package:material_book/widgets/scaffold.stories.dart' as _i26;
+import 'package:flutter/src/material/scaffold.dart' as _i27;
+import 'package:flutter/src/material/floating_action_button_location.dart'
+    as _i28;
+import 'package:flutter/src/painting/alignment.dart' as _i29;
+import 'package:flutter/src/material/drawer.dart' as _i30;
+import 'package:flutter/src/gestures/recognizer.dart' as _i31;
+import 'package:material_book/widgets/card.stories.dart' as _i32;
+import 'package:flutter/src/material/card.dart' as _i33;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -38,20 +60,20 @@ List<Component> get components => <Component>[
               params,
             ) =>
                 _i2.BottomAppBar(
-              key: params.dynamic$<Key>(r'key').optional(null),
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
               color: params.color(r'color').optional(null),
               elevation: params.number(r'elevation').optional(null),
-              shape: params.dynamic$<NotchedShape>(r'shape').optional(null),
+              shape: params.dynamic$<_i4.NotchedShape>(r'shape').optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
-                  .required(_i3.Clip.none),
+                  .required(_i5.Clip.none),
               notchMargin: params.number(r'notchMargin').required(4.0),
-              child: params.dynamic$<Widget>(r'child').optional(null),
+              child: params.dynamic$<_i6.Widget>(r'child').optional(null),
               padding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'padding')
                   .optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
@@ -62,8 +84,8 @@ List<Component> get components => <Component>[
         ],
       ),
       Component(
-        meta: _i4.meta.copyWith(documentation: [
-          ..._i4.meta.documentation,
+        meta: _i8.meta.copyWith(documentation: [
+          ..._i8.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -71,25 +93,26 @@ List<Component> get components => <Component>[
           ),
         ]),
         stories: [
-          _i4.$Default.applyGenerated(
+          _i8.$Default.applyGenerated(
             name: 'Default',
             builder: (
               context,
               params,
             ) =>
-                _i5.BottomNavigationBar(
-              key: params.dynamic$<Key>(r'key').optional(null),
+                _i9.BottomNavigationBar(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
               items: params
                   .dynamic$<List<BottomNavigationBarItem>>(r'items')
                   .required([]),
-              onTap:
-                  params.dynamic$<void Function(int)>(r'onTap').optional(null),
+              onTap: params
+                  .dynamic$<_i10.ValueChanged<int>>(r'onTap')
+                  .optional(null),
               currentIndex: params.integer(r'currentIndex').required(0),
               elevation: params.number(r'elevation').optional(null),
               type: params
                   .single(
                     r'type',
-                    _i5.BottomNavigationBarType.values,
+                    _i9.BottomNavigationBarType.values,
                   )
                   .optional(null),
               fixedColor: params.color(r'fixedColor').optional(null),
@@ -100,32 +123,33 @@ List<Component> get components => <Component>[
               unselectedItemColor:
                   params.color(r'unselectedItemColor').optional(null),
               selectedIconTheme: params
-                  .dynamic$<IconThemeData>(r'selectedIconTheme')
+                  .dynamic$<_i11.IconThemeData>(r'selectedIconTheme')
                   .optional(null),
               unselectedIconTheme: params
-                  .dynamic$<IconThemeData>(r'unselectedIconTheme')
+                  .dynamic$<_i11.IconThemeData>(r'unselectedIconTheme')
                   .optional(null),
               selectedFontSize:
                   params.number(r'selectedFontSize').required(14.0),
               unselectedFontSize:
                   params.number(r'unselectedFontSize').required(12.0),
               selectedLabelStyle: params
-                  .dynamic$<TextStyle>(r'selectedLabelStyle')
+                  .dynamic$<_i12.TextStyle>(r'selectedLabelStyle')
                   .optional(null),
               unselectedLabelStyle: params
-                  .dynamic$<TextStyle>(r'unselectedLabelStyle')
+                  .dynamic$<_i12.TextStyle>(r'unselectedLabelStyle')
                   .optional(null),
               showSelectedLabels:
                   params.boolean(r'showSelectedLabels').optional(null),
               showUnselectedLabels:
                   params.boolean(r'showUnselectedLabels').optional(null),
-              mouseCursor:
-                  params.dynamic$<MouseCursor>(r'mouseCursor').optional(null),
+              mouseCursor: params
+                  .dynamic$<_i13.MouseCursor>(r'mouseCursor')
+                  .optional(null),
               enableFeedback: params.boolean(r'enableFeedback').optional(null),
               landscapeLayout: params
                   .single(
                     r'landscapeLayout',
-                    _i5.BottomNavigationBarLandscapeLayout.values,
+                    _i9.BottomNavigationBarLandscapeLayout.values,
                   )
                   .optional(null),
               useLegacyColorScheme:
@@ -135,8 +159,8 @@ List<Component> get components => <Component>[
         ],
       ),
       Component(
-        meta: _i6.meta.copyWith(documentation: [
-          ..._i6.meta.documentation,
+        meta: _i14.meta.copyWith(documentation: [
+          ..._i14.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -144,413 +168,437 @@ List<Component> get components => <Component>[
           ),
         ]),
         stories: [
-          _i6.$Playground.applyGenerated(
+          _i14.$Playground.applyGenerated(
             name: 'Playground',
             builder: (
               context,
               params,
             ) =>
-                _i7.Chip(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              avatar: params.dynamic$<Widget>(r'avatar').optional(null),
+                _i15.Chip(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
+              avatar: params.dynamic$<_i6.Widget>(r'avatar').optional(null),
               label: params
-                  .dynamic$<Widget>(r'label')
+                  .dynamic$<_i6.Widget>(r'label')
                   .required(const SizedBox.shrink()),
               labelStyle:
-                  params.dynamic$<TextStyle>(r'labelStyle').optional(null),
+                  params.dynamic$<_i12.TextStyle>(r'labelStyle').optional(null),
               labelPadding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'labelPadding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'labelPadding')
                   .optional(null),
-              deleteIcon: params.dynamic$<Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              deleteIcon:
+                  params.dynamic$<_i6.Widget>(r'deleteIcon').optional(null),
+              onDeleted: params
+                  .dynamic$<_i5.VoidCallback>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<BorderSide>(r'side').optional(null),
-              shape: params.dynamic$<OutlinedBorder>(r'shape').optional(null),
+              side: params.dynamic$<_i16.BorderSide>(r'side').optional(null),
+              shape:
+                  params.dynamic$<_i16.OutlinedBorder>(r'shape').optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
-                  .required(_i3.Clip.none),
+                  .required(_i5.Clip.none),
               focusNode:
-                  params.dynamic$<FocusNode>(r'focusNode').optional(null),
+                  params.dynamic$<_i17.FocusNode>(r'focusNode').optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<WidgetStateProperty<Color>>(r'color')
+                  .dynamic$<_i18.MaterialStateProperty<_i5.Color>>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<VisualDensity>(r'visualDensity')
+                  .dynamic$<_i19.VisualDensity>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
                     r'materialTapTargetSize',
-                    _i8.MaterialTapTargetSize.values,
+                    _i19.MaterialTapTargetSize.values,
                   )
                   .optional(null),
               elevation: params.number(r'elevation').optional(null),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
-              iconTheme:
-                  params.dynamic$<IconThemeData>(r'iconTheme').optional(null),
+              iconTheme: params
+                  .dynamic$<_i11.IconThemeData>(r'iconTheme')
+                  .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i15.ChipAnimationStyle>(r'chipAnimationStyle')
                   .optional(null),
             ),
           ),
-          _i6.$Chip.applyGenerated(
+          _i14.$Chip.applyGenerated(
             name: 'Chip',
             builder: (
               context,
               params,
             ) =>
-                _i7.Chip(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              avatar: params.dynamic$<Widget>(r'avatar').optional(null),
+                _i15.Chip(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
+              avatar: params.dynamic$<_i6.Widget>(r'avatar').optional(null),
               label: params
-                  .dynamic$<Widget>(r'label')
+                  .dynamic$<_i6.Widget>(r'label')
                   .required(const SizedBox.shrink()),
               labelStyle:
-                  params.dynamic$<TextStyle>(r'labelStyle').optional(null),
+                  params.dynamic$<_i12.TextStyle>(r'labelStyle').optional(null),
               labelPadding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'labelPadding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'labelPadding')
                   .optional(null),
-              deleteIcon: params.dynamic$<Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              deleteIcon:
+                  params.dynamic$<_i6.Widget>(r'deleteIcon').optional(null),
+              onDeleted: params
+                  .dynamic$<_i5.VoidCallback>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<BorderSide>(r'side').optional(null),
-              shape: params.dynamic$<OutlinedBorder>(r'shape').optional(null),
+              side: params.dynamic$<_i16.BorderSide>(r'side').optional(null),
+              shape:
+                  params.dynamic$<_i16.OutlinedBorder>(r'shape').optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
-                  .required(_i3.Clip.none),
+                  .required(_i5.Clip.none),
               focusNode:
-                  params.dynamic$<FocusNode>(r'focusNode').optional(null),
+                  params.dynamic$<_i17.FocusNode>(r'focusNode').optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<WidgetStateProperty<Color>>(r'color')
+                  .dynamic$<_i18.MaterialStateProperty<_i5.Color>>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<VisualDensity>(r'visualDensity')
+                  .dynamic$<_i19.VisualDensity>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
                     r'materialTapTargetSize',
-                    _i8.MaterialTapTargetSize.values,
+                    _i19.MaterialTapTargetSize.values,
                   )
                   .optional(null),
               elevation: params.number(r'elevation').optional(null),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
-              iconTheme:
-                  params.dynamic$<IconThemeData>(r'iconTheme').optional(null),
+              iconTheme: params
+                  .dynamic$<_i11.IconThemeData>(r'iconTheme')
+                  .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i15.ChipAnimationStyle>(r'chipAnimationStyle')
                   .optional(null),
             ),
           ),
-          _i6.$InputChip.applyGenerated(
+          _i14.$InputChip.applyGenerated(
             name: 'Input Chip',
             builder: (
               context,
               params,
             ) =>
-                _i7.Chip(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              avatar: params.dynamic$<Widget>(r'avatar').optional(null),
+                _i15.Chip(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
+              avatar: params.dynamic$<_i6.Widget>(r'avatar').optional(null),
               label: params
-                  .dynamic$<Widget>(r'label')
+                  .dynamic$<_i6.Widget>(r'label')
                   .required(const SizedBox.shrink()),
               labelStyle:
-                  params.dynamic$<TextStyle>(r'labelStyle').optional(null),
+                  params.dynamic$<_i12.TextStyle>(r'labelStyle').optional(null),
               labelPadding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'labelPadding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'labelPadding')
                   .optional(null),
-              deleteIcon: params.dynamic$<Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              deleteIcon:
+                  params.dynamic$<_i6.Widget>(r'deleteIcon').optional(null),
+              onDeleted: params
+                  .dynamic$<_i5.VoidCallback>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<BorderSide>(r'side').optional(null),
-              shape: params.dynamic$<OutlinedBorder>(r'shape').optional(null),
+              side: params.dynamic$<_i16.BorderSide>(r'side').optional(null),
+              shape:
+                  params.dynamic$<_i16.OutlinedBorder>(r'shape').optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
-                  .required(_i3.Clip.none),
+                  .required(_i5.Clip.none),
               focusNode:
-                  params.dynamic$<FocusNode>(r'focusNode').optional(null),
+                  params.dynamic$<_i17.FocusNode>(r'focusNode').optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<WidgetStateProperty<Color>>(r'color')
+                  .dynamic$<_i18.MaterialStateProperty<_i5.Color>>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<VisualDensity>(r'visualDensity')
+                  .dynamic$<_i19.VisualDensity>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
                     r'materialTapTargetSize',
-                    _i8.MaterialTapTargetSize.values,
+                    _i19.MaterialTapTargetSize.values,
                   )
                   .optional(null),
               elevation: params.number(r'elevation').optional(null),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
-              iconTheme:
-                  params.dynamic$<IconThemeData>(r'iconTheme').optional(null),
+              iconTheme: params
+                  .dynamic$<_i11.IconThemeData>(r'iconTheme')
+                  .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i15.ChipAnimationStyle>(r'chipAnimationStyle')
                   .optional(null),
             ),
           ),
-          _i6.$ChoiceChip.applyGenerated(
+          _i14.$ChoiceChip.applyGenerated(
             name: 'Choice Chip',
             builder: (
               context,
               params,
             ) =>
-                _i7.Chip(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              avatar: params.dynamic$<Widget>(r'avatar').optional(null),
+                _i15.Chip(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
+              avatar: params.dynamic$<_i6.Widget>(r'avatar').optional(null),
               label: params
-                  .dynamic$<Widget>(r'label')
+                  .dynamic$<_i6.Widget>(r'label')
                   .required(const SizedBox.shrink()),
               labelStyle:
-                  params.dynamic$<TextStyle>(r'labelStyle').optional(null),
+                  params.dynamic$<_i12.TextStyle>(r'labelStyle').optional(null),
               labelPadding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'labelPadding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'labelPadding')
                   .optional(null),
-              deleteIcon: params.dynamic$<Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              deleteIcon:
+                  params.dynamic$<_i6.Widget>(r'deleteIcon').optional(null),
+              onDeleted: params
+                  .dynamic$<_i5.VoidCallback>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<BorderSide>(r'side').optional(null),
-              shape: params.dynamic$<OutlinedBorder>(r'shape').optional(null),
+              side: params.dynamic$<_i16.BorderSide>(r'side').optional(null),
+              shape:
+                  params.dynamic$<_i16.OutlinedBorder>(r'shape').optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
-                  .required(_i3.Clip.none),
+                  .required(_i5.Clip.none),
               focusNode:
-                  params.dynamic$<FocusNode>(r'focusNode').optional(null),
+                  params.dynamic$<_i17.FocusNode>(r'focusNode').optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<WidgetStateProperty<Color>>(r'color')
+                  .dynamic$<_i18.MaterialStateProperty<_i5.Color>>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<VisualDensity>(r'visualDensity')
+                  .dynamic$<_i19.VisualDensity>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
                     r'materialTapTargetSize',
-                    _i8.MaterialTapTargetSize.values,
+                    _i19.MaterialTapTargetSize.values,
                   )
                   .optional(null),
               elevation: params.number(r'elevation').optional(null),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
-              iconTheme:
-                  params.dynamic$<IconThemeData>(r'iconTheme').optional(null),
+              iconTheme: params
+                  .dynamic$<_i11.IconThemeData>(r'iconTheme')
+                  .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i15.ChipAnimationStyle>(r'chipAnimationStyle')
                   .optional(null),
             ),
           ),
-          _i6.$FilterChip.applyGenerated(
+          _i14.$FilterChip.applyGenerated(
             name: 'Filter Chip',
             builder: (
               context,
               params,
             ) =>
-                _i7.Chip(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              avatar: params.dynamic$<Widget>(r'avatar').optional(null),
+                _i15.Chip(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
+              avatar: params.dynamic$<_i6.Widget>(r'avatar').optional(null),
               label: params
-                  .dynamic$<Widget>(r'label')
+                  .dynamic$<_i6.Widget>(r'label')
                   .required(const SizedBox.shrink()),
               labelStyle:
-                  params.dynamic$<TextStyle>(r'labelStyle').optional(null),
+                  params.dynamic$<_i12.TextStyle>(r'labelStyle').optional(null),
               labelPadding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'labelPadding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'labelPadding')
                   .optional(null),
-              deleteIcon: params.dynamic$<Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              deleteIcon:
+                  params.dynamic$<_i6.Widget>(r'deleteIcon').optional(null),
+              onDeleted: params
+                  .dynamic$<_i5.VoidCallback>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<BorderSide>(r'side').optional(null),
-              shape: params.dynamic$<OutlinedBorder>(r'shape').optional(null),
+              side: params.dynamic$<_i16.BorderSide>(r'side').optional(null),
+              shape:
+                  params.dynamic$<_i16.OutlinedBorder>(r'shape').optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
-                  .required(_i3.Clip.none),
+                  .required(_i5.Clip.none),
               focusNode:
-                  params.dynamic$<FocusNode>(r'focusNode').optional(null),
+                  params.dynamic$<_i17.FocusNode>(r'focusNode').optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<WidgetStateProperty<Color>>(r'color')
+                  .dynamic$<_i18.MaterialStateProperty<_i5.Color>>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<VisualDensity>(r'visualDensity')
+                  .dynamic$<_i19.VisualDensity>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
                     r'materialTapTargetSize',
-                    _i8.MaterialTapTargetSize.values,
+                    _i19.MaterialTapTargetSize.values,
                   )
                   .optional(null),
               elevation: params.number(r'elevation').optional(null),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
-              iconTheme:
-                  params.dynamic$<IconThemeData>(r'iconTheme').optional(null),
+              iconTheme: params
+                  .dynamic$<_i11.IconThemeData>(r'iconTheme')
+                  .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i15.ChipAnimationStyle>(r'chipAnimationStyle')
                   .optional(null),
             ),
           ),
-          _i6.$ActionChip.applyGenerated(
+          _i14.$ActionChip.applyGenerated(
             name: 'Action Chip',
             builder: (
               context,
               params,
             ) =>
-                _i7.Chip(
-              key: params.dynamic$<Key>(r'key').optional(null),
-              avatar: params.dynamic$<Widget>(r'avatar').optional(null),
+                _i15.Chip(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
+              avatar: params.dynamic$<_i6.Widget>(r'avatar').optional(null),
               label: params
-                  .dynamic$<Widget>(r'label')
+                  .dynamic$<_i6.Widget>(r'label')
                   .required(const SizedBox.shrink()),
               labelStyle:
-                  params.dynamic$<TextStyle>(r'labelStyle').optional(null),
+                  params.dynamic$<_i12.TextStyle>(r'labelStyle').optional(null),
               labelPadding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'labelPadding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'labelPadding')
                   .optional(null),
-              deleteIcon: params.dynamic$<Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              deleteIcon:
+                  params.dynamic$<_i6.Widget>(r'deleteIcon').optional(null),
+              onDeleted: params
+                  .dynamic$<_i5.VoidCallback>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<BorderSide>(r'side').optional(null),
-              shape: params.dynamic$<OutlinedBorder>(r'shape').optional(null),
+              side: params.dynamic$<_i16.BorderSide>(r'side').optional(null),
+              shape:
+                  params.dynamic$<_i16.OutlinedBorder>(r'shape').optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
-                  .required(_i3.Clip.none),
+                  .required(_i5.Clip.none),
               focusNode:
-                  params.dynamic$<FocusNode>(r'focusNode').optional(null),
+                  params.dynamic$<_i17.FocusNode>(r'focusNode').optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<WidgetStateProperty<Color>>(r'color')
+                  .dynamic$<_i18.MaterialStateProperty<_i5.Color>>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<VisualDensity>(r'visualDensity')
+                  .dynamic$<_i19.VisualDensity>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
                     r'materialTapTargetSize',
-                    _i8.MaterialTapTargetSize.values,
+                    _i19.MaterialTapTargetSize.values,
                   )
                   .optional(null),
               elevation: params.number(r'elevation').optional(null),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
-              iconTheme:
-                  params.dynamic$<IconThemeData>(r'iconTheme').optional(null),
+              iconTheme: params
+                  .dynamic$<_i11.IconThemeData>(r'iconTheme')
+                  .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i20.BoxConstraints>(r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i15.ChipAnimationStyle>(r'chipAnimationStyle')
                   .optional(null),
             ),
           ),
         ],
       ),
       Component(
-        meta: _i9.meta.copyWith(documentation: [
-          ..._i9.meta.documentation,
+        meta: _i21.meta.copyWith(documentation: [
+          ..._i21.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -558,40 +606,76 @@ List<Component> get components => <Component>[
           ),
         ]),
         stories: [
-          _i9.$Default.applyGenerated(
+          _i21.$Default.applyGenerated(
             name: 'Default',
             builder: (
               context,
               params,
             ) =>
-                DefaultTextStyle(
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-                fontSize: 24,
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: const Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          'Component has unsupported parameters and can\'t be built automatically'),
-                      Text(
-                          'Parameter `notificationPredicate` of type [bool Function(ScrollNotification)]'),
-                    ],
-                  ),
-                ),
-              ),
+                _i22.AppBar(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
+              leading: params.dynamic$<_i6.Widget>(r'leading').optional(null),
+              automaticallyImplyLeading:
+                  params.boolean(r'automaticallyImplyLeading').required(true),
+              title: params.dynamic$<_i6.Widget>(r'title').optional(null),
+              actions: params.dynamic$<List<Widget>>(r'actions').optional(null),
+              flexibleSpace:
+                  params.dynamic$<_i6.Widget>(r'flexibleSpace').optional(null),
+              bottom: params
+                  .dynamic$<_i23.PreferredSizeWidget>(r'bottom')
+                  .optional(null),
+              elevation: params.number(r'elevation').optional(null),
+              scrolledUnderElevation:
+                  params.number(r'scrolledUnderElevation').optional(null),
+              notificationPredicate: params
+                  .dynamic$<_i24.ScrollNotificationPredicate>(
+                      r'notificationPredicate')
+                  .required(defaultScrollNotificationPredicate),
+              shadowColor: params.color(r'shadowColor').optional(null),
+              surfaceTintColor:
+                  params.color(r'surfaceTintColor').optional(null),
+              shape: params.dynamic$<_i16.ShapeBorder>(r'shape').optional(null),
+              backgroundColor: params.color(r'backgroundColor').optional(null),
+              foregroundColor: params.color(r'foregroundColor').optional(null),
+              iconTheme: params
+                  .dynamic$<_i11.IconThemeData>(r'iconTheme')
+                  .optional(null),
+              actionsIconTheme: params
+                  .dynamic$<_i11.IconThemeData>(r'actionsIconTheme')
+                  .optional(null),
+              primary: params.boolean(r'primary').required(true),
+              centerTitle: params.boolean(r'centerTitle').optional(null),
+              excludeHeaderSemantics:
+                  params.boolean(r'excludeHeaderSemantics').required(false),
+              titleSpacing: params.number(r'titleSpacing').optional(null),
+              toolbarOpacity: params.number(r'toolbarOpacity').required(1.0),
+              bottomOpacity: params.number(r'bottomOpacity').required(1.0),
+              toolbarHeight: params.number(r'toolbarHeight').optional(null),
+              leadingWidth: params.number(r'leadingWidth').optional(null),
+              toolbarTextStyle: params
+                  .dynamic$<_i12.TextStyle>(r'toolbarTextStyle')
+                  .optional(null),
+              titleTextStyle: params
+                  .dynamic$<_i12.TextStyle>(r'titleTextStyle')
+                  .optional(null),
+              systemOverlayStyle: params
+                  .dynamic$<_i25.SystemUiOverlayStyle>(r'systemOverlayStyle')
+                  .optional(null),
+              forceMaterialTransparency:
+                  params.boolean(r'forceMaterialTransparency').required(false),
+              clipBehavior: params
+                  .single(
+                    r'clipBehavior',
+                    _i5.Clip.values,
+                  )
+                  .optional(null),
             ),
           )
         ],
       ),
       Component(
-        meta: _i10.meta.copyWith(documentation: [
-          ..._i10.meta.documentation,
+        meta: _i26.meta.copyWith(documentation: [
+          ..._i26.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -599,94 +683,136 @@ List<Component> get components => <Component>[
           ),
         ]),
         stories: [
-          _i10.$Default.applyGenerated(
+          _i26.$Default.applyGenerated(
             name: 'Default',
             builder: (
               context,
               params,
             ) =>
-                DefaultTextStyle(
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-                fontSize: 24,
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: const Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          'Component has unsupported parameters and can\'t be built automatically'),
-                      Text(
-                          'Parameter `persistentFooterAlignment` of type [AlignmentDirectional]'),
-                    ],
-                  ),
-                ),
-              ),
+                _i27.Scaffold(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
+              appBar: params
+                  .dynamic$<_i23.PreferredSizeWidget>(r'appBar')
+                  .optional(null),
+              body: params.dynamic$<_i6.Widget>(r'body').optional(null),
+              floatingActionButton: params
+                  .dynamic$<_i6.Widget>(r'floatingActionButton')
+                  .optional(null),
+              floatingActionButtonLocation: params
+                  .dynamic$<_i28.FloatingActionButtonLocation>(
+                      r'floatingActionButtonLocation')
+                  .optional(null),
+              floatingActionButtonAnimator: params
+                  .dynamic$<_i28.FloatingActionButtonAnimator>(
+                      r'floatingActionButtonAnimator')
+                  .optional(null),
+              persistentFooterButtons: params
+                  .dynamic$<List<Widget>>(r'persistentFooterButtons')
+                  .optional(null),
+              persistentFooterAlignment: params
+                  .dynamic$<_i29.AlignmentDirectional>(
+                      r'persistentFooterAlignment')
+                  .required(AlignmentDirectional.centerEnd),
+              drawer: params.dynamic$<_i6.Widget>(r'drawer').optional(null),
+              onDrawerChanged: params
+                  .dynamic$<_i30.DrawerCallback>(r'onDrawerChanged')
+                  .optional(null),
+              endDrawer:
+                  params.dynamic$<_i6.Widget>(r'endDrawer').optional(null),
+              onEndDrawerChanged: params
+                  .dynamic$<_i30.DrawerCallback>(r'onEndDrawerChanged')
+                  .optional(null),
+              bottomNavigationBar: params
+                  .dynamic$<_i6.Widget>(r'bottomNavigationBar')
+                  .optional(null),
+              bottomSheet:
+                  params.dynamic$<_i6.Widget>(r'bottomSheet').optional(null),
+              backgroundColor: params.color(r'backgroundColor').optional(null),
+              resizeToAvoidBottomInset:
+                  params.boolean(r'resizeToAvoidBottomInset').optional(null),
+              primary: params.boolean(r'primary').required(true),
+              drawerDragStartBehavior: params
+                  .single(
+                    r'drawerDragStartBehavior',
+                    _i31.DragStartBehavior.values,
+                  )
+                  .required(_i31.DragStartBehavior.start),
+              extendBody: params.boolean(r'extendBody').required(false),
+              extendBodyBehindAppBar:
+                  params.boolean(r'extendBodyBehindAppBar').required(false),
+              drawerScrimColor:
+                  params.color(r'drawerScrimColor').optional(null),
+              drawerEdgeDragWidth:
+                  params.number(r'drawerEdgeDragWidth').optional(null),
+              drawerEnableOpenDragGesture:
+                  params.boolean(r'drawerEnableOpenDragGesture').required(true),
+              endDrawerEnableOpenDragGesture: params
+                  .boolean(r'endDrawerEnableOpenDragGesture')
+                  .required(true),
+              restorationId: params.string(r'restorationId').optional(null),
             ),
           )
         ],
       ),
       Component(
-        meta: _i11.meta,
+        meta: _i32.meta,
         stories: [
-          _i11.$Default.applyGenerated(
+          _i32.$Default.applyGenerated(
             name: 'Default',
             builder: (
               context,
               params,
             ) =>
-                _i12.Card(
-              key: params.dynamic$<Key>(r'key').optional(null),
+                _i33.Card(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
               color: params.color(r'color').optional(null),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               elevation: params.number(r'elevation').optional(null),
-              shape: params.dynamic$<ShapeBorder>(r'shape').optional(null),
+              shape: params.dynamic$<_i16.ShapeBorder>(r'shape').optional(null),
               borderOnForeground:
                   params.boolean(r'borderOnForeground').required(true),
-              margin:
-                  params.dynamic$<EdgeInsetsGeometry>(r'margin').optional(null),
+              margin: params
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'margin')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
                   .optional(null),
-              child: params.dynamic$<Widget>(r'child').optional(null),
+              child: params.dynamic$<_i6.Widget>(r'child').optional(null),
               semanticContainer:
                   params.boolean(r'semanticContainer').required(true),
             ),
           ),
-          _i11.$Nested.applyGenerated(
+          _i32.$Nested.applyGenerated(
             name: 'Nested',
             builder: (
               context,
               params,
             ) =>
-                _i12.Card(
-              key: params.dynamic$<Key>(r'key').optional(null),
+                _i33.Card(
+              key: params.dynamic$<_i3.Key>(r'key').optional(null),
               color: params.color(r'color').optional(null),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               elevation: params.number(r'elevation').optional(null),
-              shape: params.dynamic$<ShapeBorder>(r'shape').optional(null),
+              shape: params.dynamic$<_i16.ShapeBorder>(r'shape').optional(null),
               borderOnForeground:
                   params.boolean(r'borderOnForeground').required(true),
-              margin:
-                  params.dynamic$<EdgeInsetsGeometry>(r'margin').optional(null),
+              margin: params
+                  .dynamic$<_i7.EdgeInsetsGeometry>(r'margin')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
-                    _i3.Clip.values,
+                    _i5.Clip.values,
                   )
                   .optional(null),
-              child: params.dynamic$<Widget>(r'child').optional(null),
+              child: params.dynamic$<_i6.Widget>(r'child').optional(null),
               semanticContainer:
                   params.boolean(r'semanticContainer').required(true),
             ),

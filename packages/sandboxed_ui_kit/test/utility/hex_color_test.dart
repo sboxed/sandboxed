@@ -1,6 +1,6 @@
 import 'package:checks/checks.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sandboxed/utility/hex_color.dart';
+import 'package:sandboxed_ui_kit/src/utility/hex_color.dart';
 
 void main() {
   test('returns normally', () {
