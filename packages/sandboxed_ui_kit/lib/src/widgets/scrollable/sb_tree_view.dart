@@ -51,9 +51,8 @@ class _SBTreeViewState<T> extends State<SBTreeView<T>> {
               Positioned(
                 left: 0,
                 top: 0,
-                child: OverflowBox(
-                  minWidth: 0,
-                  maxWidth: double.infinity,
+                child: Offstage(
+                  offstage: true,
                   child: IntrinsicWidth(
                     child: Builder(
                       builder: (context) {
