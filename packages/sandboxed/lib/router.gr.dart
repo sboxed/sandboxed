@@ -16,67 +16,6 @@ import 'package:sandboxed/pages/index_page.dart' as _i2;
 import 'package:sandboxed/pages/nothing/nothing_page.dart' as _i3;
 import 'package:sandboxed/pages/story/story_page.dart' as _i4;
 
-abstract class $AppRouter extends _i5.RootStackRouter {
-  $AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, _i5.PageFactory> pagesMap = {
-    DocumentRoute.name: (routeData) {
-      final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<DocumentRouteArgs>(
-          orElse: () => DocumentRouteArgs(
-                id: queryParams.optString('path'),
-                global: queryParams.optString('global'),
-              ));
-      return _i5.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i1.DocumentPage(
-          key: args.key,
-          id: args.id,
-          global: args.global,
-        ),
-      );
-    },
-    IndexRoute.name: (routeData) {
-      return _i5.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i2.IndexPage(),
-      );
-    },
-    NothingRoute.name: (routeData) {
-      final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<NothingRouteArgs>(
-          orElse: () =>
-              NothingRouteArgs(global: queryParams.optString('global')));
-      return _i5.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i3.NothingPage(
-          key: args.key,
-          global: args.global,
-        ),
-      );
-    },
-    StoryRoute.name: (routeData) {
-      final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<StoryRouteArgs>(
-          orElse: () => StoryRouteArgs(
-                id: queryParams.optString('path'),
-                params: queryParams.optString('params'),
-                global: queryParams.optString('global'),
-              ));
-      return _i5.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i4.StoryPage(
-          key: args.key,
-          id: args.id,
-          params: args.params,
-          global: args.global,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [_i1.DocumentPage]
 class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
@@ -101,8 +40,22 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
 
   static const String name = 'DocumentRoute';
 
-  static const _i5.PageInfo<DocumentRouteArgs> page =
-      _i5.PageInfo<DocumentRouteArgs>(name);
+  static _i5.PageInfo page = _i5.PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<DocumentRouteArgs>(
+          orElse: () => DocumentRouteArgs(
+                id: queryParams.optString('path'),
+                global: queryParams.optString('global'),
+              ));
+      return _i1.DocumentPage(
+        key: args.key,
+        id: args.id,
+        global: args.global,
+      );
+    },
+  );
 }
 
 class DocumentRouteArgs {
@@ -135,7 +88,12 @@ class IndexRoute extends _i5.PageRouteInfo<void> {
 
   static const String name = 'IndexRoute';
 
-  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
+  static _i5.PageInfo page = _i5.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.IndexPage();
+    },
+  );
 }
 
 /// generated route for
@@ -157,8 +115,19 @@ class NothingRoute extends _i5.PageRouteInfo<NothingRouteArgs> {
 
   static const String name = 'NothingRoute';
 
-  static const _i5.PageInfo<NothingRouteArgs> page =
-      _i5.PageInfo<NothingRouteArgs>(name);
+  static _i5.PageInfo page = _i5.PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<NothingRouteArgs>(
+          orElse: () =>
+              NothingRouteArgs(global: queryParams.optString('global')));
+      return _i3.NothingPage(
+        key: args.key,
+        global: args.global,
+      );
+    },
+  );
 }
 
 class NothingRouteArgs {
@@ -204,8 +173,24 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
 
   static const String name = 'StoryRoute';
 
-  static const _i5.PageInfo<StoryRouteArgs> page =
-      _i5.PageInfo<StoryRouteArgs>(name);
+  static _i5.PageInfo page = _i5.PageInfo(
+    name,
+    builder: (data) {
+      final queryParams = data.queryParams;
+      final args = data.argsAs<StoryRouteArgs>(
+          orElse: () => StoryRouteArgs(
+                id: queryParams.optString('path'),
+                params: queryParams.optString('params'),
+                global: queryParams.optString('global'),
+              ));
+      return _i4.StoryPage(
+        key: args.key,
+        id: args.id,
+        params: args.params,
+        global: args.global,
+      );
+    },
+  );
 }
 
 class StoryRouteArgs {

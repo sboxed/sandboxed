@@ -13,7 +13,7 @@ final kFadeRouteType = CustomRouteType(
 );
 
 @AutoRouterConfig()
-class AppRouter extends $AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes {
     return [
