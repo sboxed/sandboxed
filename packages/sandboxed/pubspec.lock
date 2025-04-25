@@ -811,14 +811,14 @@ packages:
       path: "../sandboxed_core"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.1.0+1"
   sandboxed_ui_kit:
     dependency: "direct main"
     description:
       path: "../sandboxed_ui_kit"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.1.0+1"
   shared_preferences:
     dependency: "direct main"
     description:
