@@ -202,6 +202,15 @@ Expression? buildParameter(ParameterElement parameter) {
     };
 
     if (parameter.isOptional && parameter.defaultValueCode == null) {
+      final typesToIgnore = [
+        TypeChecker.fromName('Key', packageName: 'flutter')
+      ];
+
+      if (typesToIgnore
+          .any((checker) => checker.isAssignableFromType(parameter.type))) {
+        return literal(null);
+      }
+
       return param.property('optional').call([literal(null)]);
     } else {
       if (value == null) {
