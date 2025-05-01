@@ -9,12 +9,16 @@ packages:
 scripts:
   generate:
     exec: fvm dart run build_runner build -d
-    # run: fvm dart run build_runner build -d
-    # exec:
-      # concurrency: 1
     packageFilters:
       dependsOn:
       - build_runner
+
+  generate:watch:
+    exec: fvm dart run build_runner watch -d
+    packageFilters:
+      dependsOn:
+      - build_runner
+
   watch_riverpod:
     exec: while true; do dart run build_runner watch -dv; sleep 2 ; done
     packageFilters:
