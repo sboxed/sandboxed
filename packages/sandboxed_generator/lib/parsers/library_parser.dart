@@ -1,11 +1,12 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 import 'package:recase/recase.dart';
 import 'package:sandboxed_generator/config/aggregator_config.dart';
 import 'package:sandboxed_generator/extension/escape_identifier_x.dart';
 import 'package:sandboxed_generator/parsers/meta_parser.dart';
-import 'package:sandboxed_generator/story_parser.dart';
+import 'package:sandboxed_generator/parsers/story_parser.dart';
 
 class LibraryParser {
   final Resolver resolver;
@@ -81,19 +82,22 @@ class LibraryParser {
         .where(checkStory);
 
     final parsed = <String>{};
-    final result = <Expression>[];
+    final result = <(String, Expression)>[];
     for (final story in stories) {
       if (parsed.contains(story.name)) continue;
 
       final storyAccessor = await parser.parse(story);
-      result.add(storyAccessor);
+      result.add((story.name, storyAccessor));
       parsed.add(story.name);
     }
 
-    return result;
+    return result //
+        .sortedBy((it) => it.$1)
+        .map((it) => it.$2)
+        .toList();
   }
 
-  Future<Spec> build() async {
+  Future<(String, Spec)> build() async {
     final metaDescription = await buildMeta();
     final stories = await buildStories(metaDescription);
     final meta = _meta;
@@ -109,18 +113,21 @@ class LibraryParser {
           },
         );
 
-    return InvokeExpression.newOf(
-      refer('Component'),
-      [],
-      {
-        'meta': withDocs(meta, docs),
-        if (this.configReference != null || !isRootPackage) //
-          'config': configReference,
-        'stories': literalList([
-          for (final story in stories) //
-            story,
-        ]),
-      },
+    return (
+      metaDescription?.widget?.name ?? '_undefined_',
+      InvokeExpression.newOf(
+        refer('Component'),
+        [],
+        {
+          'meta': withDocs(meta, docs),
+          if (this.configReference != null || !isRootPackage) //
+            'config': configReference,
+          'stories': literalList([
+            for (final story in stories) //
+              story,
+          ]),
+        },
+      )
     );
   }
 

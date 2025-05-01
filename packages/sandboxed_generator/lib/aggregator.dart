@@ -4,11 +4,12 @@ import 'dart:convert';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:sandboxed_generator/config/aggregator_config.dart';
 import 'package:sandboxed_generator/docs_cleaner.dart';
-import 'package:sandboxed_generator/library_parser.dart';
-import 'package:sandboxed_generator/parsers/type_checker.dart';
+import 'package:sandboxed_generator/parsers/library_parser.dart';
+import 'package:sandboxed_generator/types/type_checker.dart';
 import 'package:yaml/yaml.dart';
 
 class StoryContainer {
@@ -148,7 +149,7 @@ class ComponentAggregateBuilder extends Builder {
       }
     }
 
-    List<Spec> components = [];
+    List<(String, Spec)> components = [];
     for (final package in packageStories) {
       for (final storyContainer in package.storyContainers) {
         final parser = LibraryParser(
@@ -181,6 +182,11 @@ class ComponentAggregateBuilder extends Builder {
           Directive.import('package:flutter/material.dart'),
         ]);
 
+        print(components //
+            .sortedBy((it) => it.$1)
+            .map((it) => it.$1)
+            .toList());
+
         library.body.add(
           Method(
             (method) {
@@ -189,7 +195,13 @@ class ComponentAggregateBuilder extends Builder {
                 ..lambda = true //
                 ..type = MethodType.getter
                 ..returns = refer('List<Component>')
-                ..body = literalList(components, refer('Component')).code;
+                ..body = literalList(
+                        components //
+                            .sortedBy((it) => it.$1)
+                            .map((it) => it.$2)
+                            .toList(),
+                        refer('Component'))
+                    .code;
             },
           ),
         );
@@ -197,7 +209,11 @@ class ComponentAggregateBuilder extends Builder {
     );
 
     final allocator = Allocator.simplePrefixing();
-    final emitter = DartEmitter(allocator: allocator);
+    final emitter = DartEmitter(
+      allocator: allocator,
+      useNullSafetySyntax: true,
+    );
+
     String code = library.accept(emitter).toString();
     try {
       code = DartFormatter().format(code);

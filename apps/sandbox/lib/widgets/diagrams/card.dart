@@ -12,11 +12,22 @@ class SandboxDiagramCard extends StatelessWidget {
   final Color? color;
   final List<SandboxDiagramCardStats> stats;
 
+  //. this is special field to test record type handling
+  final ValueChanged<
+      (
+        SandboxDiagramCardStats,
+        SandboxDiagramCardStats?, {
+        SandboxDiagramCardStats next,
+        SandboxDiagramCardStats? nullable,
+        String name
+      })>? onChanged;
+
   const SandboxDiagramCard({
     super.key,
     required this.title,
     required this.color,
     required this.stats,
+    this.onChanged,
   });
 
   @override

@@ -13,13 +13,16 @@ class MetaParser {
 
   Future<MetaDescription> parse(TopLevelVariableElement meta) async {
     final visitor = MetaVisitor();
-    final ast = await resolver.astNodeFor(meta.getter!, resolve: true);
+    final getter = meta.getter!;
+    final ast = getter.hasImplicitReturnType
+        ? await resolver.astNodeFor(meta, resolve: true)
+        : await resolver.astNodeFor(meta.getter!, resolve: true);
     ast?.visitChildren(visitor);
 
     return MetaDescription(
       widget: visitor.componentArgument ?? visitor.componentGeneric,
     );
-  }
+  } //
 }
 
 class MetaDescription {
