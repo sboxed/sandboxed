@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/sboxed/sandboxed-assets/main/logos/logo-64.png" alt="logo" /> Sandboxed
+# <img src="https://raw.githubusercontent.com/sboxed/sandboxed-assets/main/logos/logo-512.png" height="64px" alt="logo" /> Sandboxed
 
 [![pub package](https://img.shields.io/pub/v/sandboxed.svg)](https://pub.dev/packages/sandboxed)
 [![pub points](https://img.shields.io/pub/points/sandboxed)](https://pub.dev/packages/sandboxed/score)

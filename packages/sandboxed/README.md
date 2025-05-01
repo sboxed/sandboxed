@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/sboxed/sandboxed-assets/main/logos/logo-64.png" alt="logo" /> Sandboxed
+# <img src="https://raw.githubusercontent.com/sboxed/sandboxed-assets/main/logos/logo-512.png" height="64px" alt="logo" /> Sandboxed
 
 **Sandboxed** is a Flutter tool for developing, testing, and showcasing  UI components in isolation.
  
