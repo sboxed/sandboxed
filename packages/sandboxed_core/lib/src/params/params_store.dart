@@ -24,7 +24,7 @@ abstract interface class Params {
   MultiChoiceParamWrapper<T> multi<T>(String id, List<T> values);
 
   // Generated
-  ParamWrapper<T> dynamic$<T>(String id);
+  ParamWrapper<T> dynamic$<T, T1, T2>(String id);
 
   // Default
   T defaultFor<T>(ParamWrapper<T> param);

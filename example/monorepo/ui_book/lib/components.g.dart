@@ -38,7 +38,9 @@ List<Component> get components => <Component>[
                   )
                   .required(_i3.ButtonSize.medium),
               color: params.color(r'color').required(Colors.green),
-              icon: params.dynamic$<_i4.Widget>(r'icon').optional(null),
+              icon: params
+                  .dynamic$<_i4.Widget, void, void>(r'icon')
+                  .optional(null),
             ),
           ),
           _i1.$Green.applyGenerated(
@@ -57,7 +59,9 @@ List<Component> get components => <Component>[
                   )
                   .required(_i3.ButtonSize.medium),
               color: params.color(r'color').required(Colors.green),
-              icon: params.dynamic$<_i4.Widget>(r'icon').optional(null),
+              icon: params
+                  .dynamic$<_i4.Widget, void, void>(r'icon')
+                  .optional(null),
             ),
           ),
         ],

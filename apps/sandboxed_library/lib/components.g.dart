@@ -34,8 +34,9 @@ List<Component> get components => <Component>[
                 _i3.ElementTile(
               key: null,
               depth: params.integer(r'depth').required(1),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              onPressed: params
+                  .dynamic$<void Function(), void, void>(r'onPressed')
+                  .optional(null),
               tooltip: params.string(r'tooltip').required(''),
               selected: params.boolean(r'selected').required(false),
               size: params
@@ -44,9 +45,11 @@ List<Component> get components => <Component>[
                     _i3.ElementTileSize.values,
                   )
                   .required(_i3.ElementTileSize.small),
-              icon: params.dynamic$<_i4.Widget>(r'icon').optional(null),
+              icon: params
+                  .dynamic$<_i4.Widget, void, void>(r'icon')
+                  .optional(null),
               title: params
-                  .dynamic$<_i4.Widget>(r'title')
+                  .dynamic$<_i4.Widget, void, void>(r'title')
                   .required(const SizedBox.shrink()),
             ),
           ),
@@ -59,8 +62,9 @@ List<Component> get components => <Component>[
                 _i3.ElementTile(
               key: null,
               depth: params.integer(r'depth').required(1),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              onPressed: params
+                  .dynamic$<void Function(), void, void>(r'onPressed')
+                  .optional(null),
               tooltip: params.string(r'tooltip').required(''),
               selected: params.boolean(r'selected').required(false),
               size: params
@@ -69,9 +73,11 @@ List<Component> get components => <Component>[
                     _i3.ElementTileSize.values,
                   )
                   .required(_i3.ElementTileSize.small),
-              icon: params.dynamic$<_i4.Widget>(r'icon').optional(null),
+              icon: params
+                  .dynamic$<_i4.Widget, void, void>(r'icon')
+                  .optional(null),
               title: params
-                  .dynamic$<_i4.Widget>(r'title')
+                  .dynamic$<_i4.Widget, void, void>(r'title')
                   .required(const SizedBox.shrink()),
             ),
           ),
@@ -90,12 +96,14 @@ List<Component> get components => <Component>[
                 _i6.ResponsiveLayout(
               key: null,
               drawer: params
-                  .dynamic$<_i4.Widget>(r'drawer')
+                  .dynamic$<_i4.Widget, void, void>(r'drawer')
                   .required(const SizedBox.shrink()),
               viewport: params
-                  .dynamic$<_i4.Widget>(r'viewport')
+                  .dynamic$<_i4.Widget, void, void>(r'viewport')
                   .required(const SizedBox.shrink()),
-              sidebar: params.dynamic$<_i4.Widget>(r'sidebar').optional(null),
+              sidebar: params
+                  .dynamic$<_i4.Widget, void, void>(r'sidebar')
+                  .optional(null),
             ),
           )
         ],
@@ -113,12 +121,13 @@ List<Component> get components => <Component>[
                 _i8.SBDrawer(
               key: null,
               title: params
-                  .dynamic$<_i4.Widget>(r'title')
+                  .dynamic$<_i4.Widget, void, void>(r'title')
                   .required(const SizedBox.shrink()),
-              actions:
-                  params.dynamic$<List<_i4.Widget>>(r'actions').required([]),
+              actions: params
+                  .dynamic$<List<_i4.Widget>, _i4.Widget, void>(r'actions')
+                  .required([]),
               body: params
-                  .dynamic$<_i4.Widget>(r'body')
+                  .dynamic$<_i4.Widget, void, void>(r'body')
                   .required(const SizedBox.shrink()),
             ),
           )
@@ -137,7 +146,7 @@ List<Component> get components => <Component>[
                 _i10.TagChip(
               key: null,
               tag: params
-                  .dynamic$<_i4.Widget>(r'tag')
+                  .dynamic$<_i4.Widget, void, void>(r'tag')
                   .required(const SizedBox.shrink()),
               color: params.color(r'color').optional(null),
             ),
@@ -151,7 +160,7 @@ List<Component> get components => <Component>[
                 _i10.TagChip(
               key: null,
               tag: params
-                  .dynamic$<_i4.Widget>(r'tag')
+                  .dynamic$<_i4.Widget, void, void>(r'tag')
                   .required(const SizedBox.shrink()),
               color: params.color(r'color').optional(null),
             ),

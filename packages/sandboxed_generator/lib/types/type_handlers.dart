@@ -7,9 +7,11 @@ import 'package:sandboxed_generator/expression/raw.dart';
 import 'package:sandboxed_generator/extension/dart_type_extension.dart';
 import 'package:sandboxed_generator/types/type_checker.dart';
 import 'package:sandboxed_generator/types/type_checkers.dart';
+import 'package:analyzer/dart/element/type.dart' as analyzer;
+import 'package:code_builder/code_builder.dart' as code_builder;
 
 class TypeHandlers {
-  Expression? handleType(DartType type, StoryParameterBuilder builder) {
+  static Expression? handleType(DartType type, StoryParameterBuilder builder) {
     return switch (type) {
       DartType type when type.isDartCoreString =>
         builder.build('string', 'Text'),
@@ -32,7 +34,7 @@ class TypeHandlers {
     };
   }
 
-  dynamic defaultValueForType(DartType type) {
+  static dynamic defaultValueForType(DartType type) {
     if (type.nullabilitySuffix == NullabilitySuffix.question) {
       return null;
     }
@@ -54,7 +56,7 @@ class TypeHandlers {
     };
   }
 
-  dynamic defaultValueForFlutterType(DartType type) {
+  static dynamic defaultValueForFlutterType(DartType type) {
     if (TypeChecker.fromName('Widget', packageName: 'flutter')
         .isAssignableFromType(type)) {
       return Raw('const SizedBox.shrink()');
@@ -63,7 +65,113 @@ class TypeHandlers {
     return null;
   }
 
-  Expression _handleEnum(DartType type, StoryParameterBuilder builder) {
+  static List<Reference> extractTypeWithHints(DartType type) {
+    final result = buildTypeReference(type);
+    final hints = switch (type) {
+      InterfaceType type when type.typeArguments.isNotEmpty =>
+        type.typeArguments //
+            .map((it) => buildTypeReference(it))
+            .toList(),
+      _ => [refer('void'), refer('void')],
+    };
+
+    return [result, ...hints];
+  }
+
+  /// Builds a type reference for a given Dart type, handling various type scenarios.
+  ///
+  /// [type] is the Dart type to convert into a code builder reference.
+  /// [tree] is an optional list of parent types to log detailed error messages.
+  ///
+  /// Throws a [StateError] if unable to resolve the type's symbol.
+  static Reference buildTypeReference(DartType type,
+      {List<DartType> tree = const []}) {
+    final childTree = [...tree, type];
+
+    switch (type) {
+      case VoidType():
+        return refer('void');
+
+      case analyzer.FunctionType():
+        return code_builder.FunctionType(
+          (function) {
+            function.returnType = buildTypeReference(
+              type.returnType,
+              tree: childTree,
+            );
+
+            for (final type in type.positionalParameterTypes) {
+              function.requiredParameters
+                  .add(buildTypeReference(type, tree: childTree));
+            }
+
+            for (final type in type.optionalParameterTypes) {
+              function.optionalParameters
+                  .add(buildTypeReference(type, tree: childTree));
+            }
+
+            for (final MapEntry(:key, :value)
+                in type.namedParameterTypes.entries) {
+              function.namedParameters[key] =
+                  buildTypeReference(value, tree: childTree);
+            }
+          },
+        );
+
+      case analyzer.RecordType():
+        return code_builder.RecordType((record) {
+          for (final field in type.positionalFields) {
+            record.positionalFieldTypes.add(
+              buildTypeReference(
+                field.type,
+                tree: childTree,
+              ),
+            );
+          }
+
+          for (final field in type.namedFields) {
+            record.namedFieldTypes[field.name] = buildTypeReference(
+              field.type,
+              tree: childTree,
+            );
+          }
+        });
+
+      default:
+        return TypeReference((b) {
+          b.url = type.url;
+          b.symbol = type.element?.name;
+          b.isNullable = tree.isNotEmpty && //
+              type.nullabilitySuffix == NullabilitySuffix.question;
+
+          List<DartType> typeArgs = [];
+          if (type.alias case InstantiatedTypeAliasElement alias) {
+            typeArgs = alias.typeArguments;
+            b.symbol = alias.element.name;
+          } else if (type is InterfaceType) {
+            typeArgs = type.typeArguments;
+          }
+
+          if (b.symbol == null) {
+            throw StateError(
+              'Failed to get name for $type under ${tree.map((e) => e.element?.name).join(', ')}, '
+              'element - ${type.element}, element3 - ${type.element3}',
+            );
+          }
+
+          for (final childType in typeArgs) {
+            b.types.add(
+              buildTypeReference(
+                childType,
+                tree: childTree,
+              ),
+            );
+          }
+        });
+    }
+  }
+
+  static Expression _handleEnum(DartType type, StoryParameterBuilder builder) {
     return builder.build(
       'single',
       refer(type.element!.name!, type.url).property('values').property('first'),

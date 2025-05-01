@@ -68,7 +68,7 @@ List<Component> get components => <Component>[
               hasIcon: params.boolean(r'hasIcon').required(true),
               color: params.color(r'color').required(Colors.yellow),
               unsupported: params
-                  .dynamic$<void Function()>(r'unsupported')
+                  .dynamic$<void Function(), void, void>(r'unsupported')
                   .optional(null),
               gradient: params.gradient(r'gradient').optional(null),
               datetime: params.datetime(r'datetime').optional(null),
@@ -87,7 +87,7 @@ List<Component> get components => <Component>[
               hasIcon: params.boolean(r'hasIcon').required(true),
               color: params.color(r'color').required(Colors.yellow),
               unsupported: params
-                  .dynamic$<void Function()>(r'unsupported')
+                  .dynamic$<void Function(), void, void>(r'unsupported')
                   .optional(null),
               gradient: params.gradient(r'gradient').optional(null),
               datetime: params.datetime(r'datetime').optional(null),
@@ -107,10 +107,15 @@ List<Component> get components => <Component>[
             ) =>
                 _i4.FlutterParamsWidget(
               key: null,
-              alignment:
-                  params.dynamic$<_i5.Alignment>(r'alignment').default$(),
-              padding: params.dynamic$<_i6.EdgeInsets>(r'padding').default$(),
-              style: params.dynamic$<_i7.TextStyle>(r'style').default$(),
+              alignment: params
+                  .dynamic$<_i5.Alignment, void, void>(r'alignment')
+                  .default$(),
+              padding: params
+                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
+                  .default$(),
+              style: params
+                  .dynamic$<_i7.TextStyle, void, void>(r'style')
+                  .default$(),
             ),
           )
         ],
@@ -197,9 +202,12 @@ List<Component> get components => <Component>[
                     _i13.SandboxButtonSize.values,
                   )
                   .required(_i13.SandboxButtonSize.small),
-              icon: params.dynamic$<_i14.Widget>(r'icon').optional(null),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              icon: params
+                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .optional(null),
+              onPressed: params
+                  .dynamic$<void Function(), void, void>(r'onPressed')
+                  .optional(null),
             ),
           ),
           _i12.$Green.applyGenerated(
@@ -218,9 +226,12 @@ List<Component> get components => <Component>[
                     _i13.SandboxButtonSize.values,
                   )
                   .required(_i13.SandboxButtonSize.small),
-              icon: params.dynamic$<_i14.Widget>(r'icon').optional(null),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              icon: params
+                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .optional(null),
+              onPressed: params
+                  .dynamic$<void Function(), void, void>(r'onPressed')
+                  .optional(null),
             ),
           ),
           _i12.$Yellow.applyGenerated(
@@ -239,9 +250,12 @@ List<Component> get components => <Component>[
                     _i13.SandboxButtonSize.values,
                   )
                   .required(_i13.SandboxButtonSize.small),
-              icon: params.dynamic$<_i14.Widget>(r'icon').optional(null),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              icon: params
+                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .optional(null),
+              onPressed: params
+                  .dynamic$<void Function(), void, void>(r'onPressed')
+                  .optional(null),
             ),
           ),
         ],
@@ -265,9 +279,12 @@ List<Component> get components => <Component>[
                     _i13.SandboxButtonSize.values,
                   )
                   .required(_i13.SandboxButtonSize.small),
-              icon: params.dynamic$<_i14.Widget>(r'icon').optional(null),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              icon: params
+                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .optional(null),
+              onPressed: params
+                  .dynamic$<void Function(), void, void>(r'onPressed')
+                  .optional(null),
             ),
           ),
           _i15.$Green.applyGenerated(
@@ -286,9 +303,12 @@ List<Component> get components => <Component>[
                     _i13.SandboxButtonSize.values,
                   )
                   .required(_i13.SandboxButtonSize.small),
-              icon: params.dynamic$<_i14.Widget>(r'icon').optional(null),
-              onPressed:
-                  params.dynamic$<void Function()>(r'onPressed').optional(null),
+              icon: params
+                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .optional(null),
+              onPressed: params
+                  .dynamic$<void Function(), void, void>(r'onPressed')
+                  .optional(null),
             ),
           ),
         ],
@@ -336,7 +356,8 @@ List<Component> get components => <Component>[
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               stats: params
-                  .dynamic$<List<_i19.SandboxDiagramCardStats>>(r'stats')
+                  .dynamic$<List<_i19.SandboxDiagramCardStats>,
+                      _i19.SandboxDiagramCardStats, void>(r'stats')
                   .required([]),
               onChanged: params
                   .dynamic$<
@@ -347,7 +368,9 @@ List<Component> get components => <Component>[
                             String name,
                             _i19.SandboxDiagramCardStats next,
                             _i19.SandboxDiagramCardStats? nullable
-                          }))>(r'onChanged')
+                          })),
+                      void,
+                      void>(r'onChanged')
                   .optional(null),
             ),
           ),
@@ -362,7 +385,8 @@ List<Component> get components => <Component>[
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               stats: params
-                  .dynamic$<List<_i19.SandboxDiagramCardStats>>(r'stats')
+                  .dynamic$<List<_i19.SandboxDiagramCardStats>,
+                      _i19.SandboxDiagramCardStats, void>(r'stats')
                   .required([]),
               onChanged: params
                   .dynamic$<
@@ -373,7 +397,9 @@ List<Component> get components => <Component>[
                             String name,
                             _i19.SandboxDiagramCardStats next,
                             _i19.SandboxDiagramCardStats? nullable
-                          }))>(r'onChanged')
+                          })),
+                      void,
+                      void>(r'onChanged')
                   .optional(null),
             ),
           ),
@@ -432,9 +458,11 @@ List<Component> get components => <Component>[
                 _i25.Text(
               params.string(r'data').required('Text'),
               key: null,
-              style: params.dynamic$<_i7.TextStyle>(r'style').optional(null),
+              style: params
+                  .dynamic$<_i7.TextStyle, void, void>(r'style')
+                  .optional(null),
               strutStyle: params
-                  .dynamic$<_i26.StrutStyle>(r'strutStyle')
+                  .dynamic$<_i26.StrutStyle, void, void>(r'strutStyle')
                   .optional(null),
               textAlign: params
                   .single(
@@ -448,7 +476,9 @@ List<Component> get components => <Component>[
                     _i27.TextDirection.values,
                   )
                   .optional(null),
-              locale: params.dynamic$<_i27.Locale>(r'locale').optional(null),
+              locale: params
+                  .dynamic$<_i27.Locale, void, void>(r'locale')
+                  .optional(null),
               softWrap: params.boolean(r'softWrap').optional(null),
               overflow: params
                   .single(
@@ -458,7 +488,7 @@ List<Component> get components => <Component>[
                   .optional(null),
               textScaleFactor: params.number(r'textScaleFactor').optional(null),
               textScaler: params
-                  .dynamic$<_i29.TextScaler>(r'textScaler')
+                  .dynamic$<_i29.TextScaler, void, void>(r'textScaler')
                   .optional(null),
               maxLines: params.integer(r'maxLines').optional(null),
               semanticsLabel: params.string(r'semanticsLabel').optional(null),
@@ -469,7 +499,8 @@ List<Component> get components => <Component>[
                   )
                   .optional(null),
               textHeightBehavior: params
-                  .dynamic$<_i27.TextHeightBehavior>(r'textHeightBehavior')
+                  .dynamic$<_i27.TextHeightBehavior, void, void>(
+                      r'textHeightBehavior')
                   .optional(null),
               selectionColor: params.color(r'selectionColor').optional(null),
             ),
@@ -487,8 +518,12 @@ List<Component> get components => <Component>[
             ) =>
                 _i31.UnsupportedParameters(
               key: null,
-              padding: params.dynamic$<_i6.EdgeInsets>(r'padding').default$(),
-              style: params.dynamic$<_i7.TextStyle>(r'style').default$(),
+              padding: params
+                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
+                  .default$(),
+              style: params
+                  .dynamic$<_i7.TextStyle, void, void>(r'style')
+                  .default$(),
             ),
           ),
           _i30.$WithBuilder.applyGenerated(
@@ -499,8 +534,12 @@ List<Component> get components => <Component>[
             ) =>
                 _i31.UnsupportedParameters(
               key: null,
-              padding: params.dynamic$<_i6.EdgeInsets>(r'padding').default$(),
-              style: params.dynamic$<_i7.TextStyle>(r'style').default$(),
+              padding: params
+                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
+                  .default$(),
+              style: params
+                  .dynamic$<_i7.TextStyle, void, void>(r'style')
+                  .default$(),
             ),
           ),
           _i30.$WithParams.applyGenerated(
@@ -511,8 +550,12 @@ List<Component> get components => <Component>[
             ) =>
                 _i31.UnsupportedParameters(
               key: null,
-              padding: params.dynamic$<_i6.EdgeInsets>(r'padding').default$(),
-              style: params.dynamic$<_i7.TextStyle>(r'style').default$(),
+              padding: params
+                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
+                  .default$(),
+              style: params
+                  .dynamic$<_i7.TextStyle, void, void>(r'style')
+                  .default$(),
             ),
           ),
         ],

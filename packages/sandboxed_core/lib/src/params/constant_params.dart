@@ -1,11 +1,14 @@
 import 'package:flutter/widgets.dart';
+import 'package:sandboxed_core/src/params/default_value_resolver.dart';
 import 'package:sandboxed_core/src/params/list_param.dart';
 import 'package:sandboxed_core/src/params/param_wrapper.dart';
 import 'package:sandboxed_core/src/params/params_store.dart';
-import 'package:sandboxed_core/src/params/use_params.dart';
 
 class ConstantParams implements Params {
-  final Map<String, dynamic> defaultValues = {};
+  late DefaultValueResolver _defaultValueResolver = DefaultValueResolver(
+    params: this,
+    defaultValues: {},
+  );
 
   ConstantParams();
 
@@ -14,19 +17,19 @@ class ConstantParams implements Params {
 
   @override
   void updateDefaultValues(Map<String, dynamic> defaultValues) {
-    this.defaultValues.clear();
-    this.defaultValues.addAll(defaultValues);
+    _defaultValueResolver = DefaultValueResolver(
+      params: this,
+      defaultValues: {...defaultValues},
+    );
   }
 
   @override
   void reset() {}
 
-  ParamWrapper<T> param<T>(String id) {
+  ParamWrapper<T> param<T, T1, T2>(String id) {
     return ParamWrapper() //
-      ..value = switch (defaultValues[id]) {
-        UseParams useParams => useParams.builder(this),
-        dynamic value => value,
-      };
+      ..bind(id, this)
+      ..value = _defaultValueResolver.getDefaultValue<T, T1, T2>(id);
   }
 
   // Core types
@@ -78,24 +81,24 @@ class ConstantParams implements Params {
   @override
   SingleChoiceParamWrapper<T> single<T>(String id, List<T> values) {
     return SingleChoiceParamWrapper(values: values) //
-      ..value = defaultValues[id];
+      ..value = _defaultValueResolver.defaultValues[id];
   }
 
   @override
   MultiChoiceParamWrapper<T> multi<T>(String id, List<T> values) {
     return MultiChoiceParamWrapper(values: values) //
-      ..value = defaultValues[id];
+      ..value = _defaultValueResolver.defaultValues[id];
   }
 
   // Generated
 
   @override
-  ParamWrapper<T> dynamic$<T>(String id) {
-    return param(id);
+  ParamWrapper<T> dynamic$<T, T1, T2>(String id) {
+    return param<T, T1, T2>(id);
   }
 
   @override
   T defaultFor<T>(ParamWrapper<T> param) {
-    throw UnimplementedError();
+    return _defaultValueResolver.defaultValues[param.id] as T;
   }
 }

@@ -1,14 +1,9 @@
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/nullability_suffix.dart';
-import 'package:analyzer/dart/element/type.dart';
-import 'package:analyzer/dart/element/type.dart' as analyzer;
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
-import 'package:code_builder/code_builder.dart' as code_builder;
 import 'package:recase/recase.dart';
 import 'package:sandboxed_generator/builders/story_parameter_builder.dart';
 import 'package:sandboxed_generator/exception/unsupported_parameters.dart';
-import 'package:sandboxed_generator/extension/dart_type_extension.dart';
 import 'package:sandboxed_generator/extension/element_extension.dart';
 import 'package:sandboxed_generator/parsers/meta_parser.dart';
 import 'package:sandboxed_generator/types/type_checkers.dart';
@@ -107,7 +102,6 @@ class StoryParser {
   }
 
   Expression? buildParameter(ParameterElement parameter) {
-    final typeHandlers = TypeHandlers();
     final parameterBuilder = StoryParameterBuilder(
       parameter,
       typesToIgnore: [
@@ -115,7 +109,7 @@ class StoryParser {
       ],
     );
 
-    return typeHandlers.handleType(parameter.type, parameterBuilder);
+    return TypeHandlers.handleType(parameter.type, parameterBuilder);
   }
 
   Expression _buildWidgetExpression(
@@ -147,97 +141,5 @@ class StoryParser {
     } on UnsupportedParameterException catch (e) {
       unsupported[parameter.name] = e.type;
     }
-  }
-}
-
-/// Builds a type reference for a given Dart type, handling various type scenarios.
-///
-/// [type] is the Dart type to convert into a code builder reference.
-/// [tree] is an optional list of parent types to log detailed error messages.
-///
-/// Throws a [StateError] if unable to resolve the type's symbol.
-Reference buildTypeReference(DartType type, {List<DartType> tree = const []}) {
-  final childTree = [...tree, type];
-
-  switch (type) {
-    case VoidType():
-      return refer('void');
-
-    case analyzer.FunctionType():
-      return code_builder.FunctionType(
-        (function) {
-          function.returnType = buildTypeReference(
-            type.returnType,
-            tree: childTree,
-          );
-
-          for (final type in type.positionalParameterTypes) {
-            function.requiredParameters
-                .add(buildTypeReference(type, tree: childTree));
-          }
-
-          for (final type in type.optionalParameterTypes) {
-            function.optionalParameters
-                .add(buildTypeReference(type, tree: childTree));
-          }
-
-          for (final MapEntry(:key, :value)
-              in type.namedParameterTypes.entries) {
-            function.namedParameters[key] =
-                buildTypeReference(value, tree: childTree);
-          }
-        },
-      );
-
-    case analyzer.RecordType():
-      return code_builder.RecordType((record) {
-        for (final field in type.positionalFields) {
-          record.positionalFieldTypes.add(
-            buildTypeReference(
-              field.type,
-              tree: childTree,
-            ),
-          );
-        }
-
-        for (final field in type.namedFields) {
-          record.namedFieldTypes[field.name] = buildTypeReference(
-            field.type,
-            tree: childTree,
-          );
-        }
-      });
-
-    default:
-      return TypeReference((b) {
-        b.url = type.url;
-        b.symbol = type.element?.name;
-        b.isNullable = tree.isNotEmpty && //
-            type.nullabilitySuffix == NullabilitySuffix.question;
-
-        List<DartType> typeArgs = [];
-        if (type.alias case InstantiatedTypeAliasElement alias) {
-          typeArgs = alias.typeArguments;
-          b.symbol = alias.element.name;
-        } else if (type is InterfaceType) {
-          typeArgs = type.typeArguments;
-        }
-
-        if (b.symbol == null) {
-          throw StateError(
-            'Failed to get name for $type under ${tree.map((e) => e.element?.name).join(', ')}, '
-            'element - ${type.element}, element3 - ${type.element3}',
-          );
-        }
-
-        for (final childType in typeArgs) {
-          b.types.add(
-            buildTypeReference(
-              childType,
-              tree: childTree,
-            ),
-          );
-        }
-      });
   }
 }

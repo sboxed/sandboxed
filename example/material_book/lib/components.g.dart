@@ -14,10 +14,10 @@ import 'package:flutter/src/widgets/icon_theme_data.dart' as _i7;
 import 'package:flutter/src/painting/text_style.dart' as _i8;
 import 'package:flutter/src/services/system_chrome.dart' as _i9;
 import 'dart:ui' as _i10;
-import 'package:material_book/widgets/bottom_app_bar.stories.dart' as _i11;
-import 'package:flutter/src/material/bottom_app_bar.dart' as _i12;
-import 'package:flutter/src/painting/notched_shapes.dart' as _i13;
-import 'package:flutter/src/painting/edge_insets.dart' as _i14;
+import 'package:flutter/src/painting/edge_insets.dart' as _i11;
+import 'package:material_book/widgets/bottom_app_bar.stories.dart' as _i12;
+import 'package:flutter/src/material/bottom_app_bar.dart' as _i13;
+import 'package:flutter/src/painting/notched_shapes.dart' as _i14;
 import 'package:material_book/widgets/bottom_navigation_bar.stories.dart'
     as _i15;
 import 'package:flutter/src/material/bottom_navigation_bar.dart' as _i16;
@@ -59,35 +59,43 @@ List<Component> get components => <Component>[
             ) =>
                 _i2.AppBar(
               key: null,
-              leading: params.dynamic$<_i3.Widget>(r'leading').optional(null),
+              leading: params
+                  .dynamic$<_i3.Widget, void, void>(r'leading')
+                  .optional(null),
               automaticallyImplyLeading:
                   params.boolean(r'automaticallyImplyLeading').required(true),
-              title: params.dynamic$<_i3.Widget>(r'title').optional(null),
-              actions:
-                  params.dynamic$<List<_i3.Widget>>(r'actions').optional(null),
-              flexibleSpace:
-                  params.dynamic$<_i3.Widget>(r'flexibleSpace').optional(null),
+              title: params
+                  .dynamic$<_i3.Widget, void, void>(r'title')
+                  .optional(null),
+              actions: params
+                  .dynamic$<List<_i3.Widget>, _i3.Widget, void>(r'actions')
+                  .optional(null),
+              flexibleSpace: params
+                  .dynamic$<_i3.Widget, void, void>(r'flexibleSpace')
+                  .optional(null),
               bottom: params
-                  .dynamic$<_i4.PreferredSizeWidget>(r'bottom')
+                  .dynamic$<_i4.PreferredSizeWidget, void, void>(r'bottom')
                   .optional(null),
               elevation: params.number(r'elevation').optional(null),
               scrolledUnderElevation:
                   params.number(r'scrolledUnderElevation').optional(null),
               notificationPredicate: params
-                  .dynamic$<bool Function(_i5.ScrollNotification)>(
+                  .dynamic$<bool Function(_i5.ScrollNotification), void, void>(
                       r'notificationPredicate')
                   .required(defaultScrollNotificationPredicate),
               shadowColor: params.color(r'shadowColor').optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
-              shape: params.dynamic$<_i6.ShapeBorder>(r'shape').optional(null),
+              shape: params
+                  .dynamic$<_i6.ShapeBorder, void, void>(r'shape')
+                  .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               foregroundColor: params.color(r'foregroundColor').optional(null),
               iconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'iconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'iconTheme')
                   .optional(null),
               actionsIconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'actionsIconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'actionsIconTheme')
                   .optional(null),
               primary: params.boolean(r'primary').required(true),
               centerTitle: params.boolean(r'centerTitle').optional(null),
@@ -99,13 +107,14 @@ List<Component> get components => <Component>[
               toolbarHeight: params.number(r'toolbarHeight').optional(null),
               leadingWidth: params.number(r'leadingWidth').optional(null),
               toolbarTextStyle: params
-                  .dynamic$<_i8.TextStyle>(r'toolbarTextStyle')
+                  .dynamic$<_i8.TextStyle, void, void>(r'toolbarTextStyle')
                   .optional(null),
               titleTextStyle: params
-                  .dynamic$<_i8.TextStyle>(r'titleTextStyle')
+                  .dynamic$<_i8.TextStyle, void, void>(r'titleTextStyle')
                   .optional(null),
               systemOverlayStyle: params
-                  .dynamic$<_i9.SystemUiOverlayStyle>(r'systemOverlayStyle')
+                  .dynamic$<_i9.SystemUiOverlayStyle, void, void>(
+                      r'systemOverlayStyle')
                   .optional(null),
               forceMaterialTransparency:
                   params.boolean(r'forceMaterialTransparency').required(false),
@@ -115,13 +124,17 @@ List<Component> get components => <Component>[
                     _i10.Clip.values,
                   )
                   .optional(null),
+              actionsPadding: params
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(
+                      r'actionsPadding')
+                  .optional(null),
             ),
           )
         ],
       ),
       Component(
-        meta: _i11.meta.copyWith(documentation: [
-          ..._i11.meta.documentation,
+        meta: _i12.meta.copyWith(documentation: [
+          ..._i12.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -129,18 +142,19 @@ List<Component> get components => <Component>[
           ),
         ]),
         stories: [
-          _i11.$Default.applyGenerated(
+          _i12.$Default.applyGenerated(
             name: 'Default',
             builder: (
               context,
               params,
             ) =>
-                _i12.BottomAppBar(
+                _i13.BottomAppBar(
               key: null,
               color: params.color(r'color').optional(null),
               elevation: params.number(r'elevation').optional(null),
-              shape:
-                  params.dynamic$<_i13.NotchedShape>(r'shape').optional(null),
+              shape: params
+                  .dynamic$<_i14.NotchedShape, void, void>(r'shape')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
@@ -148,9 +162,11 @@ List<Component> get components => <Component>[
                   )
                   .required(_i10.Clip.none),
               notchMargin: params.number(r'notchMargin').required(4.0),
-              child: params.dynamic$<_i3.Widget>(r'child').optional(null),
+              child: params
+                  .dynamic$<_i3.Widget, void, void>(r'child')
+                  .optional(null),
               padding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'padding')
                   .optional(null),
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
@@ -179,10 +195,12 @@ List<Component> get components => <Component>[
                 _i16.BottomNavigationBar(
               key: null,
               items: params
-                  .dynamic$<List<_i17.BottomNavigationBarItem>>(r'items')
+                  .dynamic$<List<_i17.BottomNavigationBarItem>,
+                      _i17.BottomNavigationBarItem, void>(r'items')
                   .required([]),
-              onTap:
-                  params.dynamic$<void Function(int)>(r'onTap').optional(null),
+              onTap: params
+                  .dynamic$<void Function(int), void, void>(r'onTap')
+                  .optional(null),
               currentIndex: params.integer(r'currentIndex').required(0),
               elevation: params.number(r'elevation').optional(null),
               type: params
@@ -199,27 +217,28 @@ List<Component> get components => <Component>[
               unselectedItemColor:
                   params.color(r'unselectedItemColor').optional(null),
               selectedIconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'selectedIconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'selectedIconTheme')
                   .optional(null),
               unselectedIconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'unselectedIconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(
+                      r'unselectedIconTheme')
                   .optional(null),
               selectedFontSize:
                   params.number(r'selectedFontSize').required(14.0),
               unselectedFontSize:
                   params.number(r'unselectedFontSize').required(12.0),
               selectedLabelStyle: params
-                  .dynamic$<_i8.TextStyle>(r'selectedLabelStyle')
+                  .dynamic$<_i8.TextStyle, void, void>(r'selectedLabelStyle')
                   .optional(null),
               unselectedLabelStyle: params
-                  .dynamic$<_i8.TextStyle>(r'unselectedLabelStyle')
+                  .dynamic$<_i8.TextStyle, void, void>(r'unselectedLabelStyle')
                   .optional(null),
               showSelectedLabels:
                   params.boolean(r'showSelectedLabels').optional(null),
               showUnselectedLabels:
                   params.boolean(r'showUnselectedLabels').optional(null),
               mouseCursor: params
-                  .dynamic$<_i18.MouseCursor>(r'mouseCursor')
+                  .dynamic$<_i18.MouseCursor, void, void>(r'mouseCursor')
                   .optional(null),
               enableFeedback: params.boolean(r'enableFeedback').optional(null),
               landscapeLayout: params
@@ -250,11 +269,13 @@ List<Component> get components => <Component>[
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               elevation: params.number(r'elevation').optional(null),
-              shape: params.dynamic$<_i6.ShapeBorder>(r'shape').optional(null),
+              shape: params
+                  .dynamic$<_i6.ShapeBorder, void, void>(r'shape')
+                  .optional(null),
               borderOnForeground:
                   params.boolean(r'borderOnForeground').required(true),
               margin: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'margin')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'margin')
                   .optional(null),
               clipBehavior: params
                   .single(
@@ -262,7 +283,9 @@ List<Component> get components => <Component>[
                     _i10.Clip.values,
                   )
                   .optional(null),
-              child: params.dynamic$<_i3.Widget>(r'child').optional(null),
+              child: params
+                  .dynamic$<_i3.Widget, void, void>(r'child')
+                  .optional(null),
               semanticContainer:
                   params.boolean(r'semanticContainer').required(true),
             ),
@@ -280,11 +303,13 @@ List<Component> get components => <Component>[
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               elevation: params.number(r'elevation').optional(null),
-              shape: params.dynamic$<_i6.ShapeBorder>(r'shape').optional(null),
+              shape: params
+                  .dynamic$<_i6.ShapeBorder, void, void>(r'shape')
+                  .optional(null),
               borderOnForeground:
                   params.boolean(r'borderOnForeground').required(true),
               margin: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'margin')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'margin')
                   .optional(null),
               clipBehavior: params
                   .single(
@@ -292,7 +317,9 @@ List<Component> get components => <Component>[
                     _i10.Clip.values,
                   )
                   .optional(null),
-              child: params.dynamic$<_i3.Widget>(r'child').optional(null),
+              child: params
+                  .dynamic$<_i3.Widget, void, void>(r'child')
+                  .optional(null),
               semanticContainer:
                   params.boolean(r'semanticContainer').required(true),
             ),
@@ -317,43 +344,54 @@ List<Component> get components => <Component>[
             ) =>
                 _i22.Chip(
               key: null,
-              avatar: params.dynamic$<_i3.Widget>(r'avatar').optional(null),
-              label: params
-                  .dynamic$<_i3.Widget>(r'label')
-                  .required(const SizedBox.shrink()),
-              labelStyle:
-                  params.dynamic$<_i8.TextStyle>(r'labelStyle').optional(null),
-              labelPadding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'labelPadding')
+              avatar: params
+                  .dynamic$<_i3.Widget, void, void>(r'avatar')
                   .optional(null),
-              deleteIcon:
-                  params.dynamic$<_i3.Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              label: params
+                  .dynamic$<_i3.Widget, void, void>(r'label')
+                  .required(const SizedBox.shrink()),
+              labelStyle: params
+                  .dynamic$<_i8.TextStyle, void, void>(r'labelStyle')
+                  .optional(null),
+              labelPadding: params
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(
+                      r'labelPadding')
+                  .optional(null),
+              deleteIcon: params
+                  .dynamic$<_i3.Widget, void, void>(r'deleteIcon')
+                  .optional(null),
+              onDeleted: params
+                  .dynamic$<void Function(), void, void>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<_i6.BorderSide>(r'side').optional(null),
-              shape:
-                  params.dynamic$<_i6.OutlinedBorder>(r'shape').optional(null),
+              side: params
+                  .dynamic$<_i6.BorderSide, void, void>(r'side')
+                  .optional(null),
+              shape: params
+                  .dynamic$<_i6.OutlinedBorder, void, void>(r'shape')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
                     _i10.Clip.values,
                   )
                   .required(_i10.Clip.none),
-              focusNode:
-                  params.dynamic$<_i23.FocusNode>(r'focusNode').optional(null),
+              focusNode: params
+                  .dynamic$<_i23.FocusNode, void, void>(r'focusNode')
+                  .optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>>(r'color')
+                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>, _i10.Color,
+                      void>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<_i25.VisualDensity>(r'visualDensity')
+                  .dynamic$<_i25.VisualDensity, void, void>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
@@ -366,16 +404,22 @@ List<Component> get components => <Component>[
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               iconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'iconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'iconTheme')
                   .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i22.ChipAnimationStyle, void, void>(
+                      r'chipAnimationStyle')
+                  .optional(null),
+              mouseCursor: params
+                  .dynamic$<_i18.MouseCursor, void, void>(r'mouseCursor')
                   .optional(null),
             ),
           ),
@@ -387,43 +431,54 @@ List<Component> get components => <Component>[
             ) =>
                 _i22.Chip(
               key: null,
-              avatar: params.dynamic$<_i3.Widget>(r'avatar').optional(null),
-              label: params
-                  .dynamic$<_i3.Widget>(r'label')
-                  .required(const SizedBox.shrink()),
-              labelStyle:
-                  params.dynamic$<_i8.TextStyle>(r'labelStyle').optional(null),
-              labelPadding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'labelPadding')
+              avatar: params
+                  .dynamic$<_i3.Widget, void, void>(r'avatar')
                   .optional(null),
-              deleteIcon:
-                  params.dynamic$<_i3.Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              label: params
+                  .dynamic$<_i3.Widget, void, void>(r'label')
+                  .required(const SizedBox.shrink()),
+              labelStyle: params
+                  .dynamic$<_i8.TextStyle, void, void>(r'labelStyle')
+                  .optional(null),
+              labelPadding: params
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(
+                      r'labelPadding')
+                  .optional(null),
+              deleteIcon: params
+                  .dynamic$<_i3.Widget, void, void>(r'deleteIcon')
+                  .optional(null),
+              onDeleted: params
+                  .dynamic$<void Function(), void, void>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<_i6.BorderSide>(r'side').optional(null),
-              shape:
-                  params.dynamic$<_i6.OutlinedBorder>(r'shape').optional(null),
+              side: params
+                  .dynamic$<_i6.BorderSide, void, void>(r'side')
+                  .optional(null),
+              shape: params
+                  .dynamic$<_i6.OutlinedBorder, void, void>(r'shape')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
                     _i10.Clip.values,
                   )
                   .required(_i10.Clip.none),
-              focusNode:
-                  params.dynamic$<_i23.FocusNode>(r'focusNode').optional(null),
+              focusNode: params
+                  .dynamic$<_i23.FocusNode, void, void>(r'focusNode')
+                  .optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>>(r'color')
+                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>, _i10.Color,
+                      void>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<_i25.VisualDensity>(r'visualDensity')
+                  .dynamic$<_i25.VisualDensity, void, void>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
@@ -436,16 +491,22 @@ List<Component> get components => <Component>[
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               iconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'iconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'iconTheme')
                   .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i22.ChipAnimationStyle, void, void>(
+                      r'chipAnimationStyle')
+                  .optional(null),
+              mouseCursor: params
+                  .dynamic$<_i18.MouseCursor, void, void>(r'mouseCursor')
                   .optional(null),
             ),
           ),
@@ -457,43 +518,54 @@ List<Component> get components => <Component>[
             ) =>
                 _i22.Chip(
               key: null,
-              avatar: params.dynamic$<_i3.Widget>(r'avatar').optional(null),
-              label: params
-                  .dynamic$<_i3.Widget>(r'label')
-                  .required(const SizedBox.shrink()),
-              labelStyle:
-                  params.dynamic$<_i8.TextStyle>(r'labelStyle').optional(null),
-              labelPadding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'labelPadding')
+              avatar: params
+                  .dynamic$<_i3.Widget, void, void>(r'avatar')
                   .optional(null),
-              deleteIcon:
-                  params.dynamic$<_i3.Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              label: params
+                  .dynamic$<_i3.Widget, void, void>(r'label')
+                  .required(const SizedBox.shrink()),
+              labelStyle: params
+                  .dynamic$<_i8.TextStyle, void, void>(r'labelStyle')
+                  .optional(null),
+              labelPadding: params
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(
+                      r'labelPadding')
+                  .optional(null),
+              deleteIcon: params
+                  .dynamic$<_i3.Widget, void, void>(r'deleteIcon')
+                  .optional(null),
+              onDeleted: params
+                  .dynamic$<void Function(), void, void>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<_i6.BorderSide>(r'side').optional(null),
-              shape:
-                  params.dynamic$<_i6.OutlinedBorder>(r'shape').optional(null),
+              side: params
+                  .dynamic$<_i6.BorderSide, void, void>(r'side')
+                  .optional(null),
+              shape: params
+                  .dynamic$<_i6.OutlinedBorder, void, void>(r'shape')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
                     _i10.Clip.values,
                   )
                   .required(_i10.Clip.none),
-              focusNode:
-                  params.dynamic$<_i23.FocusNode>(r'focusNode').optional(null),
+              focusNode: params
+                  .dynamic$<_i23.FocusNode, void, void>(r'focusNode')
+                  .optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>>(r'color')
+                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>, _i10.Color,
+                      void>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<_i25.VisualDensity>(r'visualDensity')
+                  .dynamic$<_i25.VisualDensity, void, void>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
@@ -506,16 +578,22 @@ List<Component> get components => <Component>[
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               iconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'iconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'iconTheme')
                   .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i22.ChipAnimationStyle, void, void>(
+                      r'chipAnimationStyle')
+                  .optional(null),
+              mouseCursor: params
+                  .dynamic$<_i18.MouseCursor, void, void>(r'mouseCursor')
                   .optional(null),
             ),
           ),
@@ -527,43 +605,54 @@ List<Component> get components => <Component>[
             ) =>
                 _i22.Chip(
               key: null,
-              avatar: params.dynamic$<_i3.Widget>(r'avatar').optional(null),
-              label: params
-                  .dynamic$<_i3.Widget>(r'label')
-                  .required(const SizedBox.shrink()),
-              labelStyle:
-                  params.dynamic$<_i8.TextStyle>(r'labelStyle').optional(null),
-              labelPadding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'labelPadding')
+              avatar: params
+                  .dynamic$<_i3.Widget, void, void>(r'avatar')
                   .optional(null),
-              deleteIcon:
-                  params.dynamic$<_i3.Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              label: params
+                  .dynamic$<_i3.Widget, void, void>(r'label')
+                  .required(const SizedBox.shrink()),
+              labelStyle: params
+                  .dynamic$<_i8.TextStyle, void, void>(r'labelStyle')
+                  .optional(null),
+              labelPadding: params
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(
+                      r'labelPadding')
+                  .optional(null),
+              deleteIcon: params
+                  .dynamic$<_i3.Widget, void, void>(r'deleteIcon')
+                  .optional(null),
+              onDeleted: params
+                  .dynamic$<void Function(), void, void>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<_i6.BorderSide>(r'side').optional(null),
-              shape:
-                  params.dynamic$<_i6.OutlinedBorder>(r'shape').optional(null),
+              side: params
+                  .dynamic$<_i6.BorderSide, void, void>(r'side')
+                  .optional(null),
+              shape: params
+                  .dynamic$<_i6.OutlinedBorder, void, void>(r'shape')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
                     _i10.Clip.values,
                   )
                   .required(_i10.Clip.none),
-              focusNode:
-                  params.dynamic$<_i23.FocusNode>(r'focusNode').optional(null),
+              focusNode: params
+                  .dynamic$<_i23.FocusNode, void, void>(r'focusNode')
+                  .optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>>(r'color')
+                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>, _i10.Color,
+                      void>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<_i25.VisualDensity>(r'visualDensity')
+                  .dynamic$<_i25.VisualDensity, void, void>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
@@ -576,16 +665,22 @@ List<Component> get components => <Component>[
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               iconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'iconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'iconTheme')
                   .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i22.ChipAnimationStyle, void, void>(
+                      r'chipAnimationStyle')
+                  .optional(null),
+              mouseCursor: params
+                  .dynamic$<_i18.MouseCursor, void, void>(r'mouseCursor')
                   .optional(null),
             ),
           ),
@@ -597,43 +692,54 @@ List<Component> get components => <Component>[
             ) =>
                 _i22.Chip(
               key: null,
-              avatar: params.dynamic$<_i3.Widget>(r'avatar').optional(null),
-              label: params
-                  .dynamic$<_i3.Widget>(r'label')
-                  .required(const SizedBox.shrink()),
-              labelStyle:
-                  params.dynamic$<_i8.TextStyle>(r'labelStyle').optional(null),
-              labelPadding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'labelPadding')
+              avatar: params
+                  .dynamic$<_i3.Widget, void, void>(r'avatar')
                   .optional(null),
-              deleteIcon:
-                  params.dynamic$<_i3.Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              label: params
+                  .dynamic$<_i3.Widget, void, void>(r'label')
+                  .required(const SizedBox.shrink()),
+              labelStyle: params
+                  .dynamic$<_i8.TextStyle, void, void>(r'labelStyle')
+                  .optional(null),
+              labelPadding: params
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(
+                      r'labelPadding')
+                  .optional(null),
+              deleteIcon: params
+                  .dynamic$<_i3.Widget, void, void>(r'deleteIcon')
+                  .optional(null),
+              onDeleted: params
+                  .dynamic$<void Function(), void, void>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<_i6.BorderSide>(r'side').optional(null),
-              shape:
-                  params.dynamic$<_i6.OutlinedBorder>(r'shape').optional(null),
+              side: params
+                  .dynamic$<_i6.BorderSide, void, void>(r'side')
+                  .optional(null),
+              shape: params
+                  .dynamic$<_i6.OutlinedBorder, void, void>(r'shape')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
                     _i10.Clip.values,
                   )
                   .required(_i10.Clip.none),
-              focusNode:
-                  params.dynamic$<_i23.FocusNode>(r'focusNode').optional(null),
+              focusNode: params
+                  .dynamic$<_i23.FocusNode, void, void>(r'focusNode')
+                  .optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>>(r'color')
+                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>, _i10.Color,
+                      void>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<_i25.VisualDensity>(r'visualDensity')
+                  .dynamic$<_i25.VisualDensity, void, void>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
@@ -646,16 +752,22 @@ List<Component> get components => <Component>[
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               iconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'iconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'iconTheme')
                   .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i22.ChipAnimationStyle, void, void>(
+                      r'chipAnimationStyle')
+                  .optional(null),
+              mouseCursor: params
+                  .dynamic$<_i18.MouseCursor, void, void>(r'mouseCursor')
                   .optional(null),
             ),
           ),
@@ -667,43 +779,54 @@ List<Component> get components => <Component>[
             ) =>
                 _i22.Chip(
               key: null,
-              avatar: params.dynamic$<_i3.Widget>(r'avatar').optional(null),
-              label: params
-                  .dynamic$<_i3.Widget>(r'label')
-                  .required(const SizedBox.shrink()),
-              labelStyle:
-                  params.dynamic$<_i8.TextStyle>(r'labelStyle').optional(null),
-              labelPadding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'labelPadding')
+              avatar: params
+                  .dynamic$<_i3.Widget, void, void>(r'avatar')
                   .optional(null),
-              deleteIcon:
-                  params.dynamic$<_i3.Widget>(r'deleteIcon').optional(null),
-              onDeleted:
-                  params.dynamic$<void Function()>(r'onDeleted').optional(null),
+              label: params
+                  .dynamic$<_i3.Widget, void, void>(r'label')
+                  .required(const SizedBox.shrink()),
+              labelStyle: params
+                  .dynamic$<_i8.TextStyle, void, void>(r'labelStyle')
+                  .optional(null),
+              labelPadding: params
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(
+                      r'labelPadding')
+                  .optional(null),
+              deleteIcon: params
+                  .dynamic$<_i3.Widget, void, void>(r'deleteIcon')
+                  .optional(null),
+              onDeleted: params
+                  .dynamic$<void Function(), void, void>(r'onDeleted')
+                  .optional(null),
               deleteIconColor: params.color(r'deleteIconColor').optional(null),
               deleteButtonTooltipMessage:
                   params.string(r'deleteButtonTooltipMessage').optional(null),
-              side: params.dynamic$<_i6.BorderSide>(r'side').optional(null),
-              shape:
-                  params.dynamic$<_i6.OutlinedBorder>(r'shape').optional(null),
+              side: params
+                  .dynamic$<_i6.BorderSide, void, void>(r'side')
+                  .optional(null),
+              shape: params
+                  .dynamic$<_i6.OutlinedBorder, void, void>(r'shape')
+                  .optional(null),
               clipBehavior: params
                   .single(
                     r'clipBehavior',
                     _i10.Clip.values,
                   )
                   .required(_i10.Clip.none),
-              focusNode:
-                  params.dynamic$<_i23.FocusNode>(r'focusNode').optional(null),
+              focusNode: params
+                  .dynamic$<_i23.FocusNode, void, void>(r'focusNode')
+                  .optional(null),
               autofocus: params.boolean(r'autofocus').required(false),
               color: params
-                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>>(r'color')
+                  .dynamic$<_i24.MaterialStateProperty<_i10.Color?>, _i10.Color,
+                      void>(r'color')
                   .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               padding: params
-                  .dynamic$<_i14.EdgeInsetsGeometry>(r'padding')
+                  .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'padding')
                   .optional(null),
               visualDensity: params
-                  .dynamic$<_i25.VisualDensity>(r'visualDensity')
+                  .dynamic$<_i25.VisualDensity, void, void>(r'visualDensity')
                   .optional(null),
               materialTapTargetSize: params
                   .single(
@@ -716,16 +839,22 @@ List<Component> get components => <Component>[
               surfaceTintColor:
                   params.color(r'surfaceTintColor').optional(null),
               iconTheme: params
-                  .dynamic$<_i7.IconThemeData>(r'iconTheme')
+                  .dynamic$<_i7.IconThemeData, void, void>(r'iconTheme')
                   .optional(null),
               avatarBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'avatarBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'avatarBoxConstraints')
                   .optional(null),
               deleteIconBoxConstraints: params
-                  .dynamic$<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
+                  .dynamic$<_i26.BoxConstraints, void, void>(
+                      r'deleteIconBoxConstraints')
                   .optional(null),
               chipAnimationStyle: params
-                  .dynamic$<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
+                  .dynamic$<_i22.ChipAnimationStyle, void, void>(
+                      r'chipAnimationStyle')
+                  .optional(null),
+              mouseCursor: params
+                  .dynamic$<_i18.MouseCursor, void, void>(r'mouseCursor')
                   .optional(null),
             ),
           ),
@@ -750,41 +879,49 @@ List<Component> get components => <Component>[
                 _i28.Scaffold(
               key: null,
               appBar: params
-                  .dynamic$<_i4.PreferredSizeWidget>(r'appBar')
+                  .dynamic$<_i4.PreferredSizeWidget, void, void>(r'appBar')
                   .optional(null),
-              body: params.dynamic$<_i3.Widget>(r'body').optional(null),
+              body: params
+                  .dynamic$<_i3.Widget, void, void>(r'body')
+                  .optional(null),
               floatingActionButton: params
-                  .dynamic$<_i3.Widget>(r'floatingActionButton')
+                  .dynamic$<_i3.Widget, void, void>(r'floatingActionButton')
                   .optional(null),
               floatingActionButtonLocation: params
-                  .dynamic$<_i29.FloatingActionButtonLocation>(
+                  .dynamic$<_i29.FloatingActionButtonLocation, void, void>(
                       r'floatingActionButtonLocation')
                   .optional(null),
               floatingActionButtonAnimator: params
-                  .dynamic$<_i29.FloatingActionButtonAnimator>(
+                  .dynamic$<_i29.FloatingActionButtonAnimator, void, void>(
                       r'floatingActionButtonAnimator')
                   .optional(null),
               persistentFooterButtons: params
-                  .dynamic$<List<_i3.Widget>>(r'persistentFooterButtons')
+                  .dynamic$<List<_i3.Widget>, _i3.Widget, void>(
+                      r'persistentFooterButtons')
                   .optional(null),
               persistentFooterAlignment: params
-                  .dynamic$<_i30.AlignmentDirectional>(
+                  .dynamic$<_i30.AlignmentDirectional, void, void>(
                       r'persistentFooterAlignment')
                   .required(AlignmentDirectional.centerEnd),
-              drawer: params.dynamic$<_i3.Widget>(r'drawer').optional(null),
-              onDrawerChanged: params
-                  .dynamic$<void Function(bool)>(r'onDrawerChanged')
+              drawer: params
+                  .dynamic$<_i3.Widget, void, void>(r'drawer')
                   .optional(null),
-              endDrawer:
-                  params.dynamic$<_i3.Widget>(r'endDrawer').optional(null),
+              onDrawerChanged: params
+                  .dynamic$<void Function(bool), void, void>(r'onDrawerChanged')
+                  .optional(null),
+              endDrawer: params
+                  .dynamic$<_i3.Widget, void, void>(r'endDrawer')
+                  .optional(null),
               onEndDrawerChanged: params
-                  .dynamic$<void Function(bool)>(r'onEndDrawerChanged')
+                  .dynamic$<void Function(bool), void, void>(
+                      r'onEndDrawerChanged')
                   .optional(null),
               bottomNavigationBar: params
-                  .dynamic$<_i3.Widget>(r'bottomNavigationBar')
+                  .dynamic$<_i3.Widget, void, void>(r'bottomNavigationBar')
                   .optional(null),
-              bottomSheet:
-                  params.dynamic$<_i3.Widget>(r'bottomSheet').optional(null),
+              bottomSheet: params
+                  .dynamic$<_i3.Widget, void, void>(r'bottomSheet')
+                  .optional(null),
               backgroundColor: params.color(r'backgroundColor').optional(null),
               resizeToAvoidBottomInset:
                   params.boolean(r'resizeToAvoidBottomInset').optional(null),

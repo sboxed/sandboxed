@@ -24,11 +24,59 @@ void main() {
         () {
           final params = ConstantParams();
           final List<String> _ = params //
-              .dynamic$<List<String>>('list')
+              .dynamic$<List<String>, String, void>('list')
               .required([]);
         },
         returnsNormally,
       );
+    },
+    tags: ['lang-flaws'],
+  );
+
+  test(
+    'test dynamic list can cast dynamic default value when hint provided',
+    () {
+      final params = ConstantParams();
+      params.updateDefaultValues({
+        'list': [],
+      });
+
+      var value;
+
+      expect(
+        () {
+          value = params //
+              .dynamic$<List<String>, String, void>('list')
+              .required(['Some']);
+        },
+        returnsNormally,
+      );
+
+      expect(value, isNot(equals(['Some'])));
+    },
+    tags: ['lang-flaws'],
+  );
+
+  test(
+    'test dynamic list fail',
+    () {
+      final params = ConstantParams();
+      params.updateDefaultValues({
+        'list': [],
+      });
+
+      var value;
+
+      expect(
+        () {
+          value = params //
+              .dynamic$<List<String>, void, void>('list')
+              .required(['Some']);
+        },
+        returnsNormally,
+      );
+
+      expect(value, equals(['Some']));
     },
     tags: ['lang-flaws'],
   );

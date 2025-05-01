@@ -1,12 +1,9 @@
-// ignore_for_file: implementation_imports
-
 import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sandboxed/params/param_builder.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:sandboxed_core/src/params/use_params.dart';
 
 void safeAssign(void Function(dynamic value) assign, dynamic value) {
   try {
@@ -22,9 +19,13 @@ void safeAssign(void Function(dynamic value) assign, dynamic value) {
 
 class ParamsNotifier extends ChangeNotifier implements Params {
   final Map<String, ParamWrapper> _params = {};
-  final Map<String, dynamic> _defaultValues = {};
   final Map<String, dynamic> _initialValues = {};
   final List<ParamBuilder> _builders;
+
+  late DefaultValueResolver _defaultValueResolver = DefaultValueResolver(
+    params: this,
+    defaultValues: {},
+  );
 
   ParamsNotifier({required List<ParamBuilder> builders}) : _builders = builders;
 
@@ -33,7 +34,7 @@ class ParamsNotifier extends ChangeNotifier implements Params {
   final PublishSubject<String> _added = PublishSubject();
   Stream<String> get onParamAdded => _added;
 
-  TWrapper register<TWrapper extends ParamWrapper<TParam>, TParam>(
+  TWrapper register<TWrapper extends ParamWrapper<TParam>, TParam, T1, T2>(
     String id, {
     TWrapper Function()? wrapperFactory,
   }) {
@@ -43,12 +44,8 @@ class ParamsNotifier extends ChangeNotifier implements Params {
       () => (wrapperFactory?.call() ?? ParamWrapper<TParam>()).bind(id, this),
     ) as TWrapper;
 
-    if (isCreation && _defaultValues.containsKey(id)) {
-      final value = switch (_defaultValues[id]) {
-        // TODO(@melvspace): 03/09/25 link param wrappers to update each other
-        UseParams useParams => useParams.builder(this),
-        var value => value,
-      };
+    if (isCreation && _defaultValueResolver.defaultValues.containsKey(id)) {
+      final value = _getDefaultValue<TParam, T1, T2>(id);
 
       if (value == null) {
         safeAssign((value) => wrapper.optional(value), value);
@@ -71,10 +68,16 @@ class ParamsNotifier extends ChangeNotifier implements Params {
     return wrapper;
   }
 
+  T? _getDefaultValue<T, T1, T2>(String id) {
+    return _defaultValueResolver.getDefaultValue<T, T1, T2>(id);
+  }
+
   @override
   void updateDefaultValues(Map<String, dynamic> defaultValues) {
-    _defaultValues.clear();
-    _defaultValues.addAll(defaultValues);
+    _defaultValueResolver = DefaultValueResolver(
+      params: this,
+      defaultValues: defaultValues,
+    );
   }
 
   @override
@@ -119,47 +122,47 @@ class ParamsNotifier extends ChangeNotifier implements Params {
 
   @override
   ParamWrapper<bool> boolean(String id) {
-    return register<ParamWrapper<bool>, bool>(id);
+    return register<ParamWrapper<bool>, bool, void, void>(id);
   }
 
   @override
   ParamWrapper<String> string(String id) {
-    return register<ParamWrapper<String>, String>(id);
+    return register<ParamWrapper<String>, String, void, void>(id);
   }
 
   @override
   ParamWrapper<double> number(String id) {
-    return register<ParamWrapper<double>, double>(id);
+    return register<ParamWrapper<double>, double, void, void>(id);
   }
 
   @override
   ParamWrapper<int> integer(String id) {
-    return register<ParamWrapper<int>, int>(id);
+    return register<ParamWrapper<int>, int, void, void>(id);
   }
 
   @override
   ParamWrapper<Color> color(String id) {
-    return register<ParamWrapper<Color>, Color>(id);
+    return register<ParamWrapper<Color>, Color, void, void>(id);
   }
 
   @override
   ParamWrapper<Gradient> gradient(String id) {
-    return register<ParamWrapper<Gradient>, Gradient>(id);
+    return register<ParamWrapper<Gradient>, Gradient, void, void>(id);
   }
 
   @override
   ParamWrapper<DateTime> datetime(String id) {
-    return register<ParamWrapper<DateTime>, DateTime>(id);
+    return register<ParamWrapper<DateTime>, DateTime, void, void>(id);
   }
 
   @override
   ParamWrapper<Duration> duration(String id) {
-    return register<ParamWrapper<Duration>, Duration>(id);
+    return register<ParamWrapper<Duration>, Duration, void, void>(id);
   }
 
   @override
   SingleChoiceParamWrapper<T> single<T>(String id, List<T> values) {
-    return register<SingleChoiceParamWrapper<T>, T>(
+    return register<SingleChoiceParamWrapper<T>, T, void, void>(
       id,
       wrapperFactory: () => SingleChoiceParamWrapper(values: values),
     );
@@ -167,15 +170,15 @@ class ParamsNotifier extends ChangeNotifier implements Params {
 
   @override
   MultiChoiceParamWrapper<T> multi<T>(String id, List<T> values) {
-    return register<MultiChoiceParamWrapper<T>, List<T>>(
+    return register<MultiChoiceParamWrapper<T>, List<T>, void, void>(
       id,
       wrapperFactory: () => MultiChoiceParamWrapper(values: values),
     );
   }
 
   @override
-  ParamWrapper<T> dynamic$<T>(String id) {
-    return register<ParamWrapper<T>, T>(id);
+  ParamWrapper<T> dynamic$<T, T1, T2>(String id) {
+    return register<ParamWrapper<T>, T, T1, T2>(id);
   }
 
   @override

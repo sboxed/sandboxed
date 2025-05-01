@@ -4,6 +4,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:sandboxed_generator/expression/raw.dart';
 import 'package:sandboxed_generator/types/type_checker.dart';
 import 'package:sandboxed_generator/parsers/story_parser.dart';
+import 'package:sandboxed_generator/types/type_handlers.dart';
 
 class StoryParameterBuilder {
   final ParameterElement parameter;
@@ -96,11 +97,16 @@ class StoryParameterBuilder {
     List<Expression> positionalArgs,
     Map<String, Expression> namedArgs,
   ) {
+    final types = TypeHandlers.extractTypeWithHints(type).take(3).toList();
+    if (types.length < 3) {
+      types.addAll(List.filled(3 - types.length, refer('void')));
+    }
+
     return refer('params').property('dynamic\$').call(
-          [literalString(parameter.name, raw: true), ...positionalArgs],
-          namedArgs,
-          [buildTypeReference(type)],
-        );
+      [literalString(parameter.name, raw: true), ...positionalArgs],
+      namedArgs,
+      types,
+    );
   }
 
   Expression _handleOptionalParameter(Expression param) {

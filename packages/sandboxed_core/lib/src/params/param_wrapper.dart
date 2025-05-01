@@ -53,12 +53,12 @@ class ParamWrapper<T> {
     _required = true;
     _null = false;
 
-    this._value = value;
-    _initialValue = value;
+    this._value ??= value;
+    _initialValue = this._value;
 
-    _completer.complete(value);
+    _completer.complete(this._value);
 
-    return value;
+    return this._value!;
   }
 
   T? optional([T? value]) {
@@ -72,12 +72,12 @@ class ParamWrapper<T> {
 
     _resolved = true;
     _null = value == null;
-    this._value = value;
-    _initialValue = value;
+    this._value ??= value;
+    _initialValue = this._value;
 
-    _completer.complete(value);
+    _completer.complete(this._value);
 
-    return value;
+    return this._value;
   }
 
   T default$() {
@@ -89,12 +89,12 @@ class ParamWrapper<T> {
 
     _resolved = true;
     _null = defaultValue == null;
-    this._value = defaultValue;
-    _initialValue = defaultValue;
+    this._value ??= defaultValue;
+    _initialValue = this._value;
 
-    _completer.complete(defaultValue);
+    _completer.complete(this._value);
 
-    return defaultValue;
+    return this._value!;
   }
 
   ParamWrapper<T> apply(String key, dynamic value) {
