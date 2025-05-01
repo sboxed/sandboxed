@@ -1,6 +1,6 @@
 # 🧩 Sandboxed Core
 
-Core primitives for [**Sandboxed**](https://github.com/your-username/sandboxed) —  
+Core primitives for [**Sandboxed**](https://github.com/sboxed/sandboxed) —  
 a Flutter tool for developing, testing, and documenting UI components in isolation.
 
 This package contains the core types used to define and organize components and stories, including:

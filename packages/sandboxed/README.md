@@ -29,10 +29,10 @@
 
 ## 📦 Packages
 
-- [`sandboxed`](packages/sandboxed/README.md) — Main runtime & viewer UI  
-- [`sandboxed_core`](packages/sandboxed_core/README.md) — Core primitives: `Meta`, `Story`, `Params`, etc.  
-- [`sandboxed_generator`](packages/sandboxed_generator/README.md) — Code generation for story/component registry  
-- [`sandboxed_ui_kit`](packages/sandboxed_ui_kit/README.md) — UI components used in the viewer (sidebar, layout, etc.)
+- [`sandboxed`](https://github.com/sboxed/sandboxed) — Main runtime & viewer UI  
+- [`sandboxed_core`](https://github.com/sboxed/sandboxed/tree/main/packages/sandboxed_core) — Core primitives: `Meta`, `Story`, `Params`, etc.  
+- [`sandboxed_generator`](https://github.com/sboxed/sandboxed/tree/main/packages/sandboxed_generator) — Code generation for story/component registry  
+- [`sandboxed_ui_kit`](https://github.com/sboxed/sandboxed/tree/main/packages/sandboxed_ui_kit) — UI components used in the viewer (sidebar, layout, etc.)
 
 ## 📦 Installation
 
