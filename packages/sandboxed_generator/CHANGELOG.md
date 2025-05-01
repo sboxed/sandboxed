@@ -1,3 +1,8 @@
+## 0.1.2
+
+ - **FEAT**(sandboxed_generator): improve component generation and type handling.
+ - **FEAT**(sandboxed_generator): dont register Key parameters in story viewer params.
+
 ## 0.1.1
 
  - **FEAT**(generator): add dependency check.
