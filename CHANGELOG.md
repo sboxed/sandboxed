@@ -15,6 +15,47 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sandboxed` - `v0.1.2+1`](#sandboxed---v0121)
+ - [`sandboxed_core` - `v0.1.1+1`](#sandboxed_core---v0111)
+ - [`sandboxed_generator` - `v0.1.3+1`](#sandboxed_generator---v0131)
+ - [`sandboxed_test` - `v0.0.1+1`](#sandboxed_test---v0011)
+ - [`sandboxed_ui_kit` - `v0.1.0+4`](#sandboxed_ui_kit---v0104)
+
+---
+
+#### `sandboxed` - `v0.1.2+1`
+
+ - **DOCS**: fix links in readme.
+
+#### `sandboxed_core` - `v0.1.1+1`
+
+ - **DOCS**: fix links in readme.
+
+#### `sandboxed_generator` - `v0.1.3+1`
+
+ - **DOCS**: fix links in readme.
+
+#### `sandboxed_test` - `v0.0.1+1`
+
+ - **DOCS**: fix links in readme.
+
+#### `sandboxed_ui_kit` - `v0.1.0+4`
+
+ - **DOCS**: fix links in readme.
+
+
+## 2025-05-02
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sandboxed` - `v0.1.2`](#sandboxed---v012)
  - [`sandboxed_core` - `v0.1.1`](#sandboxed_core---v011)
  - [`sandboxed_generator` - `v0.1.3`](#sandboxed_generator---v013)

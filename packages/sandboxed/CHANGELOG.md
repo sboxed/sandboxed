@@ -1,3 +1,7 @@
+## 0.1.2+1
+
+ - **DOCS**: fix links in readme.
+
 ## 0.1.2
 
  - **FEAT**(sandboxed_core): enhance dynamic parameter handling and default value resolution.
