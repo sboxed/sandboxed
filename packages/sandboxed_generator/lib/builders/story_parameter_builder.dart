@@ -3,7 +3,6 @@ import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:sandboxed_generator/expression/raw.dart';
 import 'package:sandboxed_generator/types/type_checker.dart';
-import 'package:sandboxed_generator/parsers/story_parser.dart';
 import 'package:sandboxed_generator/types/type_handlers.dart';
 
 class StoryParameterBuilder {
