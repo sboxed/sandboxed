@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-05-02
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed` - `v0.1.2`](#sandboxed---v012)
+ - [`sandboxed_core` - `v0.1.1`](#sandboxed_core---v011)
+ - [`sandboxed_generator` - `v0.1.3`](#sandboxed_generator---v013)
+ - [`sandboxed_ui_kit` - `v0.1.0+3`](#sandboxed_ui_kit---v0103)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `sandboxed_ui_kit` - `v0.1.0+3`
+
+---
+
+#### `sandboxed` - `v0.1.2`
+
+ - **FEAT**(sandboxed_core): enhance dynamic parameter handling and default value resolution.
+
+#### `sandboxed_core` - `v0.1.1`
+
+ - **FIX**(core): correct tag resolver functionality in TagsResolver class.
+ - **FEAT**(sandboxed_core): enhance dynamic parameter handling and default value resolution.
+
+#### `sandboxed_generator` - `v0.1.3`
+
+ - **FEAT**(sandboxed_core): enhance dynamic parameter handling and default value resolution.
+
+
 ## 2025-05-01
 
 ### Changes

@@ -1,3 +1,7 @@
+## 0.1.2
+
+ - **FEAT**(sandboxed_core): enhance dynamic parameter handling and default value resolution.
+
 ## 0.1.1+1
 
  - Update a dependency to the latest release.
