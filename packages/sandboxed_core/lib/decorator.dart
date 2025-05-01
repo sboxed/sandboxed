@@ -43,7 +43,9 @@ extension DecoratorListX on Iterable<Decorator> {
     final decorators = toList().reversed;
     return decorators.fold(
       child,
-      (child, element) => element.decorator(context, child),
+      (child, element) => Builder(
+        builder: (context) => element.decorator(context, child),
+      ),
     );
   }
 }
