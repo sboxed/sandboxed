@@ -33,3 +33,4 @@ build/
 /*.iml
 .idea
 pubspec_overrides.yaml
+pubspec.lock
