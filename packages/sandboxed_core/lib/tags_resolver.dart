@@ -6,16 +6,16 @@ class TagsResolver {
 
   TagsResolver({required this.globalTags});
 
-  bool checkTag(String tag, Component component, Story? story) {
+  bool checkTag(String tag, Component component, [Story? story]) {
     final tags = resolveTags(component, story);
     return tags.contains(tag);
   }
 
-  Set<String> resolveTags(Component component, Story? story) {
-    final tags = {...globalTags};
-    modify(tags, component.meta.tags);
+  Set<String> resolveTags(Component component, [Story? story]) {
+    var tags = {...globalTags};
+    tags = modify(tags, component.meta.tags);
     if (story != null) {
-      modify(tags, story.tags);
+      tags = modify(tags, story.tags);
     }
 
     return tags;
@@ -25,9 +25,7 @@ class TagsResolver {
     final result = {...tags};
 
     final addTags = modifier.where((element) => !element.startsWith('!'));
-    final removeTags = modifier
-        .where((element) => element.startsWith('!'))
-        .map((e) => e.substring(1));
+    final removeTags = modifier.where((element) => element.startsWith('!')).map((e) => e.substring(1));
 
     result.removeAll(removeTags);
     result.addAll(addTags);
