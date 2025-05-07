@@ -45,8 +45,10 @@ class ParamsEditor extends ConsumerWidget {
                     const TextStyle(fontWeight: FontWeight.bold)),
                 if (context.breakpoint != Breakpoints.mobile) ...[
                   // TODO(@melvspace): 03/30/25 get types at generation step
-                  cell(const Text('Description'),
-                      const TextStyle(fontWeight: FontWeight.bold)),
+                  cell(
+                    const Text('Description'),
+                    const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ],
                 cell(
                   Row(
@@ -83,18 +85,17 @@ class ParamsEditor extends ConsumerWidget {
                     ),
                   ),
                   if (context.breakpoint != Breakpoints.mobile) ...[
-                    if (!kIsWeb)
-                      cell(
-                        Text(
-                          switch (param.value.meta['description']) {
-                            String description
-                                when description.trim().isNotEmpty =>
-                              description.trim(),
-                            _ when !kIsWeb => formatType(param.value),
-                            _ => '-',
-                          },
-                        ),
+                    cell(
+                      Text(
+                        switch (param.value.meta['description']) {
+                          String description
+                              when description.trim().isNotEmpty =>
+                            description.trim(),
+                          _ when !kIsWeb => formatType(param.value),
+                          _ => '-',
+                        },
                       ),
+                    ),
                   ],
                   cell(ParamEditorCell(id: param.key, param: param.value)),
                 ],
