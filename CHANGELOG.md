@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sandboxed` - `v0.1.2+3`](#sandboxed---v0123)
+
+---
+
+#### `sandboxed` - `v0.1.2+3`
+
+ - **FIX**(sandboxed): fix table error on web.
+
+
+## 2025-05-07
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sandboxed` - `v0.1.2+2`](#sandboxed---v0122)
 
 ---

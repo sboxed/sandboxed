@@ -1,3 +1,7 @@
+## 0.1.2+3
+
+ - **FIX**(sandboxed): fix table error on web.
+
 ## 0.1.2+2
 
  - **REFACTOR**: remove wip widget.
