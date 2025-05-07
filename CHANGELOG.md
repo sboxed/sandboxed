@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-05-07
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed` - `v0.1.2+2`](#sandboxed---v0122)
+
+---
+
+#### `sandboxed` - `v0.1.2+2`
+
+ - **REFACTOR**: remove wip widget.
+ - **DOCS**: update logo resolution.
+
+
 ## 2025-05-02
 
 ### Changes
