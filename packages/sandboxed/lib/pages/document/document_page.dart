@@ -7,7 +7,6 @@ import 'package:sandboxed/toolbar/toolbar.dart';
 import 'package:sandboxed/widgets/component_documentation.dart';
 import 'package:sandboxed/widgets/element_name.dart';
 import 'package:sandboxed/widgets/sb_bottom_app_bar.dart';
-import 'package:sandboxed/widgets/wip.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 
 @RoutePage()
@@ -60,8 +59,6 @@ class _DocumentPageContent extends ConsumerWidget {
                     automaticallyImplyLeading: false,
                     backgroundColor: Colors.transparent,
                   ),
-                  if (kDebugMode) //
-                    const WIP(child: Toolbar()),
                 ],
               ),
             ),

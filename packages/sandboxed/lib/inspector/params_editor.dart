@@ -5,7 +5,6 @@ import 'package:sandboxed/inspector/component_inspector.dart';
 import 'package:sandboxed/provider/addons.dart';
 import 'package:sandboxed/provider/params.dart';
 import 'package:sandboxed/sandboxed.dart';
-import 'package:sandboxed/widgets/wip.dart';
 
 class ParamsEditor extends ConsumerWidget {
   const ParamsEditor({super.key});
@@ -45,14 +44,9 @@ class ParamsEditor extends ConsumerWidget {
                 cell(const Text('Name'),
                     const TextStyle(fontWeight: FontWeight.bold)),
                 if (context.breakpoint != Breakpoints.mobile) ...[
-                  if (!kIsWeb)
-                    // TODO(@melvspace): 03/30/25 get types at generation step
-                    cell(const Text('Description'),
-                        const TextStyle(fontWeight: FontWeight.bold)),
-                  if (kDebugMode)
-                    // TODO(@melvspace): 03/30/25 get default at generation step
-                    cell(const Text('Default'),
-                        const TextStyle(fontWeight: FontWeight.bold)),
+                  // TODO(@melvspace): 03/30/25 get types at generation step
+                  cell(const Text('Description'),
+                      const TextStyle(fontWeight: FontWeight.bold)),
                 ],
                 cell(
                   Row(
@@ -95,14 +89,12 @@ class ParamsEditor extends ConsumerWidget {
                           switch (param.value.meta['description']) {
                             String description
                                 when description.trim().isNotEmpty =>
-                              description,
-                            _ => '${param.value.runtimeType}'
-                                '${!param.value.isRequired ? '?' : ''}',
+                              description.trim(),
+                            _ when !kIsWeb => formatType(param.value),
+                            _ => '-',
                           },
                         ),
                       ),
-                    if (kDebugMode) //
-                      cell(const WIP(child: Text('-'))),
                   ],
                   cell(ParamEditorCell(id: param.key, param: param.value)),
                 ],
@@ -111,6 +103,22 @@ class ParamsEditor extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  // TODO(@melvspace): 05/07/25 get types at generation step
+  String formatType(ParamWrapper value) {
+    final regexp = RegExp('^.*ParamWrapper<');
+    var string = '${value.runtimeType}';
+    if (string.contains(regexp)) {
+      string = string.replaceAll(regexp, '');
+      string = string.replaceAll(RegExp('>\$'), '');
+    }
+
+    if (!value.isRequired) {
+      string += '?';
+    }
+
+    return string;
   }
 }
 
