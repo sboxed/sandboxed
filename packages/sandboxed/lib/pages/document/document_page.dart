@@ -1,9 +1,7 @@
 import 'package:auto_route/annotations.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/provider/selected.dart';
-import 'package:sandboxed/toolbar/toolbar.dart';
 import 'package:sandboxed/widgets/component_documentation.dart';
 import 'package:sandboxed/widgets/element_name.dart';
 import 'package:sandboxed/widgets/sb_bottom_app_bar.dart';
