@@ -33,6 +33,8 @@ class MainApp extends StatelessWidget {
               'deprecated' =>
                 const TagChip(tag: Text('Deprecated'), color: Colors.red),
               'new' => const TagChip(tag: Text('New'), color: Colors.green),
+              'unimplemented' =>
+                const TagChip(tag: Text('Unimplemented'), color: Colors.yellow),
               _ => null,
             },
           ),

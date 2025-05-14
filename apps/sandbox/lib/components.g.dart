@@ -16,39 +16,42 @@ import 'package:flutter/src/painting/edge_insets.dart' as _i6;
 import 'package:flutter/src/painting/text_style.dart' as _i7;
 import 'package:sandboxed_sandbox/widgets/header.stories.dart' as _i8;
 import 'package:sandboxed_sandbox/widgets/header.dart' as _i9;
-import 'package:sandboxed_sandbox/widgets/nullable_and_required/nullable_and_required_params.stories.dart'
+import 'package:sandboxed_sandbox/cases/navigator_boundary.stories.dart'
     as _i10;
+import 'package:sandboxed_sandbox/cases/navigator_boundary.dart' as _i11;
+import 'package:sandboxed_sandbox/widgets/nullable_and_required/nullable_and_required_params.stories.dart'
+    as _i12;
 import 'package:sandboxed_sandbox/widgets/nullable_and_required/nullable_and_required_params.dart'
-    as _i11;
-import 'package:sandboxed_sandbox/widgets/button.stories.dart' as _i12;
-import 'package:sandboxed_sandbox/widgets/button.dart' as _i13;
-import 'package:flutter/src/widgets/framework.dart' as _i14;
-import 'package:sandboxed_sandbox/widgets/other_format.stories.dart' as _i15;
-import 'package:sandboxed_sandbox/widgets/diagrams/button.stories.dart' as _i16;
-import 'package:sandboxed_sandbox/widgets/diagrams/button.dart' as _i17;
-import 'package:sandboxed_sandbox/widgets/diagrams/card.stories.dart' as _i18;
-import 'package:sandboxed_sandbox/widgets/diagrams/card.dart' as _i19;
+    as _i13;
+import 'package:sandboxed_sandbox/widgets/button.stories.dart' as _i14;
+import 'package:sandboxed_sandbox/widgets/button.dart' as _i15;
+import 'package:flutter/src/widgets/framework.dart' as _i16;
+import 'package:sandboxed_sandbox/widgets/other_format.stories.dart' as _i17;
+import 'package:sandboxed_sandbox/widgets/diagrams/button.stories.dart' as _i18;
+import 'package:sandboxed_sandbox/widgets/diagrams/button.dart' as _i19;
+import 'package:sandboxed_sandbox/widgets/diagrams/card.stories.dart' as _i20;
+import 'package:sandboxed_sandbox/widgets/diagrams/card.dart' as _i21;
 import 'package:sandboxed_sandbox/widgets/tags/tagged_component.stories.dart'
-    as _i20;
-import 'package:sandboxed_sandbox/widgets/tags/tagged_component.dart' as _i21;
-import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.stories.dart'
     as _i22;
-import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.dart' as _i23;
-import 'package:sandboxed_sandbox/widgets/markdown/markdown_documentation.stories.dart'
+import 'package:sandboxed_sandbox/widgets/tags/tagged_component.dart' as _i23;
+import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.stories.dart'
     as _i24;
-import 'package:flutter/src/widgets/text.dart' as _i25;
-import 'package:flutter/src/painting/strut_style.dart' as _i26;
-import 'dart:ui' as _i27;
-import 'package:flutter/src/painting/text_painter.dart' as _i28;
-import 'package:flutter/src/painting/text_scaler.dart' as _i29;
+import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.dart' as _i25;
+import 'package:sandboxed_sandbox/widgets/markdown/markdown_documentation.stories.dart'
+    as _i26;
+import 'package:flutter/src/widgets/text.dart' as _i27;
+import 'package:flutter/src/painting/strut_style.dart' as _i28;
+import 'dart:ui' as _i29;
+import 'package:flutter/src/painting/text_painter.dart' as _i30;
+import 'package:flutter/src/painting/text_scaler.dart' as _i31;
 import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.stories.dart'
-    as _i30;
-import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.dart'
-    as _i31;
-import 'package:sandboxed_sandbox/widgets/automatic/with_enum.stories.dart'
     as _i32;
-import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i33;
-import 'package:sandboxed_sandbox/data/some_enum.dart' as _i34;
+import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.dart'
+    as _i33;
+import 'package:sandboxed_sandbox/widgets/automatic/with_enum.stories.dart'
+    as _i34;
+import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i35;
+import 'package:sandboxed_sandbox/data/some_enum.dart' as _i36;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -136,13 +139,26 @@ List<Component> get components => <Component>[
       Component(
         meta: _i10.meta,
         stories: [
-          _i10.$Automatic.applyGenerated(
+          _i10.$Default.applyGenerated(
+            name: 'Default',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i11.NavigatorBoundaryScenario(key: null),
+          )
+        ],
+      ),
+      Component(
+        meta: _i12.meta,
+        stories: [
+          _i12.$Automatic.applyGenerated(
             name: 'Automatic',
             builder: (
               context,
               params,
             ) =>
-                _i11.NullableAndRequiredParamsWidget(
+                _i13.NullableAndRequiredParamsWidget(
               key: null,
               text: params.string(r'text').optional(null),
               boolean: params.boolean(r'boolean').optional(null),
@@ -155,13 +171,13 @@ List<Component> get components => <Component>[
               requiredInteger: params.integer(r'requiredInteger').required(0),
             ),
           ),
-          _i10.$Manual.applyGenerated(
+          _i12.$Manual.applyGenerated(
             name: 'Manual',
             builder: (
               context,
               params,
             ) =>
-                _i11.NullableAndRequiredParamsWidget(
+                _i13.NullableAndRequiredParamsWidget(
               key: null,
               text: params.string(r'text').optional(null),
               boolean: params.boolean(r'boolean').optional(null),
@@ -177,8 +193,8 @@ List<Component> get components => <Component>[
         ],
       ),
       Component(
-        meta: _i12.meta.copyWith(documentation: [
-          ..._i12.meta.documentation,
+        meta: _i14.meta.copyWith(documentation: [
+          ..._i14.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -186,72 +202,72 @@ List<Component> get components => <Component>[
           ),
         ]),
         stories: [
-          _i12.$Blue.applyGenerated(
+          _i14.$Blue.applyGenerated(
             name: 'Blue',
             builder: (
               context,
               params,
             ) =>
-                _i13.SandboxButton(
+                _i15.SandboxButton(
               key: null,
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i13.SandboxButtonSize.values,
+                    _i15.SandboxButtonSize.values,
                   )
-                  .required(_i13.SandboxButtonSize.small),
+                  .required(_i15.SandboxButtonSize.small),
               icon: params
-                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .dynamic$<_i16.Widget, void, void>(r'icon')
                   .optional(null),
               onPressed: params
                   .dynamic$<void Function(), void, void>(r'onPressed')
                   .optional(null),
             ),
           ),
-          _i12.$Green.applyGenerated(
+          _i14.$Green.applyGenerated(
             name: 'Green',
             builder: (
               context,
               params,
             ) =>
-                _i13.SandboxButton(
+                _i15.SandboxButton(
               key: null,
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i13.SandboxButtonSize.values,
+                    _i15.SandboxButtonSize.values,
                   )
-                  .required(_i13.SandboxButtonSize.small),
+                  .required(_i15.SandboxButtonSize.small),
               icon: params
-                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .dynamic$<_i16.Widget, void, void>(r'icon')
                   .optional(null),
               onPressed: params
                   .dynamic$<void Function(), void, void>(r'onPressed')
                   .optional(null),
             ),
           ),
-          _i12.$Yellow.applyGenerated(
+          _i14.$Yellow.applyGenerated(
             name: 'Yellow',
             builder: (
               context,
               params,
             ) =>
-                _i13.SandboxButton(
+                _i15.SandboxButton(
               key: null,
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i13.SandboxButtonSize.values,
+                    _i15.SandboxButtonSize.values,
                   )
-                  .required(_i13.SandboxButtonSize.small),
+                  .required(_i15.SandboxButtonSize.small),
               icon: params
-                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .dynamic$<_i16.Widget, void, void>(r'icon')
                   .optional(null),
               onPressed: params
                   .dynamic$<void Function(), void, void>(r'onPressed')
@@ -261,83 +277,54 @@ List<Component> get components => <Component>[
         ],
       ),
       Component(
-        meta: _i15.meta2,
+        meta: _i17.meta2,
         stories: [
-          _i15.$Blue.applyGenerated(
+          _i17.$Blue.applyGenerated(
             name: 'Blue',
             builder: (
               context,
               params,
             ) =>
-                _i13.SandboxButton(
+                _i15.SandboxButton(
               key: null,
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i13.SandboxButtonSize.values,
+                    _i15.SandboxButtonSize.values,
                   )
-                  .required(_i13.SandboxButtonSize.small),
+                  .required(_i15.SandboxButtonSize.small),
               icon: params
-                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .dynamic$<_i16.Widget, void, void>(r'icon')
                   .optional(null),
               onPressed: params
                   .dynamic$<void Function(), void, void>(r'onPressed')
                   .optional(null),
             ),
           ),
-          _i15.$Green.applyGenerated(
+          _i17.$Green.applyGenerated(
             name: 'Green',
             builder: (
               context,
               params,
             ) =>
-                _i13.SandboxButton(
+                _i15.SandboxButton(
               key: null,
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               size: params
                   .single(
                     r'size',
-                    _i13.SandboxButtonSize.values,
+                    _i15.SandboxButtonSize.values,
                   )
-                  .required(_i13.SandboxButtonSize.small),
+                  .required(_i15.SandboxButtonSize.small),
               icon: params
-                  .dynamic$<_i14.Widget, void, void>(r'icon')
+                  .dynamic$<_i16.Widget, void, void>(r'icon')
                   .optional(null),
               onPressed: params
                   .dynamic$<void Function(), void, void>(r'onPressed')
                   .optional(null),
-            ),
-          ),
-        ],
-      ),
-      Component(
-        meta: _i16.meta,
-        stories: [
-          _i16.$Blue.applyGenerated(
-            name: 'Blue',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i17.SandboxDiagramButton(
-              key: null,
-              title: params.string(r'title').required('Text'),
-              color: params.color(r'color').required(Colors.red),
-            ),
-          ),
-          _i16.$Green.applyGenerated(
-            name: 'Green',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i17.SandboxDiagramButton(
-              key: null,
-              title: params.string(r'title').required('Text'),
-              color: params.color(r'color').required(Colors.red),
             ),
           ),
         ],
@@ -351,27 +338,10 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i19.SandboxDiagramCard(
+                _i19.SandboxDiagramButton(
               key: null,
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
-              stats: params
-                  .dynamic$<List<_i19.SandboxDiagramCardStats>,
-                      _i19.SandboxDiagramCardStats, void>(r'stats')
-                  .required([]),
-              onChanged: params
-                  .dynamic$<
-                      void Function(
-                          (
-                            _i19.SandboxDiagramCardStats,
-                            _i19.SandboxDiagramCardStats?, {
-                            String name,
-                            _i19.SandboxDiagramCardStats next,
-                            _i19.SandboxDiagramCardStats? nullable
-                          })),
-                      void,
-                      void>(r'onChanged')
-                  .optional(null),
             ),
           ),
           _i18.$Green.applyGenerated(
@@ -380,23 +350,69 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i19.SandboxDiagramCard(
+                _i19.SandboxDiagramButton(
+              key: null,
+              title: params.string(r'title').required('Text'),
+              color: params.color(r'color').required(Colors.red),
+            ),
+          ),
+        ],
+      ),
+      Component(
+        meta: _i20.meta,
+        stories: [
+          _i20.$Blue.applyGenerated(
+            name: 'Blue',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i21.SandboxDiagramCard(
               key: null,
               title: params.string(r'title').required('Text'),
               color: params.color(r'color').required(Colors.red),
               stats: params
-                  .dynamic$<List<_i19.SandboxDiagramCardStats>,
-                      _i19.SandboxDiagramCardStats, void>(r'stats')
+                  .dynamic$<List<_i21.SandboxDiagramCardStats>,
+                      _i21.SandboxDiagramCardStats, void>(r'stats')
                   .required([]),
               onChanged: params
                   .dynamic$<
                       void Function(
                           (
-                            _i19.SandboxDiagramCardStats,
-                            _i19.SandboxDiagramCardStats?, {
+                            _i21.SandboxDiagramCardStats,
+                            _i21.SandboxDiagramCardStats?, {
                             String name,
-                            _i19.SandboxDiagramCardStats next,
-                            _i19.SandboxDiagramCardStats? nullable
+                            _i21.SandboxDiagramCardStats next,
+                            _i21.SandboxDiagramCardStats? nullable
+                          })),
+                      void,
+                      void>(r'onChanged')
+                  .optional(null),
+            ),
+          ),
+          _i20.$Green.applyGenerated(
+            name: 'Green',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i21.SandboxDiagramCard(
+              key: null,
+              title: params.string(r'title').required('Text'),
+              color: params.color(r'color').required(Colors.red),
+              stats: params
+                  .dynamic$<List<_i21.SandboxDiagramCardStats>,
+                      _i21.SandboxDiagramCardStats, void>(r'stats')
+                  .required([]),
+              onChanged: params
+                  .dynamic$<
+                      void Function(
+                          (
+                            _i21.SandboxDiagramCardStats,
+                            _i21.SandboxDiagramCardStats?, {
+                            String name,
+                            _i21.SandboxDiagramCardStats next,
+                            _i21.SandboxDiagramCardStats? nullable
                           })),
                       void,
                       void>(r'onChanged')
@@ -406,42 +422,42 @@ List<Component> get components => <Component>[
         ],
       ),
       Component(
-        meta: _i20.meta,
+        meta: _i22.meta,
         stories: [
-          _i20.$Default.applyGenerated(
+          _i22.$Default.applyGenerated(
             name: 'Default',
             builder: (
               context,
               params,
             ) =>
-                _i21.TaggedComponent(key: null),
+                _i23.TaggedComponent(key: null),
           )
         ],
       ),
       Component(
-        meta: _i22.meta,
+        meta: _i24.meta,
         stories: [
-          _i22.$Deprecated.applyGenerated(
+          _i24.$Deprecated.applyGenerated(
             name: 'Deprecated',
             builder: (
               context,
               params,
             ) =>
-                _i23.TaggedStories(key: null),
+                _i25.TaggedStories(key: null),
           ),
-          _i22.$New.applyGenerated(
+          _i24.$New.applyGenerated(
             name: 'New',
             builder: (
               context,
               params,
             ) =>
-                _i23.TaggedStories(key: null),
+                _i25.TaggedStories(key: null),
           ),
         ],
       ),
       Component(
-        meta: _i24.meta.copyWith(documentation: [
-          ..._i24.meta.documentation,
+        meta: _i26.meta.copyWith(documentation: [
+          ..._i26.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -449,115 +465,62 @@ List<Component> get components => <Component>[
           ),
         ]),
         stories: [
-          _i24.$Default.applyGenerated(
+          _i26.$Default.applyGenerated(
             name: 'Default',
             builder: (
               context,
               params,
             ) =>
-                _i25.Text(
+                _i27.Text(
               params.string(r'data').required('Text'),
               key: null,
               style: params
                   .dynamic$<_i7.TextStyle, void, void>(r'style')
                   .optional(null),
               strutStyle: params
-                  .dynamic$<_i26.StrutStyle, void, void>(r'strutStyle')
+                  .dynamic$<_i28.StrutStyle, void, void>(r'strutStyle')
                   .optional(null),
               textAlign: params
                   .single(
                     r'textAlign',
-                    _i27.TextAlign.values,
+                    _i29.TextAlign.values,
                   )
                   .optional(null),
               textDirection: params
                   .single(
                     r'textDirection',
-                    _i27.TextDirection.values,
+                    _i29.TextDirection.values,
                   )
                   .optional(null),
               locale: params
-                  .dynamic$<_i27.Locale, void, void>(r'locale')
+                  .dynamic$<_i29.Locale, void, void>(r'locale')
                   .optional(null),
               softWrap: params.boolean(r'softWrap').optional(null),
               overflow: params
                   .single(
                     r'overflow',
-                    _i28.TextOverflow.values,
+                    _i30.TextOverflow.values,
                   )
                   .optional(null),
               textScaleFactor: params.number(r'textScaleFactor').optional(null),
               textScaler: params
-                  .dynamic$<_i29.TextScaler, void, void>(r'textScaler')
+                  .dynamic$<_i31.TextScaler, void, void>(r'textScaler')
                   .optional(null),
               maxLines: params.integer(r'maxLines').optional(null),
               semanticsLabel: params.string(r'semanticsLabel').optional(null),
               textWidthBasis: params
                   .single(
                     r'textWidthBasis',
-                    _i28.TextWidthBasis.values,
+                    _i30.TextWidthBasis.values,
                   )
                   .optional(null),
               textHeightBehavior: params
-                  .dynamic$<_i27.TextHeightBehavior, void, void>(
+                  .dynamic$<_i29.TextHeightBehavior, void, void>(
                       r'textHeightBehavior')
                   .optional(null),
               selectionColor: params.color(r'selectionColor').optional(null),
             ),
           )
-        ],
-      ),
-      Component(
-        meta: _i30.meta,
-        stories: [
-          _i30.$Default.applyGenerated(
-            name: 'Default',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i31.UnsupportedParameters(
-              key: null,
-              padding: params
-                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
-                  .default$(),
-              style: params
-                  .dynamic$<_i7.TextStyle, void, void>(r'style')
-                  .default$(),
-            ),
-          ),
-          _i30.$WithBuilder.applyGenerated(
-            name: 'With Builder',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i31.UnsupportedParameters(
-              key: null,
-              padding: params
-                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
-                  .default$(),
-              style: params
-                  .dynamic$<_i7.TextStyle, void, void>(r'style')
-                  .default$(),
-            ),
-          ),
-          _i30.$WithParams.applyGenerated(
-            name: 'With Params',
-            builder: (
-              context,
-              params,
-            ) =>
-                _i31.UnsupportedParameters(
-              key: null,
-              padding: params
-                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
-                  .default$(),
-              style: params
-                  .dynamic$<_i7.TextStyle, void, void>(r'style')
-                  .default$(),
-            ),
-          ),
         ],
       ),
       Component(
@@ -569,14 +532,67 @@ List<Component> get components => <Component>[
               context,
               params,
             ) =>
-                _i33.WithEnum(
+                _i33.UnsupportedParameters(
+              key: null,
+              padding: params
+                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
+                  .default$(),
+              style: params
+                  .dynamic$<_i7.TextStyle, void, void>(r'style')
+                  .default$(),
+            ),
+          ),
+          _i32.$WithBuilder.applyGenerated(
+            name: 'With Builder',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i33.UnsupportedParameters(
+              key: null,
+              padding: params
+                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
+                  .default$(),
+              style: params
+                  .dynamic$<_i7.TextStyle, void, void>(r'style')
+                  .default$(),
+            ),
+          ),
+          _i32.$WithParams.applyGenerated(
+            name: 'With Params',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i33.UnsupportedParameters(
+              key: null,
+              padding: params
+                  .dynamic$<_i6.EdgeInsets, void, void>(r'padding')
+                  .default$(),
+              style: params
+                  .dynamic$<_i7.TextStyle, void, void>(r'style')
+                  .default$(),
+            ),
+          ),
+        ],
+      ),
+      Component(
+        meta: _i34.meta,
+        stories: [
+          _i34.$Default.applyGenerated(
+            name: 'Default',
+            builder: (
+              context,
+              params,
+            ) =>
+                _i35.WithEnum(
               key: null,
               enumValue: params
                   .single(
                     r'enumValue',
-                    _i34.SomeEnum.values,
+                    _i36.SomeEnum.values,
                   )
-                  .required(_i34.SomeEnum.values.first),
+                  .required(_i36.SomeEnum.values.first),
             ),
           )
         ],
