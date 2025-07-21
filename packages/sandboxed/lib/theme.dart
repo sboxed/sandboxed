@@ -8,7 +8,7 @@ const kDrawerTheme = DrawerThemeData(
   shape: Border(),
 );
 
-const kCardTheme = CardTheme(
+const kCardTheme = CardThemeData(
   shape: LinearBorder(),
   margin: EdgeInsets.zero,
 );

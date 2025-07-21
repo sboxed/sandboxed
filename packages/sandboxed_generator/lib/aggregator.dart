@@ -216,7 +216,8 @@ class ComponentAggregateBuilder extends Builder {
 
     String code = library.accept(emitter).toString();
     try {
-      code = DartFormatter().format(code);
+      code = DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
+          .format(code);
     } catch (e) {
       print(e);
     }
