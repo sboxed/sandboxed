@@ -1,67 +1,69 @@
 # <img src="https://raw.githubusercontent.com/sboxed/sandboxed-assets/main/logos/logo-512.png" height="64px" alt="logo" /> Sandboxed
 
-**Sandboxed** is a Flutter tool for developing, testing, and showcasing  UI components in isolation.
- 
-- 🛠️ Design. ⚡ Build. 🔁 Preview.  
-- ✨ Speed up development. 🧼 Improve maintainability. 📤 Share confidently.
+[![pub package](https://img.shields.io/pub/v/sandboxed.svg)](https://pub.dev/packages/sandboxed)
+[![pub points](https://img.shields.io/pub/points/sandboxed)](https://pub.dev/packages/sandboxed/score)
+[![likes](https://img.shields.io/pub/likes/sandboxed)](https://pub.dev/packages/sandboxed/score)
+
+
+**Sandboxed** is a Flutter tool for developing, testing, and previewing UI components in isolation.
 
 ---
 
-> ⚠️ **Disclaimer**  
-> This package is currently in an **unstable** state and may introduce **breaking changes** without notice.  
-> It also includes extra dependencies that may make integration into real projects more difficult. These will be removed or streamlined in future releases to improve usability.
+## Features
+
+* Isolated widget development and testing
+* Live preview with hot reload
+* Configurable interactive parameters (boolean, color, string, etc.)
+* Built-in addons: pan, theme, safe area, viewport, reload
+* Tagging and searchable component catalog
+* Deep linking between stories and documentation
+* MDX documentation with embedded stories *(WIP)*
+* Param validation and linting *(WIP)*
+* Golden test integration *(WIP)*
 
 ---
 
-## 🚀 Features
+## Packages
 
-- 📦 Isolate widgets for independent development and testing  
-- 🎨 Live preview with hot reload support  
-- 🧪 Interactive params: bool, color, sliders, etc.
-- 🧩 Built-in addons: pan, theme, safe area, viewport, reload
-- 🏷️ Tags & searchable component catalog
-- 🔗 Deep linking between stories and docs
-- 📄 MDX docs with live stories *(WIP)*
-- 🧹 Linting for invalid/missing params *(WIP)*
-- 📸 Golden test integration *(WIP)*
+* [`sandboxed`](packages/sandboxed/README.md) — Main viewer and runtime
+* [`sandboxed_core`](packages/sandboxed_core/README.md) — Story primitives and params
+* [`sandboxed_generator`](packages/sandboxed_generator/README.md) — Code generation tools
+* [`sandboxed_ui_kit`](packages/sandboxed_ui_kit/README.md) — Internal UI components
 
 ---
 
-## 📦 Packages
+## Installation
 
-- [`sandboxed`](https://github.com/sboxed/sandboxed) — Main runtime & viewer UI  
-- [`sandboxed_core`](https://github.com/sboxed/sandboxed/tree/main/packages/sandboxed_core) — Core primitives: `Meta`, `Story`, `Params`, etc.  
-- [`sandboxed_generator`](https://github.com/sboxed/sandboxed/tree/main/packages/sandboxed_generator) — Code generation for story/component registry  
-- [`sandboxed_ui_kit`](https://github.com/sboxed/sandboxed/tree/main/packages/sandboxed_ui_kit) — UI components used in the viewer (sidebar, layout, etc.)
+1. Add to `pubspec.yaml`:
 
-## 📦 Installation
+   ```yaml
+   dependencies:
+     sandboxed_core:
+     sandboxed:
 
-1. **Add it in your `pubspec.yaml`**:
+   dev_dependencies:
+     sandboxed_generator:
+   ```
 
-    ```yaml
-    dependencies:
-      sandboxed_core:
-      sandboxed:
+2. Fetch dependencies:
 
-    dev_dependencies:
-      sandboxed_generator:
-    ```
-2. **Install dependencies**:
-    ```bash
-    flutter pub get
-    ```
-3. **Write Meta and stories**
-4. **Run build_runner** (required only when adding, renaming, removing `Meta` or `Story`):
-    ```bash
-    flutter pub run build_runner build
-    ```
+   ```bash
+   flutter pub get
+   ```
+
+3. Write `Meta` and `Story` definitions
+
+4. Run code generation:
+
+   ```bash
+   flutter pub run build_runner build
+   ```
 
 ---
 
-## 🧰 Usage
+## Usage
 
-
-To create and preview a widget in sandboxed, define a `Meta` and one or more `Story` objects:
+Define a component and its metadata:
 
 ```dart
 Meta get meta => Meta<SandboxButton>(
@@ -77,7 +79,7 @@ Meta get meta => Meta<SandboxButton>(
 );
 ```
 
-Then define stories with configurable parameters:
+Add stories with interactive parameters:
 
 ```dart
 Story get $Green => Story(
@@ -94,28 +96,28 @@ Story get $Green => Story(
 );
 ```
 
-Use `params.boolean`, `params.color`, `params.string`, `params.single`, or `params.multi` to make your widget interactive in the UI.  
-Stories will be listed in the visual explorer and updated live via hot reload.
+Use `params.boolean`, `params.color`, `params.string`, `params.single`, or `params.multi` to configure interactivity.
 
 > [!WARNING]
-> **Important**
 > 
-> Run `flutter pub run build_runner build` after adding, renaming, removing `Meta` or `Story` getters to update the component registry.
->
-> ♻️ **Hot reload friendly:** All other changes (e.g. story content, styling, params) are picked up automatically with hot reload.
+> Run `flutter pub run build_runner build` after adding, renaming, or removing `Meta` or `Story` definitions.
+> 
+> Other changes are applied automatically via hot reload.
 
-### 💡 VS Code Snippets
+---
 
-You can add these snippets to your VS Code to speed up writing stories and meta definitions.
+## VS Code Snippets
+
+To streamline writing stories, add the following to your VS Code user snippets.
 
 <details>
-<summary>Expand</summary>
+<summary>Show snippet setup</summary>
 
 #### How to add:
 
 1. Open Command Palette → `Preferences: Configure User Snippets`
 2. Create or open a global or workspace snippet file
-3. Paste the following:
+3. Paste:
 
 ```json
 {
@@ -156,53 +158,54 @@ You can add these snippets to your VS Code to speed up writing stories and meta 
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 apps/
-├── sandbox/                  # App for testing sandboxed components in isolation
-├── sandboxed_library/        # App for testing Sandboxed UI Kit
+├── sandbox/                  # Testing app for sandboxed stories
+├── sandboxed_library/        # Viewer for UI Kit components
 
 packages/
-├── sandboxed/                # Main UI and logic for the sandbox viewer
-├── sandboxed_core/           # Low-level primitives for stories, components, params
-├── sandboxed_generator/      # Code generation tools for component discovery
-├── sandboxed_ui_kit/         # UI kit used internally by sandboxed apps
+├── sandboxed/                # Main viewer implementation
+├── sandboxed_core/           # Core abstractions
+├── sandboxed_generator/      # Code generation
+├── sandboxed_ui_kit/         # UI library for viewer interface
 
 example/
-├── material_book/            # Demo showcasing Material widgets
-├── monorepo/                 # Example of integrating Sandboxed into a monorepo
+├── material_book/            # Sample stories for Material components
+├── monorepo/                 # Monorepo integration example
 
-docs/                         # Developer documentation and guides
-.vscode/                      # VSCode workspace configuration
-melos.yaml                    # Melos workspace config for multi-package setup
-pubspec.yaml                  # Root pubspec for tool-level dependencies
+docs/                         # Documentation and guides
+.vscode/                      # VS Code workspace settings
+melos.yaml                    # Melos workspace config
+pubspec.yaml                  # Root dependencies
 ```
 
 ---
 
-## 📅 Roadmap
+## Roadmap
 
-- 🌐 URL state & session persistence (Done)
-- 🛠 Generated docs from source/meta (Partial)
-- 🧠 Param mismatch detection + fixes
-- 🧪 Golden test runner (local & cloud)
-- 🧰 Extended param types (select, JSON, code)
-- 🛎 Settings panel in UI
-- 🧭 Pre-filled search filters
-- 🧩 Lockable & toggleable addons
-- 🧠 VS Code preview plugin (Maybe)
-- ♻️ Reduce dependency footprint
-
----
-
-## 🧑‍💻 Contributing
-
-Contributions are welcome!  
-Feel free to open issues, submit PRs, or suggest features.
+* Session persistence and URL state (done)
+* Source-based doc generation (partial)
+* Param validation and mismatch detection
+* Golden test support (local/cloud)
+* Advanced param types (select, JSON, code)
+* Customizable settings panel
+* Search filtering
+* Lockable addons
+* VS Code integration (research)
+* Reduced dependency footprint (research)
 
 ---
 
-## 📄 License
+## Contributing
 
-MIT License © 2025 [Sandboxed](https://github.com/sboxed), [Vadim Melnikov](https://github.com/rIIh)
+Contributions are welcome.
+Please open an issue or submit a pull request to get involved.
+
+---
+
+## License
+
+MIT License © 2025 [Sandboxed](https://github.com/sboxed)
+Developed by [Vadim Melnikov](https://github.com/rIIh)
