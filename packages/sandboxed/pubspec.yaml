@@ -1,6 +1,6 @@
 name: sandboxed
 description: "A Flutter toolkit for building, testing, and presenting UI components in isolation with a focus on speed, modularity, and developer experience."
-version: 0.1.2+3
+version: 0.1.2+4
 homepage: https://sboxed.dev/
 repository: https://github.com/sboxed/sandboxed
 issue_tracker: https://github.com/sboxed/sandboxed/issues

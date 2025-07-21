@@ -1,3 +1,9 @@
+## 0.1.2+4
+
+ - **REFACTOR**: regenerate code.
+ - **FIX**: migrate from deprecations.
+ - **DOCS**: update README.
+
 ## 0.1.2+3
 
  - **FIX**(sandboxed): fix table error on web.

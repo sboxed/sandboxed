@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-07-21
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed` - `v0.1.2+4`](#sandboxed---v0124)
+ - [`sandboxed_generator` - `v0.1.3+2`](#sandboxed_generator---v0132)
+
+---
+
+#### `sandboxed` - `v0.1.2+4`
+
+ - **REFACTOR**: regenerate code.
+ - **FIX**: migrate from deprecations.
+ - **DOCS**: update README.
+
+#### `sandboxed_generator` - `v0.1.3+2`
+
+ - **FIX**: migrate from deprecations.
+ - **FIX**(pubspec): update version constraints to make package widely usable.
+
+
 ## 2025-05-07
 
 ### Changes

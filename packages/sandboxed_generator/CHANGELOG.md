@@ -1,3 +1,8 @@
+## 0.1.3+2
+
+ - **FIX**: migrate from deprecations.
+ - **FIX**(pubspec): update version constraints to make package widely usable.
+
 ## 0.1.3+1
 
  - **DOCS**: fix links in readme.
