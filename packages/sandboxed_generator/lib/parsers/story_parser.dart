@@ -49,7 +49,12 @@ class StoryParser {
         Parameter((param) => param.name = 'params'),
       ]);
       method.lambda = true;
-      method.body = buildComponent(widget).code;
+      method.body = widget.isAbstract
+          ? refer(
+              'AbstractWidgetClassException',
+              'package:sandboxed_core/sandboxed_core.dart',
+            ).call([]).thrown.code
+          : buildComponent(widget).code;
     }).closure;
   }
 

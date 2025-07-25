@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sandboxed_core/src/params/params.dart';
+import 'package:sandboxed_core/src/widgets/widgets.dart';
 
+/// A widget that shows an error message when a story has unsupported parameters
+///
+/// This widget is used as a fallback when a story has parameters that are not
+/// supported by the current Sandboxed version. It shows an error message with
+/// the name and type of the unsupported parameter.
+///
+/// The error message is displayed as a red `Card` with a white error icon and
+/// text. The text is a single line with the name of the parameter and its type.
+///
+/// The widget is typically used in the `StoryView` when a story has unsupported
+/// parameters.
 class UnsupportedParamWidget extends StatelessWidget {
   final UnsupportedParamException exception;
 
@@ -18,47 +30,9 @@ class UnsupportedParamWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Theme.of(context).colorScheme.errorContainer,
-      child: Center(
-        child: Card(
-          color: Colors.red,
-          elevation: 4,
-          shadowColor: Colors.red,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: IconTheme(
-              data: IconTheme.of(context).copyWith(
-                color: Colors.white,
-              ),
-              child: DefaultTextStyle.merge(
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 1.0),
-                      child: Icon(Icons.error),
-                    ),
-                    const SizedBox(width: 12),
-                    Text(
-                      'Story has unsupported parameters\n'
-                      '- [${exception.param.id}] of type ${paramType(exception.param)}',
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+    return SandboxedGenericErrorWidget(
+      message: 'Story has unsupported parameters\n'
+          '- [${exception.param.id}] of type ${paramType(exception.param)}',
     );
   }
 }
