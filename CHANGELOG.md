@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-07-25
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed_core` - `v0.1.1+2`](#sandboxed_core---v0112)
+ - [`sandboxed_generator` - `v0.1.3+3`](#sandboxed_generator---v0133)
+ - [`sandboxed_ui_kit` - `v0.1.0+5`](#sandboxed_ui_kit---v0105)
+ - [`sandboxed` - `v0.1.2+5`](#sandboxed---v0125)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `sandboxed` - `v0.1.2+5`
+
+---
+
+#### `sandboxed_core` - `v0.1.1+2`
+
+ - **FIX**: fix meta for abstract class generated errors.
+
+#### `sandboxed_generator` - `v0.1.3+3`
+
+ - **FIX**: fix meta for abstract class generated errors.
+
+#### `sandboxed_ui_kit` - `v0.1.0+5`
+
+ - **FIX**: fix meta for abstract class generated errors.
+
+
 ## 2025-07-21
 
 ### Changes

@@ -1,3 +1,7 @@
+## 0.1.3+3
+
+ - **FIX**: fix meta for abstract class generated errors.
+
 ## 0.1.3+2
 
  - **FIX**: migrate from deprecations.

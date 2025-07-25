@@ -1,3 +1,7 @@
+## 0.1.1+2
+
+ - **FIX**: fix meta for abstract class generated errors.
+
 ## 0.1.1+1
 
  - **DOCS**: fix links in readme.
