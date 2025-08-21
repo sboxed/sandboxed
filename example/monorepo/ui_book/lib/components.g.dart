@@ -24,7 +24,7 @@ List<Component> get components => <Component>[
     stories: [
       _i1.$Blue.applyGenerated(
         name: 'Blue',
-        builder: (context, params) => _i3.Button(
+        builder: (context, params) => _i3.Button.new(
           key: null,
           text: params.string(r'text').required('Text'),
           size: params
@@ -36,7 +36,7 @@ List<Component> get components => <Component>[
       ),
       _i1.$Green.applyGenerated(
         name: 'Green',
-        builder: (context, params) => _i3.Button(
+        builder: (context, params) => _i3.Button.new(
           key: null,
           text: params.string(r'text').required('Text'),
           size: params
@@ -54,7 +54,7 @@ List<Component> get components => <Component>[
     stories: [
       _i5.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i6.FavoriteButton(key: null),
+        builder: (context, params) => _i6.FavoriteButton.new(key: null),
       ),
     ],
   ),
@@ -64,7 +64,7 @@ List<Component> get components => <Component>[
     stories: [
       _i7.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i8.Heading(key: null),
+        builder: (context, params) => _i8.Heading.new(key: null),
       ),
     ],
   ),
@@ -74,7 +74,7 @@ List<Component> get components => <Component>[
     stories: [
       _i9.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i10.ProductCard(key: null),
+        builder: (context, params) => _i10.ProductCard.new(key: null),
       ),
     ],
   ),

@@ -76,7 +76,7 @@ List<Component> get components => <Component>[
     stories: [
       _i3.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i4.AutomaticGeneration(
+        builder: (context, params) => _i4.AutomaticGeneration.new(
           key: null,
           text: params.string(r'text').required('Text'),
           hasIcon: params.boolean(r'hasIcon').required(true),
@@ -91,7 +91,7 @@ List<Component> get components => <Component>[
       ),
       _i3.$Enabled.applyGenerated(
         name: 'Enabled',
-        builder: (context, params) => _i4.AutomaticGeneration(
+        builder: (context, params) => _i4.AutomaticGeneration.new(
           key: null,
           text: params.string(r'text').required('Text'),
           hasIcon: params.boolean(r'hasIcon').required(true),
@@ -111,7 +111,7 @@ List<Component> get components => <Component>[
     stories: [
       _i5.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i6.FlutterParamsWidget(
+        builder: (context, params) => _i6.FlutterParamsWidget.new(
           key: null,
           alignment: params
               .dynamic$<_i7.Alignment, void, void>(r'alignment')
@@ -131,7 +131,7 @@ List<Component> get components => <Component>[
     stories: [
       _i10.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i11.Header(key: null),
+        builder: (context, params) => _i11.Header.new(key: null),
       ),
     ],
   ),
@@ -140,7 +140,8 @@ List<Component> get components => <Component>[
     stories: [
       _i12.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i13.NavigatorBoundaryScenario(key: null),
+        builder: (context, params) =>
+            _i13.NavigatorBoundaryScenario.new(key: null),
       ),
     ],
   ),
@@ -149,7 +150,7 @@ List<Component> get components => <Component>[
     stories: [
       _i14.$Automatic.applyGenerated(
         name: 'Automatic',
-        builder: (context, params) => _i15.NullableAndRequiredParamsWidget(
+        builder: (context, params) => _i15.NullableAndRequiredParamsWidget.new(
           key: null,
           text: params.string(r'text').optional(null),
           boolean: params.boolean(r'boolean').optional(null),
@@ -163,7 +164,7 @@ List<Component> get components => <Component>[
       ),
       _i14.$Manual.applyGenerated(
         name: 'Manual',
-        builder: (context, params) => _i15.NullableAndRequiredParamsWidget(
+        builder: (context, params) => _i15.NullableAndRequiredParamsWidget.new(
           key: null,
           text: params.string(r'text').optional(null),
           boolean: params.boolean(r'boolean').optional(null),
@@ -191,7 +192,7 @@ List<Component> get components => <Component>[
     stories: [
       _i16.$Blue.applyGenerated(
         name: 'Blue',
-        builder: (context, params) => _i17.SandboxButton(
+        builder: (context, params) => _i17.SandboxButton.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -208,7 +209,7 @@ List<Component> get components => <Component>[
       ),
       _i16.$Green.applyGenerated(
         name: 'Green',
-        builder: (context, params) => _i17.SandboxButton(
+        builder: (context, params) => _i17.SandboxButton.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -225,7 +226,7 @@ List<Component> get components => <Component>[
       ),
       _i16.$Yellow.applyGenerated(
         name: 'Yellow',
-        builder: (context, params) => _i17.SandboxButton(
+        builder: (context, params) => _i17.SandboxButton.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -247,7 +248,7 @@ List<Component> get components => <Component>[
     stories: [
       _i19.$Blue.applyGenerated(
         name: 'Blue',
-        builder: (context, params) => _i17.SandboxButton(
+        builder: (context, params) => _i17.SandboxButton.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -264,7 +265,7 @@ List<Component> get components => <Component>[
       ),
       _i19.$Green.applyGenerated(
         name: 'Green',
-        builder: (context, params) => _i17.SandboxButton(
+        builder: (context, params) => _i17.SandboxButton.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -286,7 +287,7 @@ List<Component> get components => <Component>[
     stories: [
       _i20.$Blue.applyGenerated(
         name: 'Blue',
-        builder: (context, params) => _i21.SandboxDiagramButton(
+        builder: (context, params) => _i21.SandboxDiagramButton.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -294,7 +295,7 @@ List<Component> get components => <Component>[
       ),
       _i20.$Green.applyGenerated(
         name: 'Green',
-        builder: (context, params) => _i21.SandboxDiagramButton(
+        builder: (context, params) => _i21.SandboxDiagramButton.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -307,7 +308,7 @@ List<Component> get components => <Component>[
     stories: [
       _i22.$Blue.applyGenerated(
         name: 'Blue',
-        builder: (context, params) => _i23.SandboxDiagramCard(
+        builder: (context, params) => _i23.SandboxDiagramCard.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -337,7 +338,7 @@ List<Component> get components => <Component>[
       ),
       _i22.$Green.applyGenerated(
         name: 'Green',
-        builder: (context, params) => _i23.SandboxDiagramCard(
+        builder: (context, params) => _i23.SandboxDiagramCard.new(
           key: null,
           title: params.string(r'title').required('Text'),
           color: params.color(r'color').required(Colors.red),
@@ -372,7 +373,7 @@ List<Component> get components => <Component>[
     stories: [
       _i24.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i25.TaggedComponent(key: null),
+        builder: (context, params) => _i25.TaggedComponent.new(key: null),
       ),
     ],
   ),
@@ -381,11 +382,11 @@ List<Component> get components => <Component>[
     stories: [
       _i26.$Deprecated.applyGenerated(
         name: 'Deprecated',
-        builder: (context, params) => _i27.TaggedStories(key: null),
+        builder: (context, params) => _i27.TaggedStories.new(key: null),
       ),
       _i26.$New.applyGenerated(
         name: 'New',
-        builder: (context, params) => _i27.TaggedStories(key: null),
+        builder: (context, params) => _i27.TaggedStories.new(key: null),
       ),
     ],
   ),
@@ -403,7 +404,7 @@ List<Component> get components => <Component>[
     stories: [
       _i28.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i29.Text(
+        builder: (context, params) => _i29.Text.new(
           params.string(r'data').required('Text'),
           key: null,
           style: params
@@ -452,7 +453,7 @@ List<Component> get components => <Component>[
     stories: [
       _i34.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i35.UnsupportedParameters(
+        builder: (context, params) => _i35.UnsupportedParameters.new(
           key: null,
           padding: params
               .dynamic$<_i8.EdgeInsets, void, void>(r'padding')
@@ -464,7 +465,7 @@ List<Component> get components => <Component>[
       ),
       _i34.$WithBuilder.applyGenerated(
         name: 'With Builder',
-        builder: (context, params) => _i35.UnsupportedParameters(
+        builder: (context, params) => _i35.UnsupportedParameters.new(
           key: null,
           padding: params
               .dynamic$<_i8.EdgeInsets, void, void>(r'padding')
@@ -476,7 +477,7 @@ List<Component> get components => <Component>[
       ),
       _i34.$WithParams.applyGenerated(
         name: 'With Params',
-        builder: (context, params) => _i35.UnsupportedParameters(
+        builder: (context, params) => _i35.UnsupportedParameters.new(
           key: null,
           padding: params
               .dynamic$<_i8.EdgeInsets, void, void>(r'padding')
@@ -493,7 +494,7 @@ List<Component> get components => <Component>[
     stories: [
       _i36.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i37.WithEnum(
+        builder: (context, params) => _i37.WithEnum.new(
           key: null,
           enumValue: params
               .single(r'enumValue', _i38.SomeEnum.values)

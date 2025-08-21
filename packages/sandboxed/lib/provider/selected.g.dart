@@ -6,203 +6,203 @@ part of 'selected.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$selectionHash() => r'bbe0f5f83efb158b1a0e6b55656dc2cf1ad1e393';
+@ProviderFor(SelectedElementNotifier)
+const selectedElementNotifierProvider = SelectedElementNotifierProvider._();
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [selection].
-@ProviderFor(selection)
-const selectionProvider = SelectionFamily();
-
-/// See also [selection].
-class SelectionFamily extends Family<Selection?> {
-  /// See also [selection].
-  const SelectionFamily();
-
-  /// See also [selection].
-  SelectionProvider call(
-    String id,
-  ) {
-    return SelectionProvider(
-      id,
-    );
-  }
-
-  @override
-  SelectionProvider getProviderOverride(
-    covariant SelectionProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static final Iterable<ProviderOrFamily> _dependencies = <ProviderOrFamily>[
-    nodeProvider
-  ];
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static final Iterable<ProviderOrFamily> _allTransitiveDependencies =
-      <ProviderOrFamily>{
-    nodeProvider,
-    ...?nodeProvider.allTransitiveDependencies
-  };
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'selectionProvider';
-}
-
-/// See also [selection].
-class SelectionProvider extends AutoDisposeProvider<Selection?> {
-  /// See also [selection].
-  SelectionProvider(
-    String id,
-  ) : this._internal(
-          (ref) => selection(
-            ref as SelectionRef,
-            id,
-          ),
-          from: selectionProvider,
-          name: r'selectionProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$selectionHash,
-          dependencies: SelectionFamily._dependencies,
-          allTransitiveDependencies: SelectionFamily._allTransitiveDependencies,
-          id: id,
+final class SelectedElementNotifierProvider
+    extends $NotifierProvider<SelectedElementNotifier, String?> {
+  const SelectedElementNotifierProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'selectedElementNotifierProvider',
+          isAutoDispose: false,
+          dependencies: const <ProviderOrFamily>[],
+          $allTransitiveDependencies: const <ProviderOrFamily>[],
         );
 
-  SelectionProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
+  @override
+  String debugGetCreateSourceHash() => _$selectedElementNotifierHash();
 
-  final String id;
+  @$internal
+  @override
+  SelectedElementNotifier create() => SelectedElementNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String?>(value),
+    );
+  }
+}
+
+String _$selectedElementNotifierHash() =>
+    r'04f4161447c22efb82eea3a274ba35a8d1aedc58';
+
+abstract class _$SelectedElementNotifier extends $Notifier<String?> {
+  String? build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<String?, String?>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<String?, String?>, String?, Object?, Object?>;
+    element.handleValue(ref, created);
+  }
+}
+
+@ProviderFor(selection)
+const selectionProvider = SelectionFamily._();
+
+final class SelectionProvider
+    extends $FunctionalProvider<Selection?, Selection?, Selection?>
+    with $Provider<Selection?> {
+  const SelectionProvider._(
+      {required SelectionFamily super.from, required String super.argument})
+      : super(
+          retry: null,
+          name: r'selectionProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  static const $allTransitiveDependencies0 = nodeProvider;
+  static const $allTransitiveDependencies1 =
+      NodeProvider.$allTransitiveDependencies0;
+  static const $allTransitiveDependencies2 =
+      NodeProvider.$allTransitiveDependencies1;
 
   @override
-  Override overrideWith(
-    Selection? Function(SelectionRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: SelectionProvider._internal(
-        (ref) => create(ref as SelectionRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
+  String debugGetCreateSourceHash() => _$selectionHash();
+
+  @override
+  String toString() {
+    return r'selectionProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<Selection?> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Selection? create(Ref ref) {
+    final argument = this.argument as String;
+    return selection(
+      ref,
+      argument,
     );
   }
 
-  @override
-  AutoDisposeProviderElement<Selection?> createElement() {
-    return _SelectionProviderElement(this);
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Selection? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Selection?>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SelectionProvider && other.id == id;
+    return other is SelectionProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SelectionRef on AutoDisposeProviderRef<Selection?> {
-  /// The parameter `id` of this provider.
-  String get id;
-}
+String _$selectionHash() => r'bbe0f5f83efb158b1a0e6b55656dc2cf1ad1e393';
 
-class _SelectionProviderElement extends AutoDisposeProviderElement<Selection?>
-    with SelectionRef {
-  _SelectionProviderElement(super.provider);
+final class SelectionFamily extends $Family
+    with $FunctionalFamilyOverride<Selection?, String> {
+  const SelectionFamily._()
+      : super(
+          retry: null,
+          name: r'selectionProvider',
+          dependencies: const <ProviderOrFamily>[nodeProvider],
+          $allTransitiveDependencies: const <ProviderOrFamily>[
+            SelectionProvider.$allTransitiveDependencies0,
+            SelectionProvider.$allTransitiveDependencies1,
+            SelectionProvider.$allTransitiveDependencies2,
+          ],
+          isAutoDispose: true,
+        );
+
+  SelectionProvider call(
+    String id,
+  ) =>
+      SelectionProvider._(argument: id, from: this);
 
   @override
-  String get id => (origin as SelectionProvider).id;
+  String toString() => r'selectionProvider';
+}
+
+@ProviderFor(selectedElement)
+const selectedElementProvider = SelectedElementProvider._();
+
+final class SelectedElementProvider
+    extends $FunctionalProvider<Selection?, Selection?, Selection?>
+    with $Provider<Selection?> {
+  const SelectedElementProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'selectedElementProvider',
+          isAutoDispose: true,
+          dependencies: const <ProviderOrFamily>[
+            selectionProvider,
+            selectedElementNotifierProvider
+          ],
+          $allTransitiveDependencies: const <ProviderOrFamily>{
+            SelectedElementProvider.$allTransitiveDependencies0,
+            SelectedElementProvider.$allTransitiveDependencies1,
+            SelectedElementProvider.$allTransitiveDependencies2,
+            SelectedElementProvider.$allTransitiveDependencies3,
+            SelectedElementProvider.$allTransitiveDependencies4,
+          },
+        );
+
+  static const $allTransitiveDependencies0 = selectionProvider;
+  static const $allTransitiveDependencies1 =
+      SelectionProvider.$allTransitiveDependencies0;
+  static const $allTransitiveDependencies2 =
+      SelectionProvider.$allTransitiveDependencies1;
+  static const $allTransitiveDependencies3 =
+      SelectionProvider.$allTransitiveDependencies2;
+  static const $allTransitiveDependencies4 = selectedElementNotifierProvider;
+
+  @override
+  String debugGetCreateSourceHash() => _$selectedElementHash();
+
+  @$internal
+  @override
+  $ProviderElement<Selection?> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Selection? create(Ref ref) {
+    return selectedElement(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Selection? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Selection?>(value),
+    );
+  }
 }
 
 String _$selectedElementHash() => r'5100ef9135f30789202557e4d1c87147909f0e2c';
 
-/// See also [selectedElement].
-@ProviderFor(selectedElement)
-final selectedElementProvider = AutoDisposeProvider<Selection?>.internal(
-  selectedElement,
-  name: r'selectedElementProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedElementHash,
-  dependencies: <ProviderOrFamily>[
-    selectionProvider,
-    selectedElementNotifierProvider
-  ],
-  allTransitiveDependencies: <ProviderOrFamily>{
-    selectionProvider,
-    ...?selectionProvider.allTransitiveDependencies,
-    selectedElementNotifierProvider,
-    ...?selectedElementNotifierProvider.allTransitiveDependencies
-  },
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SelectedElementRef = AutoDisposeProviderRef<Selection?>;
-String _$selectedElementNotifierHash() =>
-    r'04f4161447c22efb82eea3a274ba35a8d1aedc58';
-
-/// See also [SelectedElementNotifier].
-@ProviderFor(SelectedElementNotifier)
-final selectedElementNotifierProvider =
-    NotifierProvider<SelectedElementNotifier, String?>.internal(
-  SelectedElementNotifier.new,
-  name: r'selectedElementNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedElementNotifierHash,
-  dependencies: const <ProviderOrFamily>[],
-  allTransitiveDependencies: const <ProviderOrFamily>{},
-);
-
-typedef _$SelectedElementNotifier = Notifier<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

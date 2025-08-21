@@ -123,9 +123,9 @@ class _SandboxedState extends State<Sandboxed> {
               },
               routerConfig: router.config(
                 deepLinkBuilder: (deepLink) async {
-                  if (deepLink.path == '/' && path.valueOrNull != null) {
-                    await handleDeepLink(Uri.parse(path.valueOrNull!), ref);
-                    return DeepLink.path(path.valueOrNull!);
+                  if (deepLink.path == '/' && path.value != null) {
+                    await handleDeepLink(Uri.parse(path.value!), ref);
+                    return DeepLink.path(path.value!);
                   }
 
                   if (deepLink.isValid) {

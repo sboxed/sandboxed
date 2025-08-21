@@ -27,7 +27,7 @@ List<Component> get components => <Component>[
     stories: [
       _i1.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i3.ElementTile(
+        builder: (context, params) => _i3.ElementTile.new(
           key: null,
           depth: params.integer(r'depth').required(1),
           onPressed: params
@@ -46,7 +46,7 @@ List<Component> get components => <Component>[
       ),
       _i1.$Tree.applyGenerated(
         name: 'Tree',
-        builder: (context, params) => _i3.ElementTile(
+        builder: (context, params) => _i3.ElementTile.new(
           key: null,
           depth: params.integer(r'depth').required(1),
           onPressed: params
@@ -71,7 +71,7 @@ List<Component> get components => <Component>[
     stories: [
       _i5.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i6.ResponsiveLayout(
+        builder: (context, params) => _i6.ResponsiveLayout.new(
           key: null,
           drawer: params
               .dynamic$<_i4.Widget, void, void>(r'drawer')
@@ -92,7 +92,7 @@ List<Component> get components => <Component>[
     stories: [
       _i7.$Drawer.applyGenerated(
         name: 'Drawer',
-        builder: (context, params) => _i8.SBDrawer(
+        builder: (context, params) => _i8.SBDrawer.new(
           key: null,
           title: params
               .dynamic$<_i4.Widget, void, void>(r'title')
@@ -113,7 +113,7 @@ List<Component> get components => <Component>[
     stories: [
       _i9.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i10.TagChip(
+        builder: (context, params) => _i10.TagChip.new(
           key: null,
           tag: params
               .dynamic$<_i4.Widget, void, void>(r'tag')
@@ -123,7 +123,7 @@ List<Component> get components => <Component>[
       ),
       _i9.$InTile.applyGenerated(
         name: 'In Tile',
-        builder: (context, params) => _i10.TagChip(
+        builder: (context, params) => _i10.TagChip.new(
           key: null,
           tag: params
               .dynamic$<_i4.Widget, void, void>(r'tag')

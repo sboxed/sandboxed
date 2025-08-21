@@ -1,7 +1,7 @@
 // ignore_for_file: implementation_imports
 
 import 'package:analyzer/dart/ast/visitor.dart';
-import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/src/dart/ast/ast.dart';
 import 'package:build/build.dart';
 import 'package:collection/collection.dart';
@@ -11,12 +11,12 @@ class MetaParser {
 
   MetaParser({required this.resolver});
 
-  Future<MetaDescription> parse(TopLevelVariableElement meta) async {
+  Future<MetaDescription> parse(TopLevelVariableElement2 meta) async {
     final visitor = MetaVisitor();
-    final getter = meta.getter!;
+    final getter = meta.getter2!;
     final ast = getter.hasImplicitReturnType
-        ? await resolver.astNodeFor(meta, resolve: true)
-        : await resolver.astNodeFor(meta.getter!, resolve: true);
+        ? await resolver.astNodeFor(meta.firstFragment, resolve: true)
+        : await resolver.astNodeFor(meta.getter2!.firstFragment, resolve: true);
     ast?.visitChildren(visitor);
 
     return MetaDescription(
@@ -26,7 +26,7 @@ class MetaParser {
 }
 
 class MetaDescription {
-  final ClassElement? widget;
+  final ClassElement2? widget;
 
   const MetaDescription({
     required this.widget,
@@ -34,16 +34,16 @@ class MetaDescription {
 }
 
 class MetaVisitor extends RecursiveAstVisitor {
-  ClassElement? componentGeneric;
-  ClassElement? componentArgument;
+  ClassElement2? componentGeneric;
+  ClassElement2? componentArgument;
 
   @override
   visitInstanceCreationExpression(InstanceCreationExpression node) {
-    if (node.constructorName.type.element?.name == 'Meta') {
+    if (node.constructorName.type.element2?.name3 == 'Meta') {
       // find generic widget type.
       final typeArguments = node.constructorName.type.typeArguments?.arguments;
       if (typeArguments?.firstOrNull case NamedType type) {
-        componentGeneric = type.element as ClassElement?;
+        componentGeneric = type.element2 as ClassElement2?;
       }
 
       // find argument widget type.
@@ -55,8 +55,8 @@ class MetaVisitor extends RecursiveAstVisitor {
           ?.expression;
       final componentArgument =
           (componentArgumentExpression as SimpleIdentifier?) //
-              ?.staticElement;
-      if (componentArgument case ClassElement component) {
+              ?.element;
+      if (componentArgument case ClassElement2 component) {
         this.componentArgument = component;
       }
     }

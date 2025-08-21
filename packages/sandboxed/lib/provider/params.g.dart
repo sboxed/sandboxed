@@ -6,344 +6,281 @@ part of 'params.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$paramsScopeIdHash() => r'84f5764839e00fba92207393cad65c1b5fe4d362';
-
-/// See also [paramsScopeId].
 @ProviderFor(paramsScopeId)
-final paramsScopeIdProvider = AutoDisposeProvider<String>.internal(
-  paramsScopeId,
-  name: r'paramsScopeIdProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$paramsScopeIdHash,
-  dependencies: <ProviderOrFamily>[selectedElementNotifierProvider],
-  allTransitiveDependencies: <ProviderOrFamily>{
-    selectedElementNotifierProvider,
-    ...?selectedElementNotifierProvider.allTransitiveDependencies
-  },
-);
+const paramsScopeIdProvider = ParamsScopeIdProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ParamsScopeIdRef = AutoDisposeProviderRef<String>;
-String _$paramsHash() => r'a1e9b06d01ac0977c3bf5f0efe5babadfff354c8';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [params].
-@ProviderFor(params)
-const paramsProvider = ParamsFamily();
-
-/// See also [params].
-class ParamsFamily extends Family<Raw<ParamsNotifier>> {
-  /// See also [params].
-  const ParamsFamily();
-
-  /// See also [params].
-  ParamsProvider call(
-    String id,
-  ) {
-    return ParamsProvider(
-      id,
-    );
-  }
-
-  @override
-  ParamsProvider getProviderOverride(
-    covariant ParamsProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static final Iterable<ProviderOrFamily> _dependencies = <ProviderOrFamily>[
-    addonsProvider
-  ];
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static final Iterable<ProviderOrFamily> _allTransitiveDependencies =
-      <ProviderOrFamily>{
-    addonsProvider,
-    ...?addonsProvider.allTransitiveDependencies
-  };
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'paramsProvider';
-}
-
-/// See also [params].
-class ParamsProvider extends AutoDisposeProvider<Raw<ParamsNotifier>> {
-  /// See also [params].
-  ParamsProvider(
-    String id,
-  ) : this._internal(
-          (ref) => params(
-            ref as ParamsRef,
-            id,
-          ),
-          from: paramsProvider,
-          name: r'paramsProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$paramsHash,
-          dependencies: ParamsFamily._dependencies,
-          allTransitiveDependencies: ParamsFamily._allTransitiveDependencies,
-          id: id,
+final class ParamsScopeIdProvider
+    extends $FunctionalProvider<String, String, String> with $Provider<String> {
+  const ParamsScopeIdProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'paramsScopeIdProvider',
+          isAutoDispose: true,
+          dependencies: const <ProviderOrFamily>[
+            selectedElementNotifierProvider
+          ],
+          $allTransitiveDependencies: const <ProviderOrFamily>[
+            ParamsScopeIdProvider.$allTransitiveDependencies0,
+          ],
         );
 
-  ParamsProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final String id;
+  static const $allTransitiveDependencies0 = selectedElementNotifierProvider;
 
   @override
-  Override overrideWith(
-    Raw<ParamsNotifier> Function(ParamsRef provider) create,
-  ) {
-    return ProviderOverride(
+  String debugGetCreateSourceHash() => _$paramsScopeIdHash();
+
+  @$internal
+  @override
+  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  String create(Ref ref) {
+    return paramsScopeId(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String value) {
+    return $ProviderOverride(
       origin: this,
-      override: ParamsProvider._internal(
-        (ref) => create(ref as ParamsRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
+      providerOverride: $SyncValueProvider<String>(value),
+    );
+  }
+}
+
+String _$paramsScopeIdHash() => r'84f5764839e00fba92207393cad65c1b5fe4d362';
+
+@ProviderFor(params)
+const paramsProvider = ParamsFamily._();
+
+final class ParamsProvider extends $FunctionalProvider<
+    Raw<ParamsNotifier>,
+    Raw<ParamsNotifier>,
+    Raw<ParamsNotifier>> with $Provider<Raw<ParamsNotifier>> {
+  const ParamsProvider._(
+      {required ParamsFamily super.from, required String super.argument})
+      : super(
+          retry: null,
+          name: r'paramsProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  static const $allTransitiveDependencies0 = addonsProvider;
+  static const $allTransitiveDependencies1 =
+      AddonsProvider.$allTransitiveDependencies0;
+
+  @override
+  String debugGetCreateSourceHash() => _$paramsHash();
+
+  @override
+  String toString() {
+    return r'paramsProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<Raw<ParamsNotifier>> $createElement(
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Raw<ParamsNotifier> create(Ref ref) {
+    final argument = this.argument as String;
+    return params(
+      ref,
+      argument,
     );
   }
 
-  @override
-  AutoDisposeProviderElement<Raw<ParamsNotifier>> createElement() {
-    return _ParamsProviderElement(this);
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Raw<ParamsNotifier> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Raw<ParamsNotifier>>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ParamsProvider && other.id == id;
+    return other is ParamsProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin ParamsRef on AutoDisposeProviderRef<Raw<ParamsNotifier>> {
-  /// The parameter `id` of this provider.
-  String get id;
-}
+String _$paramsHash() => r'a1e9b06d01ac0977c3bf5f0efe5babadfff354c8';
 
-class _ParamsProviderElement
-    extends AutoDisposeProviderElement<Raw<ParamsNotifier>> with ParamsRef {
-  _ParamsProviderElement(super.provider);
+final class ParamsFamily extends $Family
+    with $FunctionalFamilyOverride<Raw<ParamsNotifier>, String> {
+  const ParamsFamily._()
+      : super(
+          retry: null,
+          name: r'paramsProvider',
+          dependencies: const <ProviderOrFamily>[addonsProvider],
+          $allTransitiveDependencies: const <ProviderOrFamily>[
+            ParamsProvider.$allTransitiveDependencies0,
+            ParamsProvider.$allTransitiveDependencies1,
+          ],
+          isAutoDispose: true,
+        );
+
+  ParamsProvider call(
+    String id,
+  ) =>
+      ParamsProvider._(argument: id, from: this);
 
   @override
-  String get id => (origin as ParamsProvider).id;
+  String toString() => r'paramsProvider';
+}
+
+@ProviderFor(serializer)
+const serializerProvider = SerializerProvider._();
+
+final class SerializerProvider extends $FunctionalProvider<ParamSerializer,
+    ParamSerializer, ParamSerializer> with $Provider<ParamSerializer> {
+  const SerializerProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'serializerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$serializerHash();
+
+  @$internal
+  @override
+  $ProviderElement<ParamSerializer> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  ParamSerializer create(Ref ref) {
+    return serializer(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ParamSerializer value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ParamSerializer>(value),
+    );
+  }
 }
 
 String _$serializerHash() => r'ae392afe85818da319ab04d4c1830ae1544181c3';
 
-/// See also [serializer].
-@ProviderFor(serializer)
-final serializerProvider = AutoDisposeProvider<ParamSerializer>.internal(
-  serializer,
-  name: r'serializerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$serializerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SerializerRef = AutoDisposeProviderRef<ParamSerializer>;
-String _$paramsQueryHash() => r'299fda81b36b21a421aa54b5238240742da92c3a';
-
-abstract class _$ParamsQuery extends BuildlessNotifier<String?> {
-  late final String id;
-
-  String? build(
-    String id,
-  );
-}
-
-/// See also [ParamsQuery].
 @ProviderFor(ParamsQuery)
-const paramsQueryProvider = ParamsQueryFamily();
+const paramsQueryProvider = ParamsQueryFamily._();
 
-/// See also [ParamsQuery].
-class ParamsQueryFamily extends Family<String?> {
-  /// See also [ParamsQuery].
-  const ParamsQueryFamily();
-
-  /// See also [ParamsQuery].
-  ParamsQueryProvider call(
-    String id,
-  ) {
-    return ParamsQueryProvider(
-      id,
-    );
-  }
-
-  @override
-  ParamsQueryProvider getProviderOverride(
-    covariant ParamsQueryProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static final Iterable<ProviderOrFamily> _dependencies = <ProviderOrFamily>[
-    paramsProvider
-  ];
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static final Iterable<ProviderOrFamily> _allTransitiveDependencies =
-      <ProviderOrFamily>{
-    paramsProvider,
-    ...?paramsProvider.allTransitiveDependencies
-  };
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'paramsQueryProvider';
-}
-
-/// See also [ParamsQuery].
-class ParamsQueryProvider extends NotifierProviderImpl<ParamsQuery, String?> {
-  /// See also [ParamsQuery].
-  ParamsQueryProvider(
-    String id,
-  ) : this._internal(
-          () => ParamsQuery()..id = id,
-          from: paramsQueryProvider,
+final class ParamsQueryProvider
+    extends $NotifierProvider<ParamsQuery, String?> {
+  const ParamsQueryProvider._(
+      {required ParamsQueryFamily super.from, required String super.argument})
+      : super(
+          retry: null,
           name: r'paramsQueryProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$paramsQueryHash,
-          dependencies: ParamsQueryFamily._dependencies,
-          allTransitiveDependencies:
-              ParamsQueryFamily._allTransitiveDependencies,
-          id: id,
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
         );
 
-  ParamsQueryProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final String id;
+  static const $allTransitiveDependencies0 = paramsProvider;
+  static const $allTransitiveDependencies1 =
+      ParamsProvider.$allTransitiveDependencies0;
+  static const $allTransitiveDependencies2 =
+      ParamsProvider.$allTransitiveDependencies1;
 
   @override
-  String? runNotifierBuild(
-    covariant ParamsQuery notifier,
-  ) {
-    return notifier.build(
-      id,
-    );
+  String debugGetCreateSourceHash() => _$paramsQueryHash();
+
+  @override
+  String toString() {
+    return r'paramsQueryProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  Override overrideWith(ParamsQuery Function() create) {
-    return ProviderOverride(
+  ParamsQuery create() => ParamsQuery();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String? value) {
+    return $ProviderOverride(
       origin: this,
-      override: ParamsQueryProvider._internal(
-        () => create()..id = id,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
+      providerOverride: $SyncValueProvider<String?>(value),
     );
-  }
-
-  @override
-  NotifierProviderElement<ParamsQuery, String?> createElement() {
-    return _ParamsQueryProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ParamsQueryProvider && other.id == id;
+    return other is ParamsQueryProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin ParamsQueryRef on NotifierProviderRef<String?> {
-  /// The parameter `id` of this provider.
-  String get id;
-}
+String _$paramsQueryHash() => r'299fda81b36b21a421aa54b5238240742da92c3a';
 
-class _ParamsQueryProviderElement
-    extends NotifierProviderElement<ParamsQuery, String?> with ParamsQueryRef {
-  _ParamsQueryProviderElement(super.provider);
+final class ParamsQueryFamily extends $Family
+    with $ClassFamilyOverride<ParamsQuery, String?, String?, String?, String> {
+  const ParamsQueryFamily._()
+      : super(
+          retry: null,
+          name: r'paramsQueryProvider',
+          dependencies: const <ProviderOrFamily>[paramsProvider],
+          $allTransitiveDependencies: const <ProviderOrFamily>[
+            ParamsQueryProvider.$allTransitiveDependencies0,
+            ParamsQueryProvider.$allTransitiveDependencies1,
+            ParamsQueryProvider.$allTransitiveDependencies2,
+          ],
+          isAutoDispose: false,
+        );
+
+  ParamsQueryProvider call(
+    String id,
+  ) =>
+      ParamsQueryProvider._(argument: id, from: this);
 
   @override
-  String get id => (origin as ParamsQueryProvider).id;
+  String toString() => r'paramsQueryProvider';
 }
+
+abstract class _$ParamsQuery extends $Notifier<String?> {
+  late final _$args = ref.$arg as String;
+  String get id => _$args;
+
+  String? build(
+    String id,
+  );
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(
+      _$args,
+    );
+    final ref = this.ref as $Ref<String?, String?>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<String?, String?>, String?, Object?, Object?>;
+    element.handleValue(ref, created);
+  }
+}
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

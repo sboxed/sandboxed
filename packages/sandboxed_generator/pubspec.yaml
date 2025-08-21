@@ -1,5 +1,6 @@
 name: sandboxed_generator
 description: "Code generator for Sandboxed components. Automatically creates boilerplate for registering and rendering UI elements in isolation."
+resolution: workspace
 version: 0.1.3+3
 homepage: https://sboxed.dev/
 
@@ -9,7 +10,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   analyzer: ^7.0.0
-  build: ^2.0.0
+  build: ^3.0.2
   code_builder: ^4.0.0
   collection: ^1.0.0
   crypto: ^3.0.0
@@ -17,7 +18,7 @@ dependencies:
   glob: ^2.0.0
   meta: ^1.0.0
   path: ^1.0.0
-  source_gen: ^2.0.0
+  source_gen: ^3.1.0
   yaml: ^3.0.0
 
   # utility
@@ -27,5 +28,5 @@ dependencies:
   sandboxed_core: ^0.1.1+2
 
 dev_dependencies:
-  lints: ^4.0.0
+  lints: ^6.0.0
   test: ^1.24.0

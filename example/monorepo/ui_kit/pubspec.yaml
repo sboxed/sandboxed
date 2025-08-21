@@ -1,5 +1,6 @@
 name: ui_kit
 description: "A new Flutter package project."
+resolution: workspace
 publish_to: none
 version: 0.1.0
 
@@ -17,5 +18,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 

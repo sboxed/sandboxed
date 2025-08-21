@@ -1,5 +1,6 @@
 name: sandboxed
 description: "A Flutter toolkit for building, testing, and presenting UI components in isolation with a focus on speed, modularity, and developer experience."
+resolution: workspace
 version: 0.1.2+6
 homepage: https://sboxed.dev/
 repository: https://github.com/sboxed/sandboxed
@@ -24,7 +25,7 @@ dependencies:
 
   # routing
   # TODO(@melvspace): 03/20/25 auto_route dependency constraints usage of package
-  auto_route: ^9.0.0
+  auto_route: ^10.1.2
 
   # editor
   recursive_tree_flutter: ^1.0.0
@@ -45,12 +46,12 @@ dependencies:
   device_frame_plus: ^1.0.0
 
   # riverpod
-  flutter_riverpod: ^2.6.0
-  riverpod_annotation: ^2.6.0
+  flutter_riverpod: ^3.0.0-dev.16
+  riverpod_annotation: ^3.0.0-dev.16
 
   # utility
   slugify: ^2.0.0
-  freezed_annotation: ^2.0.0
+  freezed_annotation: ^3.1.0
   collection: ^1.18.0
   recase: ^4.0.0
   equatable: ^2.0.0
@@ -69,10 +70,10 @@ dev_dependencies:
   checks: ^0.3.0
 
   # code style
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
 
   # generator
   build_runner: ^2.4.0
-  freezed: ^2.0.0
-  riverpod_generator: ^2.6.0
-  auto_route_generator: ^9.0.0
+  freezed: ^3.2.0
+  riverpod_generator: ^3.0.0-dev.16
+  auto_route_generator: ^10.2.4

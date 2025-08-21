@@ -36,7 +36,9 @@ import 'package:flutter/src/material/scaffold.dart' as _i28;
 import 'package:flutter/src/material/floating_action_button_location.dart'
     as _i29;
 import 'package:flutter/src/painting/alignment.dart' as _i30;
-import 'package:flutter/src/gestures/recognizer.dart' as _i31;
+import 'package:flutter/src/painting/box_decoration.dart' as _i31;
+import 'package:flutter/src/gestures/recognizer.dart' as _i32;
+import 'package:flutter/src/animation/animation.dart' as _i33;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +57,7 @@ List<Component> get components => <Component>[
     stories: [
       _i1.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i2.AppBar(
+        builder: (context, params) => _i2.AppBar.new(
           key: null,
           leading: params
               .dynamic$<_i3.Widget, void, void>(r'leading')
@@ -130,6 +132,7 @@ List<Component> get components => <Component>[
           actionsPadding: params
               .dynamic$<_i11.EdgeInsetsGeometry, void, void>(r'actionsPadding')
               .optional(null),
+          animateColor: params.boolean(r'animateColor').required(false),
         ),
       ),
     ],
@@ -148,7 +151,7 @@ List<Component> get components => <Component>[
     stories: [
       _i12.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i13.BottomAppBar(
+        builder: (context, params) => _i13.BottomAppBar.new(
           key: null,
           color: params.color(r'color').optional(null),
           elevation: params.number(r'elevation').optional(null),
@@ -186,7 +189,7 @@ List<Component> get components => <Component>[
     stories: [
       _i15.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i16.BottomNavigationBar(
+        builder: (context, params) => _i16.BottomNavigationBar.new(
           key: null,
           items: params
               .dynamic$<
@@ -254,7 +257,7 @@ List<Component> get components => <Component>[
     stories: [
       _i19.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i20.Card(
+        builder: (context, params) => _i20.Card.new(
           key: null,
           color: params.color(r'color').optional(null),
           shadowColor: params.color(r'shadowColor').optional(null),
@@ -282,7 +285,7 @@ List<Component> get components => <Component>[
       ),
       _i19.$Nested.applyGenerated(
         name: 'Nested',
-        builder: (context, params) => _i20.Card(
+        builder: (context, params) => _i20.Card.new(
           key: null,
           color: params.color(r'color').optional(null),
           shadowColor: params.color(r'shadowColor').optional(null),
@@ -324,7 +327,7 @@ List<Component> get components => <Component>[
     stories: [
       _i21.$ActionChip.applyGenerated(
         name: 'Action Chip',
-        builder: (context, params) => _i22.Chip(
+        builder: (context, params) => _i22.Chip.new(
           key: null,
           avatar: params
               .dynamic$<_i3.Widget, void, void>(r'avatar')
@@ -409,7 +412,7 @@ List<Component> get components => <Component>[
       ),
       _i21.$Chip.applyGenerated(
         name: 'Chip',
-        builder: (context, params) => _i22.Chip(
+        builder: (context, params) => _i22.Chip.new(
           key: null,
           avatar: params
               .dynamic$<_i3.Widget, void, void>(r'avatar')
@@ -494,7 +497,7 @@ List<Component> get components => <Component>[
       ),
       _i21.$ChoiceChip.applyGenerated(
         name: 'Choice Chip',
-        builder: (context, params) => _i22.Chip(
+        builder: (context, params) => _i22.Chip.new(
           key: null,
           avatar: params
               .dynamic$<_i3.Widget, void, void>(r'avatar')
@@ -579,7 +582,7 @@ List<Component> get components => <Component>[
       ),
       _i21.$FilterChip.applyGenerated(
         name: 'Filter Chip',
-        builder: (context, params) => _i22.Chip(
+        builder: (context, params) => _i22.Chip.new(
           key: null,
           avatar: params
               .dynamic$<_i3.Widget, void, void>(r'avatar')
@@ -664,7 +667,7 @@ List<Component> get components => <Component>[
       ),
       _i21.$InputChip.applyGenerated(
         name: 'Input Chip',
-        builder: (context, params) => _i22.Chip(
+        builder: (context, params) => _i22.Chip.new(
           key: null,
           avatar: params
               .dynamic$<_i3.Widget, void, void>(r'avatar')
@@ -749,7 +752,7 @@ List<Component> get components => <Component>[
       ),
       _i21.$Playground.applyGenerated(
         name: 'Playground',
-        builder: (context, params) => _i22.Chip(
+        builder: (context, params) => _i22.Chip.new(
           key: null,
           avatar: params
               .dynamic$<_i3.Widget, void, void>(r'avatar')
@@ -848,7 +851,7 @@ List<Component> get components => <Component>[
     stories: [
       _i27.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i28.Scaffold(
+        builder: (context, params) => _i28.Scaffold.new(
           key: null,
           appBar: params
               .dynamic$<_i4.PreferredSizeWidget, void, void>(r'appBar')
@@ -877,6 +880,11 @@ List<Component> get components => <Component>[
                 r'persistentFooterAlignment',
               )
               .required(AlignmentDirectional.centerEnd),
+          persistentFooterDecoration: params
+              .dynamic$<_i31.BoxDecoration, void, void>(
+                r'persistentFooterDecoration',
+              )
+              .optional(null),
           drawer: params
               .dynamic$<_i3.Widget, void, void>(r'drawer')
               .optional(null),
@@ -901,13 +909,23 @@ List<Component> get components => <Component>[
               .optional(null),
           primary: params.boolean(r'primary').required(true),
           drawerDragStartBehavior: params
-              .single(r'drawerDragStartBehavior', _i31.DragStartBehavior.values)
-              .required(_i31.DragStartBehavior.start),
+              .single(r'drawerDragStartBehavior', _i32.DragStartBehavior.values)
+              .required(_i32.DragStartBehavior.start),
           extendBody: params.boolean(r'extendBody').required(false),
+          drawerBarrierDismissible: params
+              .boolean(r'drawerBarrierDismissible')
+              .required(true),
           extendBodyBehindAppBar: params
               .boolean(r'extendBodyBehindAppBar')
               .required(false),
           drawerScrimColor: params.color(r'drawerScrimColor').optional(null),
+          bottomSheetScrimBuilder: params
+              .dynamic$<
+                _i3.Widget? Function(_i3.BuildContext, _i33.Animation<double>),
+                void,
+                void
+              >(r'bottomSheetScrimBuilder')
+              .default$(),
           drawerEdgeDragWidth: params
               .number(r'drawerEdgeDragWidth')
               .optional(null),

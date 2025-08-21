@@ -40,12 +40,13 @@ class SBBottomAppBar extends ConsumerWidget {
                 icon: const SBIcon(Mdi.rhombus_split),
                 onPressed: () {
                   final id = ref.read(selectedElementNotifierProvider)!;
+
+                  // TODO(@melvspace): 08/21/25 removed parent from ProviderScope, investigate consequences
                   final scope = ProviderScope.containerOf(context);
 
                   showModalBottomSheet(
                     context: context,
                     builder: (context) => ProviderScope(
-                      parent: scope,
                       child: ComponentInspector(
                         id: id,
                       ),

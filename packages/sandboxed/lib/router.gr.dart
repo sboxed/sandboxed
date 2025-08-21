@@ -25,11 +25,11 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
     String? global,
     List<_i5.PageRouteInfo>? children,
   }) : super(
-         DocumentRoute.name,
-         args: DocumentRouteArgs(key: key, id: id, global: global),
-         rawQueryParams: {'path': id, 'global': global},
-         initialChildren: children,
-       );
+          DocumentRoute.name,
+          args: DocumentRouteArgs(key: key, id: id, global: global),
+          rawQueryParams: {'path': id, 'global': global},
+          initialChildren: children,
+        );
 
   static const String name = 'DocumentRoute';
 
@@ -38,11 +38,10 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
     builder: (data) {
       final queryParams = data.queryParams;
       final args = data.argsAs<DocumentRouteArgs>(
-        orElse:
-            () => DocumentRouteArgs(
-              id: queryParams.optString('path'),
-              global: queryParams.optString('global'),
-            ),
+        orElse: () => DocumentRouteArgs(
+          id: queryParams.optString('path'),
+          global: queryParams.optString('global'),
+        ),
       );
       return _i1.DocumentPage(key: args.key, id: args.id, global: args.global);
     },
@@ -62,13 +61,23 @@ class DocumentRouteArgs {
   String toString() {
     return 'DocumentRouteArgs{key: $key, id: $id, global: $global}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! DocumentRouteArgs) return false;
+    return key == other.key && id == other.id && global == other.global;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode ^ global.hashCode;
 }
 
 /// generated route for
 /// [_i2.IndexPage]
 class IndexRoute extends _i5.PageRouteInfo<void> {
   const IndexRoute({List<_i5.PageRouteInfo>? children})
-    : super(IndexRoute.name, initialChildren: children);
+      : super(IndexRoute.name, initialChildren: children);
 
   static const String name = 'IndexRoute';
 
@@ -88,11 +97,11 @@ class NothingRoute extends _i5.PageRouteInfo<NothingRouteArgs> {
     String? global,
     List<_i5.PageRouteInfo>? children,
   }) : super(
-         NothingRoute.name,
-         args: NothingRouteArgs(key: key, global: global),
-         rawQueryParams: {'global': global},
-         initialChildren: children,
-       );
+          NothingRoute.name,
+          args: NothingRouteArgs(key: key, global: global),
+          rawQueryParams: {'global': global},
+          initialChildren: children,
+        );
 
   static const String name = 'NothingRoute';
 
@@ -119,6 +128,16 @@ class NothingRouteArgs {
   String toString() {
     return 'NothingRouteArgs{key: $key, global: $global}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! NothingRouteArgs) return false;
+    return key == other.key && global == other.global;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ global.hashCode;
 }
 
 /// generated route for
@@ -131,11 +150,12 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
     String? global,
     List<_i5.PageRouteInfo>? children,
   }) : super(
-         StoryRoute.name,
-         args: StoryRouteArgs(key: key, id: id, params: params, global: global),
-         rawQueryParams: {'path': id, 'params': params, 'global': global},
-         initialChildren: children,
-       );
+          StoryRoute.name,
+          args:
+              StoryRouteArgs(key: key, id: id, params: params, global: global),
+          rawQueryParams: {'path': id, 'params': params, 'global': global},
+          initialChildren: children,
+        );
 
   static const String name = 'StoryRoute';
 
@@ -144,12 +164,11 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
     builder: (data) {
       final queryParams = data.queryParams;
       final args = data.argsAs<StoryRouteArgs>(
-        orElse:
-            () => StoryRouteArgs(
-              id: queryParams.optString('path'),
-              params: queryParams.optString('params'),
-              global: queryParams.optString('global'),
-            ),
+        orElse: () => StoryRouteArgs(
+          id: queryParams.optString('path'),
+          params: queryParams.optString('params'),
+          global: queryParams.optString('global'),
+        ),
       );
       return _i4.StoryPage(
         key: args.key,
@@ -176,4 +195,18 @@ class StoryRouteArgs {
   String toString() {
     return 'StoryRouteArgs{key: $key, id: $id, params: $params, global: $global}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! StoryRouteArgs) return false;
+    return key == other.key &&
+        id == other.id &&
+        params == other.params &&
+        global == other.global;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ id.hashCode ^ params.hashCode ^ global.hashCode;
 }

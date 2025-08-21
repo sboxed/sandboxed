@@ -1,4 +1,5 @@
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:sandboxed_generator/expression/raw.dart';
@@ -6,7 +7,7 @@ import 'package:sandboxed_generator/types/type_checker.dart';
 import 'package:sandboxed_generator/types/type_handlers.dart';
 
 class StoryParameterBuilder {
-  final ParameterElement parameter;
+  final FormalParameterElement parameter;
   final List<TypeChecker> typesToIgnore;
 
   StoryParameterBuilder(this.parameter, {this.typesToIgnore = const []});
@@ -50,8 +51,8 @@ class StoryParameterBuilder {
     if (parameter.defaultValueCode case String defaultValue) {
       if (parameter.type.element case EnumElement enum$) {
         value = handleEnumDefaultValue(defaultValue, enum$, value);
-      } else {
-        value = CodeExpression(Code(parameter.defaultValueCode!));
+      } else if (!defaultValue.startsWith('_')) {
+        value = CodeExpression(Code(defaultValue));
       }
     }
 
@@ -86,9 +87,12 @@ class StoryParameterBuilder {
     List<Expression> positionalArgs,
     Map<String, Expression> namedArgs,
   ) {
-    return refer('params').property(internal).call(
-        [literalString(parameter.name, raw: true), ...positionalArgs],
-        namedArgs);
+    final name = parameter.name3;
+    if (name == null) throw ArgumentError.notNull('parameter.name3');
+
+    return refer('params')
+        .property(internal)
+        .call([literalString(name, raw: true), ...positionalArgs], namedArgs);
   }
 
   Expression _buildDynamicParam(
@@ -101,8 +105,11 @@ class StoryParameterBuilder {
       types.addAll(List.filled(3 - types.length, refer('void')));
     }
 
+    final name = parameter.name3;
+    if (name == null) throw ArgumentError.notNull('parameter.name3');
+
     return refer('params').property('dynamic\$').call(
-      [literalString(parameter.name, raw: true), ...positionalArgs],
+      [literalString(name, raw: true), ...positionalArgs],
       namedArgs,
       types,
     );

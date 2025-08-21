@@ -1,8 +1,48 @@
 name: sandboxed_workspace
 description: Sandboxed is place where you store your components and stories
 
+workspace: 
+  # Apps
+  - apps/sandbox
+  - apps/sandboxed_library
+  
+  # Packages
+  - packages/sandboxed
+  - packages/sandboxed_cli
+  - packages/sandboxed_core
+  - packages/sandboxed_generator
+  - packages/sandboxed_test
+  - packages/sandboxed_ui_kit
+
+  # Examples
+  - example/material_book
+  - example/monorepo/products
+  - example/monorepo/ui_book
+  - example/monorepo/ui_kit
+
 environment:
   sdk: ">=3.5.4 <4.0.0"
 
 dev_dependencies:
-  melos: ^6.3.2
+  melos: ^7.0.0
+
+melos:
+  sdkPath: ".fvm/flutter_sdk"
+
+  scripts:
+    generate:
+      exec: fvm dart run build_runner build -d
+      packageFilters:
+        dependsOn:
+        - build_runner
+
+    generate:watch:
+      exec: fvm dart run build_runner watch -d
+      packageFilters:
+        dependsOn:
+        - build_runner
+
+    watch_riverpod:
+      exec: while true; do dart run build_runner watch -dv; sleep 2 ; done
+      packageFilters:
+        scope: sandboxed

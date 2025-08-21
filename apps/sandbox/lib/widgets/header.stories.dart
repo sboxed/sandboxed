@@ -5,7 +5,7 @@ import 'package:sandboxed_core/story.dart';
 import 'package:sandboxed_sandbox/widgets/header.dart';
 
 Meta get meta => Meta<Header>(
-      name: '02. Very Long Name for Header', // optional
+      name: '02. Very long component name for Header component', // optional
       module: 'Features / 01. Core',
       component: Header, // optional
       parameters: {

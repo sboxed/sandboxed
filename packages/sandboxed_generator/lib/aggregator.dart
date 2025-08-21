@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
@@ -15,7 +15,7 @@ import 'package:yaml/yaml.dart';
 class StoryContainer {
   final String path;
   final String package;
-  final LibraryElement library;
+  final LibraryElement2 library;
   final List<String> docs;
 
   StoryContainer({
@@ -76,10 +76,15 @@ class ComponentAggregateBuilder extends Builder {
           packageName: 'sandboxed_core',
         );
 
-        for (final element in library.topLevelElements) {
-          if (element case PropertyAccessorElement accessor
-              when configType.isAssignableFrom(accessor.returnType.element!)) {
-            return refer(accessor.name, library.location!.encoding);
+        for (final element in library.getters) {
+          if (element case PropertyAccessorElement2 accessor
+              when configType.isAssignableFrom(accessor.returnType.element3!)) {
+            final name = accessor.name3;
+            if (name == null) {
+              throw ArgumentError.notNull('accessor.name3');
+            }
+
+            return refer(name, library.uri.toString());
           }
         }
       }
