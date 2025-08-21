@@ -1,3 +1,7 @@
+## 0.0.2
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
 ## 0.0.1+1
 
  - **DOCS**: fix links in readme.

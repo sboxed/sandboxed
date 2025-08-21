@@ -15,6 +15,52 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sandboxed` - `v0.1.3`](#sandboxed---v013)
+ - [`sandboxed_cli` - `v0.0.2`](#sandboxed_cli---v002)
+ - [`sandboxed_core` - `v0.1.2`](#sandboxed_core---v012)
+ - [`sandboxed_generator` - `v0.1.4`](#sandboxed_generator---v014)
+ - [`sandboxed_test` - `v0.0.2`](#sandboxed_test---v002)
+ - [`sandboxed_ui_kit` - `v0.1.1`](#sandboxed_ui_kit---v011)
+
+---
+
+#### `sandboxed` - `v0.1.3`
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
+#### `sandboxed_cli` - `v0.0.2`
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
+#### `sandboxed_core` - `v0.1.2`
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
+#### `sandboxed_generator` - `v0.1.4`
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
+#### `sandboxed_test` - `v0.0.2`
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
+#### `sandboxed_ui_kit` - `v0.1.1`
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
+
+## 2025-08-21
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sandboxed` - `v0.1.2+6`](#sandboxed---v0126)
 
 ---

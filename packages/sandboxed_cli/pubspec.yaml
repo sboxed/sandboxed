@@ -1,7 +1,7 @@
 name: sandboxed_cli
 description: CLI tools for the Sandboxed ecosystem to help developers build, test, and showcase widget components in isolation.
 resolution: workspace
-version: 0.0.1
+version: 0.0.2
 homepage: https://sboxed.dev/
 repository: https://github.com/sboxed/sandboxed
 issue_tracker: https://github.com/sboxed/sandboxed/issues

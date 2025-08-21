@@ -1,3 +1,7 @@
+## 0.1.3
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
 ## 0.1.2+6
 
  - **FIX**(deps): remove custom_lint dependency.

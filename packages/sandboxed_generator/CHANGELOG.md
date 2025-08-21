@@ -1,3 +1,7 @@
+## 0.1.4
+
+ - **FEAT**(generator): update code generator to new analyzer.
+
 ## 0.1.3+3
 
  - **FIX**: fix meta for abstract class generated errors.
