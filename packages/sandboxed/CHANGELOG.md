@@ -1,3 +1,7 @@
+## 0.1.2+6
+
+ - **FIX**(deps): remove custom_lint dependency.
+
 ## 0.1.2+5
 
  - Update a dependency to the latest release.

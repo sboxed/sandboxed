@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-08-21
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed` - `v0.1.2+6`](#sandboxed---v0126)
+
+---
+
+#### `sandboxed` - `v0.1.2+6`
+
+ - **FIX**(deps): remove custom_lint dependency.
+
+
 ## 2025-07-25
 
 ### Changes
