@@ -31,14 +31,16 @@ import 'package:flutter/src/widgets/focus_manager.dart' as _i23;
 import 'package:flutter/src/widgets/widget_state.dart' as _i24;
 import 'package:flutter/src/material/theme_data.dart' as _i25;
 import 'package:flutter/src/rendering/box.dart' as _i26;
-import 'package:material_book/widgets/scaffold.stories.dart' as _i27;
-import 'package:flutter/src/material/scaffold.dart' as _i28;
+import 'package:material_book/icons/material_icons.stories.dart' as _i27;
+import 'package:material_book/icons/material_icons.dart' as _i28;
+import 'package:material_book/widgets/scaffold.stories.dart' as _i29;
+import 'package:flutter/src/material/scaffold.dart' as _i30;
 import 'package:flutter/src/material/floating_action_button_location.dart'
-    as _i29;
-import 'package:flutter/src/painting/alignment.dart' as _i30;
-import 'package:flutter/src/painting/box_decoration.dart' as _i31;
-import 'package:flutter/src/gestures/recognizer.dart' as _i32;
-import 'package:flutter/src/animation/animation.dart' as _i33;
+    as _i31;
+import 'package:flutter/src/painting/alignment.dart' as _i32;
+import 'package:flutter/src/painting/box_decoration.dart' as _i33;
+import 'package:flutter/src/gestures/recognizer.dart' as _i34;
+import 'package:flutter/src/animation/animation.dart' as _i35;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -838,9 +840,21 @@ List<Component> get components => <Component>[
     ],
   ),
   Component(
-    meta: _i27.meta.copyWith(
+    meta: _i27.meta,
+    stories: [
+      _i27.$Default.applyGenerated(
+        name: 'Default',
+        builder: (context, params) => _i28.MaterialIcons.new(
+          key: null,
+          size: params.number(r'size').required(24),
+        ),
+      ),
+    ],
+  ),
+  Component(
+    meta: _i29.meta.copyWith(
       documentation: [
-        ..._i27.meta.documentation,
+        ..._i29.meta.documentation,
         DocumentEntry(
           name: 'Docs',
           content:
@@ -849,9 +863,9 @@ List<Component> get components => <Component>[
       ],
     ),
     stories: [
-      _i27.$Default.applyGenerated(
+      _i29.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i28.Scaffold.new(
+        builder: (context, params) => _i30.Scaffold.new(
           key: null,
           appBar: params
               .dynamic$<_i4.PreferredSizeWidget, void, void>(r'appBar')
@@ -861,12 +875,12 @@ List<Component> get components => <Component>[
               .dynamic$<_i3.Widget, void, void>(r'floatingActionButton')
               .optional(null),
           floatingActionButtonLocation: params
-              .dynamic$<_i29.FloatingActionButtonLocation, void, void>(
+              .dynamic$<_i31.FloatingActionButtonLocation, void, void>(
                 r'floatingActionButtonLocation',
               )
               .optional(null),
           floatingActionButtonAnimator: params
-              .dynamic$<_i29.FloatingActionButtonAnimator, void, void>(
+              .dynamic$<_i31.FloatingActionButtonAnimator, void, void>(
                 r'floatingActionButtonAnimator',
               )
               .optional(null),
@@ -876,12 +890,12 @@ List<Component> get components => <Component>[
               )
               .optional(null),
           persistentFooterAlignment: params
-              .dynamic$<_i30.AlignmentDirectional, void, void>(
+              .dynamic$<_i32.AlignmentDirectional, void, void>(
                 r'persistentFooterAlignment',
               )
               .required(AlignmentDirectional.centerEnd),
           persistentFooterDecoration: params
-              .dynamic$<_i31.BoxDecoration, void, void>(
+              .dynamic$<_i33.BoxDecoration, void, void>(
                 r'persistentFooterDecoration',
               )
               .optional(null),
@@ -909,8 +923,8 @@ List<Component> get components => <Component>[
               .optional(null),
           primary: params.boolean(r'primary').required(true),
           drawerDragStartBehavior: params
-              .single(r'drawerDragStartBehavior', _i32.DragStartBehavior.values)
-              .required(_i32.DragStartBehavior.start),
+              .single(r'drawerDragStartBehavior', _i34.DragStartBehavior.values)
+              .required(_i34.DragStartBehavior.start),
           extendBody: params.boolean(r'extendBody').required(false),
           drawerBarrierDismissible: params
               .boolean(r'drawerBarrierDismissible')
@@ -921,7 +935,7 @@ List<Component> get components => <Component>[
           drawerScrimColor: params.color(r'drawerScrimColor').optional(null),
           bottomSheetScrimBuilder: params
               .dynamic$<
-                _i3.Widget? Function(_i3.BuildContext, _i33.Animation<double>),
+                _i3.Widget? Function(_i3.BuildContext, _i35.Animation<double>),
                 void,
                 void
               >(r'bottomSheetScrimBuilder')

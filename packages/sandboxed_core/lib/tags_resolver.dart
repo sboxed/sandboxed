@@ -25,7 +25,9 @@ class TagsResolver {
     final result = {...tags};
 
     final addTags = modifier.where((element) => !element.startsWith('!'));
-    final removeTags = modifier.where((element) => element.startsWith('!')).map((e) => e.substring(1));
+    final removeTags = modifier
+        .where((element) => element.startsWith('!'))
+        .map((e) => e.substring(1));
 
     result.removeAll(removeTags);
     result.addAll(addTags);

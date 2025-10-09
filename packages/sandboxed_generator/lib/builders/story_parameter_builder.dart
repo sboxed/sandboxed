@@ -3,6 +3,7 @@ import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:sandboxed_generator/expression/raw.dart';
+import 'package:sandboxed_generator/extension/element_extension.dart';
 import 'package:sandboxed_generator/types/type_checker.dart';
 import 'package:sandboxed_generator/types/type_handlers.dart';
 
@@ -37,7 +38,7 @@ class StoryParameterBuilder {
   ) {
     if (defaultValue.startsWith('${enum$.name}.')) {
       final parts = defaultValue.split('.').skip(1);
-      value = refer(enum$.name, enum$.library.location!.components.first);
+      value = refer(enum$.name ?? '', enum$.librarySource.uri.toString());
       for (final part in parts) {
         value = value!.property(part);
       }

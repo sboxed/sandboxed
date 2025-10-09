@@ -100,7 +100,7 @@ class TypeHandlers {
               tree: childTree,
             );
 
-            for (final type in type.positionalParameterTypes) {
+            for (final type in type.normalParameterTypes) {
               function.requiredParameters
                   .add(buildTypeReference(type, tree: childTree));
             }
