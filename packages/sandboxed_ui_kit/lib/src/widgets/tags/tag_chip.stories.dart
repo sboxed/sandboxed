@@ -31,7 +31,11 @@ Story get $InTile => Story(
               const SizedBox(width: 12),
               TagChip(
                 tag: Text(params.string('tag').required('Fresh')),
-                color: params.color('color').required(Colors.green),
+                color: params
+                    .color(
+                      'color',
+                    )
+                    .required(Colors.green),
               ),
             ],
           ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sandboxed_core/meta.dart';
-import 'package:sandboxed_core/story.dart';
-import 'package:sandboxed_core/story_view.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:sandboxed_sandbox/widgets/button.dart';
 import 'package:sandboxed_sandbox/widgets/button.stories.dart';
 

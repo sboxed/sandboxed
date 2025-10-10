@@ -6,6 +6,9 @@ part of 'selected.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(SelectedElementNotifier)
 const selectedElementNotifierProvider = SelectedElementNotifierProvider._();
 
@@ -39,7 +42,7 @@ final class SelectedElementNotifierProvider
 }
 
 String _$selectedElementNotifierHash() =>
-    r'04f4161447c22efb82eea3a274ba35a8d1aedc58';
+    r'6e628bebbf2028fc967efc4d8ef95c9bc2503419';
 
 abstract class _$SelectedElementNotifier extends $Notifier<String?> {
   String? build();
@@ -203,6 +206,3 @@ final class SelectedElementProvider
 }
 
 String _$selectedElementHash() => r'5100ef9135f30789202557e4d1c87147909f0e2c';
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

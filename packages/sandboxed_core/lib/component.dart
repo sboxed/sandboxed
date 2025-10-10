@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:sandboxed_core/config.dart';
-import 'package:sandboxed_core/meta.dart';
-import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 
 abstract class SandboxedElement with EquatableMixin {
   const SandboxedElement();

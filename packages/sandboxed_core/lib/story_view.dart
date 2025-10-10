@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sandboxed_core/decorator.dart';
-import 'package:sandboxed_core/meta.dart';
-import 'package:sandboxed_core/src/params/params.dart';
-import 'package:sandboxed_core/src/widgets/widgets.dart';
-import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 
 typedef _WidgetChildBuilder = Widget Function(
   BuildContext context,
@@ -29,7 +25,7 @@ class StoryView extends StatefulWidget {
   final Story story;
 
   /// The optional parameters for the story.
-  final Params? params;
+  final ParamStorage? params;
 
   /// The optional decorators for the story.
   final List<Decorator> decorators;
@@ -50,11 +46,11 @@ class StoryView extends StatefulWidget {
 }
 
 class _StoryViewState extends State<StoryView> {
-  late final params = widget.params ?? ConstantParams();
+  late final params = widget.params ?? ParamStorage();
 
   @override
   void initState() {
-    params.updateDefaultValues(widget.story.params);
+    params.setInitialValues(widget.story.params);
 
     super.initState();
   }

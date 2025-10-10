@@ -1,5 +1,5 @@
 /// Copied from [@devfelipereis/map_diff](https://github.com/devfelipereis/map_diff/blob/main/lib/src/map_diff.dart)
-library map_diff;
+library;
 
 import 'package:collection/collection.dart';
 

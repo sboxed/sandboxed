@@ -14,7 +14,10 @@ Story get $Default => Story(
 
 Story get $Nested => Story(
       builder: (context, params) {
-        final depth = params.integer('depth').required(5).clamp(1, 5);
+        final depth = params //
+            .integer('depth')
+            .slider(min: 1, max: 5)
+            .required(5);
 
         Widget build(int level) {
           if (level == 0) return Text("Card content");

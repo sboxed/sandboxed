@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:sandboxed_core/src/params/use_params.dart';
 
 Meta get meta => Meta<Chip>(
       name: 'Chips', // optional
@@ -20,11 +19,12 @@ Meta get meta => Meta<Chip>(
 Story get $Playground => Story(
       name: 'Playground',
       params: {
-        'label': UseParams(
-          (params) => Text(
-            params.string('labelText').required('Label'),
-          ),
-        ),
+        // STOPSHIP(@melvspace): 10/11/25
+        // 'label': UseParams(
+        //   (params) => Text(
+        //     params.string('labelText').required('Label'),
+        //   ),
+        // ),
       },
     );
 
@@ -53,7 +53,11 @@ Story get $ChoiceChip => Story(
       builder: (context, params) => ChoiceChip(
         onSelected: (value) {},
         label: Text(
-          params.string('labelText').apply('readonly', true).required('Label'),
+          params
+              .string('labelText') //
+              // STOPSHIP(@melvspace): 10/11/25
+              // .apply('readonly', true)
+              .required('Label'),
         ),
         selected: params.boolean('selected').required(false),
       ),
@@ -63,7 +67,11 @@ Story get $FilterChip => Story(
       name: 'FilterChip',
       builder: (context, params) => FilterChip(
         label: Text(
-          params.string('labelText').apply('readonly', true).required('Label'),
+          params
+              .string('labelText') //
+              // STOPSHIP(@melvspace): 10/11/25
+              // .apply('readonly', true)
+              .required('Label'),
         ),
         selected: params.boolean('selected').required(false),
         onSelected: (value) {},
@@ -75,7 +83,11 @@ Story get $ActionChip => Story(
       builder: (context, params) => ActionChip(
         onPressed: () {},
         label: Text(
-          params.string('labelText').apply('readonly', true).required('Label'),
+          params
+              .string('labelText') //
+              // STOPSHIP(@melvspace): 10/11/25
+              // .apply('readonly', true)
+              .required('Label'),
         ),
       ),
     );

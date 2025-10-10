@@ -1,4 +1,4 @@
-library sandboxed_ui_kit;
+library;
 
 export 'src/decorators/decorators.dart';
 export 'src/layout/layout.dart';

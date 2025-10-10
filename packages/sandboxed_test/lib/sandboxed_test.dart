@@ -1,1 +1,1 @@
-library sandboxed_test;
+library;

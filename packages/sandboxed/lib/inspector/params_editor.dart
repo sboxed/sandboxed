@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sandboxed/inspector/component_inspector.dart';
-import 'package:sandboxed/provider/addons.dart';
+import 'package:sandboxed/params/editors/editors.dart';
 import 'package:sandboxed/provider/params.dart';
 import 'package:sandboxed/sandboxed.dart';
 
@@ -87,7 +86,7 @@ class ParamsEditor extends ConsumerWidget {
                   if (context.breakpoint != Breakpoints.mobile) ...[
                     cell(
                       Text(
-                        switch (param.value.meta['description']) {
+                        switch (param.value.metadata['description']) {
                           String description
                               when description.trim().isNotEmpty =>
                             description.trim(),
@@ -97,7 +96,7 @@ class ParamsEditor extends ConsumerWidget {
                       ),
                     ),
                   ],
-                  cell(ParamEditorCell(id: param.key, param: param.value)),
+                  cell(ParamEditorCell(id: param.key, value: param.value)),
                 ],
               ),
           ],
@@ -107,15 +106,15 @@ class ParamsEditor extends ConsumerWidget {
   }
 
   // TODO(@melvspace): 05/07/25 get types at generation step
-  String formatType(ParamWrapper value) {
-    final regexp = RegExp('^.*ParamWrapper<');
+  String formatType(ParamValue value) {
+    final regexp = RegExp('^.*ParamValue<');
     var string = '${value.runtimeType}';
     if (string.contains(regexp)) {
       string = string.replaceAll(regexp, '');
       string = string.replaceAll(RegExp('>\$'), '');
     }
 
-    if (!value.isRequired) {
+    if (!value.required) {
       string += '?';
     }
 
@@ -125,58 +124,33 @@ class ParamsEditor extends ConsumerWidget {
 
 class ParamEditorCell extends ConsumerWidget {
   final String id;
-  final ParamWrapper param;
+  final ParamValue value;
 
   const ParamEditorCell({
     super.key,
     required this.id,
-    required this.param,
+    required this.value,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final params = ref.watch(paramsProvider(ref.watch(paramsScopeIdProvider)));
-    final builder = ref.watch(addonsProvider.notifier).findParamBuilder(param);
-    final editor = builder?.buildEditor(id, param, params, ref);
-
     return ListenableBuilder(
-      listenable: params,
+      listenable: value,
       builder: (context, child) {
-        return Row(
-          children: [
-            if (!param.null$)
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (editor case Widget editor)
-                      Opacity(
-                        opacity: param.null$ ? .5 : 1.0,
-                        child: IgnorePointer(
-                          ignoring: param.null$,
-                          child: editor,
-                        ),
-                      )
-                    else
-                      Text(param.value.toString()),
-                  ],
-                ),
-              )
-            else if (builder != null) //
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: ListenableBuilder(
-                  listenable: ref
-                      .watch(paramsProvider(ref.watch(paramsScopeIdProvider))),
-                  builder: (context, child) => NullSwitcher(
-                    id: id,
-                    builder: builder,
-                  ),
-                ),
-              )
-            else
-              SBMarkdown('`${param.rawValue}`')
-          ],
+        final presenter = value.editor;
+        if (presenter == null) {
+          return NullableEditorWidget(
+            value: value,
+            child: ReadonlyEditorWidget(value: value),
+          );
+        }
+
+        return NullableEditorWidget(
+          value: value,
+          child: Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: presenter.build(context, value),
+          ),
         );
       },
     );

@@ -6,6 +6,9 @@ part of 'persistence.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(sharedPreferences)
 const sharedPreferencesProvider = SharedPreferencesProvider._();
 
@@ -68,7 +71,7 @@ final class PathPersistenceProvider
   PathPersistence create() => PathPersistence();
 }
 
-String _$pathPersistenceHash() => r'7a84a9de6c0d1e246b91bb3f45433c3bc2da4cee';
+String _$pathPersistenceHash() => r'67b23da3d3903bfbec5d7f2e9fb2e38d182c234e';
 
 abstract class _$PathPersistence extends $AsyncNotifier<String?> {
   FutureOr<String?> build();
@@ -85,6 +88,3 @@ abstract class _$PathPersistence extends $AsyncNotifier<String?> {
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

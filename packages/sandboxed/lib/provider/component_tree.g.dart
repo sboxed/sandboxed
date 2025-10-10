@@ -6,6 +6,9 @@ part of 'component_tree.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(components)
 const componentsProvider = ComponentsProvider._();
 
@@ -86,7 +89,7 @@ final class ComponentTreeNotifierProvider
 }
 
 String _$componentTreeNotifierHash() =>
-    r'efffff9a3eb9a7397a3572e28a18a11e81b6a6e4';
+    r'8398d037e235f72c2fb9a1135e43911cbf696ab4';
 
 abstract class _$ComponentTreeNotifier extends $Notifier<TreeType<NodeData>> {
   TreeType<NodeData> build();
@@ -554,6 +557,3 @@ final class LargestNodeProvider extends $FunctionalProvider<
 }
 
 String _$largestNodeHash() => r'8d12f48ce55658928508960fe2d7b61ad7485b39';
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -6,6 +6,9 @@ part of 'addons.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(addonList)
 const addonListProvider = AddonListProvider._();
 
@@ -82,7 +85,7 @@ final class AddonsProvider extends $NotifierProvider<Addons, List<Addon>> {
   }
 }
 
-String _$addonsHash() => r'f00bb36db2c6798f937506f55cdc4624c9a72e3f';
+String _$addonsHash() => r'85ace220df202a9d29bcaf00a46e7928bb02520d';
 
 abstract class _$Addons extends $Notifier<List<Addon>> {
   List<Addon> build();
@@ -149,6 +152,3 @@ abstract class _$AddonQuery extends $Notifier<String?> {
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

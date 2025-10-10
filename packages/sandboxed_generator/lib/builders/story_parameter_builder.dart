@@ -3,7 +3,6 @@ import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:sandboxed_generator/expression/raw.dart';
-import 'package:sandboxed_generator/extension/element_extension.dart';
 import 'package:sandboxed_generator/types/type_checker.dart';
 import 'package:sandboxed_generator/types/type_handlers.dart';
 
@@ -109,11 +108,11 @@ class StoryParameterBuilder {
     final name = parameter.name3;
     if (name == null) throw ArgumentError.notNull('parameter.name3');
 
-    return refer('params').property('dynamic\$').call(
-      [literalString(name, raw: true), ...positionalArgs],
-      namedArgs,
-      types,
-    );
+    return refer('params').property('any').call(
+          [literalString(name, raw: true), ...positionalArgs],
+          namedArgs,
+          [types.first],
+        );
   }
 
   Expression _handleOptionalParameter(Expression param) {

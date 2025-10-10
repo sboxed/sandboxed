@@ -14,11 +14,18 @@ dependencies:
   sandboxed:
   sandboxed_core:
 
+  # features
+  sandbox_feature:
+
+  # packages
+  highlight: ^0.7.0
+  flutter_highlight: ^0.7.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^6.0.0
+  flutter_lints:
   
   build_runner: ^2.4.13
   sandboxed_generator:

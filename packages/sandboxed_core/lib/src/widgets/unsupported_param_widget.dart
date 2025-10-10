@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sandboxed_core/src/exception/exception.dart';
 import 'package:sandboxed_core/src/params/params.dart';
 import 'package:sandboxed_core/src/widgets/widgets.dart';
 
@@ -21,7 +22,7 @@ class UnsupportedParamWidget extends StatelessWidget {
     required this.exception,
   });
 
-  String paramType(ParamWrapper param) {
+  String paramType(ParamValue param) {
     return RegExp('<(.+)>')
             .firstMatch(param.runtimeType.toString())
             ?.group(1) ??
@@ -32,7 +33,7 @@ class UnsupportedParamWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SandboxedGenericErrorWidget(
       message: 'Story has unsupported parameters\n'
-          '- [${exception.param.id}] of type ${paramType(exception.param)}',
+          '- [${exception.id}] of type ${paramType(exception.param)}',
     );
   }
 }

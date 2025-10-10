@@ -1,5 +1,4 @@
-import 'package:sandboxed_core/component.dart';
-import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 
 class TagsResolver {
   final Set<String> globalTags;

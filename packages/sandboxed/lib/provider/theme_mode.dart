@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'theme_mode.g.dart';
 
-@riverpod
+@Riverpod(name: 'themeModeNotifierProvider')
 class ThemeModeNotifier extends _$ThemeModeNotifier {
   @override
   ThemeMode build() {

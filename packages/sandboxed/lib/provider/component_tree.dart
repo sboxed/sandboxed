@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sandboxed/provider/tags.dart';
@@ -13,7 +12,11 @@ List<SandboxedElement> components(Ref ref) {
   return [];
 }
 
-@Riverpod(keepAlive: true, dependencies: [components])
+@Riverpod(
+  keepAlive: true,
+  name: 'componentTreeNotifierProvider',
+  dependencies: [components],
+)
 class ComponentTreeNotifier extends _$ComponentTreeNotifier {
   @override
   TreeType<NodeData> build() {

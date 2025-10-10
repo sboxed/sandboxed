@@ -1,11 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sandboxed/provider/component_tree.dart';
 import 'package:sandboxed/tree/component_tree_node.dart';
-import 'package:sandboxed_core/component.dart';
-import 'package:sandboxed_core/document_entry.dart';
-import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 
 part 'selected.g.dart';
 
@@ -37,7 +34,11 @@ final class StorySelection extends Selection with EquatableMixin {
   List<Object?> get props => [component, story];
 }
 
-@Riverpod(keepAlive: true, dependencies: [])
+@Riverpod(
+  keepAlive: true,
+  name: 'selectedElementNotifierProvider',
+  dependencies: [],
+)
 class SelectedElementNotifier extends _$SelectedElementNotifier {
   @override
   String? build() {

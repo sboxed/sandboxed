@@ -1,5 +1,4 @@
 import 'package:sandboxed/sandboxed.dart';
-import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:sandboxed_sandbox/widgets/abstract_widget.dart';
 
 Meta get meta => const Meta<AbstractWidget>(

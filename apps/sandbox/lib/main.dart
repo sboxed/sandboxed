@@ -3,12 +3,14 @@ import 'package:sandboxed/addons/alignment/alignment_addon.dart';
 import 'package:sandboxed/addons/banner/banner_addon.dart';
 import 'package:sandboxed/addons/interactive_viewer/interactive_viewer_addon.dart';
 import 'package:sandboxed/addons/safe_area/safe_area_addon.dart';
+import 'package:sandboxed/addons/screenshot/screenshot_addon.dart';
 import 'package:sandboxed/addons/split_themes/split_themes_addon.dart';
 import 'package:sandboxed/addons/tags/tags_renderer_addon.dart';
 import 'package:sandboxed/addons/viewport/viewport_addon.dart';
 import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/sandboxed.dart';
 import 'package:sandboxed_sandbox/components.g.dart';
+import 'package:sandboxed_sandbox/editors/custom_editors.dart';
 
 void main() {
   runApp(const MainApp());
@@ -38,6 +40,9 @@ class MainApp extends StatelessWidget {
               _ => null,
             },
           ),
+
+          // Editors
+          CustomEditorsAddon(),
 
           // Decorators
           BannerAddon(label: 'sandbox'),
@@ -94,6 +99,7 @@ class MainApp extends StatelessWidget {
 
           SafeAreaAddon(),
           AlignmentAddon(),
+          ScreenshotAddon(),
         ],
       ),
     );

@@ -8,8 +8,8 @@ void main() {
     () {
       expect(
         () {
-          final params = ConstantParams();
-          final List<String> _ = params.dynamic$('list').required([]);
+          final params = ParamStorage();
+          final List<String> _ = params.any('list').required([]);
         },
         throwsA(isA<TypeError>()),
       );
@@ -22,9 +22,9 @@ void main() {
     () {
       expect(
         () {
-          final params = ConstantParams();
+          final params = ParamStorage();
           final List<String> _ = params //
-              .dynamic$<List<String>, String, void>('list')
+              .any<List<String>>('list')
               .required([]);
         },
         returnsNormally,
@@ -36,17 +36,17 @@ void main() {
   test(
     'test dynamic list can cast dynamic default value when hint provided',
     () {
-      final params = ConstantParams();
-      params.updateDefaultValues({
+      final params = ParamStorage();
+      params.setInitialValues({
         'list': [],
       });
 
-      var value;
+      List<String>? value;
 
       expect(
         () {
           value = params //
-              .dynamic$<List<String>, String, void>('list')
+              .any<List<String>>('list')
               .required(['Some']);
         },
         returnsNormally,
@@ -60,17 +60,17 @@ void main() {
   test(
     'test dynamic list fail',
     () {
-      final params = ConstantParams();
-      params.updateDefaultValues({
+      final params = ParamStorage();
+      params.setInitialValues({
         'list': [],
       });
 
-      var value;
+      List<String>? value;
 
       expect(
         () {
           value = params //
-              .dynamic$<List<String>, void, void>('list')
+              .any<List<String>>('list')
               .required(['Some']);
         },
         returnsNormally,
@@ -84,8 +84,8 @@ void main() {
   test('test dynamic boolean inference param', () {
     expect(
       () {
-        final params = ConstantParams();
-        final bool _ = params.dynamic$('boolean').required(false);
+        final params = ParamStorage();
+        final bool _ = params.any('boolean').required(false);
       },
       returnsNormally,
     );
@@ -94,7 +94,7 @@ void main() {
   test('test multi boolean inference param', () {
     expect(
       () {
-        final params = ConstantParams();
+        final params = ParamStorage();
         final List<String> _ =
             params.multi('multiList', ['string', 'bla']).required([]);
       },

@@ -6,6 +6,9 @@ part of 'title.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(title)
 const titleProvider = TitleProvider._();
 
@@ -45,6 +48,3 @@ final class TitleProvider extends $FunctionalProvider<Widget, Widget, Widget>
 }
 
 String _$titleHash() => r'a44a0a9637dba258b13cd92879c1a2be744df0d3';
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

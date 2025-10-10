@@ -18,68 +18,64 @@ import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
 List<Component> get components => <Component>[
-      Component(
-        meta: _i1.meta,
-        config: _i2.config,
-        stories: [
-          _i1.$Blue.applyGenerated(
-            name: 'Blue',
-            builder: (context, params) => _i3.Button.new(
-              key: null,
-              text: params.string(r'text').required('Text'),
-              size: params
-                  .single(r'size', _i3.ButtonSize.values)
-                  .required(_i3.ButtonSize.medium),
-              color: params.color(r'color').required(Colors.green),
-              icon: params
-                  .dynamic$<_i4.Widget, void, void>(r'icon')
-                  .optional(null),
-            ),
-          ),
-          _i1.$Green.applyGenerated(
-            name: 'Green',
-            builder: (context, params) => _i3.Button.new(
-              key: null,
-              text: params.string(r'text').required('Text'),
-              size: params
-                  .single(r'size', _i3.ButtonSize.values)
-                  .required(_i3.ButtonSize.medium),
-              color: params.color(r'color').required(Colors.green),
-              icon: params
-                  .dynamic$<_i4.Widget, void, void>(r'icon')
-                  .optional(null),
-            ),
-          ),
-        ],
+  Component(
+    meta: _i1.meta,
+    config: _i2.config,
+    stories: [
+      _i1.$Blue.applyGenerated(
+        name: 'Blue',
+        builder: (context, params) => _i3.Button.new(
+          key: null,
+          text: params.string(r'text').required('Text'),
+          size: params
+              .single(r'size', _i3.ButtonSize.values)
+              .required(_i3.ButtonSize.medium),
+          color: params.color(r'color').required(Colors.green),
+          icon: params.any<_i4.Widget>(r'icon').optional(null),
+        ),
       ),
-      Component(
-        meta: _i5.meta,
-        config: Config(module: 'Features/Products'),
-        stories: [
-          _i5.$Default.applyGenerated(
-            name: 'Default',
-            builder: (context, params) => _i6.FavoriteButton.new(key: null),
-          ),
-        ],
+      _i1.$Green.applyGenerated(
+        name: 'Green',
+        builder: (context, params) => _i3.Button.new(
+          key: null,
+          text: params.string(r'text').required('Text'),
+          size: params
+              .single(r'size', _i3.ButtonSize.values)
+              .required(_i3.ButtonSize.medium),
+          color: params.color(r'color').required(Colors.green),
+          icon: params.any<_i4.Widget>(r'icon').optional(null),
+        ),
       ),
-      Component(
-        meta: _i7.meta,
-        config: _i2.config,
-        stories: [
-          _i7.$Default.applyGenerated(
-            name: 'Default',
-            builder: (context, params) => _i8.Heading.new(key: null),
-          ),
-        ],
+    ],
+  ),
+  Component(
+    meta: _i5.meta,
+    config: Config(module: 'Features/Products'),
+    stories: [
+      _i5.$Default.applyGenerated(
+        name: 'Default',
+        builder: (context, params) => _i6.FavoriteButton.new(key: null),
       ),
-      Component(
-        meta: _i9.meta,
-        config: Config(module: 'Features/Products'),
-        stories: [
-          _i9.$Default.applyGenerated(
-            name: 'Default',
-            builder: (context, params) => _i10.ProductCard.new(key: null),
-          ),
-        ],
+    ],
+  ),
+  Component(
+    meta: _i7.meta,
+    config: _i2.config,
+    stories: [
+      _i7.$Default.applyGenerated(
+        name: 'Default',
+        builder: (context, params) => _i8.Heading.new(key: null),
       ),
-    ];
+    ],
+  ),
+  Component(
+    meta: _i9.meta,
+    config: Config(module: 'Features/Products'),
+    stories: [
+      _i9.$Default.applyGenerated(
+        name: 'Default',
+        builder: (context, params) => _i10.ProductCard.new(key: null),
+      ),
+    ],
+  ),
+];

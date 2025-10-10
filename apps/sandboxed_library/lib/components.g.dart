@@ -21,120 +21,104 @@ import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
 List<Component> get components => <Component>[
-      Component(
-        meta: _i1.meta,
-        config: _i2.config,
-        stories: [
-          _i1.$Default.applyGenerated(
-            name: 'Default',
-            builder: (context, params) => _i3.ElementTile.new(
-              key: null,
-              depth: params.integer(r'depth').required(1),
-              onPressed: params
-                  .dynamic$<void Function(), void, void>(r'onPressed')
-                  .optional(null),
-              tooltip: params.string(r'tooltip').required(''),
-              selected: params.boolean(r'selected').required(false),
-              size: params
-                  .single(r'size', _i3.ElementTileSize.values)
-                  .required(_i3.ElementTileSize.small),
-              icon: params
-                  .dynamic$<_i4.Widget, void, void>(r'icon')
-                  .optional(null),
-              title: params
-                  .dynamic$<_i4.Widget, void, void>(r'title')
-                  .required(const SizedBox.shrink()),
-            ),
-          ),
-          _i1.$Tree.applyGenerated(
-            name: 'Tree',
-            builder: (context, params) => _i3.ElementTile.new(
-              key: null,
-              depth: params.integer(r'depth').required(1),
-              onPressed: params
-                  .dynamic$<void Function(), void, void>(r'onPressed')
-                  .optional(null),
-              tooltip: params.string(r'tooltip').required(''),
-              selected: params.boolean(r'selected').required(false),
-              size: params
-                  .single(r'size', _i3.ElementTileSize.values)
-                  .required(_i3.ElementTileSize.small),
-              icon: params
-                  .dynamic$<_i4.Widget, void, void>(r'icon')
-                  .optional(null),
-              title: params
-                  .dynamic$<_i4.Widget, void, void>(r'title')
-                  .required(const SizedBox.shrink()),
-            ),
-          ),
-        ],
+  Component(
+    meta: _i1.meta,
+    config: _i2.config,
+    stories: [
+      _i1.$Default.applyGenerated(
+        name: 'Default',
+        builder: (context, params) => _i3.ElementTile.new(
+          key: null,
+          depth: params.integer(r'depth').required(1),
+          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          tooltip: params.string(r'tooltip').required(''),
+          selected: params.boolean(r'selected').required(false),
+          size: params
+              .single(r'size', _i3.ElementTileSize.values)
+              .required(_i3.ElementTileSize.small),
+          icon: params.any<_i4.Widget>(r'icon').optional(null),
+          title: params
+              .any<_i4.Widget>(r'title')
+              .required(const SizedBox.shrink()),
+        ),
       ),
-      Component(
-        meta: _i5.meta,
-        config: _i2.config,
-        stories: [
-          _i5.$Default.applyGenerated(
-            name: 'Default',
-            builder: (context, params) => _i6.ResponsiveLayout.new(
-              key: null,
-              drawer: params
-                  .dynamic$<_i4.Widget, void, void>(r'drawer')
-                  .required(const SizedBox.shrink()),
-              viewport: params
-                  .dynamic$<_i4.Widget, void, void>(r'viewport')
-                  .required(const SizedBox.shrink()),
-              sidebar: params
-                  .dynamic$<_i4.Widget, void, void>(r'sidebar')
-                  .optional(null),
-            ),
-          ),
-        ],
+      _i1.$Tree.applyGenerated(
+        name: 'Tree',
+        builder: (context, params) => _i3.ElementTile.new(
+          key: null,
+          depth: params.integer(r'depth').required(1),
+          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          tooltip: params.string(r'tooltip').required(''),
+          selected: params.boolean(r'selected').required(false),
+          size: params
+              .single(r'size', _i3.ElementTileSize.values)
+              .required(_i3.ElementTileSize.small),
+          icon: params.any<_i4.Widget>(r'icon').optional(null),
+          title: params
+              .any<_i4.Widget>(r'title')
+              .required(const SizedBox.shrink()),
+        ),
       ),
-      Component(
-        meta: _i7.meta,
-        config: _i2.config,
-        stories: [
-          _i7.$Drawer.applyGenerated(
-            name: 'Drawer',
-            builder: (context, params) => _i8.SBDrawer.new(
-              key: null,
-              title: params
-                  .dynamic$<_i4.Widget, void, void>(r'title')
-                  .required(const SizedBox.shrink()),
-              actions: params
-                  .dynamic$<List<_i4.Widget>, _i4.Widget, void>(r'actions')
-                  .required([]),
-              body: params
-                  .dynamic$<_i4.Widget, void, void>(r'body')
-                  .required(const SizedBox.shrink()),
-            ),
-          ),
-        ],
+    ],
+  ),
+  Component(
+    meta: _i5.meta,
+    config: _i2.config,
+    stories: [
+      _i5.$Default.applyGenerated(
+        name: 'Default',
+        builder: (context, params) => _i6.ResponsiveLayout.new(
+          key: null,
+          drawer: params
+              .any<_i4.Widget>(r'drawer')
+              .required(const SizedBox.shrink()),
+          viewport: params
+              .any<_i4.Widget>(r'viewport')
+              .required(const SizedBox.shrink()),
+          sidebar: params.any<_i4.Widget>(r'sidebar').optional(null),
+        ),
       ),
-      Component(
-        meta: _i9.meta,
-        config: _i2.config,
-        stories: [
-          _i9.$Default.applyGenerated(
-            name: 'Default',
-            builder: (context, params) => _i10.TagChip.new(
-              key: null,
-              tag: params
-                  .dynamic$<_i4.Widget, void, void>(r'tag')
-                  .required(const SizedBox.shrink()),
-              color: params.color(r'color').optional(null),
-            ),
-          ),
-          _i9.$InTile.applyGenerated(
-            name: 'In Tile',
-            builder: (context, params) => _i10.TagChip.new(
-              key: null,
-              tag: params
-                  .dynamic$<_i4.Widget, void, void>(r'tag')
-                  .required(const SizedBox.shrink()),
-              color: params.color(r'color').optional(null),
-            ),
-          ),
-        ],
+    ],
+  ),
+  Component(
+    meta: _i7.meta,
+    config: _i2.config,
+    stories: [
+      _i7.$Drawer.applyGenerated(
+        name: 'Drawer',
+        builder: (context, params) => _i8.SBDrawer.new(
+          key: null,
+          title: params
+              .any<_i4.Widget>(r'title')
+              .required(const SizedBox.shrink()),
+          actions: params.any<List<_i4.Widget>>(r'actions').required([]),
+          body: params
+              .any<_i4.Widget>(r'body')
+              .required(const SizedBox.shrink()),
+        ),
       ),
-    ];
+    ],
+  ),
+  Component(
+    meta: _i9.meta,
+    config: _i2.config,
+    stories: [
+      _i9.$Default.applyGenerated(
+        name: 'Default',
+        builder: (context, params) => _i10.TagChip.new(
+          key: null,
+          tag: params.any<_i4.Widget>(r'tag').required(const SizedBox.shrink()),
+          color: params.color(r'color').optional(null),
+        ),
+      ),
+      _i9.$InTile.applyGenerated(
+        name: 'In Tile',
+        builder: (context, params) => _i10.TagChip.new(
+          key: null,
+          tag: params.any<_i4.Widget>(r'tag').required(const SizedBox.shrink()),
+          color: params.color(r'color').optional(null),
+        ),
+      ),
+    ],
+  ),
+];

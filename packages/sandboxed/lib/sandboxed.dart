@@ -1,12 +1,12 @@
 // ignore_for_file: scoped_providers_should_specify_dependencies
-library sandboxed;
+library;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:sandboxed/addons/addon.dart';
-import 'package:sandboxed/addons/param_builders/base_param_builders_addon.dart';
+import 'package:sandboxed/addons/param_builders/default_param_editor_addon.dart';
 import 'package:sandboxed/addons/reload/reload_addon.dart';
 import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/provider/addons.dart';
@@ -89,7 +89,7 @@ class _SandboxedState extends State<Sandboxed> {
             (ref) => [
               ReloadAddon(),
               ...widget.addons,
-              BaseParamBuildersAddon(),
+              DefaultParamEditorAddon(),
             ],
           ),
         ],

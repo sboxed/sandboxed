@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/button.dart';
-import 'package:sandboxed_core/decorator.dart';
-import 'package:sandboxed_core/document_entry.dart';
-import 'package:sandboxed_core/meta.dart';
-import 'package:sandboxed_core/story.dart';
+import 'package:sandboxed_core/sandboxed_core.dart';
 
 Meta get meta => Meta<Button>(
       name: '01. Button', // optional
@@ -66,22 +63,24 @@ See also:
       ],
     );
 
-Story get $Green => Story(
-      name: 'Green',
-      builder: (context, params) {
-        return Button(
-          text: params.string('title').required("Lorem"),
-          color: params.color('color').required(Colors.green),
-          size: params
-              .single(
-                'size',
-                ButtonSize.values,
-                // ChipsType(),
-              )
-              .required(ButtonSize.small),
-        );
-      },
-    );
+Story get $Green {
+  return Story(
+    name: 'Green',
+    builder: (context, params) {
+      return Button(
+        text: params.string('title').required("Lorem"),
+        color: params.color('color').required(Colors.green),
+        size: params
+            .single(
+              'size',
+              ButtonSize.values,
+              // ChipsType(),
+            )
+            .required(ButtonSize.small),
+      );
+    },
+  );
+}
 
 Story get $Blue => Story(
       name: 'Blue',

@@ -2,13 +2,9 @@ import 'dart:developer';
 
 import 'package:flat/flat.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sandboxed/addons/addon.dart';
-import 'package:sandboxed/addons/mixins/param_builder_addon.dart';
-import 'package:sandboxed/params/param_builder.dart';
 import 'package:sandboxed/widgets/revive.dart';
-import 'package:sandboxed_core/sandboxed_core.dart';
 
 part 'addons.g.dart';
 
@@ -22,17 +18,6 @@ class Addons extends _$Addons {
   @override
   List<Addon> build() {
     return ref.watch(addonListProvider);
-  }
-
-  ParamBuilder<T>? findParamBuilder<T>(ParamWrapper<T> param) {
-    for (final addon in state) {
-      if (addon case ParamBuilderAddon addon) {
-        final builder = addon.find(param);
-        if (builder != null) return builder;
-      }
-    }
-
-    return null;
   }
 }
 

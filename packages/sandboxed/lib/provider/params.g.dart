@@ -6,6 +6,9 @@ part of 'params.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(paramsScopeId)
 const paramsScopeIdProvider = ParamsScopeIdProvider._();
 
@@ -55,10 +58,8 @@ String _$paramsScopeIdHash() => r'84f5764839e00fba92207393cad65c1b5fe4d362';
 @ProviderFor(params)
 const paramsProvider = ParamsFamily._();
 
-final class ParamsProvider extends $FunctionalProvider<
-    Raw<ParamsNotifier>,
-    Raw<ParamsNotifier>,
-    Raw<ParamsNotifier>> with $Provider<Raw<ParamsNotifier>> {
+final class ParamsProvider extends $FunctionalProvider<Raw<ParamStorage>,
+    Raw<ParamStorage>, Raw<ParamStorage>> with $Provider<Raw<ParamStorage>> {
   const ParamsProvider._(
       {required ParamsFamily super.from, required String super.argument})
       : super(
@@ -85,12 +86,12 @@ final class ParamsProvider extends $FunctionalProvider<
 
   @$internal
   @override
-  $ProviderElement<Raw<ParamsNotifier>> $createElement(
+  $ProviderElement<Raw<ParamStorage>> $createElement(
           $ProviderPointer pointer) =>
       $ProviderElement(pointer);
 
   @override
-  Raw<ParamsNotifier> create(Ref ref) {
+  Raw<ParamStorage> create(Ref ref) {
     final argument = this.argument as String;
     return params(
       ref,
@@ -99,10 +100,10 @@ final class ParamsProvider extends $FunctionalProvider<
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(Raw<ParamsNotifier> value) {
+  Override overrideWithValue(Raw<ParamStorage> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<Raw<ParamsNotifier>>(value),
+      providerOverride: $SyncValueProvider<Raw<ParamStorage>>(value),
     );
   }
 
@@ -117,10 +118,10 @@ final class ParamsProvider extends $FunctionalProvider<
   }
 }
 
-String _$paramsHash() => r'a1e9b06d01ac0977c3bf5f0efe5babadfff354c8';
+String _$paramsHash() => r'1b801339a0688c703b923a9866fb5440b88aca8d';
 
 final class ParamsFamily extends $Family
-    with $FunctionalFamilyOverride<Raw<ParamsNotifier>, String> {
+    with $FunctionalFamilyOverride<Raw<ParamStorage>, String> {
   const ParamsFamily._()
       : super(
           retry: null,
@@ -141,46 +142,6 @@ final class ParamsFamily extends $Family
   @override
   String toString() => r'paramsProvider';
 }
-
-@ProviderFor(serializer)
-const serializerProvider = SerializerProvider._();
-
-final class SerializerProvider extends $FunctionalProvider<ParamSerializer,
-    ParamSerializer, ParamSerializer> with $Provider<ParamSerializer> {
-  const SerializerProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'serializerProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
-
-  @override
-  String debugGetCreateSourceHash() => _$serializerHash();
-
-  @$internal
-  @override
-  $ProviderElement<ParamSerializer> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  ParamSerializer create(Ref ref) {
-    return serializer(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ParamSerializer value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ParamSerializer>(value),
-    );
-  }
-}
-
-String _$serializerHash() => r'ae392afe85818da319ab04d4c1830ae1544181c3';
 
 @ProviderFor(ParamsQuery)
 const paramsQueryProvider = ParamsQueryFamily._();
@@ -236,7 +197,7 @@ final class ParamsQueryProvider
   }
 }
 
-String _$paramsQueryHash() => r'299fda81b36b21a421aa54b5238240742da92c3a';
+String _$paramsQueryHash() => r'ecddb51429d8dd4f6bc8bf19e85500a45d3e6caf';
 
 final class ParamsQueryFamily extends $Family
     with $ClassFamilyOverride<ParamsQuery, String?, String?, String?, String> {
@@ -281,6 +242,3 @@ abstract class _$ParamsQuery extends $Notifier<String?> {
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -4,6 +4,7 @@ description: Sandboxed is place where you store your components and stories
 workspace: 
   # Apps
   - apps/sandbox
+  - apps/sandbox/features/sandbox_feature
   - apps/sandboxed_library
   
   # Packages
@@ -46,3 +47,8 @@ melos:
       exec: while true; do dart run build_runner watch -dv; sleep 2 ; done
       packageFilters:
         scope: sandboxed
+
+    test:
+      exec: fvm dart test -p vm
+      packageFilters:
+        folderExists: test
