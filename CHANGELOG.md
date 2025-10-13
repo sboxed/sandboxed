@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-10-13
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandbox_feature` - `v1.1.0`](#sandbox_feature---v110)
+ - [`sandboxed` - `v0.1.4`](#sandboxed---v014)
+ - [`sandboxed_cli` - `v0.0.2+1`](#sandboxed_cli---v0021)
+ - [`sandboxed_core` - `v0.1.3`](#sandboxed_core---v013)
+ - [`sandboxed_generator` - `v0.1.5`](#sandboxed_generator---v015)
+ - [`sandboxed_test` - `v0.0.3`](#sandboxed_test---v003)
+ - [`sandboxed_ui_kit` - `v0.1.2`](#sandboxed_ui_kit---v012)
+
+---
+
+#### `sandbox_feature` - `v1.1.0`
+
+ - **FEAT**: rewrite param system to be extensible.
+
+#### `sandboxed` - `v0.1.4`
+
+ - **FEAT**(params): add edge insets param editor.
+ - **FEAT**: add interface scale setting.
+ - **FEAT**: rewrite param system to be extensible.
+ - **DOCS**: update license terms.
+
+#### `sandboxed_cli` - `v0.0.2+1`
+
+ - **DOCS**: update license terms.
+
+#### `sandboxed_core` - `v0.1.3`
+
+ - **FEAT**(params): add edge insets param editor.
+ - **FEAT**: rewrite param system to be extensible.
+ - **DOCS**: update license terms.
+
+#### `sandboxed_generator` - `v0.1.5`
+
+ - **FEAT**(params): add edge insets param editor.
+ - **FEAT**: rewrite param system to be extensible.
+ - **DOCS**: update license terms.
+
+#### `sandboxed_test` - `v0.0.3`
+
+ - **FEAT**: rewrite param system to be extensible.
+ - **DOCS**: update license terms.
+
+#### `sandboxed_ui_kit` - `v0.1.2`
+
+ - **FEAT**(ui_kit): add tooltip widget.
+ - **FEAT**: rewrite param system to be extensible.
+ - **DOCS**: update license terms.
+
+
 ## 2025-08-21
 
 ### Changes

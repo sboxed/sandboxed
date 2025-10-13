@@ -1,3 +1,9 @@
+## 0.1.5
+
+ - **FEAT**(params): add edge insets param editor.
+ - **FEAT**: rewrite param system to be extensible.
+ - **DOCS**: update license terms.
+
 ## 0.1.4
 
  - **FEAT**(generator): update code generator to new analyzer.

@@ -1,3 +1,9 @@
+## 0.1.2
+
+ - **FEAT**(ui_kit): add tooltip widget.
+ - **FEAT**: rewrite param system to be extensible.
+ - **DOCS**: update license terms.
+
 ## 0.1.1
 
  - **FEAT**(generator): update code generator to new analyzer.
