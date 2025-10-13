@@ -46,10 +46,7 @@ class MainApp extends StatelessWidget {
 
           // Decorators
           BannerAddon(label: 'sandbox'),
-          SplittedThemesAddon(
-            lightTheme: ThemeData.light(),
-            darkTheme: ThemeData.dark(),
-          ),
+          SplittedThemesAddon(),
           InteractiveViewerAddon(constrained: false),
           ViewportAddon(devices: Devices.ios.all),
 

@@ -15,8 +15,8 @@ class SplittedThemesParams {
 }
 
 final class SplittedThemesAddon extends FlagAddon with ToolbarAddonMixin {
-  final ThemeData lightTheme;
-  final ThemeData darkTheme;
+  final ThemeData? lightTheme;
+  final ThemeData? darkTheme;
 
   @override
   String get id => 'split_themes';
@@ -24,10 +24,7 @@ final class SplittedThemesAddon extends FlagAddon with ToolbarAddonMixin {
   @override
   String get name => 'Split Viewport with multiple themes';
 
-  SplittedThemesAddon({
-    required this.lightTheme,
-    required this.darkTheme,
-  });
+  SplittedThemesAddon({this.lightTheme, this.darkTheme});
 
   @override
   List<Decorator> decorate(BuildContext context) {
@@ -50,13 +47,23 @@ final class SplittedThemesAddon extends FlagAddon with ToolbarAddonMixin {
                             data: MediaQuery.of(context).copyWith(
                               platformBrightness: brightness,
                             ),
-                            child: Theme(
-                              data: switch (brightness) {
-                                Brightness.light => lightTheme,
-                                Brightness.dark => darkTheme,
-                              },
-                              child: child!,
-                            ),
+                            child: Builder(builder: (context) {
+                              final materialApp =
+                                  context.findAncestorStateOfType<
+                                      State<MaterialApp>>();
+
+                              return Theme(
+                                data: switch (brightness) {
+                                  Brightness.light => lightTheme ??
+                                      materialApp!.widget.theme ??
+                                      ThemeData.light(),
+                                  Brightness.dark => darkTheme ??
+                                      materialApp!.widget.darkTheme ??
+                                      ThemeData.dark(),
+                                },
+                                child: child!,
+                              );
+                            }),
                           ),
                         ),
                     ],
