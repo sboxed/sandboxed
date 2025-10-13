@@ -59,7 +59,7 @@ class ParamBuilder<T> {
     final store = _store;
     if (store == null) throw Exception('ParamBuilder has no store');
 
-    final initial = store.getInitialValue(id);
+    final initial = _mapEdgeCases(store.getInitialValue(id));
     final default$ = _defaultValue ?? store.defaultResolver.resolve<T>();
 
     return ParamValue<T>(
@@ -112,7 +112,7 @@ class ParamBuilder<T> {
     final store = _store;
     if (store == null) throw Exception('ParamBuilder has no store');
 
-    final T? value;
+    T? value;
     if (_defaultValue != null) {
       value = _defaultValue as T;
     } else if (type != null) {
@@ -123,10 +123,25 @@ class ParamBuilder<T> {
       value = store.defaultResolver.resolve<T>();
     }
 
+    value ??= _mapEdgeCases(store.getInitialValue(id));
+
     if (value == null) {
       return optional(null as T) as T;
     }
 
     return required(value);
+  }
+
+  /// In some scenarios we can pass values that can be interchanged with expected type.
+  ///
+  /// For example, int can be passed as double
+  T? _mapEdgeCases(dynamic value) {
+    switch (T) {
+      case const (double) when value is int:
+        return value.toDouble() as T;
+
+      default:
+        return value as T?;
+    }
   }
 }
