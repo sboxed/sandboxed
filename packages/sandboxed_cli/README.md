@@ -11,3 +11,9 @@ This CLI package will contain tools to enhance the Sandboxed workflow and improv
 ## Status
 
 This package is currently a placeholder and under development. Future updates will include CLI tools to support the Sandboxed ecosystem.
+
+---
+
+## License
+
+This project is licensed under the Elastic License 2.0 - see the [LICENSE](LICENSE.md) file for details.

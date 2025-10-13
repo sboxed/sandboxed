@@ -207,5 +207,4 @@ Please open an issue or submit a pull request to get involved.
 
 ## License
 
-MIT License © 2025 [Sandboxed](https://github.com/sboxed)
-Developed by [Vadim Melnikov](https://github.com/rIIh)
+This project is licensed under the Elastic License 2.0 - see the [LICENSE](LICENSE.md) file for details.

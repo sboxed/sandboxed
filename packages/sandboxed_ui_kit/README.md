@@ -33,6 +33,6 @@ However, you can use or extend it when customizing your own viewer or building c
 
 ---
 
-## 📄 License
+## License
 
-MIT License © 2025 [Sandboxed](https://github.com/sboxed), [Vadim Melnikov](https://github.com/rIIh)
+This project is licensed under the Elastic License 2.0 - see the [LICENSE](LICENSE.md) file for details.

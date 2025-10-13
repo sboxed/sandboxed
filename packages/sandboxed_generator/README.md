@@ -91,6 +91,6 @@ You can optionally configure the generator with a `build.yaml` file to change:
 
 ---
 
-## 📄 License
+## License
 
-MIT License © 2025 [Sandboxed](https://github.com/sboxed), [Vadim Melnikov](https://github.com/rIIh)
+This project is licensed under the Elastic License 2.0 - see the [LICENSE](LICENSE.md) file for details.
