@@ -17,7 +17,7 @@ extension MultiParamsX on ParamStorage {
         .withDefault([]) //
         .serializable(ParamSerializer(
           serialize: (value) => value
-              .map((it) => it is Enum ? it.name : values.indexOf(it))
+              ?.map((it) => it is Enum ? it.name : values.indexOf(it))
               .toList(),
           deserialize: (json) {
             final list = json as List;

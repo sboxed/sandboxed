@@ -9,7 +9,7 @@ extension FlutterParamsX on ParamStorage {
         .store(this)
         .withDefault(Colors.blue)
         .serializable(ParamSerializer(
-          serialize: (value) => value.toARGB32(),
+          serialize: (value) => value?.toARGB32(),
           deserialize: (json) => Color(
             switch (json) {
               num number => number.toInt(),
@@ -27,6 +27,8 @@ extension FlutterParamsX on ParamStorage {
         .withDefault(Alignment.center)
         .serializable(ParamSerializer(
           serialize: (value) {
+            if (value == null) return null;
+
             final [x, y] = [value.x, value.y];
             if (x == 0 && y == 0) {
               return "center";

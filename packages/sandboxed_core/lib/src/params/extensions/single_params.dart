@@ -12,9 +12,13 @@ extension SingleParamsX on ParamStorage {
         .withDefault(values.first)
         .constrain((newValue) => values.contains(newValue))
         .serializable(ParamSerializer(
-          serialize: (value) => value is Enum //
-              ? value.name
-              : values.indexOf(value),
+          serialize: (value) {
+            if (value == null) return null;
+
+            return value is Enum //
+                ? value.name
+                : values.indexOf(value);
+          },
           deserialize: (value) {
             if (values.first is Enum) {
               return values.where((it) => value == (it as Enum).name).first;

@@ -108,11 +108,22 @@ class StoryParameterBuilder {
     final name = parameter.name3;
     if (name == null) throw ArgumentError.notNull('parameter.name3');
 
-    return refer('params').property('any').call(
+    Expression any;
+    any = refer('params').property('any').call(
           [literalString(name, raw: true), ...positionalArgs],
           namedArgs,
           [types.first],
         );
+
+    any = any.property('editor').call([
+      refer('ParamEditor').call(
+        [],
+        {},
+        [types.first],
+      ),
+    ]);
+
+    return any;
   }
 
   Expression _handleOptionalParameter(Expression param) {

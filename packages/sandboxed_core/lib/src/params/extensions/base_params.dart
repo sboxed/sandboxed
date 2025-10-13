@@ -46,7 +46,7 @@ extension BaseParamsX on ParamStorage {
         .store(this) //
         .withDefault(DateTime.now())
         .serializable(ParamSerializer(
-          serialize: (value) => value.toIso8601String().replaceAll(":", "_"),
+          serialize: (value) => value?.toIso8601String().replaceAll(":", "_"),
           deserialize: (json) => DateTime.parse(switch (json) {
             String string => string.replaceAll("_", ":"),
             _ => throw ArgumentError.value("json"),
@@ -60,7 +60,7 @@ extension BaseParamsX on ParamStorage {
         .store(this)
         .withDefault(Duration.zero)
         .serializable(ParamSerializer(
-          serialize: (value) => value.inMicroseconds,
+          serialize: (value) => value?.inMicroseconds,
           deserialize: (json) => Duration(
             microseconds: switch (json) {
               num number => number.toInt(),

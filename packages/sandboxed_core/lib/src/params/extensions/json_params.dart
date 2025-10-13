@@ -11,7 +11,7 @@ extension JsonParamsX on ParamStorage {
         .store(this)
         .serializable(
           ParamSerializer(
-            serialize: (value) => toJson(value),
+            serialize: (value) => value == null ? null : toJson(value),
             deserialize: (json) => fromJson(json),
           ),
         )
