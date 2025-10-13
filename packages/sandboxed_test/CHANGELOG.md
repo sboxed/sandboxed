@@ -1,3 +1,9 @@
+## 0.0.3+1
+
+ - **DOCS**: ignore LICENSE.md in pub.
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
 ## 0.0.3
 
  - **FEAT**: rewrite param system to be extensible.

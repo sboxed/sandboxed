@@ -1,3 +1,8 @@
+## 0.0.2+2
+
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
 ## 0.0.2+1
 
  - **DOCS**: update license terms.

@@ -1,3 +1,9 @@
+## 0.1.2+1
+
+ - **DOCS**: ignore LICENSE.md in pub.
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
 ## 0.1.2
 
  - **FEAT**(ui_kit): add tooltip widget.

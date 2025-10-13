@@ -15,6 +15,63 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sandboxed` - `v0.1.4+1`](#sandboxed---v0141)
+ - [`sandboxed_cli` - `v0.0.2+2`](#sandboxed_cli---v0022)
+ - [`sandboxed_core` - `v0.1.3+1`](#sandboxed_core---v0131)
+ - [`sandboxed_generator` - `v0.1.5+1`](#sandboxed_generator---v0151)
+ - [`sandboxed_test` - `v0.0.3+1`](#sandboxed_test---v0031)
+ - [`sandboxed_ui_kit` - `v0.1.2+1`](#sandboxed_ui_kit---v0121)
+
+---
+
+#### `sandboxed` - `v0.1.4+1`
+
+ - **DOCS**: ignore LICENSE.md in pub.
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
+#### `sandboxed_cli` - `v0.0.2+2`
+
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
+#### `sandboxed_core` - `v0.1.3+1`
+
+ - **DOCS**: ignore LICENSE.md in pub.
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
+#### `sandboxed_generator` - `v0.1.5+1`
+
+ - **DOCS**: ignore LICENSE.md in pub.
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
+#### `sandboxed_test` - `v0.0.3+1`
+
+ - **DOCS**: ignore LICENSE.md in pub.
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
+#### `sandboxed_ui_kit` - `v0.1.2+1`
+
+ - **DOCS**: ignore LICENSE.md in pub.
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
+
+## 2025-10-13
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sandbox_feature` - `v1.1.0`](#sandbox_feature---v110)
  - [`sandboxed` - `v0.1.4`](#sandboxed---v014)
  - [`sandboxed_cli` - `v0.0.2+1`](#sandboxed_cli---v0021)

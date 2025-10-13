@@ -1,3 +1,9 @@
+## 0.1.5+1
+
+ - **DOCS**: ignore LICENSE.md in pub.
+ - **DOCS**: symlink license files.
+ - **DOCS**: rename license files.
+
 ## 0.1.5
 
  - **FEAT**(params): add edge insets param editor.
