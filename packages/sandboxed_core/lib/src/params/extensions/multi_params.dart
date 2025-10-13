@@ -1,5 +1,4 @@
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:sandboxed_core/src/params/param_serializer.dart';
 
 extension MultiParamsX on ParamStorage {
   ParamBuilder<List<T>> multi<T>(
@@ -15,7 +14,7 @@ extension MultiParamsX on ParamStorage {
           ),
         )
         .withDefault([]) //
-        .serializable(ParamSerializer(
+        .serializable(DelegateParamSerializer(
           serialize: (value) => value
               ?.map((it) => it is Enum ? it.name : values.indexOf(it))
               .toList(),

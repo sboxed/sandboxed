@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sandboxed_core/src/params/param_builder.dart';
-import 'package:sandboxed_core/src/params/param_serializer.dart';
+import 'package:sandboxed_core/src/params/delegate_param_serializer.dart';
 
 abstract mixin class ValueEditorPresenter<T> {
   const ValueEditorPresenter();

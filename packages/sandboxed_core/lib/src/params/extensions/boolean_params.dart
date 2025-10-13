@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:sandboxed_core/src/params/param_serializer.dart';
 
 extension BooleanParamsX on ParamStorage {
   ParamBuilder<bool> boolean(String id) {
     return ParamBuilder<bool>(id) //
         .store(this)
-        .serializable(ParamSerializer.identity())
+        .serializable(ParamSerializer.primitive())
         .editor(BooleanEditor());
   }
 }

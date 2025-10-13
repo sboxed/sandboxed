@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:sandboxed_core/src/params/param_editor.dart';
-import 'package:sandboxed_core/src/params/param_serializer.dart';
+import 'package:sandboxed_core/src/params/delegate_param_serializer.dart';
 import 'param_value.dart';
 import 'param_storage.dart';
 

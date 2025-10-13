@@ -75,6 +75,7 @@ Map<String, List<ParamShowcaseItem>> build(ParamStorage params) {
     "alignment": buildAlignmentShowcase(params),
     "color": buildColorShowcase(params),
     "gradient": buildGradientShowcase(params),
+    "edge_insets": buildEdgeInsetsShowcase(params),
     "json": buildJsonShowcase(params),
   };
 }

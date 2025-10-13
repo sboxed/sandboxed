@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/atom-one-dark.dart';
+import 'package:recase/recase.dart';
 import 'package:sandboxed/params/editors/nullable_editor_widget.dart';
 import 'package:sandboxed/sandboxed.dart';
 import 'package:sandboxed_sandbox/widgets/params/param_builder.dart';
@@ -65,9 +66,9 @@ class ParamShowcase extends StatelessWidget {
               ),
               for (final (index, row) in rows.indexed)
                 () {
-                  var id = title.toLowerCase();
+                  var id = title.snakeCase;
                   if (row.name case String name) {
-                    id += "_$name";
+                    id += "_${name.snakeCase}";
                   } else if (index != 0) {
                     id += "$index";
                   }

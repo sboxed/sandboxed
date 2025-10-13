@@ -92,6 +92,7 @@ List<Component> get components => <Component>[
           color: params.color(r'color').required(Colors.yellow),
           unsupported: params
               .any<void Function()>(r'unsupported')
+              .editor(ParamEditor<void Function()>())
               .optional(null),
           gradient: params.gradient(r'gradient').optional(null),
           datetime: params.datetime(r'datetime').optional(null),
@@ -107,6 +108,7 @@ List<Component> get components => <Component>[
           color: params.color(r'color').required(Colors.yellow),
           unsupported: params
               .any<void Function()>(r'unsupported')
+              .editor(ParamEditor<void Function()>())
               .optional(null),
           gradient: params.gradient(r'gradient').optional(null),
           datetime: params.datetime(r'datetime').optional(null),
@@ -122,9 +124,18 @@ List<Component> get components => <Component>[
         name: 'Default',
         builder: (context, params) => _i6.FlutterParamsWidget.new(
           key: null,
-          alignment: params.any<_i7.Alignment>(r'alignment').default$(),
-          padding: params.any<_i8.EdgeInsets>(r'padding').default$(),
-          style: params.any<_i9.TextStyle>(r'style').default$(),
+          alignment: params
+              .any<_i7.Alignment>(r'alignment')
+              .editor(ParamEditor<_i7.Alignment>())
+              .default$(),
+          padding: params
+              .any<_i8.EdgeInsets>(r'padding')
+              .editor(ParamEditor<_i8.EdgeInsets>())
+              .default$(),
+          style: params
+              .any<_i9.TextStyle>(r'style')
+              .editor(ParamEditor<_i9.TextStyle>())
+              .default$(),
         ),
       ),
     ],
@@ -188,13 +199,23 @@ List<Component> get components => <Component>[
         name: 'Default',
         builder: (context, params) => _i17.ParamBuildersSandbox.new(
           key: null,
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
           builder: params
               .any<
                 Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
                   _i18.ParamStorage,
                 )
               >(r'builder')
+              .editor(
+                ParamEditor<
+                  Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
+                    _i18.ParamStorage,
+                  )
+                >(),
+              )
               .default$(),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
@@ -205,13 +226,23 @@ List<Component> get components => <Component>[
         name: 'Optional',
         builder: (context, params) => _i17.ParamBuildersSandbox.new(
           key: null,
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
           builder: params
               .any<
                 Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
                   _i18.ParamStorage,
                 )
               >(r'builder')
+              .editor(
+                ParamEditor<
+                  Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
+                    _i18.ParamStorage,
+                  )
+                >(),
+              )
               .default$(),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
@@ -222,13 +253,23 @@ List<Component> get components => <Component>[
         name: 'Required',
         builder: (context, params) => _i17.ParamBuildersSandbox.new(
           key: null,
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
           builder: params
               .any<
                 Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
                   _i18.ParamStorage,
                 )
               >(r'builder')
+              .editor(
+                ParamEditor<
+                  Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
+                    _i18.ParamStorage,
+                  )
+                >(),
+              )
               .default$(),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
@@ -247,11 +288,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Boolean.applyGenerated(
@@ -261,11 +306,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Color.applyGenerated(
@@ -275,11 +324,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$DateTime.applyGenerated(
@@ -289,11 +342,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Double.applyGenerated(
@@ -303,11 +360,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Duration.applyGenerated(
@@ -317,11 +378,33 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
+        ),
+      ),
+      _i19.$EdgeInsets.applyGenerated(
+        name: 'Edge Insets',
+        builder: (context, params) => _i20.ParamShowcase.new(
+          key: null,
+          title: params.string(r'title').required('Text'),
+          rows: params
+              .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+              .required([]),
+          optionality: params
+              .single(r'optionality', _i17.ParamOptionality.values)
+              .required(_i17.ParamOptionality.values.first),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Gradient.applyGenerated(
@@ -331,11 +414,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Integer.applyGenerated(
@@ -345,11 +432,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Json.applyGenerated(
@@ -359,11 +450,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Multi.applyGenerated(
@@ -373,11 +468,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$Single.applyGenerated(
@@ -387,11 +486,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
       _i19.$String.applyGenerated(
@@ -401,11 +504,15 @@ List<Component> get components => <Component>[
           title: params.string(r'title').required('Text'),
           rows: params
               .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
+              .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
               .required([]),
           optionality: params
               .single(r'optionality', _i17.ParamOptionality.values)
               .required(_i17.ParamOptionality.values.first),
-          params: params.any<_i18.ParamStorage>(r'params').default$(),
+          params: params
+              .any<_i18.ParamStorage>(r'params')
+              .editor(ParamEditor<_i18.ParamStorage>())
+              .default$(),
         ),
       ),
     ],
@@ -431,8 +538,14 @@ List<Component> get components => <Component>[
           size: params
               .single(r'size', _i22.SandboxButtonSize.values)
               .required(_i22.SandboxButtonSize.small),
-          icon: params.any<_i23.Widget>(r'icon').optional(null),
-          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          icon: params
+              .any<_i23.Widget>(r'icon')
+              .editor(ParamEditor<_i23.Widget>())
+              .optional(null),
+          onPressed: params
+              .any<void Function()>(r'onPressed')
+              .editor(ParamEditor<void Function()>())
+              .optional(null),
         ),
       ),
       _i21.$Green.applyGenerated(
@@ -444,8 +557,14 @@ List<Component> get components => <Component>[
           size: params
               .single(r'size', _i22.SandboxButtonSize.values)
               .required(_i22.SandboxButtonSize.small),
-          icon: params.any<_i23.Widget>(r'icon').optional(null),
-          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          icon: params
+              .any<_i23.Widget>(r'icon')
+              .editor(ParamEditor<_i23.Widget>())
+              .optional(null),
+          onPressed: params
+              .any<void Function()>(r'onPressed')
+              .editor(ParamEditor<void Function()>())
+              .optional(null),
         ),
       ),
       _i21.$Yellow.applyGenerated(
@@ -457,8 +576,14 @@ List<Component> get components => <Component>[
           size: params
               .single(r'size', _i22.SandboxButtonSize.values)
               .required(_i22.SandboxButtonSize.small),
-          icon: params.any<_i23.Widget>(r'icon').optional(null),
-          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          icon: params
+              .any<_i23.Widget>(r'icon')
+              .editor(ParamEditor<_i23.Widget>())
+              .optional(null),
+          onPressed: params
+              .any<void Function()>(r'onPressed')
+              .editor(ParamEditor<void Function()>())
+              .optional(null),
         ),
       ),
     ],
@@ -475,8 +600,14 @@ List<Component> get components => <Component>[
           size: params
               .single(r'size', _i22.SandboxButtonSize.values)
               .required(_i22.SandboxButtonSize.small),
-          icon: params.any<_i23.Widget>(r'icon').optional(null),
-          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          icon: params
+              .any<_i23.Widget>(r'icon')
+              .editor(ParamEditor<_i23.Widget>())
+              .optional(null),
+          onPressed: params
+              .any<void Function()>(r'onPressed')
+              .editor(ParamEditor<void Function()>())
+              .optional(null),
         ),
       ),
       _i24.$Green.applyGenerated(
@@ -488,8 +619,14 @@ List<Component> get components => <Component>[
           size: params
               .single(r'size', _i22.SandboxButtonSize.values)
               .required(_i22.SandboxButtonSize.small),
-          icon: params.any<_i23.Widget>(r'icon').optional(null),
-          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          icon: params
+              .any<_i23.Widget>(r'icon')
+              .editor(ParamEditor<_i23.Widget>())
+              .optional(null),
+          onPressed: params
+              .any<void Function()>(r'onPressed')
+              .editor(ParamEditor<void Function()>())
+              .optional(null),
         ),
       ),
     ],
@@ -526,6 +663,7 @@ List<Component> get components => <Component>[
           color: params.color(r'color').required(Colors.red),
           stats: params
               .any<List<_i28.SandboxDiagramCardStats>>(r'stats')
+              .editor(ParamEditor<List<_i28.SandboxDiagramCardStats>>())
               .required([]),
           onChanged: params
               .any<
@@ -539,6 +677,19 @@ List<Component> get components => <Component>[
                   }),
                 )
               >(r'onChanged')
+              .editor(
+                ParamEditor<
+                  void Function(
+                    (
+                      _i28.SandboxDiagramCardStats,
+                      _i28.SandboxDiagramCardStats?, {
+                      String name,
+                      _i28.SandboxDiagramCardStats next,
+                      _i28.SandboxDiagramCardStats? nullable,
+                    }),
+                  )
+                >(),
+              )
               .optional(null),
         ),
       ),
@@ -550,6 +701,7 @@ List<Component> get components => <Component>[
           color: params.color(r'color').required(Colors.red),
           stats: params
               .any<List<_i28.SandboxDiagramCardStats>>(r'stats')
+              .editor(ParamEditor<List<_i28.SandboxDiagramCardStats>>())
               .required([]),
           onChanged: params
               .any<
@@ -563,6 +715,19 @@ List<Component> get components => <Component>[
                   }),
                 )
               >(r'onChanged')
+              .editor(
+                ParamEditor<
+                  void Function(
+                    (
+                      _i28.SandboxDiagramCardStats,
+                      _i28.SandboxDiagramCardStats?, {
+                      String name,
+                      _i28.SandboxDiagramCardStats next,
+                      _i28.SandboxDiagramCardStats? nullable,
+                    }),
+                  )
+                >(),
+              )
               .optional(null),
         ),
       ),
@@ -599,21 +764,33 @@ List<Component> get components => <Component>[
         builder: (context, params) => _i34.Text.new(
           params.string(r'data').required('Text'),
           key: null,
-          style: params.any<_i9.TextStyle>(r'style').optional(null),
-          strutStyle: params.any<_i35.StrutStyle>(r'strutStyle').optional(null),
+          style: params
+              .any<_i9.TextStyle>(r'style')
+              .editor(ParamEditor<_i9.TextStyle>())
+              .optional(null),
+          strutStyle: params
+              .any<_i35.StrutStyle>(r'strutStyle')
+              .editor(ParamEditor<_i35.StrutStyle>())
+              .optional(null),
           textAlign: params
               .single(r'textAlign', _i36.TextAlign.values)
               .optional(null),
           textDirection: params
               .single(r'textDirection', _i36.TextDirection.values)
               .optional(null),
-          locale: params.any<_i36.Locale>(r'locale').optional(null),
+          locale: params
+              .any<_i36.Locale>(r'locale')
+              .editor(ParamEditor<_i36.Locale>())
+              .optional(null),
           softWrap: params.boolean(r'softWrap').optional(null),
           overflow: params
               .single(r'overflow', _i37.TextOverflow.values)
               .optional(null),
           textScaleFactor: params.number(r'textScaleFactor').optional(null),
-          textScaler: params.any<_i38.TextScaler>(r'textScaler').optional(null),
+          textScaler: params
+              .any<_i38.TextScaler>(r'textScaler')
+              .editor(ParamEditor<_i38.TextScaler>())
+              .optional(null),
           maxLines: params.integer(r'maxLines').optional(null),
           semanticsLabel: params.string(r'semanticsLabel').optional(null),
           semanticsIdentifier: params
@@ -624,6 +801,7 @@ List<Component> get components => <Component>[
               .optional(null),
           textHeightBehavior: params
               .any<_i36.TextHeightBehavior>(r'textHeightBehavior')
+              .editor(ParamEditor<_i36.TextHeightBehavior>())
               .optional(null),
           selectionColor: params.color(r'selectionColor').optional(null),
         ),
@@ -639,21 +817,33 @@ List<Component> get components => <Component>[
         builder: (context, params) => _i34.Text.new(
           params.string(r'data').required('Text'),
           key: null,
-          style: params.any<_i9.TextStyle>(r'style').optional(null),
-          strutStyle: params.any<_i35.StrutStyle>(r'strutStyle').optional(null),
+          style: params
+              .any<_i9.TextStyle>(r'style')
+              .editor(ParamEditor<_i9.TextStyle>())
+              .optional(null),
+          strutStyle: params
+              .any<_i35.StrutStyle>(r'strutStyle')
+              .editor(ParamEditor<_i35.StrutStyle>())
+              .optional(null),
           textAlign: params
               .single(r'textAlign', _i36.TextAlign.values)
               .optional(null),
           textDirection: params
               .single(r'textDirection', _i36.TextDirection.values)
               .optional(null),
-          locale: params.any<_i36.Locale>(r'locale').optional(null),
+          locale: params
+              .any<_i36.Locale>(r'locale')
+              .editor(ParamEditor<_i36.Locale>())
+              .optional(null),
           softWrap: params.boolean(r'softWrap').optional(null),
           overflow: params
               .single(r'overflow', _i37.TextOverflow.values)
               .optional(null),
           textScaleFactor: params.number(r'textScaleFactor').optional(null),
-          textScaler: params.any<_i38.TextScaler>(r'textScaler').optional(null),
+          textScaler: params
+              .any<_i38.TextScaler>(r'textScaler')
+              .editor(ParamEditor<_i38.TextScaler>())
+              .optional(null),
           maxLines: params.integer(r'maxLines').optional(null),
           semanticsLabel: params.string(r'semanticsLabel').optional(null),
           semanticsIdentifier: params
@@ -664,6 +854,7 @@ List<Component> get components => <Component>[
               .optional(null),
           textHeightBehavior: params
               .any<_i36.TextHeightBehavior>(r'textHeightBehavior')
+              .editor(ParamEditor<_i36.TextHeightBehavior>())
               .optional(null),
           selectionColor: params.color(r'selectionColor').optional(null),
         ),
@@ -687,21 +878,33 @@ List<Component> get components => <Component>[
         builder: (context, params) => _i34.Text.new(
           params.string(r'data').required('Text'),
           key: null,
-          style: params.any<_i9.TextStyle>(r'style').optional(null),
-          strutStyle: params.any<_i35.StrutStyle>(r'strutStyle').optional(null),
+          style: params
+              .any<_i9.TextStyle>(r'style')
+              .editor(ParamEditor<_i9.TextStyle>())
+              .optional(null),
+          strutStyle: params
+              .any<_i35.StrutStyle>(r'strutStyle')
+              .editor(ParamEditor<_i35.StrutStyle>())
+              .optional(null),
           textAlign: params
               .single(r'textAlign', _i36.TextAlign.values)
               .optional(null),
           textDirection: params
               .single(r'textDirection', _i36.TextDirection.values)
               .optional(null),
-          locale: params.any<_i36.Locale>(r'locale').optional(null),
+          locale: params
+              .any<_i36.Locale>(r'locale')
+              .editor(ParamEditor<_i36.Locale>())
+              .optional(null),
           softWrap: params.boolean(r'softWrap').optional(null),
           overflow: params
               .single(r'overflow', _i37.TextOverflow.values)
               .optional(null),
           textScaleFactor: params.number(r'textScaleFactor').optional(null),
-          textScaler: params.any<_i38.TextScaler>(r'textScaler').optional(null),
+          textScaler: params
+              .any<_i38.TextScaler>(r'textScaler')
+              .editor(ParamEditor<_i38.TextScaler>())
+              .optional(null),
           maxLines: params.integer(r'maxLines').optional(null),
           semanticsLabel: params.string(r'semanticsLabel').optional(null),
           semanticsIdentifier: params
@@ -712,6 +915,7 @@ List<Component> get components => <Component>[
               .optional(null),
           textHeightBehavior: params
               .any<_i36.TextHeightBehavior>(r'textHeightBehavior')
+              .editor(ParamEditor<_i36.TextHeightBehavior>())
               .optional(null),
           selectionColor: params.color(r'selectionColor').optional(null),
         ),
@@ -725,24 +929,30 @@ List<Component> get components => <Component>[
         name: 'Default',
         builder: (context, params) => _i42.UnsupportedParameters.new(
           key: null,
-          padding: params.any<_i8.EdgeInsets>(r'padding').default$(),
-          style: params.any<_i9.TextStyle>(r'style').default$(),
+          style: params
+              .any<_i9.TextStyle>(r'style')
+              .editor(ParamEditor<_i9.TextStyle>())
+              .default$(),
         ),
       ),
       _i41.$WithBuilder.applyGenerated(
         name: 'With Builder',
         builder: (context, params) => _i42.UnsupportedParameters.new(
           key: null,
-          padding: params.any<_i8.EdgeInsets>(r'padding').default$(),
-          style: params.any<_i9.TextStyle>(r'style').default$(),
+          style: params
+              .any<_i9.TextStyle>(r'style')
+              .editor(ParamEditor<_i9.TextStyle>())
+              .default$(),
         ),
       ),
       _i41.$WithParams.applyGenerated(
         name: 'With Params',
         builder: (context, params) => _i42.UnsupportedParameters.new(
           key: null,
-          padding: params.any<_i8.EdgeInsets>(r'padding').default$(),
-          style: params.any<_i9.TextStyle>(r'style').default$(),
+          style: params
+              .any<_i9.TextStyle>(r'style')
+              .editor(ParamEditor<_i9.TextStyle>())
+              .default$(),
         ),
       ),
     ],

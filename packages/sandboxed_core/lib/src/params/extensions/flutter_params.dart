@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
-import 'package:sandboxed_core/src/params/param_serializer.dart';
 import 'package:sandboxed_core/src/params/params.dart';
 
 extension FlutterParamsX on ParamStorage {
@@ -8,7 +7,7 @@ extension FlutterParamsX on ParamStorage {
     return ParamBuilder<Color>(id) //
         .store(this)
         .withDefault(Colors.blue)
-        .serializable(ParamSerializer(
+        .serializable(DelegateParamSerializer(
           serialize: (value) => value?.toARGB32(),
           deserialize: (json) => Color(
             switch (json) {
@@ -25,7 +24,7 @@ extension FlutterParamsX on ParamStorage {
     return ParamBuilder<Alignment>(id) //
         .store(this)
         .withDefault(Alignment.center)
-        .serializable(ParamSerializer(
+        .serializable(DelegateParamSerializer(
           serialize: (value) {
             if (value == null) return null;
 
@@ -87,6 +86,14 @@ extension FlutterParamsX on ParamStorage {
           },
         ))
         .editor(ParamEditor<Alignment>());
+  }
+
+  ParamBuilder<EdgeInsetsGeometry> padding(String id) {
+    return ParamBuilder<EdgeInsetsGeometry>(id) //
+        .store(this)
+        .withDefault(EdgeInsets.zero)
+        .serializable(EdgeInsetsSerializer())
+        .editor(ParamEditor<EdgeInsetsGeometry>());
   }
 
   ParamBuilder<Gradient> gradient(String id) {

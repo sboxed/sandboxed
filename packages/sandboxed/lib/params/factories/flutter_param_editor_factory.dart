@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:sandboxed/params/editors/flutter/alignment_param_builder.dart';
 import 'package:sandboxed/params/editors/flutter/color_value_editor_widget.dart';
-import 'package:sandboxed/params/editors/flutter/edge_insets_editor_widget.dart';
+import 'package:sandboxed/params/editors/flutter/edge_insets/edge_insets_param_editor_presenter.dart';
 import 'package:sandboxed/params/editors/flutter/gradient_editor_widget.dart';
 import 'package:sandboxed/params/editors/flutter/text_style_editor_widget.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
@@ -20,11 +20,15 @@ class FlutterParamEditorFactory
         return AlignmentParamEditorPresenter(editor) as ValueEditorPresenter<T>;
 
       case ParamEditor<EdgeInsets> editor:
-        return EdgeInsetsValueEditorPresenter(editor)
+        return EdgeInsetsParamEditorPresenter(editor)
+            as ValueEditorPresenter<T>;
+
+      case ParamEditor<EdgeInsetsDirectional> editor:
+        return EdgeInsetsParamEditorPresenter(editor)
             as ValueEditorPresenter<T>;
 
       case ParamEditor<EdgeInsetsGeometry> editor:
-        return EdgeInsetsValueEditorPresenter(editor)
+        return EdgeInsetsParamEditorPresenter(editor)
             as ValueEditorPresenter<T>;
 
       case ParamEditor<TextStyle> editor:

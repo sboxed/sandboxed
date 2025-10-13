@@ -27,6 +27,8 @@ Story get $Color => _build("Color", buildColorShowcase);
 
 Story get $Gradient => _build("Gradient", buildGradientShowcase);
 
+Story get $EdgeInsets => _build("Edge Insets", buildEdgeInsetsShowcase);
+
 Story get $Json => _build("Json", buildJsonShowcase);
 
 // -----------------------------------------------------------------------------
@@ -198,6 +200,34 @@ List<ParamShowcaseItem> buildGradientShowcase(ParamStorage params) {
       },
       code:
           "params.gradient('gradient')\n\t.required(LinearGradient(colors: [Colors.red, Colors.green]))",
+    ),
+  ];
+}
+
+List<ParamShowcaseItem> buildEdgeInsetsShowcase(ParamStorage params) {
+  return [
+    ParamShowcaseItem(
+      name: "Geometry",
+      value: EdgeInsets.zero,
+      builder: (id) => params.padding(id),
+      code: "params.padding('padding')\n\t.required(EdgeInsets.zero)",
+    ),
+    ParamShowcaseItem(
+      name: "Classic",
+      value: EdgeInsets.zero,
+      builder: (id) => params
+          .any<EdgeInsets>(id) //
+          .editor(ParamEditor<EdgeInsets>()),
+      code: "-",
+    ),
+    ParamShowcaseItem(
+      name: "Directional",
+      value: EdgeInsetsDirectional.zero,
+      builder: (id) => params
+          .any<EdgeInsetsDirectional>(id) //
+          .withDefault(EdgeInsetsDirectional.zero)
+          .editor(ParamEditor<EdgeInsetsDirectional>()),
+      code: "-",
     ),
   ];
 }

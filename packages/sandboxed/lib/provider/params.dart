@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flat/flat.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -95,11 +97,16 @@ class ParamsQuery extends _$ParamsQuery {
   void applyDeeplink(String params) {
     final parts = params.split(';');
     final entries = parts.map(
-      (e) {
-        final [key, value] = e.split(':');
-        return MapEntry(key, revive(value));
+      (pair) {
+        try {
+          final [key, value] = pair.split(':');
+          return MapEntry(key, revive(value));
+        } catch (error) {
+          print("WARNING: failed to revive $error\n\t$pair");
+          return null;
+        }
       },
-    );
+    ).nonNulls;
 
     final map = unflatten(Map.fromEntries(entries));
 
@@ -152,6 +159,15 @@ List<String> validate(dynamic data) {
     case String string:
       if (string.contains(RegExp(r'[:;]'))) {
         return [string];
+      }
+
+      return [];
+
+    case Object():
+      try {
+        jsonEncode(data);
+      } catch (error) {
+        return [error.toString()];
       }
 
       return [];

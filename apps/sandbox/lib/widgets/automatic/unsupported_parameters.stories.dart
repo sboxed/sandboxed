@@ -10,14 +10,15 @@ Story get $Default => const Story();
 
 Story get $WithParams => const Story(
       params: {
-        'padding': EdgeInsets.all(8),
-        'style': TextStyle(fontSize: 24),
+        'style': TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.w900,
+        ),
       },
     );
 
 Story get $WithBuilder => Story(
       builder: (context, params) => UnsupportedParameters(
-        padding: EdgeInsets.all(params.number('padding').required(24)),
         style: TextStyle(fontSize: params.number('fontSize').required(24)),
       ),
     );

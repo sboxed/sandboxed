@@ -1,6 +1,5 @@
 import 'package:recase/recase.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:sandboxed_core/src/params/param_serializer.dart';
 
 String defaultLabelBuilder(dynamic item) {
   switch (item) {
@@ -16,28 +15,28 @@ extension BaseParamsX on ParamStorage {
   ParamBuilder<int> integer(String id) {
     return ParamBuilder<int>(id) //
         .store(this)
-        .serializable(ParamSerializer.identity())
+        .serializable(ParamSerializer.primitive())
         .editor(IntegerEditor());
   }
 
   ParamBuilder<String> string(String id, {int? minLines, int? maxLines = 1}) {
     return ParamBuilder<String>(id) //
         .store(this)
-        .serializable(ParamSerializer.identity())
+        .serializable(ParamSerializer.primitive())
         .editor(StringEditor(minLines: minLines, maxLines: maxLines));
   }
 
   ParamBuilder<double> number(String id) {
     return ParamBuilder<double>(id) //
         .store(this)
-        .serializable(ParamSerializer.identity())
+        .serializable(ParamSerializer.primitive())
         .editor(DoubleEditor());
   }
 
   ParamBuilder<T> any<T>(String id) {
     return ParamBuilder<T>(id) //
         .store(this)
-        .serializable(ParamSerializer.identity())
+        .serializable(ParamSerializer.primitive())
         .editor(ReadonlyEditor<T>());
   }
 
@@ -45,7 +44,7 @@ extension BaseParamsX on ParamStorage {
     return ParamBuilder<DateTime>(id)
         .store(this) //
         .withDefault(DateTime.now())
-        .serializable(ParamSerializer(
+        .serializable(DelegateParamSerializer(
           serialize: (value) => value?.toIso8601String().replaceAll(":", "_"),
           deserialize: (json) => DateTime.parse(switch (json) {
             String string => string.replaceAll("_", ":"),
@@ -59,7 +58,7 @@ extension BaseParamsX on ParamStorage {
     return ParamBuilder<Duration>(id) //
         .store(this)
         .withDefault(Duration.zero)
-        .serializable(ParamSerializer(
+        .serializable(DelegateParamSerializer(
           serialize: (value) => value?.inMicroseconds,
           deserialize: (json) => Duration(
             microseconds: switch (json) {

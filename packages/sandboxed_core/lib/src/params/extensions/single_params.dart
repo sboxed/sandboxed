@@ -1,5 +1,4 @@
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:sandboxed_core/src/params/param_serializer.dart';
 
 extension SingleParamsX on ParamStorage {
   ParamBuilder<T> single<T>(
@@ -11,7 +10,7 @@ extension SingleParamsX on ParamStorage {
         .store(this)
         .withDefault(values.first)
         .constrain((newValue) => values.contains(newValue))
-        .serializable(ParamSerializer(
+        .serializable(DelegateParamSerializer(
           serialize: (value) {
             if (value == null) return null;
 

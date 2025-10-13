@@ -20,6 +20,7 @@ dependencies:
   # packages
   highlight: ^0.7.0
   flutter_highlight: ^0.7.0
+  recase: ^4.0.0
 
 dev_dependencies:
   flutter_test:
