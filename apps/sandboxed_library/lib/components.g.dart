@@ -15,8 +15,12 @@ import 'package:sandboxed_ui_kit/src/layout/responsive_layout.dart' as _i6;
 import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.stories.dart'
     as _i7;
 import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.dart' as _i8;
-import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.stories.dart' as _i9;
-import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.dart' as _i10;
+import 'package:sandboxed_ui_kit/src/widgets/tooltip/tooltip.stories.dart'
+    as _i9;
+import 'package:sandboxed_ui_kit/src/widgets/tooltip/tooltip.dart' as _i10;
+import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.stories.dart'
+    as _i11;
+import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.dart' as _i12;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -30,15 +34,22 @@ List<Component> get components => <Component>[
         builder: (context, params) => _i3.ElementTile.new(
           key: null,
           depth: params.integer(r'depth').required(1),
-          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          onPressed: params
+              .any<void Function()>(r'onPressed')
+              .editor(ParamEditor<void Function()>())
+              .optional(null),
           tooltip: params.string(r'tooltip').required(''),
           selected: params.boolean(r'selected').required(false),
           size: params
               .single(r'size', _i3.ElementTileSize.values)
               .required(_i3.ElementTileSize.small),
-          icon: params.any<_i4.Widget>(r'icon').optional(null),
+          icon: params
+              .any<_i4.Widget>(r'icon')
+              .editor(ParamEditor<_i4.Widget>())
+              .optional(null),
           title: params
               .any<_i4.Widget>(r'title')
+              .editor(ParamEditor<_i4.Widget>())
               .required(const SizedBox.shrink()),
         ),
       ),
@@ -47,15 +58,22 @@ List<Component> get components => <Component>[
         builder: (context, params) => _i3.ElementTile.new(
           key: null,
           depth: params.integer(r'depth').required(1),
-          onPressed: params.any<void Function()>(r'onPressed').optional(null),
+          onPressed: params
+              .any<void Function()>(r'onPressed')
+              .editor(ParamEditor<void Function()>())
+              .optional(null),
           tooltip: params.string(r'tooltip').required(''),
           selected: params.boolean(r'selected').required(false),
           size: params
               .single(r'size', _i3.ElementTileSize.values)
               .required(_i3.ElementTileSize.small),
-          icon: params.any<_i4.Widget>(r'icon').optional(null),
+          icon: params
+              .any<_i4.Widget>(r'icon')
+              .editor(ParamEditor<_i4.Widget>())
+              .optional(null),
           title: params
               .any<_i4.Widget>(r'title')
+              .editor(ParamEditor<_i4.Widget>())
               .required(const SizedBox.shrink()),
         ),
       ),
@@ -71,11 +89,16 @@ List<Component> get components => <Component>[
           key: null,
           drawer: params
               .any<_i4.Widget>(r'drawer')
+              .editor(ParamEditor<_i4.Widget>())
               .required(const SizedBox.shrink()),
           viewport: params
               .any<_i4.Widget>(r'viewport')
+              .editor(ParamEditor<_i4.Widget>())
               .required(const SizedBox.shrink()),
-          sidebar: params.any<_i4.Widget>(r'sidebar').optional(null),
+          sidebar: params
+              .any<_i4.Widget>(r'sidebar')
+              .editor(ParamEditor<_i4.Widget>())
+              .optional(null),
         ),
       ),
     ],
@@ -90,10 +113,15 @@ List<Component> get components => <Component>[
           key: null,
           title: params
               .any<_i4.Widget>(r'title')
+              .editor(ParamEditor<_i4.Widget>())
               .required(const SizedBox.shrink()),
-          actions: params.any<List<_i4.Widget>>(r'actions').required([]),
+          actions: params
+              .any<List<_i4.Widget>>(r'actions')
+              .editor(ParamEditor<List<_i4.Widget>>())
+              .required([]),
           body: params
               .any<_i4.Widget>(r'body')
+              .editor(ParamEditor<_i4.Widget>())
               .required(const SizedBox.shrink()),
         ),
       ),
@@ -105,17 +133,65 @@ List<Component> get components => <Component>[
     stories: [
       _i9.$Default.applyGenerated(
         name: 'Default',
-        builder: (context, params) => _i10.TagChip.new(
+        builder: (context, params) => _i10.SBTooltip.new(
           key: null,
-          tag: params.any<_i4.Widget>(r'tag').required(const SizedBox.shrink()),
+          child: params
+              .any<_i4.Widget>(r'child')
+              .editor(ParamEditor<_i4.Widget>())
+              .required(const SizedBox.shrink()),
+          tooltip: params
+              .any<_i4.Widget>(r'tooltip')
+              .editor(ParamEditor<_i4.Widget>())
+              .required(const SizedBox.shrink()),
+          position: params
+              .single(r'position', _i10.SBTooltipPosition.values)
+              .optional(null),
+          constrained: params.boolean(r'constrained').required(false),
+        ),
+      ),
+      _i9.$Markdown.applyGenerated(
+        name: 'Markdown',
+        builder: (context, params) => _i10.SBTooltip.new(
+          key: null,
+          child: params
+              .any<_i4.Widget>(r'child')
+              .editor(ParamEditor<_i4.Widget>())
+              .required(const SizedBox.shrink()),
+          tooltip: params
+              .any<_i4.Widget>(r'tooltip')
+              .editor(ParamEditor<_i4.Widget>())
+              .required(const SizedBox.shrink()),
+          position: params
+              .single(r'position', _i10.SBTooltipPosition.values)
+              .optional(null),
+          constrained: params.boolean(r'constrained').required(false),
+        ),
+      ),
+    ],
+  ),
+  Component(
+    meta: _i11.meta,
+    config: _i2.config,
+    stories: [
+      _i11.$Default.applyGenerated(
+        name: 'Default',
+        builder: (context, params) => _i12.TagChip.new(
+          key: null,
+          tag: params
+              .any<_i4.Widget>(r'tag')
+              .editor(ParamEditor<_i4.Widget>())
+              .required(const SizedBox.shrink()),
           color: params.color(r'color').optional(null),
         ),
       ),
-      _i9.$InTile.applyGenerated(
+      _i11.$InTile.applyGenerated(
         name: 'In Tile',
-        builder: (context, params) => _i10.TagChip.new(
+        builder: (context, params) => _i12.TagChip.new(
           key: null,
-          tag: params.any<_i4.Widget>(r'tag').required(const SizedBox.shrink()),
+          tag: params
+              .any<_i4.Widget>(r'tag')
+              .editor(ParamEditor<_i4.Widget>())
+              .required(const SizedBox.shrink()),
           color: params.color(r'color').optional(null),
         ),
       ),

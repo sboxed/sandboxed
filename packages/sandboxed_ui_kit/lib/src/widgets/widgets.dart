@@ -9,4 +9,5 @@ export 'scrollable/sb_tree_view.dart';
 export 'settings/sb_theme_button.dart';
 export 'tags/tag_chip.dart';
 export 'tiles/element_tile.dart';
+export 'tooltip/tooltip.dart';
 export 'tiles/element_tile_icons.dart';
