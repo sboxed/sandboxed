@@ -45,8 +45,10 @@ ThemeData buildLightTheme(BuildContext context, WidgetRef ref) => ThemeData(
       ),
 
       // shared
-      textTheme:
-          GoogleFonts.jetBrainsMonoTextTheme(ThemeData.light().textTheme),
+      textTheme: GoogleFonts.jetBrainsMonoTextTheme(
+        ThemeData.light().textTheme,
+      ),
+      sliderTheme: SliderThemeData(year2023: false),
       filledButtonTheme: kFilledButtonTheme,
       outlinedButtonTheme: kOutlinedButtonTheme,
       drawerTheme: kDrawerTheme,
@@ -71,7 +73,10 @@ ThemeData buildDarkTheme(BuildContext context, WidgetRef ref) => ThemeData(
       ),
 
       // shared
-      textTheme: GoogleFonts.jetBrainsMonoTextTheme(ThemeData.dark().textTheme),
+      textTheme: GoogleFonts.jetBrainsMonoTextTheme(
+        ThemeData.dark().textTheme,
+      ),
+      sliderTheme: SliderThemeData(year2023: false),
       filledButtonTheme: kFilledButtonTheme,
       outlinedButtonTheme: kOutlinedButtonTheme,
       drawerTheme: kDrawerTheme,

@@ -9,21 +9,22 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i5;
-import 'package:flutter/material.dart' as _i6;
+import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:flutter/material.dart' as _i7;
 import 'package:sandboxed/pages/document/document_page.dart' as _i1;
 import 'package:sandboxed/pages/index_page.dart' as _i2;
 import 'package:sandboxed/pages/nothing/nothing_page.dart' as _i3;
-import 'package:sandboxed/pages/story/story_page.dart' as _i4;
+import 'package:sandboxed/pages/settings/settings_pages.dart' as _i4;
+import 'package:sandboxed/pages/story/story_page.dart' as _i5;
 
 /// generated route for
 /// [_i1.DocumentPage]
-class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
+class DocumentRoute extends _i6.PageRouteInfo<DocumentRouteArgs> {
   DocumentRoute({
-    _i6.Key? key,
+    _i7.Key? key,
     String? id,
     String? global,
-    List<_i5.PageRouteInfo>? children,
+    List<_i6.PageRouteInfo>? children,
   }) : super(
           DocumentRoute.name,
           args: DocumentRouteArgs(key: key, id: id, global: global),
@@ -33,7 +34,7 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
 
   static const String name = 'DocumentRoute';
 
-  static _i5.PageInfo page = _i5.PageInfo(
+  static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
       final queryParams = data.queryParams;
@@ -51,7 +52,7 @@ class DocumentRoute extends _i5.PageRouteInfo<DocumentRouteArgs> {
 class DocumentRouteArgs {
   const DocumentRouteArgs({this.key, this.id, this.global});
 
-  final _i6.Key? key;
+  final _i7.Key? key;
 
   final String? id;
 
@@ -75,13 +76,13 @@ class DocumentRouteArgs {
 
 /// generated route for
 /// [_i2.IndexPage]
-class IndexRoute extends _i5.PageRouteInfo<void> {
-  const IndexRoute({List<_i5.PageRouteInfo>? children})
+class IndexRoute extends _i6.PageRouteInfo<void> {
+  const IndexRoute({List<_i6.PageRouteInfo>? children})
       : super(IndexRoute.name, initialChildren: children);
 
   static const String name = 'IndexRoute';
 
-  static _i5.PageInfo page = _i5.PageInfo(
+  static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
       return const _i2.IndexPage();
@@ -91,11 +92,11 @@ class IndexRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.NothingPage]
-class NothingRoute extends _i5.PageRouteInfo<NothingRouteArgs> {
+class NothingRoute extends _i6.PageRouteInfo<NothingRouteArgs> {
   NothingRoute({
-    _i6.Key? key,
+    _i7.Key? key,
     String? global,
-    List<_i5.PageRouteInfo>? children,
+    List<_i6.PageRouteInfo>? children,
   }) : super(
           NothingRoute.name,
           args: NothingRouteArgs(key: key, global: global),
@@ -105,7 +106,7 @@ class NothingRoute extends _i5.PageRouteInfo<NothingRouteArgs> {
 
   static const String name = 'NothingRoute';
 
-  static _i5.PageInfo page = _i5.PageInfo(
+  static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
       final queryParams = data.queryParams;
@@ -120,7 +121,7 @@ class NothingRoute extends _i5.PageRouteInfo<NothingRouteArgs> {
 class NothingRouteArgs {
   const NothingRouteArgs({this.key, this.global});
 
-  final _i6.Key? key;
+  final _i7.Key? key;
 
   final String? global;
 
@@ -141,14 +142,30 @@ class NothingRouteArgs {
 }
 
 /// generated route for
-/// [_i4.StoryPage]
-class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
+/// [_i4.SettingsPage]
+class SettingsRoute extends _i6.PageRouteInfo<void> {
+  const SettingsRoute({List<_i6.PageRouteInfo>? children})
+      : super(SettingsRoute.name, initialChildren: children);
+
+  static const String name = 'SettingsRoute';
+
+  static _i6.PageInfo page = _i6.PageInfo(
+    name,
+    builder: (data) {
+      return const _i4.SettingsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i5.StoryPage]
+class StoryRoute extends _i6.PageRouteInfo<StoryRouteArgs> {
   StoryRoute({
-    _i6.Key? key,
+    _i7.Key? key,
     String? id,
     String? params,
     String? global,
-    List<_i5.PageRouteInfo>? children,
+    List<_i6.PageRouteInfo>? children,
   }) : super(
           StoryRoute.name,
           args:
@@ -159,7 +176,7 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
 
   static const String name = 'StoryRoute';
 
-  static _i5.PageInfo page = _i5.PageInfo(
+  static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
       final queryParams = data.queryParams;
@@ -170,7 +187,7 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
           global: queryParams.optString('global'),
         ),
       );
-      return _i4.StoryPage(
+      return _i5.StoryPage(
         key: args.key,
         id: args.id,
         params: args.params,
@@ -183,7 +200,7 @@ class StoryRoute extends _i5.PageRouteInfo<StoryRouteArgs> {
 class StoryRouteArgs {
   const StoryRouteArgs({this.key, this.id, this.params, this.global});
 
-  final _i6.Key? key;
+  final _i7.Key? key;
 
   final String? id;
 

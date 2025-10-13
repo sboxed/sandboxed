@@ -20,6 +20,7 @@ import 'package:sandboxed/provider/title.dart';
 import 'package:sandboxed/router.dart';
 import 'package:sandboxed/src/provider/feature_flags.dart';
 import 'package:sandboxed/theme.dart';
+import 'package:sandboxed/widgets/application_scale.dart';
 import 'package:sandboxed/widgets/sb_notification_listener.dart';
 import 'package:sandboxed_core/component.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
@@ -100,40 +101,42 @@ class _SandboxedState extends State<Sandboxed> {
               return const SizedBox();
             }
 
-            return MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              themeMode: ref.watch(themeModeNotifierProvider),
-              theme: widget.theme?.copyWith(
-                    extensions: [
-                      SandboxedTheme(brandColor: widget.brandColor),
-                    ],
-                  ) ??
-                  buildLightTheme(context, ref),
-              darkTheme: widget.darkTheme?.copyWith(
-                    extensions: [
-                      SandboxedTheme(brandColor: widget.brandColor),
-                    ],
-                  ) ??
-                  buildDarkTheme(context, ref),
-              builder: (context, child) {
-                return GestureDetector(
-                  onTap: () => FocusScope.of(context).unfocus,
-                  child: child,
-                );
-              },
-              routerConfig: router.config(
-                deepLinkBuilder: (deepLink) async {
-                  if (deepLink.path == '/' && path.value != null) {
-                    await handleDeepLink(Uri.parse(path.value!), ref);
-                    return DeepLink.path(path.value!);
-                  }
-
-                  if (deepLink.isValid) {
-                    await handleDeepLink(deepLink.uri, ref);
-                  }
-
-                  return deepLink;
+            return ApplicationScale(
+              child: MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                themeMode: ref.watch(themeModeNotifierProvider),
+                theme: widget.theme?.copyWith(
+                      extensions: [
+                        SandboxedTheme(brandColor: widget.brandColor),
+                      ],
+                    ) ??
+                    buildLightTheme(context, ref),
+                darkTheme: widget.darkTheme?.copyWith(
+                      extensions: [
+                        SandboxedTheme(brandColor: widget.brandColor),
+                      ],
+                    ) ??
+                    buildDarkTheme(context, ref),
+                builder: (context, child) {
+                  return GestureDetector(
+                    onTap: () => FocusScope.of(context).unfocus,
+                    child: child,
+                  );
                 },
+                routerConfig: router.config(
+                  deepLinkBuilder: (deepLink) async {
+                    if (deepLink.path == '/' && path.value != null) {
+                      await handleDeepLink(Uri.parse(path.value!), ref);
+                      return DeepLink.path(path.value!);
+                    }
+
+                    if (deepLink.isValid) {
+                      await handleDeepLink(deepLink.uri, ref);
+                    }
+
+                    return deepLink;
+                  },
+                ),
               ),
             );
           },

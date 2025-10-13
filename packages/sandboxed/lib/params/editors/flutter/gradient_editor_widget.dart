@@ -323,6 +323,7 @@ class __HandleState extends State<_Handle> {
                 startOffset = details.globalPosition;
               },
               onPanUpdate: (details) {
+                // TODO(@melvspace): 10/13/25 interface scale is not taken into account
                 final delta = details.globalPosition - startOffset!;
 
                 final relativeDelta = Offset(

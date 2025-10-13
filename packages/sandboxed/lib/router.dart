@@ -38,6 +38,10 @@ class AppRouter extends RootStackRouter {
           ),
         ],
       ),
+      AutoRoute(
+        path: "/settings",
+        page: SettingsRoute.page,
+      ),
       RedirectRoute(path: '*', redirectTo: '/'),
     ];
   }

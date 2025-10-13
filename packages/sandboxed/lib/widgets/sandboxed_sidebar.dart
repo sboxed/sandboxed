@@ -15,18 +15,20 @@ class SandboxedSidebar extends StatelessWidget {
       child: Card(
         child: DefaultTabController(
           length: tabs.length,
-          child: Column(
-            children: [
-              TabBar(tabs: [for (final tab in tabs) Tab(child: tab.$1)]),
-              Expanded(
-                child: PageView(
-                  children: [
-                    for (final tab in tabs) //
-                      tab.$2,
-                  ],
+          child: SafeArea(
+            child: Column(
+              children: [
+                TabBar(tabs: [for (final tab in tabs) Tab(child: tab.$1)]),
+                Expanded(
+                  child: PageView(
+                    children: [
+                      for (final tab in tabs) //
+                        tab.$2,
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
