@@ -47,22 +47,32 @@ class ParamShowcase extends StatelessWidget {
             ),
             children: [
               TableRow(
-                children: [
-                  Text('ID', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(
-                    'Example Code',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text('Value', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('UI', style: TextStyle(fontWeight: FontWeight.bold)),
-                ]
-                    .map(
-                      (e) => Padding(
-                        padding: EdgeInsets.all(8).copyWith(right: 32),
-                        child: e,
-                      ),
-                    )
-                    .toList(),
+                children:
+                    [
+                          Text(
+                            'ID',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'Example Code',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'Value',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'UI',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ]
+                        .map(
+                          (e) => Padding(
+                            padding: EdgeInsets.all(8).copyWith(right: 32),
+                            child: e,
+                          ),
+                        )
+                        .toList(),
               ),
               for (final (index, row) in rows.indexed)
                 () {
@@ -78,8 +88,7 @@ class ParamShowcase extends StatelessWidget {
                   try {
                     value = switch (optionality) {
                       ParamOptionality.optional => row.builder(id).optional(),
-                      ParamOptionality.required =>
-                        row.builder(id).required(row.value as dynamic),
+                      ParamOptionality.required => row.builder(id).required(row.value as dynamic),
                       ParamOptionality.default$ => row.builder(id).default$(),
                     };
                   } catch (e) {
@@ -87,56 +96,55 @@ class ParamShowcase extends StatelessWidget {
                   }
 
                   return TableRow(
-                    children: [
-                      Text(id),
-                      HighlightView(
-                        row.code,
-                        language: 'dart',
-                        tabSize: 2,
-                        padding: EdgeInsets.all(8),
-                        theme: atomOneDarkTheme,
-                      ),
-                      Text(
-                        row.render?.call(value) ?? //
-                            value.toString(),
-                      ),
-                      Builder(
-                        builder: (context) {
-                          final value = params.get(id);
-                          if (value == null) {
-                            return Text(
-                              "Failed to register value\n$error",
-                              style: TextStyle(color: Colors.red),
+                    children:
+                        [
+                          Text(id),
+                          HighlightView(
+                            row.code,
+                            language: 'dart',
+                            tabSize: 2,
+                            padding: EdgeInsets.all(8),
+                            theme: atomOneDarkTheme,
+                          ),
+                          Text(
+                            row.render?.call(value) ?? //
+                                value.toString(),
+                          ),
+                          Builder(
+                            builder: (context) {
+                              final value = params.get(id);
+                              if (value == null) {
+                                return Text(
+                                  "Failed to register value\n$error",
+                                  style: TextStyle(color: Colors.red),
+                                );
+                              }
+
+                              final editor = value.editor;
+
+                              if (editor == null) {
+                                return Text("Editor UI not found");
+                              }
+
+                              return NullableEditorWidget(
+                                value: value,
+                                child: editor.build(context, value),
+                              );
+                            },
+                          ),
+                        ].indexed.map((e) {
+                          if (e.$1 == 3) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: e.$2,
                             );
                           }
 
-                          final editor = value.editor;
-
-                          if (editor == null) {
-                            return Text("Editor UI not found");
-                          }
-
-                          return NullableEditorWidget(
-                            value: value,
-                            child: editor.build(context, value),
-                          );
-                        },
-                      )
-                    ].indexed.map(
-                      (e) {
-                        if (e.$1 == 3) {
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8).copyWith(right: 32),
                             child: e.$2,
                           );
-                        }
-
-                        return Padding(
-                          padding: EdgeInsets.all(8).copyWith(right: 32),
-                          child: e.$2,
-                        );
-                      },
-                    ).toList(),
+                        }).toList(),
                   );
                 }(),
             ],

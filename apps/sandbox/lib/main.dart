@@ -22,9 +22,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MediaQuery(
-      data: MediaQuery.of(context).copyWith(
-        textScaler: const TextScaler.linear(1.0),
-      ),
+      data: MediaQuery.of(
+        context,
+      ).copyWith(textScaler: const TextScaler.linear(1.0)),
       child: Sandboxed(
         components: components,
         flags: const {FeatureFlags.elementTreeNext},
@@ -32,11 +32,15 @@ class MainApp extends StatelessWidget {
           // Editor
           TagsRendererAddon(
             buildTag: (context, tag) => switch (tag) {
-              'deprecated' =>
-                const TagChip(tag: Text('Deprecated'), color: Colors.red),
+              'deprecated' => const TagChip(
+                tag: Text('Deprecated'),
+                color: Colors.red,
+              ),
               'new' => const TagChip(tag: Text('New'), color: Colors.green),
-              'unimplemented' =>
-                const TagChip(tag: Text('Unimplemented'), color: Colors.yellow),
+              'unimplemented' => const TagChip(
+                tag: Text('Unimplemented'),
+                color: Colors.yellow,
+              ),
               _ => null,
             },
           ),
@@ -93,7 +97,6 @@ class MainApp extends StatelessWidget {
           //     );
           //   },
           // ),
-
           SafeAreaAddon(),
           AlignmentAddon(),
           ScreenshotAddon(),

@@ -25,10 +25,7 @@ class NullableAndRequiredParamsWidget extends StatelessWidget {
 
   Widget cell({Widget? child}) {
     return TableCell(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: child,
-      ),
+      child: Padding(padding: const EdgeInsets.all(8.0), child: child),
     );
   }
 
@@ -58,19 +55,11 @@ class NullableAndRequiredParamsWidget extends StatelessWidget {
         for (final item in data.entries)
           TableRow(
             children: [
-              cell(
-                child: Text(item.key),
-              ),
-              cell(
-                child: Text(item.value == null ? 'is null' : 'is not null'),
-              ),
-              cell(
-                child: Text(
-                  item.value.toString(),
-                ),
-              ),
+              cell(child: Text(item.key)),
+              cell(child: Text(item.value == null ? 'is null' : 'is not null')),
+              cell(child: Text(item.value.toString())),
             ],
-          )
+          ),
       ],
     );
   }

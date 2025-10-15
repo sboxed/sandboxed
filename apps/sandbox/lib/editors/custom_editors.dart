@@ -10,8 +10,8 @@ final class CustomEditorsAddon extends Addon with ParamEditorAddon {
 
   @override
   List<ParamEditorFactory<ValueEditorPresenter?>> get editors3 => [
-        CustomEditorFactory(),
-      ];
+    CustomEditorFactory(),
+  ];
 }
 
 class CustomEditorFactory extends ParamEditorFactory<ValueEditorPresenter?> {
@@ -41,9 +41,7 @@ class EnumDropdownEditorPresenter<T> extends ValueEditorPresenter<T> {
           DropdownMenuItem(
             enabled: value.value != item,
             value: item,
-            child: Text(
-              editor.labelBuilder(item),
-            ),
+            child: Text(editor.labelBuilder(item)),
           ),
       ],
       onChanged: (nextValue) => value.update(nextValue),

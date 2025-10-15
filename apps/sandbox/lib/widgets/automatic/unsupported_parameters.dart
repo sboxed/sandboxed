@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class UnsupportedParameters extends StatelessWidget {
   final TextStyle style;
 
-  const UnsupportedParameters({
-    super.key,
-    required this.style,
-  });
+  const UnsupportedParameters({super.key, required this.style});
 
   @override
   Widget build(BuildContext context) {

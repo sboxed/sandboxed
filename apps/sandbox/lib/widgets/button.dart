@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum SandboxButtonSize {
-  small,
-  medium,
-}
+enum SandboxButtonSize { small, medium }
 
 class SandboxButton extends StatelessWidget {
   final String title;
@@ -36,10 +33,7 @@ class SandboxButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (icon case Widget icon) ...[
-              icon,
-              const SizedBox(width: 8),
-            ],
+            if (icon case Widget icon) ...[icon, const SizedBox(width: 8)],
             Text(title),
           ],
         ),

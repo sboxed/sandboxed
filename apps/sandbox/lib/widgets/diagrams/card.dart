@@ -2,10 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-enum SandboxDiagramCardStats {
-  max,
-  total,
-}
+enum SandboxDiagramCardStats { max, total }
 
 class SandboxDiagramCard extends StatelessWidget {
   final String title;
@@ -14,13 +11,15 @@ class SandboxDiagramCard extends StatelessWidget {
 
   //. this is special field to test record type handling
   final ValueChanged<
-      (
-        SandboxDiagramCardStats,
-        SandboxDiagramCardStats?, {
-        SandboxDiagramCardStats next,
-        SandboxDiagramCardStats? nullable,
-        String name
-      })>? onChanged;
+    (
+      SandboxDiagramCardStats,
+      SandboxDiagramCardStats?, {
+      SandboxDiagramCardStats next,
+      SandboxDiagramCardStats? nullable,
+      String name,
+    })
+  >?
+  onChanged;
 
   const SandboxDiagramCard({
     super.key,
@@ -40,7 +39,7 @@ class SandboxDiagramCard extends StatelessWidget {
           const SizedBox(width: 8),
           Text(title),
           for (final stat in stats) //
-            Text('${stat.name}: ${Random().nextDouble() * 1000}')
+            Text('${stat.name}: ${Random().nextDouble() * 1000}'),
         ],
       ),
     );

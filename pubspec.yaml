@@ -43,6 +43,12 @@ melos:
         dependsOn:
         - build_runner
 
+    generate:clean:
+      exec: fvm dart run build_runner clean
+      packageFilters:
+        dependsOn:
+        - build_runner
+
     watch_riverpod:
       exec: while true; do dart run build_runner watch -dv; sleep 2 ; done
       packageFilters:

@@ -180,6 +180,7 @@ class ComponentAggregateBuilder extends Builder {
           'GENERATED CODE - DO NOT MODIFY BY HAND',
           'ignore_for_file: type=lint',
           'ignore_for_file: invalid_use_of_visible_for_testing_member, unused_import, duplicate_import, unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark',
+          'dart format width=80',
         ]);
 
         library.directives.addAll([
@@ -227,7 +228,10 @@ class ComponentAggregateBuilder extends Builder {
         formatLanguageVersion = DartFormatter.latestShortStyleLanguageVersion;
       }
 
-      code = DartFormatter(languageVersion: formatLanguageVersion) //
+      code = DartFormatter(
+        languageVersion: formatLanguageVersion, //
+        pageWidth: 80,
+      ) //
           .format(code);
     } catch (e) {
       print(e);

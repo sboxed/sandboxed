@@ -4,7 +4,5 @@ import 'package:sandboxed_core/sandboxed_core.dart';
 Meta get meta => Meta<MaterialIcons>(name: 'Material Icons');
 
 Story get $Default => Story(
-      builder: (context, params) => MaterialIcons(
-        size: params.number('size').required(24),
-      ),
-    );
+  builder: (context, params) => MaterialIcons(size: params.number('size').required(24)),
+);

@@ -38,22 +38,15 @@ class FlutterParamsWidget extends StatelessWidget {
           Card(
             child: Padding(
               padding: padding,
-              child: Center(
-                child: Text("Padding - $padding"),
-              ),
+              child: Center(child: Text("Padding - $padding")),
             ),
           ),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  'Custom Text Style',
-                  style: style,
-                ),
-              ),
+              child: Center(child: Text('Custom Text Style', style: style)),
             ),
-          )
+          ),
         ],
       ),
     );

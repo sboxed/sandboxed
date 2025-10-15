@@ -13,10 +13,9 @@ class NavigatorBoundaryScenario extends StatelessWidget {
         children: [
           Text(
             'This scenario shows the wanted behavior of StoryViewport',
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge
-                ?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),

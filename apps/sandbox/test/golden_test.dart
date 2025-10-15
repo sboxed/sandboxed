@@ -10,27 +10,23 @@ void main() {
 }
 
 Future<void> testStory(Meta meta, Story story) async {
-  testWidgets(
-    'test ${meta.name} component with story - ${story.name}',
-    (tester) async {
-      await tester.pumpWidget(
-        Center(
-          child: Directionality(
-            textDirection: TextDirection.ltr,
-            child: Material(
-              child: StoryView(
-                meta: meta,
-                story: story,
-              ),
-            ),
+  testWidgets('test ${meta.name} component with story - ${story.name}', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      Center(
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Material(
+            child: StoryView(meta: meta, story: story),
           ),
         ),
-      );
+      ),
+    );
 
-      await expectLater(
-        find.byType(SandboxButton),
-        matchesGoldenFile('goldens/${meta.name}-${story.name}.png'),
-      );
-    },
-  );
+    await expectLater(
+      find.byType(SandboxButton),
+      matchesGoldenFile('goldens/${meta.name}-${story.name}.png'),
+    );
+  });
 }

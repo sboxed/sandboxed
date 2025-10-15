@@ -45,13 +45,7 @@ class AutomaticGeneration extends StatelessWidget {
           width: 256,
           height: 64,
           decoration: BoxDecoration(
-            gradient: gradient ??
-                const LinearGradient(
-                  colors: [
-                    Colors.orange,
-                    Colors.green,
-                  ],
-                ),
+            gradient: gradient ?? const LinearGradient(colors: [Colors.orange, Colors.green]),
           ),
         ),
       ],

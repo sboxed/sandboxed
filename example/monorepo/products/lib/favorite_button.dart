@@ -5,9 +5,6 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {},
-      icon: const Icon(Icons.favorite),
-    );
+    return IconButton(onPressed: () {}, icon: const Icon(Icons.favorite));
   }
 }

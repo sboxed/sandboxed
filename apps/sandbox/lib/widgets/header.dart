@@ -7,10 +7,7 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Text(
       'Header',
-      style: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-      ),
+      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
     );
   }
 }

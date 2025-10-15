@@ -9,20 +9,13 @@ class IconInfo {
   final int code;
   final String? fontFamily;
 
-  IconInfo({
-    required this.name,
-    required this.code,
-    required this.fontFamily,
-  });
+  IconInfo({required this.name, required this.code, required this.fontFamily});
 }
 
 class MaterialIcons extends StatefulWidget {
   final double size;
 
-  const MaterialIcons({
-    super.key,
-    this.size = 24,
-  });
+  const MaterialIcons({super.key, this.size = 24});
 
   @override
   State<MaterialIcons> createState() => _MaterialIconsState();
@@ -43,41 +36,36 @@ class _MaterialIconsState extends State<MaterialIcons> {
 
   @override
   void initState() {
-    response.then(
-      (value) {
-        if (mounted) {
-          final regex = RegExp(
-              r"const IconData (\w+) = IconData\(([\dxa-f]+), fontFamily: '(\w+)'");
+    response.then((value) {
+      if (mounted) {
+        final regex = RegExp(
+          r"const IconData (\w+) = IconData\(([\dxa-f]+), fontFamily: '(\w+)'",
+        );
 
-          final matches = regex.allMatches(value.data!.toString()).toList();
+        final matches = regex.allMatches(value.data!.toString()).toList();
 
-          final icons = [
-            for (final match in matches)
-              IconInfo(
-                name: match.group(1) ?? '<unknown>',
-                code: int.parse(match.group(2)!),
-                fontFamily: match.group(3),
-              ),
-          ];
+        final icons = [
+          for (final match in matches)
+            IconInfo(
+              name: match.group(1) ?? '<unknown>',
+              code: int.parse(match.group(2)!),
+              fontFamily: match.group(3),
+            ),
+        ];
 
-          setState(() {
-            this.icons = icons;
-            fuzzy = Fuzzy(
-              icons,
-              options: FuzzyOptions(
-                keys: [
-                  WeightedKey(
-                    name: 'name',
-                    getter: (obj) => obj.name,
-                    weight: 1,
-                  ),
-                ],
-              ),
-            );
-          });
-        }
-      },
-    );
+        setState(() {
+          this.icons = icons;
+          fuzzy = Fuzzy(
+            icons,
+            options: FuzzyOptions(
+              keys: [
+                WeightedKey(name: 'name', getter: (obj) => obj.name, weight: 1),
+              ],
+            ),
+          );
+        });
+      }
+    });
     super.initState();
   }
 
@@ -121,15 +109,16 @@ class _MaterialIconsState extends State<MaterialIcons> {
                           for (final token in IconToken.values)
                             CheckedPopupMenuItem(
                               value: token,
-                              enabled: tokens.length != 1 || //
+                              enabled:
+                                  tokens.length != 1 || //
                                   !tokens.contains(token),
                               checked: tokens.contains(token),
                               child: Text(token.name),
-                            )
+                            ),
                         ];
                       },
                     ),
-                  )
+                  ),
                 ],
               ),
               Expanded(
@@ -137,36 +126,30 @@ class _MaterialIconsState extends State<MaterialIcons> {
                   listenable: searchController,
                   builder: (context, child) {
                     var results = searchController.text.isNotEmpty
-                        ? fuzzy!
-                            .search(searchController.text)
-                            .map((e) => e.item)
-                            .toList()
+                        ? fuzzy!.search(searchController.text).map((e) => e.item).toList()
                         : icons;
 
-                    results = results.where(
-                      (icon) {
-                        for (final token in IconToken.values) {
-                          if (token == IconToken.basic) {
-                            if (!IconToken.values.any(
-                              (element) =>
-                                  icon.name.contains('_${element.name}'),
-                            )) {
-                              if (!tokens.contains(token)) {
-                                return false;
-                              }
-                            }
-                          }
-
-                          if (icon.name.contains('_${token.name}')) {
+                    results = results.where((icon) {
+                      for (final token in IconToken.values) {
+                        if (token == IconToken.basic) {
+                          if (!IconToken.values.any(
+                            (element) => icon.name.contains('_${element.name}'),
+                          )) {
                             if (!tokens.contains(token)) {
                               return false;
                             }
                           }
                         }
 
-                        return true;
-                      },
-                    ).toList();
+                        if (icon.name.contains('_${token.name}')) {
+                          if (!tokens.contains(token)) {
+                            return false;
+                          }
+                        }
+                      }
+
+                      return true;
+                    }).toList();
 
                     final rowCount = (results.length / rowLength).ceil();
 
@@ -175,42 +158,46 @@ class _MaterialIconsState extends State<MaterialIcons> {
                       itemBuilder: (context, index) {
                         final group = results.sublist(
                           index * rowLength,
-                          (index * rowLength + rowLength)
-                              .clamp(0, results.length),
+                          (index * rowLength + rowLength).clamp(
+                            0,
+                            results.length,
+                          ),
                         );
 
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             for (final icon in group)
-                              Builder(builder: (context) {
-                                return Tooltip(
-                                  message: icon.name,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: SizedBox(
-                                      width: widget.size * 4,
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            IconData(
-                                              icon.code,
-                                              fontFamily: icon.fontFamily,
+                              Builder(
+                                builder: (context) {
+                                  return Tooltip(
+                                    message: icon.name,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: SizedBox(
+                                        width: widget.size * 4,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(
+                                              IconData(
+                                                icon.code,
+                                                fontFamily: icon.fontFamily,
+                                              ),
+                                              size: widget.size,
                                             ),
-                                            size: widget.size,
-                                          ),
-                                          Text(
-                                            icon.name,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.fade,
-                                          )
-                                        ],
+                                            Text(
+                                              icon.name,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.fade,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              })
+                                  );
+                                },
+                              ),
                           ],
                         );
                       },

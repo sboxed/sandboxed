@@ -3,13 +3,13 @@ import 'package:ui_kit/button.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
 Meta get meta => Meta<Button>(
-      name: '01. Button', // optional
-      module: 'Buttons',
-      component: Button, // optional
-      documentation: [
-        DocumentEntry(
-          name: 'Docs',
-          content: '''
+  name: '01. Button', // optional
+  module: 'Buttons',
+  component: Button, // optional
+  documentation: [
+    DocumentEntry(
+      name: 'Docs',
+      content: '''
 A Material Design filled button.
 
 Filled buttons have the most visual impact after the [FloatingActionButton],
@@ -52,16 +52,15 @@ See also:
  * <https://material.io/design/components/buttons.html>
  * <https://m3.material.io/components/buttons>
 ''',
-        ),
-      ],
-      parameters: {"golden": true, "fullpage": false},
-      decorators: [
-        Decorator(
-          (context, story) =>
-              Padding(padding: const EdgeInsets.all(16), child: story),
-        ),
-      ],
-    );
+    ),
+  ],
+  parameters: {"golden": true, "fullpage": false},
+  decorators: [
+    Decorator(
+      (context, story) => Padding(padding: const EdgeInsets.all(16), child: story),
+    ),
+  ],
+);
 
 Story get $Green {
   return Story(
@@ -83,14 +82,12 @@ Story get $Green {
 }
 
 Story get $Blue => Story(
-      name: 'Blue',
-      builder: (context, params) {
-        return Button(
-          text: params.string('title').required("Lorem"),
-          color: params.color('color').required(Colors.blue),
-          icon: params.boolean('has_icon').required(false)
-              ? const Icon(Icons.check, color: Colors.white)
-              : null,
-        );
-      },
+  name: 'Blue',
+  builder: (context, params) {
+    return Button(
+      text: params.string('title').required("Lorem"),
+      color: params.color('color').required(Colors.blue),
+      icon: params.boolean('has_icon').required(false) ? const Icon(Icons.check, color: Colors.white) : null,
     );
+  },
+);

@@ -59,7 +59,8 @@ List<ParamShowcaseItem> buildStringShowcase(ParamStorage params) {
       name: "multiline",
       builder: (id) => params.string(id, maxLines: null),
       value: "Hello\nworld",
-      code: "params.integer('string', maxLines: null)\n"
+      code:
+          "params.integer('string', maxLines: null)\n"
           "\t.required(\"Hello\\nworld\")",
     ),
   ];
@@ -124,8 +125,7 @@ List<ParamShowcaseItem> buildSingleShowcase(ParamStorage params) {
       name: "segmented",
       builder: (id) => params.single(id, BlurStyle.values).segmented(),
       value: BlurStyle.normal,
-      code:
-          "params.single('single', BlurStyle.values).segmented()\n\t.required(true)",
+      code: "params.single('single', BlurStyle.values).segmented()\n\t.required(true)",
     ),
   ];
 }
@@ -135,15 +135,13 @@ List<ParamShowcaseItem> buildMultiShowcase(ParamStorage params) {
     ParamShowcaseItem(
       builder: (id) => params.multi(id, BlurStyle.values),
       value: [BlurStyle.normal, BlurStyle.outer],
-      code:
-          "params.multi('multi', BlurStyle.values)\n\t.required([BlurStyle.normal])",
+      code: "params.multi('multi', BlurStyle.values)\n\t.required([BlurStyle.normal])",
     ),
     ParamShowcaseItem(
       name: "segmented",
       builder: (id) => params.multi(id, BlurStyle.values).segmented(),
       value: [BlurStyle.normal, BlurStyle.outer],
-      code:
-          "params.multi('multi', BlurStyle.values).segmented()\n\t.required([BlurStyle.normal])",
+      code: "params.multi('multi', BlurStyle.values).segmented()\n\t.required([BlurStyle.normal])",
     ),
   ];
 }
@@ -195,11 +193,9 @@ List<ParamShowcaseItem> buildGradientShowcase(ParamStorage params) {
       builder: (id) => params.gradient(id),
       value: LinearGradient(colors: [Colors.red, Colors.green]),
       render: (value) {
-        return (value as Gradient?)?.colors.map((e) => e.hex).join("\n") ??
-            "null";
+        return (value as Gradient?)?.colors.map((e) => e.hex).join("\n") ?? "null";
       },
-      code:
-          "params.gradient('gradient')\n\t.required(LinearGradient(colors: [Colors.red, Colors.green]))",
+      code: "params.gradient('gradient')\n\t.required(LinearGradient(colors: [Colors.red, Colors.green]))",
     ),
   ];
 }
@@ -241,14 +237,10 @@ List<ParamShowcaseItem> buildJsonShowcase(ParamStorage params) {
             fromJson: _Complex.fromJson,
             toJson: _Complex.toJson$,
           )
-          .withDefault(
-            _Complex(
-              name: "John",
-              age: 32,
-            ),
-          ),
+          .withDefault(_Complex(name: "John", age: 32)),
       value: _Complex(name: "John", age: 32),
-      code: "params.json<_Complex>("
+      code:
+          "params.json<_Complex>("
           "\n\t'json',"
           "\n\tfromJson: _Complex.fromJson,"
           "\n\ttoJson: _Complex.toJson\$"
@@ -264,20 +256,14 @@ class _Complex {
 
   const _Complex({required this.name, required this.age});
 
-  static _Complex fromJson(Map<String, dynamic> json) => _Complex(
-        name: json['name'],
-        age: json['age'],
-      );
+  static _Complex fromJson(Map<String, dynamic> json) => _Complex(name: json['name'], age: json['age']);
 
   static Map<String, dynamic> toJson$(_Complex complex) => {
-        'name': complex.name,
-        'age': complex.age,
-      };
+    'name': complex.name,
+    'age': complex.age,
+  };
 
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'age': age,
-      };
+  Map<String, dynamic> toJson() => {'name': name, 'age': age};
 
   @override
   String toString() {

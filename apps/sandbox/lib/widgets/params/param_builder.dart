@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sandboxed/sandboxed.dart';
 import 'package:sandboxed_sandbox/widgets/params/param_showcase.dart';
 
-enum ParamOptionality {
-  optional,
-  required,
-  default$,
-}
+enum ParamOptionality { optional, required, default$ }
 
 class ParamShowcaseItem<T> {
   final String? name;
@@ -27,8 +23,7 @@ class ParamShowcaseItem<T> {
 class ParamBuildersSandbox extends StatelessWidget {
   final ParamStorage params;
   final ParamOptionality optionality;
-  final Map<String, List<ParamShowcaseItem>> Function(ParamStorage params)
-      builder;
+  final Map<String, List<ParamShowcaseItem>> Function(ParamStorage params) builder;
 
   const ParamBuildersSandbox({
     super.key,
