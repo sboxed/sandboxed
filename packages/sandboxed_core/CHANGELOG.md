@@ -1,3 +1,7 @@
+## 0.1.4
+
+ - **FEAT**: restore iterable type from hint value if provided.
+
 ## 0.1.3+1
 
  - **DOCS**: ignore LICENSE.md in pub.

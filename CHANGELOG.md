@@ -15,6 +15,43 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sandboxed` - `v0.1.6`](#sandboxed---v016)
+ - [`sandboxed_core` - `v0.1.4`](#sandboxed_core---v014)
+ - [`sandboxed_generator` - `v0.1.5+3`](#sandboxed_generator---v0153)
+ - [`sandboxed_ui_kit` - `v0.1.3+1`](#sandboxed_ui_kit---v0131)
+
+---
+
+#### `sandboxed` - `v0.1.6`
+
+ - **REFACTOR**: fix all warnings.
+ - **FEAT**: restore iterable type from hint value if provided.
+
+#### `sandboxed_core` - `v0.1.4`
+
+ - **FEAT**: restore iterable type from hint value if provided.
+
+#### `sandboxed_generator` - `v0.1.5+3`
+
+ - **REFACTOR**: fix all warnings.
+
+#### `sandboxed_ui_kit` - `v0.1.3+1`
+
+ - **REFACTOR**: fix all warnings.
+
+
+## 2025-10-15
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sandboxed` - `v0.1.5`](#sandboxed---v015)
  - [`sandboxed_generator` - `v0.1.5+2`](#sandboxed_generator---v0152)
  - [`sandboxed_ui_kit` - `v0.1.3`](#sandboxed_ui_kit---v013)

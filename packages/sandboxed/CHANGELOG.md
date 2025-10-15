@@ -1,3 +1,8 @@
+## 0.1.6
+
+ - **REFACTOR**: fix all warnings.
+ - **FEAT**: restore iterable type from hint value if provided.
+
 ## 0.1.5
 
  - **FIX**: fix splitted theme addon error in apps without theme.
