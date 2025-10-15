@@ -2,6 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   // this test indicates that type can't be inferred in chained calls. so explicit type providing needed
   test(
     'test dynamic list inference param',
@@ -71,12 +73,12 @@ void main() {
         () {
           value = params //
               .any<List<String>>('list')
-              .required(['Some']);
+              .optional();
         },
-        returnsNormally,
+        throwsA(isA<TypeError>()),
       );
 
-      expect(value, equals(['Some']));
+      expect(value, equals(null));
     },
     tags: ['lang-flaws'],
   );

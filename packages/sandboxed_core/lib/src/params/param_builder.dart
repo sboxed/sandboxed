@@ -59,7 +59,7 @@ class ParamBuilder<T> {
     final store = _store;
     if (store == null) throw Exception('ParamBuilder has no store');
 
-    final initial = _mapEdgeCases(store.getInitialValue(id));
+    final initial = _mapEdgeCases(store.getInitialValue(id), value);
     final default$ = _defaultValue ?? store.defaultResolver.resolve<T>();
 
     return ParamValue<T>(
@@ -82,7 +82,8 @@ class ParamBuilder<T> {
       if (value.required) {
         if (kDebugMode) {
           print(
-              "WARNING: param is registered as required but requested as optional");
+            "WARNING: param is registered as required but requested as optional",
+          );
         }
       }
 
@@ -123,7 +124,7 @@ class ParamBuilder<T> {
       value = store.defaultResolver.resolve<T>();
     }
 
-    value ??= _mapEdgeCases(store.getInitialValue(id));
+    value ??= _mapEdgeCases(store.getInitialValue(id), null);
 
     if (value == null) {
       return optional(null as T) as T;
@@ -135,7 +136,35 @@ class ParamBuilder<T> {
   /// In some scenarios we can pass values that can be interchanged with expected type.
   ///
   /// For example, int can be passed as double
-  T? _mapEdgeCases(dynamic value) {
+  T? _mapEdgeCases(dynamic value, T? hint) {
+    // Restoring iterable types
+    switch (hint) {
+      case List hint when value is Iterable:
+        final copy = hint.toList()..clear();
+        for (final value in value) {
+          copy.add(value);
+        }
+
+        return copy as T;
+
+      case Set hint when value is Iterable:
+        final copy = hint.toSet()..clear();
+        for (final value in value) {
+          copy.add(value);
+        }
+
+        return copy as T;
+
+      case Map hint when value is Map:
+        final copy = {...hint}..clear();
+        for (final entry in value.entries) {
+          copy[entry.key] = entry.value;
+        }
+
+        return copy as T;
+    }
+
+    // Restoring basic types
     switch (T) {
       case const (double) when value is int:
         return value.toDouble() as T;
