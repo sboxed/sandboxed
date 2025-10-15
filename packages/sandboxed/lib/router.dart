@@ -57,7 +57,12 @@ class AppRouter extends RootStackRouter {
                   builder: (context) {
                     return LayoutBuilder(
                       builder: (context, constraints) => Dialog(
-                        constraints: constraints / 2,
+                        constraints: (constraints / 2).enforce(
+                          BoxConstraints(
+                            minHeight: 500,
+                            minWidth: 450,
+                          ),
+                        ),
                         clipBehavior: Clip.antiAlias,
                         child: child,
                       ),
