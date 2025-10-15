@@ -33,7 +33,7 @@ class AlignmentPicker extends StatelessWidget {
         borderRadius: BorderRadius.circular(3),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(.5),
+        padding: const EdgeInsets.all(1),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -58,7 +58,9 @@ class AlignmentPicker extends StatelessWidget {
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   color: isSelected
-                                      ? Theme.of(context).colorScheme.primary
+                                      ? Theme.of(context)
+                                          .colorScheme
+                                          .primaryFixedDim
                                       : Theme.of(context)
                                           .colorScheme
                                           .secondaryContainer,

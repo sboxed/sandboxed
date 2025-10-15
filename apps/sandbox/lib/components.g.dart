@@ -60,10 +60,12 @@ import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.stori
     as _i41;
 import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.dart'
     as _i42;
+import 'package:sandboxed_sandbox/material/button.stories.dart' as _i43;
+import 'package:sandboxed_sandbox/material/color.stories.dart' as _i44;
 import 'package:sandboxed_sandbox/widgets/automatic/with_enum.stories.dart'
-    as _i43;
-import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i44;
-import 'package:sandboxed_sandbox/data/some_enum.dart' as _i45;
+    as _i45;
+import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i46;
+import 'package:sandboxed_sandbox/data/some_enum.dart' as _i47;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -972,11 +974,31 @@ List<Component> get components {
       stories: [
         _i43.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i44.WithEnum.new(
+          builder: (context, params) =>
+              throw _i2.AbstractWidgetClassException(),
+        ),
+      ],
+    ),
+    Component(
+      meta: _i44.meta,
+      stories: [
+        _i44.$Default.applyGenerated(
+          name: 'Default',
+          builder: (context, params) =>
+              throw _i2.AbstractWidgetClassException(),
+        ),
+      ],
+    ),
+    Component(
+      meta: _i45.meta,
+      stories: [
+        _i45.$Default.applyGenerated(
+          name: 'Default',
+          builder: (context, params) => _i46.WithEnum.new(
             key: null,
             enumValue: params
-                .single(r'enumValue', _i45.SomeEnum.values)
-                .required(_i45.SomeEnum.values.first),
+                .single(r'enumValue', _i47.SomeEnum.values)
+                .required(_i47.SomeEnum.values.first),
           ),
         ),
       ],

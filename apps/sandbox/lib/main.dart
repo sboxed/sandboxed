@@ -11,6 +11,7 @@ import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/sandboxed.dart';
 import 'package:sandboxed_sandbox/components.g.dart';
 import 'package:sandboxed_sandbox/editors/custom_editors.dart';
+import 'package:sandboxed_sandbox/theme.dart';
 
 void main() {
   runApp(const MainApp());
@@ -21,12 +22,17 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themes = Themes.build(brandColor: Colors.green);
+
     return MediaQuery(
       data: MediaQuery.of(
         context,
       ).copyWith(textScaler: const TextScaler.linear(1.0)),
       child: Sandboxed(
         components: components,
+        brandColor: themes.brandColor,
+        theme: themes.light,
+        darkTheme: themes.dark,
         flags: const {FeatureFlags.elementTreeNext},
         addons: [
           // Editor
