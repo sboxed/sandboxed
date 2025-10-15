@@ -16,6 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$Settings {
   double? get interfaceScale;
   bool get denseExplorer;
+  Set<FeatureFlags> get optInFeatures;
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -35,16 +36,19 @@ mixin _$Settings {
             (identical(other.interfaceScale, interfaceScale) ||
                 other.interfaceScale == interfaceScale) &&
             (identical(other.denseExplorer, denseExplorer) ||
-                other.denseExplorer == denseExplorer));
+                other.denseExplorer == denseExplorer) &&
+            const DeepCollectionEquality()
+                .equals(other.optInFeatures, optInFeatures));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, interfaceScale, denseExplorer);
+  int get hashCode => Object.hash(runtimeType, interfaceScale, denseExplorer,
+      const DeepCollectionEquality().hash(optInFeatures));
 
   @override
   String toString() {
-    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer)';
+    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer, optInFeatures: $optInFeatures)';
   }
 }
 
@@ -53,7 +57,10 @@ abstract mixin class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) _then) =
       _$SettingsCopyWithImpl;
   @useResult
-  $Res call({double? interfaceScale, bool denseExplorer});
+  $Res call(
+      {double? interfaceScale,
+      bool denseExplorer,
+      Set<FeatureFlags> optInFeatures});
 }
 
 /// @nodoc
@@ -70,6 +77,7 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
   $Res call({
     Object? interfaceScale = freezed,
     Object? denseExplorer = null,
+    Object? optInFeatures = null,
   }) {
     return _then(_self.copyWith(
       interfaceScale: freezed == interfaceScale
@@ -80,6 +88,10 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
           ? _self.denseExplorer
           : denseExplorer // ignore: cast_nullable_to_non_nullable
               as bool,
+      optInFeatures: null == optInFeatures
+          ? _self.optInFeatures
+          : optInFeatures // ignore: cast_nullable_to_non_nullable
+              as Set<FeatureFlags>,
     ));
   }
 }
@@ -177,13 +189,16 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? interfaceScale, bool denseExplorer)? $default, {
+    TResult Function(double? interfaceScale, bool denseExplorer,
+            Set<FeatureFlags> optInFeatures)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Settings() when $default != null:
-        return $default(_that.interfaceScale, _that.denseExplorer);
+        return $default(
+            _that.interfaceScale, _that.denseExplorer, _that.optInFeatures);
       case _:
         return orElse();
     }
@@ -204,12 +219,15 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? interfaceScale, bool denseExplorer) $default,
+    TResult Function(double? interfaceScale, bool denseExplorer,
+            Set<FeatureFlags> optInFeatures)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Settings():
-        return $default(_that.interfaceScale, _that.denseExplorer);
+        return $default(
+            _that.interfaceScale, _that.denseExplorer, _that.optInFeatures);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -229,12 +247,15 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(double? interfaceScale, bool denseExplorer)? $default,
+    TResult? Function(double? interfaceScale, bool denseExplorer,
+            Set<FeatureFlags> optInFeatures)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Settings() when $default != null:
-        return $default(_that.interfaceScale, _that.denseExplorer);
+        return $default(
+            _that.interfaceScale, _that.denseExplorer, _that.optInFeatures);
       case _:
         return null;
     }
@@ -244,7 +265,11 @@ extension SettingsPatterns on Settings {
 /// @nodoc
 @JsonSerializable()
 class _Settings implements Settings {
-  const _Settings({required this.interfaceScale, required this.denseExplorer});
+  const _Settings(
+      {required this.interfaceScale,
+      required this.denseExplorer,
+      final Set<FeatureFlags> optInFeatures = const <FeatureFlags>{}})
+      : _optInFeatures = optInFeatures;
   factory _Settings.fromJson(Map<String, dynamic> json) =>
       _$SettingsFromJson(json);
 
@@ -252,6 +277,14 @@ class _Settings implements Settings {
   final double? interfaceScale;
   @override
   final bool denseExplorer;
+  final Set<FeatureFlags> _optInFeatures;
+  @override
+  @JsonKey()
+  Set<FeatureFlags> get optInFeatures {
+    if (_optInFeatures is EqualUnmodifiableSetView) return _optInFeatures;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_optInFeatures);
+  }
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -276,16 +309,19 @@ class _Settings implements Settings {
             (identical(other.interfaceScale, interfaceScale) ||
                 other.interfaceScale == interfaceScale) &&
             (identical(other.denseExplorer, denseExplorer) ||
-                other.denseExplorer == denseExplorer));
+                other.denseExplorer == denseExplorer) &&
+            const DeepCollectionEquality()
+                .equals(other._optInFeatures, _optInFeatures));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, interfaceScale, denseExplorer);
+  int get hashCode => Object.hash(runtimeType, interfaceScale, denseExplorer,
+      const DeepCollectionEquality().hash(_optInFeatures));
 
   @override
   String toString() {
-    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer)';
+    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer, optInFeatures: $optInFeatures)';
   }
 }
 
@@ -296,7 +332,10 @@ abstract mixin class _$SettingsCopyWith<$Res>
       __$SettingsCopyWithImpl;
   @override
   @useResult
-  $Res call({double? interfaceScale, bool denseExplorer});
+  $Res call(
+      {double? interfaceScale,
+      bool denseExplorer,
+      Set<FeatureFlags> optInFeatures});
 }
 
 /// @nodoc
@@ -313,6 +352,7 @@ class __$SettingsCopyWithImpl<$Res> implements _$SettingsCopyWith<$Res> {
   $Res call({
     Object? interfaceScale = freezed,
     Object? denseExplorer = null,
+    Object? optInFeatures = null,
   }) {
     return _then(_Settings(
       interfaceScale: freezed == interfaceScale
@@ -323,6 +363,10 @@ class __$SettingsCopyWithImpl<$Res> implements _$SettingsCopyWith<$Res> {
           ? _self.denseExplorer
           : denseExplorer // ignore: cast_nullable_to_non_nullable
               as bool,
+      optInFeatures: null == optInFeatures
+          ? _self._optInFeatures
+          : optInFeatures // ignore: cast_nullable_to_non_nullable
+              as Set<FeatureFlags>,
     ));
   }
 }

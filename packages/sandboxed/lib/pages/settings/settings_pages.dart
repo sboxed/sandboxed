@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:recase/recase.dart';
+import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/pages/settings/widgets/interface_scale_setting.dart';
 import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed/widgets/sb_bottom_app_bar.dart';
@@ -56,7 +58,47 @@ class SettingsPage extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0)
+                .copyWith(top: 16, bottom: 8),
+            child: Text(
+              "Experimental",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          for (final flag in FeatureFlags.values)
+            Consumer(
+              builder: (context, ref, child) {
+                final optInFeatures = ref
+                    .watch(settingStorageProvider
+                        .select((value) => value.optInFeatures))
+                    .toSet();
+
+                return ListTile(
+                  title: Text(flag.title),
+                  subtitle: Text(flag.description),
+                  trailing: Switch(
+                    value: optInFeatures.contains(flag),
+                    onChanged: (value) {
+                      if (value) {
+                        optInFeatures.add(flag);
+                      } else {
+                        optInFeatures.remove(flag);
+                      }
+
+                      ref
+                          .read(settingStorageProvider.notifier) //
+                          .update(
+                            (current) => current.copyWith(
+                              optInFeatures: optInFeatures,
+                            ),
+                          );
+                    },
+                  ),
+                );
+              },
+            ),
         ],
       ),
     );

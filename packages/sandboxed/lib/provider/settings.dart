@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/experimental/persist.dart';
 import 'package:riverpod_annotation/experimental/json_persist.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/provider/persistence.dart';
 
 part 'settings.freezed.dart';
@@ -12,6 +13,7 @@ abstract class Settings with _$Settings {
   const factory Settings({
     required double? interfaceScale,
     required bool denseExplorer,
+    @Default(<FeatureFlags>{}) Set<FeatureFlags> optInFeatures,
   }) = _Settings;
 
   factory Settings.fromJson(Map<String, dynamic> json) =>
@@ -31,6 +33,7 @@ class SettingStorage extends _$SettingStorage {
     return const Settings(
       interfaceScale: null,
       denseExplorer: false,
+      optInFeatures: {},
     );
   }
 

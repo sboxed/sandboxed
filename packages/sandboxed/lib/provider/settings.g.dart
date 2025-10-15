@@ -9,12 +9,22 @@ part of 'settings.dart';
 _Settings _$SettingsFromJson(Map<String, dynamic> json) => _Settings(
       interfaceScale: (json['interfaceScale'] as num?)?.toDouble(),
       denseExplorer: json['denseExplorer'] as bool,
+      optInFeatures: (json['optInFeatures'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$FeatureFlagsEnumMap, e))
+              .toSet() ??
+          const <FeatureFlags>{},
     );
 
 Map<String, dynamic> _$SettingsToJson(_Settings instance) => <String, dynamic>{
       'interfaceScale': instance.interfaceScale,
       'denseExplorer': instance.denseExplorer,
+      'optInFeatures':
+          instance.optInFeatures.map((e) => _$FeatureFlagsEnumMap[e]!).toList(),
     };
+
+const _$FeatureFlagsEnumMap = {
+  FeatureFlags.elementTreeNext: 'elementTreeNext',
+};
 
 // **************************************************************************
 // RiverpodGenerator
@@ -57,7 +67,7 @@ final class SettingStorageProvider
   }
 }
 
-String _$settingStorageHash() => r'aae089b9c86bb5fd6f1ccaa0ebb10935cbd622bd';
+String _$settingStorageHash() => r'7fb91d299f84104e4df5a19021d7b2072e3534f2';
 
 @JsonPersist()
 abstract class _$SettingStorageBase extends $Notifier<Settings> {

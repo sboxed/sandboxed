@@ -15,6 +15,7 @@ import 'package:sandboxed/provider/component_tree.dart';
 import 'package:sandboxed/provider/params.dart';
 import 'package:sandboxed/provider/persistence.dart';
 import 'package:sandboxed/provider/selected.dart';
+import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed/provider/theme_mode.dart';
 import 'package:sandboxed/provider/title.dart';
 import 'package:sandboxed/router.dart';
@@ -85,7 +86,14 @@ class _SandboxedState extends State<Sandboxed> {
           titleProvider.overrideWithValue(widget.title),
           brandColorProvider.overrideWithValue(widget.brandColor),
           componentsProvider.overrideWithValue(widget.components),
-          featureFlagsProvider.overrideWithValue(widget.flags),
+          featureFlagsProvider.overrideWith(
+            (ref) => {
+              ...widget.flags,
+              ...ref.watch(
+                settingStorageProvider.select((value) => value.optInFeatures),
+              )
+            },
+          ),
           addonListProvider.overrideWith(
             (ref) => [
               ReloadAddon(),
