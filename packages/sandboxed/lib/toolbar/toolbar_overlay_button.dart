@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import 'toolbar_button.dart';
 
 class ToolbarOverlayButton extends StatefulWidget {
+  final Widget child;
+  final ToolbarTooltip? tooltip;
+  final WidgetBuilder overlay;
+  final bool selected;
+
   const ToolbarOverlayButton({
     super.key,
     required this.child,
     required this.overlay,
+    this.selected = false,
     this.tooltip,
   });
-
-  final Widget child;
-  final ToolbarTooltip? tooltip;
-  final WidgetBuilder overlay;
 
   @override
   State<ToolbarOverlayButton> createState() => _ToolbarOverlayButtonState();
@@ -78,6 +80,7 @@ class _ToolbarOverlayButtonState extends State<ToolbarOverlayButton> {
       },
       child: ToolbarButton(
         onPressed: handlePressed,
+        selected: widget.selected,
         tooltip: widget.tooltip,
         child: widget.child,
       ),

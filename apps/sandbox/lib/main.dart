@@ -6,6 +6,7 @@ import 'package:sandboxed/addons/safe_area/safe_area_addon.dart';
 import 'package:sandboxed/addons/screenshot/screenshot_addon.dart';
 import 'package:sandboxed/addons/split_themes/split_themes_addon.dart';
 import 'package:sandboxed/addons/tags/tags_renderer_addon.dart';
+import 'package:sandboxed/addons/time_dilation/time_dilation_addon.dart';
 import 'package:sandboxed/addons/viewport/viewport_addon.dart';
 import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/sandboxed.dart';
@@ -60,7 +61,7 @@ class MainApp extends StatelessWidget {
           InteractiveViewerAddon(constrained: false),
           ViewportAddon(devices: Devices.ios.all),
 
-          // TimeDilationAddon(),
+          TimeDilationAddon(),
           // ThemeAddon<AFIThemeMode>(
           //   {
           //     "System": AFIThemeMode.system,
