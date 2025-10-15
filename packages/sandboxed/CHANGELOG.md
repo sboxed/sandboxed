@@ -1,3 +1,9 @@
+## 0.1.7
+
+ - **FEAT**(layout): introduce panel addons, add right and bottom panel support.
+ - **FEAT**(addons): add time dilation addon.
+ - **FEAT**: add component and story order field for sorting nodes in tree.
+
 ## 0.1.6
 
  - **REFACTOR**: fix all warnings.

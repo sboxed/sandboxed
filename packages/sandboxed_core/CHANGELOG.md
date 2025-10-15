@@ -1,3 +1,7 @@
+## 0.1.5
+
+ - **FEAT**: add component and story order field for sorting nodes in tree.
+
 ## 0.1.4
 
  - **FEAT**: restore iterable type from hint value if provided.

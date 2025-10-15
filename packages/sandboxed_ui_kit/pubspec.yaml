@@ -1,7 +1,7 @@
 name: sandboxed_ui_kit
 description: "A reusable component library for the Sandboxed UI development environment. Includes isolated widgets, themes, and layout utilities for rapid prototyping and testing."
 resolution: workspace
-version: 0.1.3+1
+version: 0.1.3+2
 homepage: https://sboxed.dev/
 
 environment:
@@ -24,7 +24,7 @@ dependencies:
 
   # stories
   faker: ^2.0.0
-  sandboxed_core: ^0.1.4
+  sandboxed_core: ^0.1.5
 
 dev_dependencies:
   flutter_test:
