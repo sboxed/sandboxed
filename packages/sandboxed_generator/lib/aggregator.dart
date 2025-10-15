@@ -187,26 +187,21 @@ class ComponentAggregateBuilder extends Builder {
           Directive.import('package:flutter/material.dart'),
         ]);
 
-        print(components //
-            .sortedBy((it) => it.$1)
-            .map((it) => it.$1)
-            .toList());
-
         library.body.add(
           Method(
             (method) {
               method
                 ..name = 'components'
-                ..lambda = true //
                 ..type = MethodType.getter
+                ..lambda = false
                 ..returns = refer('List<Component>')
                 ..body = literalList(
-                        components //
-                            .sortedBy((it) => it.$1)
-                            .map((it) => it.$2)
-                            .toList(),
-                        refer('Component'))
-                    .code;
+                  components //
+                      .sortedBy((it) => it.$1)
+                      .map((it) => it.$2)
+                      .toList(),
+                  refer('Component'),
+                ).returned.statement;
             },
           ),
         );
@@ -221,7 +216,18 @@ class ComponentAggregateBuilder extends Builder {
 
     String code = library.accept(emitter).toString();
     try {
-      code = DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
+      final currentPackage = buildStep.inputId.package;
+      final dartSdkVersion = packageConfig[currentPackage]?.languageVersion;
+      var formatLanguageVersion = DartFormatter.latestLanguageVersion;
+
+      final lastShortVersion = DartFormatter.latestShortStyleLanguageVersion;
+      if (dartSdkVersion != null &&
+          dartSdkVersion.major <= lastShortVersion.major &&
+          dartSdkVersion.minor <= lastShortVersion.minor) {
+        formatLanguageVersion = DartFormatter.latestShortStyleLanguageVersion;
+      }
+
+      code = DartFormatter(languageVersion: formatLanguageVersion) //
           .format(code);
     } catch (e) {
       print(e);
