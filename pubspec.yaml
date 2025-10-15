@@ -62,7 +62,8 @@ melos:
       packageFilters:
         scope: sandboxed
 
-    test:
-      exec: fvm dart test -p vm
+    test:flutter:
+      exec: fvm flutter test
       packageFilters:
+        flutter: true
         folderExists: test
