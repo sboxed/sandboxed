@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sandboxed/widgets/internal/utility/skip_frame.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:sandboxed_core/src/internal/utility/skip_frame.dart';
 
 class DoubleSliderEditorPresenter extends ValueEditorPresenter<double> {
   final DoubleSliderEditor editor;
@@ -45,6 +45,7 @@ class DoubleSliderEditorWidget extends StatelessWidget {
           // TODO(@melvspace): 10/11/25 for some reason resizable container breaks overlay portals which are used in slider widget
           child: SkipFrame(
             child: Slider(
+              // ignore: deprecated_member_use
               year2023: false,
               label: value.value?.toStringAsFixed(2),
               padding: EdgeInsets.only(right: 16),
@@ -107,6 +108,7 @@ class IntegerSliderEditorWidget extends StatelessWidget {
               // TODO(@melvspace): 10/11/25 for some reason resizable container breaks overlay portals which are used in slider widget
               child: SkipFrame(
                 child: Slider(
+                  // ignore: deprecated_member_use
                   year2023: false,
                   label: value.value.toString(),
                   padding: EdgeInsets.only(right: 16),

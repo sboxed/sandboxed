@@ -59,6 +59,7 @@ final class ScreenshotAddon extends Addon
     try {
       final context = _repaintBoundaryKey.currentContext;
       if (context == null) return;
+      if (!context.mounted) return;
 
       final pixelRatio = MediaQuery.devicePixelRatioOf(context);
       final renderObject = _repaintBoundaryKey.currentContext

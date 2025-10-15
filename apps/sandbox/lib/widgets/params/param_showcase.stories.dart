@@ -273,7 +273,11 @@ class _Complex {
 
 extension on Color {
   String get hex {
-    final string = value.toRadixString(16).replaceRange(0, 2, "");
-    return "#${string.toUpperCase()}, ${opacity * 100}%";
+    final r = (this.r * 255).round().toRadixString(16).padLeft(2, '0');
+    final g = (this.g * 255).round().toRadixString(16).padLeft(2, '0');
+    final b = (this.b * 255).round().toRadixString(16).padLeft(2, '0');
+    final percent = (a * 100).round();
+
+    return '${'#$r$g$b'.toUpperCase()}, $percent%';
   }
 }

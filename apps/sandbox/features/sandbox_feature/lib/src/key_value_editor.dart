@@ -216,7 +216,7 @@ class _NumberEditorState extends State<_NumberEditor> {
   }
 }
 
-/// BOOLEAN
+/// Boolean
 class _BooleanEditor extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
@@ -233,7 +233,7 @@ class _BooleanEditor extends StatelessWidget {
   }
 }
 
-/// OBJECT (Map<String, dynamic>)
+/// Object (Map\<String, dynamic>)
 class _ObjectEditor extends StatefulWidget {
   final Map<String, dynamic> map;
   final ValueChanged<Map<String, dynamic>> onChanged;
@@ -385,7 +385,7 @@ class _ObjectEditorState extends State<_ObjectEditor> {
   }
 }
 
-/// LIST (List<dynamic>)
+/// List (List\<dynamic>)
 class _ListEditor extends StatefulWidget {
   final List<dynamic> list;
   final ValueChanged<List<dynamic>> onChanged;

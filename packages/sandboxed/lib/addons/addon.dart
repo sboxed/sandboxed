@@ -17,8 +17,8 @@ abstract base class Addon extends ChangeNotifier {
   ///
   /// Possible values are:
   /// - Base DartType - bool, int, double, string, etc.
-  /// - List<DartType> - list of objects of base dart type, list or map
-  /// - Map<String, DartType> - map of objects of base dart type, list or map
+  /// - List\<DartType> - list of objects of base dart type, list or map
+  /// - Map\<String, DartType> - map of objects of base dart type, list or map
   void decode(dynamic state) {}
 
   /// Encode state and return difference from initial state.

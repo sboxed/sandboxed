@@ -4,7 +4,7 @@ import 'package:sandboxed/router.gr.dart';
 import 'package:sandboxed/sandboxed.dart';
 
 final kFadeRouteType = CustomRouteType(
-  durationInMilliseconds: 200,
+  duration: Duration(milliseconds: 200),
   transitionsBuilder: (_, animation, __, child) {
     return FadeTransition(
       opacity: CurvedAnimation(parent: animation, curve: Curves.ease),

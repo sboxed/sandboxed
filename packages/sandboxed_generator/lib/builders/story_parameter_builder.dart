@@ -1,4 +1,3 @@
-import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
@@ -32,12 +31,12 @@ class StoryParameterBuilder {
 
   Expression? handleEnumDefaultValue(
     String defaultValue,
-    EnumElement enum$,
+    EnumElement2 enum$,
     Expression? value,
   ) {
-    if (defaultValue.startsWith('${enum$.name}.')) {
+    if (defaultValue.startsWith('${enum$.name3}.')) {
       final parts = defaultValue.split('.').skip(1);
-      value = refer(enum$.name ?? '', enum$.librarySource.uri.toString());
+      value = refer(enum$.name3 ?? '', enum$.library2.uri.toString());
       for (final part in parts) {
         value = value!.property(part);
       }
@@ -49,7 +48,7 @@ class StoryParameterBuilder {
     Expression? value;
 
     if (parameter.defaultValueCode case String defaultValue) {
-      if (parameter.type.element case EnumElement enum$) {
+      if (parameter.type.element3 case EnumElement2 enum$) {
         value = handleEnumDefaultValue(defaultValue, enum$, value);
       } else if (!defaultValue.startsWith('_')) {
         value = CodeExpression(Code(defaultValue));

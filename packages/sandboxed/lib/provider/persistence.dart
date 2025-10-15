@@ -40,7 +40,6 @@ class PathPersistence extends _$PathPersistence {
 }
 
 final class PreferencesStorage extends Storage<String, String> {
-  static const _kVersion = "1";
   static const _prefix = "sandboxed_storage";
 
   final SharedPreferences _preferences;

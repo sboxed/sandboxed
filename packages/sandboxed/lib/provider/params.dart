@@ -102,7 +102,10 @@ class ParamsQuery extends _$ParamsQuery {
           final [key, value] = pair.split(':');
           return MapEntry(key, revive(value));
         } catch (error) {
-          print("WARNING: failed to revive $error\n\t$pair");
+          if (kDebugMode) {
+            print("WARNING: failed to revive $error\n\t$pair");
+          }
+
           return null;
         }
       },

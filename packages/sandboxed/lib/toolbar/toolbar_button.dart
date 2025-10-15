@@ -39,7 +39,7 @@ class ToolbarButton extends StatelessWidget {
         maximumSize: const Size.fromHeight(28),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         backgroundColor: selected //
-            ? Theme.of(context).colorScheme.primary.withOpacity(.5)
+            ? Theme.of(context).colorScheme.primary.withValues(alpha: .5)
             : null,
         alignment: Alignment.center,
       ).copyWith(

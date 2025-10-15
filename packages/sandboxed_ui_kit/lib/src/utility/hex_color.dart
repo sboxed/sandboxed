@@ -43,10 +43,7 @@ abstract final class SvgColor {
 
 extension ToHexX on Color {
   String get hexValue {
-    // TODO(@melvspace): 03/06/25 flutter 3.29.0 version
-    // return '#${toARGB32().toRadixString(16)}';
-
-    return '#${value.toRadixString(16)}';
+    return '#${toARGB32().toRadixString(16)}';
   }
 }
 

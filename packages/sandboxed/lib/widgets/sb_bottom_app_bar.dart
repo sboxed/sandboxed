@@ -42,7 +42,7 @@ class SBBottomAppBar extends ConsumerWidget {
                   final id = ref.read(selectedElementNotifierProvider)!;
 
                   // TODO(@melvspace): 08/21/25 removed parent from ProviderScope, investigate consequences
-                  final scope = ProviderScope.containerOf(context);
+                  // final scope = ProviderScope.containerOf(context);
 
                   showModalBottomSheet(
                     context: context,
