@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
+import 'package:sandboxed_ui_kit/src/theme/theme.dart';
 import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.dart';
 import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile_icons.dart';
 
@@ -14,29 +15,38 @@ Story get $Default => Story(
             child: story,
           ),
         ),
-        Decorator(
-          (context, story) => Card.filled(
-            color: Theme.of(context).colorScheme.surfaceContainerLow,
-            child: story,
-          ),
-        ),
       ],
       builder: (context, params) {
-        return ElementTile(
-          onPressed: params.boolean('enabled').required(true) ? () {} : null,
-          depth: params.integer('depth').required(1).clamp(1, 10),
-          selected: params.boolean('selected').required(false),
-          size: params
-              .single('size', ElementTileSize.values)
-              .required(ElementTileSize.small),
-          tooltip: params
-              .string('tooltip')
-              .required('Pretty tooltip with useful information'),
-          icon: params
-              .single('icon', ElementTileIcons.values)
-              .optional(ElementTileIcons.component)
-              ?.icon,
-          title: Text(params.string('title').required('Element')),
+        return Theme(
+          data: Theme.of(context).copyWith(
+            extensions: [
+              for (final extension in Theme.of(context).extensions.values)
+                if (extension is SandboxedTheme) //
+                  extension.copyWith(
+                    tileTheme: ElementTileThemeData(
+                      dense: params.boolean('dense').required(false),
+                    ),
+                  )
+                else
+                  extension
+            ],
+          ),
+          child: ElementTile(
+            onPressed: params.boolean('enabled').required(true) ? () {} : null,
+            depth: params.integer('depth').required(1).clamp(1, 10),
+            selected: params.boolean('selected').required(false),
+            size: params
+                .single('size', ElementTileSize.values)
+                .required(ElementTileSize.small),
+            tooltip: params
+                .string('tooltip')
+                .required('Pretty tooltip with useful information'),
+            icon: params
+                .single('icon', ElementTileIcons.values)
+                .optional(ElementTileIcons.component)
+                ?.icon,
+            title: Text(params.string('title').required('Element')),
+          ),
         );
       },
     );
@@ -87,7 +97,7 @@ Story get $Tree => Story(
 
         return Column(
           children: [
-            for (final (index, (depth, size, icon)) in nodes.indexed)
+            for (final (index, (depth, size, icon)) in nodes.indexed) ...[
               ElementTile(
                 onPressed: () {},
                 depth: depth,
@@ -101,6 +111,7 @@ Story get $Tree => Story(
                     .words(faker.randomGenerator.integer(3, min: 1))
                     .join(' ')),
               )
+            ]
           ],
         );
       },

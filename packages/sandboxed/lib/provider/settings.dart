@@ -11,6 +11,7 @@ part 'settings.g.dart';
 abstract class Settings with _$Settings {
   const factory Settings({
     required double? interfaceScale,
+    required bool denseExplorer,
   }) = _Settings;
 
   factory Settings.fromJson(Map<String, dynamic> json) =>
@@ -27,7 +28,10 @@ class SettingStorage extends _$SettingStorage {
       options: StorageOptions(cacheTime: StorageCacheTime.unsafe_forever),
     );
 
-    return const Settings(interfaceScale: null);
+    return const Settings(
+      interfaceScale: null,
+      denseExplorer: false,
+    );
   }
 
   void update(Settings Function(Settings current) update) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/provider/component_tree.dart';
 import 'package:sandboxed/provider/selected.dart';
+import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed/sandboxed.dart';
 import 'package:sandboxed/tree/component_tree_node.dart';
 import 'package:sandboxed/widgets/search_bar.dart';
@@ -43,19 +44,21 @@ class _ElementTreeState extends ConsumerState<ElementTree>
                 controller: treeController,
                 prototype: largest,
                 spanBuilder: (TreeViewNode<ElementNode> node) {
-                  return Span(
-                      extent: FixedSpanExtent(
-                    switch (node.content) {
-                      ModuleNode data => switch (data.level) {
-                          1 => 80,
-                          _ => switch (data.index) {
-                              0 => 48,
-                              _ => 64,
-                            }
-                        },
-                      _ => 48,
-                    },
-                  ));
+                  final size = switch (node.content) {
+                    ModuleNode data => switch (data.level) {
+                        1 => ElementTileSize.large,
+                        _ => switch (data.index) {
+                            0 => ElementTileSize.small,
+                            _ => ElementTileSize.medium,
+                          }
+                      },
+                    _ => ElementTileSize.small,
+                  };
+
+                  final height =
+                      ElementTile.computeSizeFor(context, size).height;
+
+                  return Span(extent: FixedSpanExtent(height));
                 },
                 nodeBuilder: (node) {
                   ref.watch(componentTreeNotifierProvider);
@@ -66,56 +69,44 @@ class _ElementTreeState extends ConsumerState<ElementTree>
                     expanded: node.isExpanded,
                   );
 
-                  return SizedBox(
-                    height: switch (node.content) {
+                  return ElementTile(
+                    icon: leading,
+                    title: title,
+                    depth: node.content.level,
+                    selected: ref.watch(selectedElementNotifierProvider) ==
+                        node.content.id,
+                    onPressed: () {
+                      final isLeaf = node.content is StoryNode ||
+                          node.content is DocumentationNode ||
+                          (node.content is ComponentNode &&
+                              [
+                                    ...(node.content as ComponentNode)
+                                        .component
+                                        .stories,
+                                    ...(node.content as ComponentNode)
+                                        .component
+                                        .meta
+                                        .documentation
+                                  ].length <=
+                                  1);
+                      if (isLeaf) {
+                        ref
+                            .read(selectedElementNotifierProvider.notifier)
+                            .select(node.content.id);
+                      } else {
+                        treeController.toggleNode(node);
+                      }
+                    },
+                    size: switch (node.content) {
                       ModuleNode data => switch (data.level) {
-                          1 => 80,
+                          1 => ElementTileSize.large,
                           _ => switch (data.index) {
-                              0 => 48,
-                              _ => 64,
+                              0 => ElementTileSize.small,
+                              _ => ElementTileSize.medium,
                             }
                         },
-                      _ => 48,
+                      _ => ElementTileSize.small,
                     },
-                    child: ElementTile(
-                      icon: leading,
-                      title: title,
-                      depth: node.content.level,
-                      selected: ref.watch(selectedElementNotifierProvider) ==
-                          node.content.id,
-                      onPressed: () {
-                        final isLeaf = node.content is StoryNode ||
-                            node.content is DocumentationNode ||
-                            (node.content is ComponentNode &&
-                                [
-                                      ...(node.content as ComponentNode)
-                                          .component
-                                          .stories,
-                                      ...(node.content as ComponentNode)
-                                          .component
-                                          .meta
-                                          .documentation
-                                    ].length <=
-                                    1);
-                        if (isLeaf) {
-                          ref
-                              .read(selectedElementNotifierProvider.notifier)
-                              .select(node.content.id);
-                        } else {
-                          treeController.toggleNode(node);
-                        }
-                      },
-                      size: switch (node.content) {
-                        ModuleNode data => switch (data.level) {
-                            1 => ElementTileSize.large,
-                            _ => switch (data.index) {
-                                0 => ElementTileSize.small,
-                                _ => ElementTileSize.medium,
-                              }
-                          },
-                        _ => ElementTileSize.small,
-                      },
-                    ),
                   );
                 },
               ),

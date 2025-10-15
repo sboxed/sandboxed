@@ -39,6 +39,24 @@ class SettingsPage extends StatelessWidget {
               );
             },
           ),
+          Consumer(
+            builder: (context, ref, child) {
+              final denseExplorer = ref.watch(settingStorageProvider
+                  .select((value) => value.denseExplorer));
+
+              return ListTile(
+                title: Text("Dense explorer"),
+                trailing: Switch(
+                  value: denseExplorer,
+                  onChanged: (value) => ref
+                      .read(settingStorageProvider.notifier) //
+                      .update(
+                        (current) => current.copyWith(denseExplorer: value),
+                      ),
+                ),
+              );
+            },
+          )
         ],
       ),
     );

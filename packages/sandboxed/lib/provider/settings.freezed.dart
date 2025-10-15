@@ -15,6 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Settings {
   double? get interfaceScale;
+  bool get denseExplorer;
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -32,16 +33,18 @@ mixin _$Settings {
         (other.runtimeType == runtimeType &&
             other is Settings &&
             (identical(other.interfaceScale, interfaceScale) ||
-                other.interfaceScale == interfaceScale));
+                other.interfaceScale == interfaceScale) &&
+            (identical(other.denseExplorer, denseExplorer) ||
+                other.denseExplorer == denseExplorer));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, interfaceScale);
+  int get hashCode => Object.hash(runtimeType, interfaceScale, denseExplorer);
 
   @override
   String toString() {
-    return 'Settings(interfaceScale: $interfaceScale)';
+    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer)';
   }
 }
 
@@ -50,7 +53,7 @@ abstract mixin class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) _then) =
       _$SettingsCopyWithImpl;
   @useResult
-  $Res call({double? interfaceScale});
+  $Res call({double? interfaceScale, bool denseExplorer});
 }
 
 /// @nodoc
@@ -66,12 +69,17 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
   @override
   $Res call({
     Object? interfaceScale = freezed,
+    Object? denseExplorer = null,
   }) {
     return _then(_self.copyWith(
       interfaceScale: freezed == interfaceScale
           ? _self.interfaceScale
           : interfaceScale // ignore: cast_nullable_to_non_nullable
               as double?,
+      denseExplorer: null == denseExplorer
+          ? _self.denseExplorer
+          : denseExplorer // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -169,13 +177,13 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? interfaceScale)? $default, {
+    TResult Function(double? interfaceScale, bool denseExplorer)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Settings() when $default != null:
-        return $default(_that.interfaceScale);
+        return $default(_that.interfaceScale, _that.denseExplorer);
       case _:
         return orElse();
     }
@@ -196,12 +204,12 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? interfaceScale) $default,
+    TResult Function(double? interfaceScale, bool denseExplorer) $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Settings():
-        return $default(_that.interfaceScale);
+        return $default(_that.interfaceScale, _that.denseExplorer);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -221,12 +229,12 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(double? interfaceScale)? $default,
+    TResult? Function(double? interfaceScale, bool denseExplorer)? $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Settings() when $default != null:
-        return $default(_that.interfaceScale);
+        return $default(_that.interfaceScale, _that.denseExplorer);
       case _:
         return null;
     }
@@ -236,12 +244,14 @@ extension SettingsPatterns on Settings {
 /// @nodoc
 @JsonSerializable()
 class _Settings implements Settings {
-  const _Settings({required this.interfaceScale});
+  const _Settings({required this.interfaceScale, required this.denseExplorer});
   factory _Settings.fromJson(Map<String, dynamic> json) =>
       _$SettingsFromJson(json);
 
   @override
   final double? interfaceScale;
+  @override
+  final bool denseExplorer;
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -264,16 +274,18 @@ class _Settings implements Settings {
         (other.runtimeType == runtimeType &&
             other is _Settings &&
             (identical(other.interfaceScale, interfaceScale) ||
-                other.interfaceScale == interfaceScale));
+                other.interfaceScale == interfaceScale) &&
+            (identical(other.denseExplorer, denseExplorer) ||
+                other.denseExplorer == denseExplorer));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, interfaceScale);
+  int get hashCode => Object.hash(runtimeType, interfaceScale, denseExplorer);
 
   @override
   String toString() {
-    return 'Settings(interfaceScale: $interfaceScale)';
+    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer)';
   }
 }
 
@@ -284,7 +296,7 @@ abstract mixin class _$SettingsCopyWith<$Res>
       __$SettingsCopyWithImpl;
   @override
   @useResult
-  $Res call({double? interfaceScale});
+  $Res call({double? interfaceScale, bool denseExplorer});
 }
 
 /// @nodoc
@@ -300,12 +312,17 @@ class __$SettingsCopyWithImpl<$Res> implements _$SettingsCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? interfaceScale = freezed,
+    Object? denseExplorer = null,
   }) {
     return _then(_Settings(
       interfaceScale: freezed == interfaceScale
           ? _self.interfaceScale
           : interfaceScale // ignore: cast_nullable_to_non_nullable
               as double?,
+      denseExplorer: null == denseExplorer
+          ? _self.denseExplorer
+          : denseExplorer // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }

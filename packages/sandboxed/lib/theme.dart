@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sandboxed/provider/brand_color.dart';
+import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 
 const kDrawerTheme = DrawerThemeData(
@@ -32,6 +33,13 @@ SandboxedTheme buildSandboxedTheme(BuildContext context, WidgetRef ref) {
   return SandboxedTheme(
     brandColor: ref.watch(brandColorProvider),
     codeStyle: GoogleFonts.jetBrainsMono(),
+    tileTheme: ElementTileThemeData(
+      dense: ref.watch(
+        settingStorageProvider.select(
+          (value) => value.denseExplorer,
+        ),
+      ),
+    ),
   );
 }
 

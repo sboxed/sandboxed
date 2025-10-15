@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:sandboxed/router.gr.dart';
+import 'package:sandboxed/sandboxed.dart';
 
 final kFadeRouteType = CustomRouteType(
   durationInMilliseconds: 200,
@@ -40,6 +41,32 @@ class AppRouter extends RootStackRouter {
       ),
       AutoRoute(
         path: "/settings",
+        type: CustomRouteType(
+          customRouteBuilder: <T>(context, child, page) {
+            switch (context.breakpoint) {
+              case Breakpoints.mobile:
+                return MaterialPageRoute(
+                  settings: page,
+                  builder: (context) => child,
+                );
+
+              case Breakpoints.desktop:
+                return DialogRoute(
+                  context: context,
+                  settings: page,
+                  builder: (context) {
+                    return LayoutBuilder(
+                      builder: (context, constraints) => Dialog(
+                        constraints: constraints / 2,
+                        clipBehavior: Clip.antiAlias,
+                        child: child,
+                      ),
+                    );
+                  },
+                );
+            }
+          },
+        ),
         page: SettingsRoute.page,
       ),
       RedirectRoute(path: '*', redirectTo: '/'),

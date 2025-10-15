@@ -8,10 +8,12 @@ part of 'settings.dart';
 
 _Settings _$SettingsFromJson(Map<String, dynamic> json) => _Settings(
       interfaceScale: (json['interfaceScale'] as num?)?.toDouble(),
+      denseExplorer: json['denseExplorer'] as bool,
     );
 
 Map<String, dynamic> _$SettingsToJson(_Settings instance) => <String, dynamic>{
       'interfaceScale': instance.interfaceScale,
+      'denseExplorer': instance.denseExplorer,
     };
 
 // **************************************************************************
@@ -55,7 +57,7 @@ final class SettingStorageProvider
   }
 }
 
-String _$settingStorageHash() => r'e044a7be01b587990b08baf71ea93b2bfb7ab6fb';
+String _$settingStorageHash() => r'aae089b9c86bb5fd6f1ccaa0ebb10935cbd622bd';
 
 @JsonPersist()
 abstract class _$SettingStorageBase extends $Notifier<Settings> {
