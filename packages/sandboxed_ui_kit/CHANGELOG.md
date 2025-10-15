@@ -1,3 +1,7 @@
+## 0.1.3
+
+ - **FEAT**(explorer): support dense tree mode.
+
 ## 0.1.2+1
 
  - **DOCS**: ignore LICENSE.md in pub.

@@ -14,10 +14,7 @@ class SandboxDiagramButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color ?? Colors.green,
-        foregroundColor: Colors.white,
-      ),
+      style: ElevatedButton.styleFrom(backgroundColor: color ?? Colors.green, foregroundColor: Colors.white),
       child: Row(
         children: [
           const Icon(Icons.touch_app),

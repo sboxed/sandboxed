@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-10-15
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed` - `v0.1.5`](#sandboxed---v015)
+ - [`sandboxed_generator` - `v0.1.5+2`](#sandboxed_generator---v0152)
+ - [`sandboxed_ui_kit` - `v0.1.3`](#sandboxed_ui_kit---v013)
+
+---
+
+#### `sandboxed` - `v0.1.5`
+
+ - **FIX**: fix splitted theme addon error in apps without theme.
+ - **FEAT**(settings): add feature flags to settings page.
+ - **FEAT**(explorer): support dense tree mode.
+
+#### `sandboxed_generator` - `v0.1.5+2`
+
+ - **FIX**(generator): fix generated code formatted incorrectly.
+
+#### `sandboxed_ui_kit` - `v0.1.3`
+
+ - **FEAT**(explorer): support dense tree mode.
+
+
 ## 2025-10-13
 
 ### Changes

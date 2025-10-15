@@ -1,3 +1,7 @@
+## 0.1.5+2
+
+ - **FIX**(generator): fix generated code formatted incorrectly.
+
 ## 0.1.5+1
 
  - **DOCS**: ignore LICENSE.md in pub.

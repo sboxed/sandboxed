@@ -1,3 +1,9 @@
+## 0.1.5
+
+ - **FIX**: fix splitted theme addon error in apps without theme.
+ - **FEAT**(settings): add feature flags to settings page.
+ - **FEAT**(explorer): support dense tree mode.
+
 ## 0.1.4+1
 
  - **DOCS**: ignore LICENSE.md in pub.
