@@ -2,7 +2,6 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:recase/recase.dart';
 import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/pages/settings/widgets/interface_scale_setting.dart';
 import 'package:sandboxed/provider/settings.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/provider/component_tree.dart';
 import 'package:sandboxed/provider/selected.dart';
-import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed/sandboxed.dart';
 import 'package:sandboxed/tree/component_tree_node.dart';
 import 'package:sandboxed/widgets/search_bar.dart';
