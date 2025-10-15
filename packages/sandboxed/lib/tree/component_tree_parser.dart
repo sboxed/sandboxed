@@ -155,6 +155,8 @@ void sort(Tree tree) {
       ModuleNode _ => 0,
       FolderNode _ => 10,
       DocumentationNode _ => 50,
+      StoryNode node => 1000 + node.story.order,
+      ComponentNode node => node.component.meta.order,
       _ => 1000,
     },
   );

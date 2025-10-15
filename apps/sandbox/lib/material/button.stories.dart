@@ -3,6 +3,7 @@ import 'package:sandboxed/sandboxed.dart';
 
 Meta get meta => Meta<Widget>(
   name: 'Material / Button',
+  order: 100,
 );
 
 Story get $Default => Story(

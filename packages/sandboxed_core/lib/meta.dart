@@ -21,6 +21,7 @@ class Meta<T extends Widget> {
   final List<Decorator> decorators;
 
   final List<String> tags;
+  final int order;
 
   const Meta({
     String? name,
@@ -30,6 +31,7 @@ class Meta<T extends Widget> {
     this.parameters = const {},
     this.decorators = const [],
     this.tags = const [],
+    this.order = 0,
   })  : _name = name,
         _component = component;
 

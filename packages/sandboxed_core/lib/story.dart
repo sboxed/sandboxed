@@ -18,10 +18,10 @@ class Story {
   const Story({
     this.name,
     this.decorators = const [],
-    this.order = 0,
     this.builder = AutomaticBuilder,
     this.params = const {},
     this.tags = const [],
+    this.order = 0,
   });
 
   const Story.apply({
