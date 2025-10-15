@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/inspector/component_inspector.dart';
 import 'package:sandboxed/layout/story_viewport.dart';
 import 'package:sandboxed/provider/params.dart';
+import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed/widgets/sb_bottom_app_bar.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 
@@ -54,6 +55,10 @@ class StoryPage extends ConsumerWidget {
                 return viewport;
 
               case Breakpoints.desktop:
+                final positions = ref.watch(
+                  settingStorageProvider.select((value) => value.positions),
+                );
+
                 return ResizableContainer(
                   direction: Axis.vertical,
                   children: [
@@ -62,20 +67,24 @@ class StoryPage extends ConsumerWidget {
                       divider: buildResizableDivider(context),
                       child: viewport,
                     ),
-                    ResizableChild(
-                      divider: buildResizableDivider(context),
-                      size: ResizableSize.ratio(
-                        1 / 3,
-                        min: 200,
-                        max: constraints.maxHeight * 2 / 3,
-                      ),
-                      child: SizedBox(
-                        height: double.infinity,
-                        child: Card(
-                          child: ComponentInspector(id: id),
+                    if (positions.values.contains(PanelPosition.bottom))
+                      ResizableChild(
+                        divider: buildResizableDivider(context),
+                        size: ResizableSize.ratio(
+                          1 / 3,
+                          min: 200,
+                          max: constraints.maxHeight * 2 / 3,
+                        ),
+                        child: SizedBox(
+                          height: double.infinity,
+                          child: Card(
+                            child: ComponentInspector(
+                              id: id,
+                              position: PanelPosition.bottom,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 );
             }

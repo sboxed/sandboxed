@@ -2,7 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:sandboxed/addons/addon.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
-base mixin EditorAddon on Addon {
+/// Base mixin for addons that want to add custom widgets to the explorer.
+base mixin ExplorerAddon on Addon {
   Widget? visitComponentTitle(
     BuildContext context,
     Component component,

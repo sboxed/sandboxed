@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sandboxed/inspector/addons_inspector.dart';
 import 'package:sandboxed/layout/sandboxed_viewport.dart';
+import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed/widgets/sandboxed_drawer.dart';
 import 'package:sandboxed/widgets/sandboxed_sidebar.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
@@ -22,14 +22,16 @@ class IndexPage extends ConsumerWidget {
             viewport: SandboxedViewport(),
           );
         } else {
-          return const TabletLayout(
+          final positions = ref.watch(
+            settingStorageProvider.select((value) => value.positions),
+          );
+
+          return TabletLayout(
             drawer: SandboxedDrawer(),
             viewport: SandboxedViewport(),
-            sidebar: SandboxedSidebar(
-              tabs: [
-                (Text('Addons'), AddonsInspector()),
-              ],
-            ),
+            sidebar: positions.values.contains(PanelPosition.right) //
+                ? SandboxedSidebar()
+                : null,
           );
         }
       },

@@ -17,6 +17,7 @@ mixin _$Settings {
   double? get interfaceScale;
   bool get denseExplorer;
   Set<FeatureFlags> get optInFeatures;
+  Map<String, PanelPosition> get positions;
 
   /// Create a copy of Settings
   /// with the given fields replaced by the non-null parameter values.
@@ -38,17 +39,22 @@ mixin _$Settings {
             (identical(other.denseExplorer, denseExplorer) ||
                 other.denseExplorer == denseExplorer) &&
             const DeepCollectionEquality()
-                .equals(other.optInFeatures, optInFeatures));
+                .equals(other.optInFeatures, optInFeatures) &&
+            const DeepCollectionEquality().equals(other.positions, positions));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, interfaceScale, denseExplorer,
-      const DeepCollectionEquality().hash(optInFeatures));
+  int get hashCode => Object.hash(
+      runtimeType,
+      interfaceScale,
+      denseExplorer,
+      const DeepCollectionEquality().hash(optInFeatures),
+      const DeepCollectionEquality().hash(positions));
 
   @override
   String toString() {
-    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer, optInFeatures: $optInFeatures)';
+    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer, optInFeatures: $optInFeatures, positions: $positions)';
   }
 }
 
@@ -60,7 +66,8 @@ abstract mixin class $SettingsCopyWith<$Res> {
   $Res call(
       {double? interfaceScale,
       bool denseExplorer,
-      Set<FeatureFlags> optInFeatures});
+      Set<FeatureFlags> optInFeatures,
+      Map<String, PanelPosition> positions});
 }
 
 /// @nodoc
@@ -78,6 +85,7 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
     Object? interfaceScale = freezed,
     Object? denseExplorer = null,
     Object? optInFeatures = null,
+    Object? positions = null,
   }) {
     return _then(_self.copyWith(
       interfaceScale: freezed == interfaceScale
@@ -92,6 +100,10 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
           ? _self.optInFeatures
           : optInFeatures // ignore: cast_nullable_to_non_nullable
               as Set<FeatureFlags>,
+      positions: null == positions
+          ? _self.positions
+          : positions // ignore: cast_nullable_to_non_nullable
+              as Map<String, PanelPosition>,
     ));
   }
 }
@@ -189,16 +201,19 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(double? interfaceScale, bool denseExplorer,
-            Set<FeatureFlags> optInFeatures)?
+    TResult Function(
+            double? interfaceScale,
+            bool denseExplorer,
+            Set<FeatureFlags> optInFeatures,
+            Map<String, PanelPosition> positions)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Settings() when $default != null:
-        return $default(
-            _that.interfaceScale, _that.denseExplorer, _that.optInFeatures);
+        return $default(_that.interfaceScale, _that.denseExplorer,
+            _that.optInFeatures, _that.positions);
       case _:
         return orElse();
     }
@@ -219,15 +234,18 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(double? interfaceScale, bool denseExplorer,
-            Set<FeatureFlags> optInFeatures)
+    TResult Function(
+            double? interfaceScale,
+            bool denseExplorer,
+            Set<FeatureFlags> optInFeatures,
+            Map<String, PanelPosition> positions)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Settings():
-        return $default(
-            _that.interfaceScale, _that.denseExplorer, _that.optInFeatures);
+        return $default(_that.interfaceScale, _that.denseExplorer,
+            _that.optInFeatures, _that.positions);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -247,15 +265,18 @@ extension SettingsPatterns on Settings {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(double? interfaceScale, bool denseExplorer,
-            Set<FeatureFlags> optInFeatures)?
+    TResult? Function(
+            double? interfaceScale,
+            bool denseExplorer,
+            Set<FeatureFlags> optInFeatures,
+            Map<String, PanelPosition> positions)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Settings() when $default != null:
-        return $default(
-            _that.interfaceScale, _that.denseExplorer, _that.optInFeatures);
+        return $default(_that.interfaceScale, _that.denseExplorer,
+            _that.optInFeatures, _that.positions);
       case _:
         return null;
     }
@@ -268,8 +289,11 @@ class _Settings implements Settings {
   const _Settings(
       {required this.interfaceScale,
       required this.denseExplorer,
-      final Set<FeatureFlags> optInFeatures = const <FeatureFlags>{}})
-      : _optInFeatures = optInFeatures;
+      final Set<FeatureFlags> optInFeatures = const <FeatureFlags>{},
+      final Map<String, PanelPosition> positions =
+          const <String, PanelPosition>{}})
+      : _optInFeatures = optInFeatures,
+        _positions = positions;
   factory _Settings.fromJson(Map<String, dynamic> json) =>
       _$SettingsFromJson(json);
 
@@ -284,6 +308,15 @@ class _Settings implements Settings {
     if (_optInFeatures is EqualUnmodifiableSetView) return _optInFeatures;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_optInFeatures);
+  }
+
+  final Map<String, PanelPosition> _positions;
+  @override
+  @JsonKey()
+  Map<String, PanelPosition> get positions {
+    if (_positions is EqualUnmodifiableMapView) return _positions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_positions);
   }
 
   /// Create a copy of Settings
@@ -311,17 +344,23 @@ class _Settings implements Settings {
             (identical(other.denseExplorer, denseExplorer) ||
                 other.denseExplorer == denseExplorer) &&
             const DeepCollectionEquality()
-                .equals(other._optInFeatures, _optInFeatures));
+                .equals(other._optInFeatures, _optInFeatures) &&
+            const DeepCollectionEquality()
+                .equals(other._positions, _positions));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, interfaceScale, denseExplorer,
-      const DeepCollectionEquality().hash(_optInFeatures));
+  int get hashCode => Object.hash(
+      runtimeType,
+      interfaceScale,
+      denseExplorer,
+      const DeepCollectionEquality().hash(_optInFeatures),
+      const DeepCollectionEquality().hash(_positions));
 
   @override
   String toString() {
-    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer, optInFeatures: $optInFeatures)';
+    return 'Settings(interfaceScale: $interfaceScale, denseExplorer: $denseExplorer, optInFeatures: $optInFeatures, positions: $positions)';
   }
 }
 
@@ -335,7 +374,8 @@ abstract mixin class _$SettingsCopyWith<$Res>
   $Res call(
       {double? interfaceScale,
       bool denseExplorer,
-      Set<FeatureFlags> optInFeatures});
+      Set<FeatureFlags> optInFeatures,
+      Map<String, PanelPosition> positions});
 }
 
 /// @nodoc
@@ -353,6 +393,7 @@ class __$SettingsCopyWithImpl<$Res> implements _$SettingsCopyWith<$Res> {
     Object? interfaceScale = freezed,
     Object? denseExplorer = null,
     Object? optInFeatures = null,
+    Object? positions = null,
   }) {
     return _then(_Settings(
       interfaceScale: freezed == interfaceScale
@@ -367,6 +408,10 @@ class __$SettingsCopyWithImpl<$Res> implements _$SettingsCopyWith<$Res> {
           ? _self._optInFeatures
           : optInFeatures // ignore: cast_nullable_to_non_nullable
               as Set<FeatureFlags>,
+      positions: null == positions
+          ? _self._positions
+          : positions // ignore: cast_nullable_to_non_nullable
+              as Map<String, PanelPosition>,
     ));
   }
 }

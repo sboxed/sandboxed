@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:sandboxed/addons/addon.dart';
-import 'package:sandboxed/addons/mixins/editor_addon.dart';
+import 'package:sandboxed/addons/mixins/explorer_addon.dart';
 import 'package:sandboxed/widgets/gap.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
 typedef TagBuilder = Widget? Function(BuildContext context, String tag);
 
-final class TagsRendererAddon extends Addon with EditorAddon {
+final class TagsRendererAddon extends Addon with ExplorerAddon {
   final TagBuilder buildTag;
 
   TagsRendererAddon({required this.buildTag});

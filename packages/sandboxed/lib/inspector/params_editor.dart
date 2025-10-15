@@ -25,83 +25,95 @@ class ParamsEditor extends ConsumerWidget {
     final colors = Theme.of(context).colorScheme;
     final border = BorderSide(color: colors.surfaceContainerHigh);
 
-    return SingleChildScrollView(
-      child: DecoratedBox(
-        decoration: BoxDecoration(border: Border(bottom: border)),
-        child: Table(
-          border: TableBorder.symmetric(inside: border),
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          columnWidths: {
-            if (context.breakpoint == Breakpoints.mobile)
-              1: const FlexColumnWidth(4)
-            else
-              3: const FlexColumnWidth(4),
-          },
-          children: [
-            TableRow(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final small = constraints.maxWidth < 600;
+
+        return SingleChildScrollView(
+          child: DecoratedBox(
+            decoration: BoxDecoration(border: Border(bottom: border)),
+            child: Table(
+              border: TableBorder.symmetric(inside: border),
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              columnWidths: {
+                0: IntrinsicColumnWidth(),
+                if (small)
+                  1: const FlexColumnWidth(4)
+                else
+                  2: const FlexColumnWidth(4),
+              },
               children: [
-                cell(const Text('Name'),
-                    const TextStyle(fontWeight: FontWeight.bold)),
-                if (context.breakpoint != Breakpoints.mobile) ...[
-                  // TODO(@melvspace): 03/30/25 get types at generation step
-                  cell(
-                    const Text('Description'),
-                    const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
-                cell(
-                  Row(
-                    children: [
-                      const Text('Control'),
-                      const Spacer(),
-                      IconButton(
-                          onPressed: () => ref
-                              .read(paramsProvider(
-                                  ref.watch(paramsScopeIdProvider)))
-                              .reset(),
-                          icon: const Icon(Icons.replay))
-                    ],
-                  ),
-                  const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            for (final param in ref
-                .watch(paramsProvider(ref.watch(paramsScopeIdProvider)))
-                .items
-                .entries)
-              TableRow(
-                children: [
-                  cell(
-                    Tooltip(
-                      message: param.key,
-                      waitDuration: const Duration(milliseconds: 250),
-                      child: Text(
-                        param.key,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                  if (context.breakpoint != Breakpoints.mobile) ...[
+                TableRow(
+                  children: [
                     cell(
-                      Text(
-                        switch (param.value.metadata['description']) {
-                          String description
-                              when description.trim().isNotEmpty =>
-                            description.trim(),
-                          _ when !kIsWeb => formatType(param.value),
-                          _ => '-',
-                        },
+                      const Text('Name'),
+                      const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    if (!small) ...[
+                      // TODO(@melvspace): 03/30/25 get types at generation step
+                      cell(
+                        const Text('Description'),
+                        const TextStyle(fontWeight: FontWeight.bold),
                       ),
+                    ],
+                    cell(
+                      Row(
+                        children: [
+                          const Text('Control'),
+                          const Spacer(),
+                          IconButton(
+                              onPressed: () => ref
+                                  .read(paramsProvider(
+                                      ref.watch(paramsScopeIdProvider)))
+                                  .reset(),
+                              icon: const Icon(Icons.replay))
+                        ],
+                      ),
+                      const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
-                  cell(ParamEditorCell(id: param.key, value: param.value)),
-                ],
-              ),
-          ],
-        ),
-      ),
+                ),
+                for (final param in ref
+                    .watch(paramsProvider(ref.watch(paramsScopeIdProvider)))
+                    .items
+                    .entries)
+                  TableRow(
+                    children: [
+                      cell(
+                        Tooltip(
+                          message: param.key,
+                          waitDuration: const Duration(milliseconds: 250),
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 32),
+                            child: Text(
+                              param.key,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+                      if (!small) ...[
+                        cell(
+                          Text(
+                            switch (param.value.metadata['description']) {
+                              String description
+                                  when description.trim().isNotEmpty =>
+                                description.trim(),
+                              _ when !kIsWeb => formatType(param.value),
+                              _ => '-',
+                            },
+                          ),
+                        ),
+                      ],
+                      cell(ParamEditorCell(id: param.key, value: param.value)),
+                    ],
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

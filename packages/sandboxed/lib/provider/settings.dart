@@ -8,12 +8,25 @@ import 'package:sandboxed/provider/persistence.dart';
 part 'settings.freezed.dart';
 part 'settings.g.dart';
 
+enum PanelPosition {
+  bottom,
+  right;
+
+  PanelPosition get opposite {
+    return switch (this) {
+      PanelPosition.bottom => PanelPosition.right,
+      PanelPosition.right => PanelPosition.bottom,
+    };
+  }
+}
+
 @freezed
 abstract class Settings with _$Settings {
   const factory Settings({
     required double? interfaceScale,
     required bool denseExplorer,
     @Default(<FeatureFlags>{}) Set<FeatureFlags> optInFeatures,
+    @Default(<String, PanelPosition>{}) Map<String, PanelPosition> positions,
   }) = _Settings;
 
   factory Settings.fromJson(Map<String, dynamic> json) =>

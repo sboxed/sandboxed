@@ -3,6 +3,7 @@ import 'package:device_frame_plus/device_frame_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sandboxed/addons/mixins/panel_addon.dart';
 import 'package:slugify/slugify.dart';
 import 'package:sandboxed/addons/addon.dart';
 import 'package:sandboxed/addons/interactive_viewer/interactive_viewer_addon.dart';
@@ -44,7 +45,7 @@ class ViewportState with EquatableMixin {
 /// A [DecoratorAddon] for changing the active device/frame. It's based on
 /// the [`device_frame`](https://pub.dev/packages/device_frame) package.
 final class ViewportAddon extends Addon
-    with DecoratorAddon<ViewportState>, ToolbarAddonMixin {
+    with DecoratorAddon<ViewportState>, ToolbarAddonMixin, PanelAddon {
   @override
   String get id => 'viewport';
 
@@ -63,6 +64,13 @@ final class ViewportAddon extends Addon
   final List<DeviceInfo> devices;
 
   @override
+  List<Panel<PanelAddon>> get panels {
+    return [
+      ViewportPanel(this),
+    ];
+  }
+
+  @override
   Widget? buildEditor(BuildContext context) {
     return ListenableBuilder(
       listenable: this,
@@ -76,73 +84,76 @@ final class ViewportAddon extends Addon
               borderRadius: BorderRadius.circular(8),
             ),
             color: Theme.of(context).colorScheme.surfaceContainerHigh,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Devices'),
-                  const Gap(16),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      for (final device in devices)
-                        Consumer(
-                          builder: (context, ref, child) => ChoiceChip(
-                            label: Text(device.name),
-                            selected: value.devices.contains(device),
-                            onSelected: (value) {
-                              this.value = this.value.copyWith(
-                                    devices: value
-                                        ? [...this.value.devices, device]
-                                        : ([...this.value.devices]
-                                          ..remove(device)),
-                                  );
+            child: _buildEditor(context),
+          ),
+        ],
+      ),
+    );
+  }
 
-                              if (this.value.devices.length >= 2) {
-                                ref
-                                    .read(addonsProvider)
-                                    .whereType<InteractiveViewerAddon>()
-                                    .firstOrNull
-                                    ?.value = true;
-                              }
-                            },
-                          ),
-                        ),
-                    ],
+  Widget _buildEditor(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Devices'),
+          const Gap(16),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final device in devices)
+                Consumer(
+                  builder: (context, ref, child) => ChoiceChip(
+                    label: Text(device.name),
+                    selected: value.devices.contains(device),
+                    onSelected: (value) {
+                      this.value = this.value.copyWith(
+                            devices: value
+                                ? [...this.value.devices, device]
+                                : ([...this.value.devices]..remove(device)),
+                          );
+
+                      if (this.value.devices.length >= 2) {
+                        ref
+                            .read(addonsProvider)
+                            .whereType<InteractiveViewerAddon>()
+                            .firstOrNull
+                            ?.value = true;
+                      }
+                    },
                   ),
-                  const Gap(24),
-                  const Text('Orientation'),
-                  const Gap(16),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      for (final orientation in Orientation.values)
-                        ChoiceChip(
-                          label: Text(orientation.name),
-                          selected: value.orientation == orientation,
-                          onSelected: (value) {
-                            if (value) {
-                              this.value =
-                                  this.value.copyWith(orientation: orientation);
-                            }
-                          },
-                        ),
-                    ],
-                  ),
-                  const Gap(24),
-                  const Text('Show Frame'),
-                  const Gap(16),
-                  Switch(
-                    value: value.hasFrame,
-                    onChanged: (value) =>
-                        this.value = this.value.copyWith(hasFrame: value),
-                  ),
-                ],
-              ),
-            ),
+                ),
+            ],
+          ),
+          const Gap(24),
+          const Text('Orientation'),
+          const Gap(16),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final orientation in Orientation.values)
+                ChoiceChip(
+                  label: Text(orientation.name),
+                  selected: value.orientation == orientation,
+                  onSelected: (value) {
+                    if (value) {
+                      this.value =
+                          this.value.copyWith(orientation: orientation);
+                    }
+                  },
+                ),
+            ],
+          ),
+          const Gap(24),
+          const Text('Show Frame'),
+          const Gap(16),
+          Switch(
+            value: value.hasFrame,
+            onChanged: (value) =>
+                this.value = this.value.copyWith(hasFrame: value),
           ),
         ],
       ),
@@ -239,33 +250,7 @@ final class ViewportAddon extends Addon
   }
 
   @override
-  List<Widget> get actions {
-    // const icons = {
-    //   'devices': Icons.devices_other,
-    //   'orientation': Icons.screen_rotation_outlined,
-    //   'frame': Icons.border_style,
-    // };
-
-    return [
-      // const VerticalDivider(),
-      // for (final field in fields)
-      //   ToolbarOverlayButton(
-      //     overlay: (context) => Builder(
-      //       builder: (context) {
-      //         return field.toWidget(
-      //           context,
-      //           groupName,
-      //           field.valueFrom(
-      //               WidgetbookState.of(context).getAddonQueryParams(this)),
-      //         );
-      //       },
-      //     ),
-      //     tooltip: ToolbarTooltip(message: field.name.sentenceCase),
-      //     child: Icon(icons[field.name] ?? Icons.devices),
-      //   ),
-      // const VerticalDivider(),
-    ];
-  }
+  List<Widget> get actions => [];
 
   @override
   Map<String, dynamic> encode() {
@@ -296,5 +281,38 @@ final class ViewportAddon extends Addon
     );
 
     super.decode(state);
+  }
+}
+
+class ViewportPanel extends Panel<ViewportAddon> {
+  const ViewportPanel(super.addon);
+
+  @override
+  String get id => "${addon.id}:viewport";
+
+  @override
+  Widget buildTitle(BuildContext context, Component component, Story story) {
+    return Text("Viewport");
+  }
+
+  @override
+  Widget buildBody(BuildContext context, Component component, Story story) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(child: addon._buildEditor(context)),
+        AnimatedOpacity(
+          opacity: addon.value != addon.initialValue ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 160),
+          child: Padding(
+            padding: EdgeInsets.all(8),
+            child: IconButton(
+              onPressed: () => addon.value = addon.initialValue,
+              icon: const Icon(Icons.replay),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

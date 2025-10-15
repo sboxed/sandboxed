@@ -1,37 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sandboxed/inspector/component_inspector.dart';
+import 'package:sandboxed/provider/selected.dart';
+import 'package:sandboxed/provider/settings.dart';
 
-class SandboxedSidebar extends StatelessWidget {
-  final List<(Widget, Widget)> tabs;
-
-  const SandboxedSidebar({
-    super.key,
-    required this.tabs,
-  });
+class SandboxedSidebar extends ConsumerWidget {
+  const SandboxedSidebar({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 300),
-      child: Card(
-        child: DefaultTabController(
-          length: tabs.length,
-          child: SafeArea(
-            child: Column(
-              children: [
-                TabBar(tabs: [for (final tab in tabs) Tab(child: tab.$1)]),
-                Expanded(
-                  child: PageView(
-                    children: [
-                      for (final tab in tabs) //
-                        tab.$2,
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final id = ref.watch(selectedElementNotifierProvider);
+
+    if (id != null) {
+      return Card(
+        child: ComponentInspector(
+          id: id,
+          position: PanelPosition.right,
         ),
-      ),
-    );
+      );
+    }
+
+    return const SizedBox();
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
-import 'package:sandboxed/addons/mixins/editor_addon.dart';
+import 'package:sandboxed/addons/mixins/explorer_addon.dart';
 import 'package:sandboxed/provider/addons.dart';
 import 'package:sandboxed/sandboxed.dart';
 
@@ -171,12 +171,14 @@ sealed class ElementNode with _$ElementNode {
         );
 
       case FolderNode():
-        return (expanded ?? isExpanded
-                ? ElementTileIcons.folderOpen
-                : ElementTileIcons.folder)
-            .icon;
+        if (expanded ?? isExpanded) {
+          return ElementTileIcons.folderOpen.icon;
+        } else {
+          return ElementTileIcons.folder.icon;
+        }
 
       case ComponentNode(:final component):
+        final addons = ref.watch(addonsProvider).whereType<ExplorerAddon>();
         Widget icon = Tooltip(
           message: [
             'Component',
@@ -189,8 +191,7 @@ sealed class ElementNode with _$ElementNode {
               : ElementTileIcons.component.icon,
         );
 
-        for (final addon
-            in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+        for (final addon in addons) {
           icon = addon.visitComponentIcon(context, component, icon) ?? icon;
         }
 
@@ -204,14 +205,14 @@ sealed class ElementNode with _$ElementNode {
         );
 
       case StoryNode(:final component, :final story):
+        final addons = ref.watch(addonsProvider).whereType<ExplorerAddon>();
         Widget icon = Tooltip(
           message: 'Component Story or Scenario',
           waitDuration: const Duration(milliseconds: 240),
           child: ElementTileIcons.story.icon,
         );
 
-        for (final addon
-            in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+        for (final addon in addons) {
           icon = addon.visitStoryIcon(context, component, story, icon) ?? icon;
         }
 
@@ -225,24 +226,31 @@ sealed class ElementNode with _$ElementNode {
   Widget buildTitle(BuildContext context, WidgetRef ref) {
     switch (this) {
       case ComponentNode(:final component):
+        final addons = ref.watch(addonsProvider).whereType<ExplorerAddon>();
         Widget titleWidget = Text(title);
 
-        for (final addon
-            in ref.watch(addonsProvider).whereType<EditorAddon>()) {
-          titleWidget =
-              addon.visitComponentTitle(context, component, titleWidget) ?? //
-                  titleWidget;
+        for (final addon in addons) {
+          titleWidget = addon.visitComponentTitle(
+                context,
+                component,
+                titleWidget,
+              ) ??
+              titleWidget;
         }
 
         return titleWidget;
 
       case StoryNode(:final component, :final story):
+        final addons = ref.watch(addonsProvider).whereType<ExplorerAddon>();
         Widget titleWidget = Text(title);
 
-        for (final addon
-            in ref.watch(addonsProvider).whereType<EditorAddon>()) {
+        for (final addon in addons) {
           titleWidget = addon.visitStoryTitle(
-                  context, component, story, titleWidget) ?? //
+                context,
+                component,
+                story,
+                titleWidget,
+              ) ??
               titleWidget;
         }
 

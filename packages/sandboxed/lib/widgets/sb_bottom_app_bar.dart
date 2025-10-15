@@ -49,6 +49,7 @@ class SBBottomAppBar extends ConsumerWidget {
                     builder: (context) => ProviderScope(
                       child: ComponentInspector(
                         id: id,
+                        position: null,
                       ),
                     ),
                   );
