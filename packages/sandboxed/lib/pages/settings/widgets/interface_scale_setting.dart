@@ -18,13 +18,6 @@ class _InterfaceScaleSettingState extends State<InterfaceScaleSetting> {
   double? changing;
 
   double normalize(double value) {
-    print([
-      value,
-      value * 100,
-      (value * 100).round(),
-      (value * 100).round() / 100,
-      (((value * 100).round() / 100) * 100).round()
-    ]);
     return (value * 100).round() / 100;
   }
 
