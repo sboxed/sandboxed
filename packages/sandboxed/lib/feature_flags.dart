@@ -8,7 +8,8 @@ It works better than the previous one, but has some issues.
 
 Existing issues:
 - Clunky expand/collapse transition with expanded nested nodes.
-- Exception on collapsing last node - https://github.com/flutter/flutter/issues/164981""",
+- Exception on collapsing last node - [flutter/#164981](https://github.com/flutter/flutter/issues/164981)
+""",
   );
 
   final String title;
