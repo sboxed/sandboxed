@@ -97,9 +97,13 @@ final class PreferencesStorage extends Storage<String, String> {
       _preferences.remove("$_prefix:$key:expire_at");
     }
 
-    _preferences.setString(
-      "$_prefix:$key:destroy",
-      options.destroyKey ?? _kVersion,
-    );
+    if (options.destroyKey != null) {
+      _preferences.setString(
+        "$_prefix:$key:destroy",
+        options.destroyKey!,
+      );
+    } else {
+      _preferences.remove("$_prefix:$key:destroy");
+    }
   }
 }
