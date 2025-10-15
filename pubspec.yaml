@@ -30,6 +30,14 @@ dev_dependencies:
 melos:
   sdkPath: ".fvm/flutter_sdk"
 
+  command:
+    version:
+      hooks:
+        preCommit: |
+          dart format .
+          dart fix --apply
+          git add .
+
   scripts:
     generate:
       exec: fvm dart run build_runner build -d
