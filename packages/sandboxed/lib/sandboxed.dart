@@ -98,9 +98,9 @@ class _SandboxedState extends State<Sandboxed> {
           addonListProvider.overrideWith(
             (ref) => [
               ReloadAddon(),
+              ParamsAddon(),
               ...widget.addons,
               DefaultParamEditorAddon(),
-              ParamsAddon(),
             ],
           ),
         ],
