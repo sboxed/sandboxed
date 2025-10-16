@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sandboxed` - `v0.1.7+1`](#sandboxed---v0171)
+
+---
+
+#### `sandboxed` - `v0.1.7+1`
+
+ - **FIX**(panels): fix panels not visible in initial settings state.
+
+
+## 2025-10-16
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sandboxed` - `v0.1.7`](#sandboxed---v017)
  - [`sandboxed_core` - `v0.1.5`](#sandboxed_core---v015)
  - [`sandboxed_generator` - `v0.1.5+4`](#sandboxed_generator---v0154)

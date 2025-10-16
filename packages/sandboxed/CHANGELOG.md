@@ -1,3 +1,7 @@
+## 0.1.7+1
+
+ - **FIX**(panels): fix panels not visible in initial settings state.
+
 ## 0.1.7
 
  - **FEAT**(layout): introduce panel addons, add right and bottom panel support.
