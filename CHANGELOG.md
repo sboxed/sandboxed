@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sandboxed` - `v0.1.7+2`](#sandboxed---v0172)
+
+---
+
+#### `sandboxed` - `v0.1.7+2`
+
+ - **FIX**(explorer): fix components and modules are shuffled.
+
+
+## 2025-10-16
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sandboxed` - `v0.1.7+1`](#sandboxed---v0171)
 
 ---

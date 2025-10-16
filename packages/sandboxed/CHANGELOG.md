@@ -1,3 +1,7 @@
+## 0.1.7+2
+
+ - **FIX**(explorer): fix components and modules are shuffled.
+
 ## 0.1.7+1
 
  - **FIX**(panels): fix panels not visible in initial settings state.
