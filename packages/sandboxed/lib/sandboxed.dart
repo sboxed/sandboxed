@@ -117,13 +117,13 @@ class _SandboxedState extends State<Sandboxed> {
                 themeMode: ref.watch(themeModeNotifierProvider),
                 theme: widget.theme?.copyWith(
                       extensions: [
-                        SandboxedTheme(brandColor: widget.brandColor),
+                        buildSandboxedTheme(context, ref),
                       ],
                     ) ??
                     buildLightTheme(context, ref),
                 darkTheme: widget.darkTheme?.copyWith(
                       extensions: [
-                        SandboxedTheme(brandColor: widget.brandColor),
+                        buildSandboxedTheme(context, ref),
                       ],
                     ) ??
                     buildDarkTheme(context, ref),
