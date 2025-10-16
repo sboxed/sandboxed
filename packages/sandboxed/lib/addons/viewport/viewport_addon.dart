@@ -92,71 +92,77 @@ final class ViewportAddon extends Addon
   }
 
   Widget _buildEditor(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('Devices'),
-          const Gap(16),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
+    return ListenableBuilder(
+      listenable: this,
+      builder: (context, child) {
+        return Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (final device in devices)
-                Consumer(
-                  builder: (context, ref, child) => ChoiceChip(
-                    label: Text(device.name),
-                    selected: value.devices.contains(device),
-                    onSelected: (value) {
-                      this.value = this.value.copyWith(
-                            devices: value
-                                ? [...this.value.devices, device]
-                                : ([...this.value.devices]..remove(device)),
-                          );
+              const Text('Devices'),
+              const Gap(16),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final device in devices)
+                    Consumer(
+                      builder: (context, ref, child) => ChoiceChip(
+                        label: Text(device.name),
+                        selected: value.devices.contains(device),
+                        onSelected: (value) {
+                          this.value = this.value.copyWith(
+                                devices: value
+                                    ? [...this.value.devices, device]
+                                    : ([...this.value.devices]..remove(device)),
+                              );
 
-                      if (this.value.devices.length >= 2) {
-                        ref
-                            .read(addonsProvider)
-                            .whereType<InteractiveViewerAddon>()
-                            .firstOrNull
-                            ?.value = true;
-                      }
-                    },
-                  ),
-                ),
+                          if (this.value.devices.length >= 2) {
+                            ref
+                                .read(addonsProvider)
+                                .whereType<InteractiveViewerAddon>()
+                                .firstOrNull
+                                ?.value = true;
+                          }
+                        },
+                      ),
+                    ),
+                ],
+              ),
+              const Gap(24),
+              const Text('Orientation'),
+              const Gap(16),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final orientation in Orientation.values)
+                    ChoiceChip(
+                      label: Text(orientation.name),
+                      selected: value.orientation == orientation,
+                      onSelected: (value) {
+                        if (value) {
+                          this.value =
+                              this.value.copyWith(orientation: orientation);
+                        }
+                      },
+                    ),
+                ],
+              ),
+              const Gap(24),
+              const Text('Show Frame'),
+              const Gap(16),
+              Switch(
+                value: value.hasFrame,
+                onChanged: (value) {
+                  this.value = this.value.copyWith(hasFrame: value);
+                },
+              ),
             ],
           ),
-          const Gap(24),
-          const Text('Orientation'),
-          const Gap(16),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final orientation in Orientation.values)
-                ChoiceChip(
-                  label: Text(orientation.name),
-                  selected: value.orientation == orientation,
-                  onSelected: (value) {
-                    if (value) {
-                      this.value =
-                          this.value.copyWith(orientation: orientation);
-                    }
-                  },
-                ),
-            ],
-          ),
-          const Gap(24),
-          const Text('Show Frame'),
-          const Gap(16),
-          Switch(
-            value: value.hasFrame,
-            onChanged: (value) =>
-                this.value = this.value.copyWith(hasFrame: value),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
