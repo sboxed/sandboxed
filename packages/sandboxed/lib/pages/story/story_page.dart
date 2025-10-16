@@ -67,7 +67,8 @@ class StoryPage extends ConsumerWidget {
                       divider: buildResizableDivider(context),
                       child: viewport,
                     ),
-                    if (positions.values.contains(PanelPosition.bottom))
+                    if (positions.values.isEmpty ||
+                        positions.values.contains(PanelPosition.bottom))
                       ResizableChild(
                         divider: buildResizableDivider(context),
                         size: ResizableSize.ratio(

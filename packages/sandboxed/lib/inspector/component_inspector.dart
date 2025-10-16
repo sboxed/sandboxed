@@ -34,6 +34,15 @@ class _ComponentInspectorState extends ConsumerState<ComponentInspector>
     }
   }
 
+  bool checkPosition(Panel panel, PanelPosition? position) {
+    if (widget.position == null) return true;
+    if (widget.position == PanelPosition.bottom && position == null) {
+      return true;
+    }
+
+    return position == widget.position;
+  }
+
   @override
   Widget build(BuildContext context) {
     final addons = ref.watch(
@@ -53,8 +62,7 @@ class _ComponentInspectorState extends ConsumerState<ComponentInspector>
           for (final addon in addons)
             for (final tab in addon.panels) //
               // if (tab.check(component, story)) //
-              if (widget.position == null ||
-                  positions[tab.id] == widget.position) //
+              if (checkPosition(tab, positions[tab.id])) //
                 tab,
       ];
 
