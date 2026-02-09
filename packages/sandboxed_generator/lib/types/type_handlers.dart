@@ -30,6 +30,8 @@ class TypeHandlers {
       DartType type when TypeCheckers.gradient.isAssignableFromType(type) =>
         builder.build('gradient',
             Raw("LinearGradient(colors: [Colors.black, Colors.white])")),
+      DartType type when TypeCheckers.textStyle.isAssignableFromType(type) =>
+        builder.build('textStyle', Raw('TextStyle()')),
       _ => builder.build(type, defaultValueForType(type)),
     };
   }

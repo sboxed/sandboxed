@@ -16,54 +16,57 @@ import 'package:sandboxed_sandbox/widgets/params/flutter_params.stories.dart'
 import 'package:sandboxed_sandbox/widgets/params/flutter_params.dart' as _i6;
 import 'package:flutter/src/painting/alignment.dart' as _i7;
 import 'package:flutter/src/painting/edge_insets.dart' as _i8;
-import 'package:flutter/src/painting/text_style.dart' as _i9;
-import 'package:sandboxed_sandbox/widgets/header.stories.dart' as _i10;
-import 'package:sandboxed_sandbox/widgets/header.dart' as _i11;
+import 'package:sandboxed_sandbox/widgets/header.stories.dart' as _i9;
+import 'package:sandboxed_sandbox/widgets/header.dart' as _i10;
 import 'package:sandboxed_sandbox/cases/navigator_boundary.stories.dart'
-    as _i12;
-import 'package:sandboxed_sandbox/cases/navigator_boundary.dart' as _i13;
+    as _i11;
+import 'package:sandboxed_sandbox/cases/navigator_boundary.dart' as _i12;
 import 'package:sandboxed_sandbox/widgets/nullable_and_required/nullable_and_required_params.stories.dart'
-    as _i14;
+    as _i13;
 import 'package:sandboxed_sandbox/widgets/nullable_and_required/nullable_and_required_params.dart'
-    as _i15;
+    as _i14;
 import 'package:sandboxed_sandbox/widgets/params/param_builder.stories.dart'
-    as _i16;
-import 'package:sandboxed_sandbox/widgets/params/param_builder.dart' as _i17;
-import 'package:sandboxed_core/src/params/param_storage.dart' as _i18;
+    as _i15;
+import 'package:sandboxed_sandbox/widgets/params/param_builder.dart' as _i16;
+import 'package:sandboxed_core/src/params/param_storage.dart' as _i17;
 import 'package:sandboxed_sandbox/widgets/params/param_showcase.stories.dart'
-    as _i19;
-import 'package:sandboxed_sandbox/widgets/params/param_showcase.dart' as _i20;
-import 'package:sandboxed_sandbox/widgets/button.stories.dart' as _i21;
-import 'package:sandboxed_sandbox/widgets/button.dart' as _i22;
-import 'package:flutter/src/widgets/framework.dart' as _i23;
-import 'package:sandboxed_sandbox/widgets/other_format.stories.dart' as _i24;
+    as _i18;
+import 'package:sandboxed_sandbox/widgets/params/param_showcase.dart' as _i19;
+import 'package:sandboxed_sandbox/widgets/button.stories.dart' as _i20;
+import 'package:sandboxed_sandbox/widgets/button.dart' as _i21;
+import 'package:flutter/src/widgets/framework.dart' as _i22;
+import 'package:sandboxed_sandbox/widgets/other_format.stories.dart' as _i23;
 import 'package:sandboxed_sandbox/widgets/tags/tagged_component.stories.dart'
-    as _i25;
-import 'package:sandboxed_sandbox/widgets/tags/tagged_component.dart' as _i26;
+    as _i24;
+import 'package:sandboxed_sandbox/widgets/tags/tagged_component.dart' as _i25;
 import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.stories.dart'
-    as _i27;
-import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.dart' as _i28;
-import 'package:sandbox_feature/difficulty_params.stories.dart' as _i29;
-import 'package:flutter/src/widgets/text.dart' as _i30;
-import 'package:flutter/src/painting/strut_style.dart' as _i31;
-import 'dart:ui' as _i32;
-import 'package:flutter/src/painting/text_painter.dart' as _i33;
-import 'package:flutter/src/painting/text_scaler.dart' as _i34;
-import 'package:sandbox_feature/inline_editor_params.stories.dart' as _i35;
+    as _i26;
+import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.dart' as _i27;
+import 'package:sandbox_feature/difficulty_params.stories.dart' as _i28;
+import 'package:flutter/src/widgets/text.dart' as _i29;
+import 'package:flutter/src/painting/strut_style.dart' as _i30;
+import 'dart:ui' as _i31;
+import 'package:flutter/src/painting/text_painter.dart' as _i32;
+import 'package:flutter/src/painting/text_scaler.dart' as _i33;
+import 'package:sandbox_feature/inline_editor_params.stories.dart' as _i34;
 import 'package:sandboxed_sandbox/widgets/markdown/markdown_documentation.stories.dart'
+    as _i35;
+import 'package:sandboxed_sandbox/widgets/params/text_style_showcase.stories.dart'
     as _i36;
-import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.stories.dart'
+import 'package:sandboxed_sandbox/widgets/params/text_style_showcase.dart'
     as _i37;
-import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.dart'
+import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.stories.dart'
     as _i38;
-import 'package:sandboxed_sandbox/material/button.stories.dart' as _i39;
-import 'package:sandboxed_sandbox/material/color.stories.dart' as _i40;
+import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.dart'
+    as _i39;
+import 'package:sandboxed_sandbox/material/button.stories.dart' as _i40;
+import 'package:sandboxed_sandbox/material/color.stories.dart' as _i41;
 import 'package:sandboxed_sandbox/widgets/automatic/with_enum.stories.dart'
-    as _i41;
-import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i42;
-import 'package:sandboxed_sandbox/data/some_enum.dart' as _i43;
-import 'package:sandboxed_sandbox/widgets/diagrams/button.stories.dart' as _i44;
-import 'package:sandboxed_sandbox/widgets/diagrams/card.stories.dart' as _i45;
+    as _i42;
+import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i43;
+import 'package:sandboxed_sandbox/data/some_enum.dart' as _i44;
+import 'package:sandboxed_sandbox/widgets/diagrams/button.stories.dart' as _i45;
+import 'package:sandboxed_sandbox/widgets/diagrams/card.stories.dart' as _i46;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -136,40 +139,37 @@ List<Component> get components {
                 .any<_i8.EdgeInsets>(r'padding')
                 .editor(ParamEditor<_i8.EdgeInsets>())
                 .default$(),
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .default$(),
+            style: params.textStyle(r'style').required(TextStyle()),
           ),
         ),
       ],
     ),
     Component(
-      meta: _i10.meta,
+      meta: _i9.meta,
       stories: [
-        _i10.$Default.applyGenerated(
+        _i9.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i11.Header.new(key: null),
+          builder: (context, params) => _i10.Header.new(key: null),
         ),
       ],
     ),
     Component(
-      meta: _i12.meta,
+      meta: _i11.meta,
       stories: [
-        _i12.$Default.applyGenerated(
+        _i11.$Default.applyGenerated(
           name: 'Default',
           builder: (context, params) =>
-              _i13.NavigatorBoundaryScenario.new(key: null),
+              _i12.NavigatorBoundaryScenario.new(key: null),
         ),
       ],
     ),
     Component(
-      meta: _i14.meta,
+      meta: _i13.meta,
       stories: [
-        _i14.$Automatic.applyGenerated(
+        _i13.$Automatic.applyGenerated(
           name: 'Automatic',
           builder: (context, params) =>
-              _i15.NullableAndRequiredParamsWidget.new(
+              _i14.NullableAndRequiredParamsWidget.new(
                 key: null,
                 text: params.string(r'text').optional(null),
                 boolean: params.boolean(r'boolean').optional(null),
@@ -183,10 +183,10 @@ List<Component> get components {
                 requiredInteger: params.integer(r'requiredInteger').required(0),
               ),
         ),
-        _i14.$Manual.applyGenerated(
+        _i13.$Manual.applyGenerated(
           name: 'Manual',
           builder: (context, params) =>
-              _i15.NullableAndRequiredParamsWidget.new(
+              _i14.NullableAndRequiredParamsWidget.new(
                 key: null,
                 text: params.string(r'text').optional(null),
                 boolean: params.boolean(r'boolean').optional(null),
@@ -203,334 +203,334 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i16.meta,
+      meta: _i15.meta,
       stories: [
-        _i16.$Default.applyGenerated(
+        _i15.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i17.ParamBuildersSandbox.new(
+          builder: (context, params) => _i16.ParamBuildersSandbox.new(
             key: null,
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
             builder: params
                 .any<
-                  Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
-                    _i18.ParamStorage,
+                  Map<String, List<_i16.ParamShowcaseItem<dynamic>>> Function(
+                    _i17.ParamStorage,
                   )
                 >(r'builder')
                 .editor(
                   ParamEditor<
-                    Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
-                      _i18.ParamStorage,
+                    Map<String, List<_i16.ParamShowcaseItem<dynamic>>> Function(
+                      _i17.ParamStorage,
                     )
                   >(),
                 )
                 .default$(),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
           ),
         ),
-        _i16.$Optional.applyGenerated(
+        _i15.$Optional.applyGenerated(
           name: 'Optional',
-          builder: (context, params) => _i17.ParamBuildersSandbox.new(
+          builder: (context, params) => _i16.ParamBuildersSandbox.new(
             key: null,
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
             builder: params
                 .any<
-                  Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
-                    _i18.ParamStorage,
+                  Map<String, List<_i16.ParamShowcaseItem<dynamic>>> Function(
+                    _i17.ParamStorage,
                   )
                 >(r'builder')
                 .editor(
                   ParamEditor<
-                    Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
-                      _i18.ParamStorage,
+                    Map<String, List<_i16.ParamShowcaseItem<dynamic>>> Function(
+                      _i17.ParamStorage,
                     )
                   >(),
                 )
                 .default$(),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
           ),
         ),
-        _i16.$Required.applyGenerated(
+        _i15.$Required.applyGenerated(
           name: 'Required',
-          builder: (context, params) => _i17.ParamBuildersSandbox.new(
+          builder: (context, params) => _i16.ParamBuildersSandbox.new(
             key: null,
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
             builder: params
                 .any<
-                  Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
-                    _i18.ParamStorage,
+                  Map<String, List<_i16.ParamShowcaseItem<dynamic>>> Function(
+                    _i17.ParamStorage,
                   )
                 >(r'builder')
                 .editor(
                   ParamEditor<
-                    Map<String, List<_i17.ParamShowcaseItem<dynamic>>> Function(
-                      _i18.ParamStorage,
+                    Map<String, List<_i16.ParamShowcaseItem<dynamic>>> Function(
+                      _i17.ParamStorage,
                     )
                   >(),
                 )
                 .default$(),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
           ),
         ),
       ],
     ),
     Component(
-      meta: _i19.meta,
+      meta: _i18.meta,
       stories: [
-        _i19.$Alignment.applyGenerated(
+        _i18.$Alignment.applyGenerated(
           name: 'Alignment',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Boolean.applyGenerated(
+        _i18.$Boolean.applyGenerated(
           name: 'Boolean',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Color.applyGenerated(
+        _i18.$Color.applyGenerated(
           name: 'Color',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$DateTime.applyGenerated(
+        _i18.$DateTime.applyGenerated(
           name: 'Date Time',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Double.applyGenerated(
+        _i18.$Double.applyGenerated(
           name: 'Double',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Duration.applyGenerated(
+        _i18.$Duration.applyGenerated(
           name: 'Duration',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$EdgeInsets.applyGenerated(
+        _i18.$EdgeInsets.applyGenerated(
           name: 'Edge Insets',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Gradient.applyGenerated(
+        _i18.$Gradient.applyGenerated(
           name: 'Gradient',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Integer.applyGenerated(
+        _i18.$Integer.applyGenerated(
           name: 'Integer',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Json.applyGenerated(
+        _i18.$Json.applyGenerated(
           name: 'Json',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Multi.applyGenerated(
+        _i18.$Multi.applyGenerated(
           name: 'Multi',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$Single.applyGenerated(
+        _i18.$Single.applyGenerated(
           name: 'Single',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
-        _i19.$String.applyGenerated(
+        _i18.$String.applyGenerated(
           name: 'String',
-          builder: (context, params) => _i20.ParamShowcase.new(
+          builder: (context, params) => _i19.ParamShowcase.new(
             key: null,
             title: params.string(r'title').required('Text'),
             rows: params
-                .any<List<_i17.ParamShowcaseItem<dynamic>>>(r'rows')
-                .editor(ParamEditor<List<_i17.ParamShowcaseItem<dynamic>>>())
+                .any<List<_i16.ParamShowcaseItem<dynamic>>>(r'rows')
+                .editor(ParamEditor<List<_i16.ParamShowcaseItem<dynamic>>>())
                 .required([]),
             optionality: params
-                .single(r'optionality', _i17.ParamOptionality.values)
-                .required(_i17.ParamOptionality.values.first),
+                .single(r'optionality', _i16.ParamOptionality.values)
+                .required(_i16.ParamOptionality.values.first),
             params: params
-                .any<_i18.ParamStorage>(r'params')
-                .editor(ParamEditor<_i18.ParamStorage>())
+                .any<_i17.ParamStorage>(r'params')
+                .editor(ParamEditor<_i17.ParamStorage>())
                 .default$(),
           ),
         ),
       ],
     ),
     Component(
-      meta: _i21.meta.copyWith(
+      meta: _i20.meta.copyWith(
         documentation: [
-          ..._i21.meta.documentation,
+          ..._i20.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -539,18 +539,18 @@ List<Component> get components {
         ],
       ),
       stories: [
-        _i21.$Blue.applyGenerated(
+        _i20.$Blue.applyGenerated(
           name: 'Blue',
-          builder: (context, params) => _i22.SandboxButton.new(
+          builder: (context, params) => _i21.SandboxButton.new(
             key: null,
             title: params.string(r'title').required('Text'),
             color: params.color(r'color').required(Colors.red),
             size: params
-                .single(r'size', _i22.SandboxButtonSize.values)
-                .required(_i22.SandboxButtonSize.small),
+                .single(r'size', _i21.SandboxButtonSize.values)
+                .required(_i21.SandboxButtonSize.small),
             icon: params
-                .any<_i23.Widget>(r'icon')
-                .editor(ParamEditor<_i23.Widget>())
+                .any<_i22.Widget>(r'icon')
+                .editor(ParamEditor<_i22.Widget>())
                 .optional(null),
             onPressed: params
                 .any<void Function()>(r'onPressed')
@@ -558,18 +558,18 @@ List<Component> get components {
                 .optional(null),
           ),
         ),
-        _i21.$Green.applyGenerated(
+        _i20.$Green.applyGenerated(
           name: 'Green',
-          builder: (context, params) => _i22.SandboxButton.new(
+          builder: (context, params) => _i21.SandboxButton.new(
             key: null,
             title: params.string(r'title').required('Text'),
             color: params.color(r'color').required(Colors.red),
             size: params
-                .single(r'size', _i22.SandboxButtonSize.values)
-                .required(_i22.SandboxButtonSize.small),
+                .single(r'size', _i21.SandboxButtonSize.values)
+                .required(_i21.SandboxButtonSize.small),
             icon: params
-                .any<_i23.Widget>(r'icon')
-                .editor(ParamEditor<_i23.Widget>())
+                .any<_i22.Widget>(r'icon')
+                .editor(ParamEditor<_i22.Widget>())
                 .optional(null),
             onPressed: params
                 .any<void Function()>(r'onPressed')
@@ -577,18 +577,18 @@ List<Component> get components {
                 .optional(null),
           ),
         ),
-        _i21.$Yellow.applyGenerated(
+        _i20.$Yellow.applyGenerated(
           name: 'Yellow',
-          builder: (context, params) => _i22.SandboxButton.new(
+          builder: (context, params) => _i21.SandboxButton.new(
             key: null,
             title: params.string(r'title').required('Text'),
             color: params.color(r'color').required(Colors.red),
             size: params
-                .single(r'size', _i22.SandboxButtonSize.values)
-                .required(_i22.SandboxButtonSize.small),
+                .single(r'size', _i21.SandboxButtonSize.values)
+                .required(_i21.SandboxButtonSize.small),
             icon: params
-                .any<_i23.Widget>(r'icon')
-                .editor(ParamEditor<_i23.Widget>())
+                .any<_i22.Widget>(r'icon')
+                .editor(ParamEditor<_i22.Widget>())
                 .optional(null),
             onPressed: params
                 .any<void Function()>(r'onPressed')
@@ -599,20 +599,20 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i24.meta2,
+      meta: _i23.meta2,
       stories: [
-        _i24.$Blue.applyGenerated(
+        _i23.$Blue.applyGenerated(
           name: 'Blue',
-          builder: (context, params) => _i22.SandboxButton.new(
+          builder: (context, params) => _i21.SandboxButton.new(
             key: null,
             title: params.string(r'title').required('Text'),
             color: params.color(r'color').required(Colors.red),
             size: params
-                .single(r'size', _i22.SandboxButtonSize.values)
-                .required(_i22.SandboxButtonSize.small),
+                .single(r'size', _i21.SandboxButtonSize.values)
+                .required(_i21.SandboxButtonSize.small),
             icon: params
-                .any<_i23.Widget>(r'icon')
-                .editor(ParamEditor<_i23.Widget>())
+                .any<_i22.Widget>(r'icon')
+                .editor(ParamEditor<_i22.Widget>())
                 .optional(null),
             onPressed: params
                 .any<void Function()>(r'onPressed')
@@ -620,18 +620,18 @@ List<Component> get components {
                 .optional(null),
           ),
         ),
-        _i24.$Green.applyGenerated(
+        _i23.$Green.applyGenerated(
           name: 'Green',
-          builder: (context, params) => _i22.SandboxButton.new(
+          builder: (context, params) => _i21.SandboxButton.new(
             key: null,
             title: params.string(r'title').required('Text'),
             color: params.color(r'color').required(Colors.red),
             size: params
-                .single(r'size', _i22.SandboxButtonSize.values)
-                .required(_i22.SandboxButtonSize.small),
+                .single(r'size', _i21.SandboxButtonSize.values)
+                .required(_i21.SandboxButtonSize.small),
             icon: params
-                .any<_i23.Widget>(r'icon')
-                .editor(ParamEditor<_i23.Widget>())
+                .any<_i22.Widget>(r'icon')
+                .editor(ParamEditor<_i22.Widget>())
                 .optional(null),
             onPressed: params
                 .any<void Function()>(r'onPressed')
@@ -642,62 +642,59 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i25.meta,
+      meta: _i24.meta,
       stories: [
-        _i25.$Default.applyGenerated(
+        _i24.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i26.TaggedComponent.new(key: null),
+          builder: (context, params) => _i25.TaggedComponent.new(key: null),
         ),
       ],
     ),
     Component(
-      meta: _i27.meta,
+      meta: _i26.meta,
       stories: [
-        _i27.$Deprecated.applyGenerated(
+        _i26.$Deprecated.applyGenerated(
           name: 'Deprecated',
-          builder: (context, params) => _i28.TaggedStories.new(key: null),
+          builder: (context, params) => _i27.TaggedStories.new(key: null),
         ),
-        _i27.$New.applyGenerated(
+        _i26.$New.applyGenerated(
           name: 'New',
-          builder: (context, params) => _i28.TaggedStories.new(key: null),
+          builder: (context, params) => _i27.TaggedStories.new(key: null),
         ),
       ],
     ),
     Component(
-      meta: _i29.meta,
+      meta: _i28.meta,
       config: Config(module: 'Packages/Sandbox Feature'),
       stories: [
-        _i29.$Default.applyGenerated(
+        _i28.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i30.Text.new(
+          builder: (context, params) => _i29.Text.new(
             params.string(r'data').required('Text'),
             key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .optional(null),
+            style: params.textStyle(r'style').optional(null),
             strutStyle: params
-                .any<_i31.StrutStyle>(r'strutStyle')
-                .editor(ParamEditor<_i31.StrutStyle>())
+                .any<_i30.StrutStyle>(r'strutStyle')
+                .editor(ParamEditor<_i30.StrutStyle>())
                 .optional(null),
             textAlign: params
-                .single(r'textAlign', _i32.TextAlign.values)
+                .single(r'textAlign', _i31.TextAlign.values)
                 .optional(null),
             textDirection: params
-                .single(r'textDirection', _i32.TextDirection.values)
+                .single(r'textDirection', _i31.TextDirection.values)
                 .optional(null),
             locale: params
-                .any<_i32.Locale>(r'locale')
-                .editor(ParamEditor<_i32.Locale>())
+                .any<_i31.Locale>(r'locale')
+                .editor(ParamEditor<_i31.Locale>())
                 .optional(null),
             softWrap: params.boolean(r'softWrap').optional(null),
             overflow: params
-                .single(r'overflow', _i33.TextOverflow.values)
+                .single(r'overflow', _i32.TextOverflow.values)
                 .optional(null),
             textScaleFactor: params.number(r'textScaleFactor').optional(null),
             textScaler: params
-                .any<_i34.TextScaler>(r'textScaler')
-                .editor(ParamEditor<_i34.TextScaler>())
+                .any<_i33.TextScaler>(r'textScaler')
+                .editor(ParamEditor<_i33.TextScaler>())
                 .optional(null),
             maxLines: params.integer(r'maxLines').optional(null),
             semanticsLabel: params.string(r'semanticsLabel').optional(null),
@@ -705,11 +702,11 @@ List<Component> get components {
                 .string(r'semanticsIdentifier')
                 .optional(null),
             textWidthBasis: params
-                .single(r'textWidthBasis', _i33.TextWidthBasis.values)
+                .single(r'textWidthBasis', _i32.TextWidthBasis.values)
                 .optional(null),
             textHeightBehavior: params
-                .any<_i32.TextHeightBehavior>(r'textHeightBehavior')
-                .editor(ParamEditor<_i32.TextHeightBehavior>())
+                .any<_i31.TextHeightBehavior>(r'textHeightBehavior')
+                .editor(ParamEditor<_i31.TextHeightBehavior>())
                 .optional(null),
             selectionColor: params.color(r'selectionColor').optional(null),
           ),
@@ -717,40 +714,37 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i35.meta,
+      meta: _i34.meta,
       config: Config(module: 'Packages/Sandbox Feature'),
       stories: [
-        _i35.$Default.applyGenerated(
+        _i34.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i30.Text.new(
+          builder: (context, params) => _i29.Text.new(
             params.string(r'data').required('Text'),
             key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .optional(null),
+            style: params.textStyle(r'style').optional(null),
             strutStyle: params
-                .any<_i31.StrutStyle>(r'strutStyle')
-                .editor(ParamEditor<_i31.StrutStyle>())
+                .any<_i30.StrutStyle>(r'strutStyle')
+                .editor(ParamEditor<_i30.StrutStyle>())
                 .optional(null),
             textAlign: params
-                .single(r'textAlign', _i32.TextAlign.values)
+                .single(r'textAlign', _i31.TextAlign.values)
                 .optional(null),
             textDirection: params
-                .single(r'textDirection', _i32.TextDirection.values)
+                .single(r'textDirection', _i31.TextDirection.values)
                 .optional(null),
             locale: params
-                .any<_i32.Locale>(r'locale')
-                .editor(ParamEditor<_i32.Locale>())
+                .any<_i31.Locale>(r'locale')
+                .editor(ParamEditor<_i31.Locale>())
                 .optional(null),
             softWrap: params.boolean(r'softWrap').optional(null),
             overflow: params
-                .single(r'overflow', _i33.TextOverflow.values)
+                .single(r'overflow', _i32.TextOverflow.values)
                 .optional(null),
             textScaleFactor: params.number(r'textScaleFactor').optional(null),
             textScaler: params
-                .any<_i34.TextScaler>(r'textScaler')
-                .editor(ParamEditor<_i34.TextScaler>())
+                .any<_i33.TextScaler>(r'textScaler')
+                .editor(ParamEditor<_i33.TextScaler>())
                 .optional(null),
             maxLines: params.integer(r'maxLines').optional(null),
             semanticsLabel: params.string(r'semanticsLabel').optional(null),
@@ -758,11 +752,11 @@ List<Component> get components {
                 .string(r'semanticsIdentifier')
                 .optional(null),
             textWidthBasis: params
-                .single(r'textWidthBasis', _i33.TextWidthBasis.values)
+                .single(r'textWidthBasis', _i32.TextWidthBasis.values)
                 .optional(null),
             textHeightBehavior: params
-                .any<_i32.TextHeightBehavior>(r'textHeightBehavior')
-                .editor(ParamEditor<_i32.TextHeightBehavior>())
+                .any<_i31.TextHeightBehavior>(r'textHeightBehavior')
+                .editor(ParamEditor<_i31.TextHeightBehavior>())
                 .optional(null),
             selectionColor: params.color(r'selectionColor').optional(null),
           ),
@@ -770,9 +764,9 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i36.meta.copyWith(
+      meta: _i35.meta.copyWith(
         documentation: [
-          ..._i36.meta.documentation,
+          ..._i35.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -781,37 +775,34 @@ List<Component> get components {
         ],
       ),
       stories: [
-        _i36.$Default.applyGenerated(
+        _i35.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i30.Text.new(
+          builder: (context, params) => _i29.Text.new(
             params.string(r'data').required('Text'),
             key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .optional(null),
+            style: params.textStyle(r'style').optional(null),
             strutStyle: params
-                .any<_i31.StrutStyle>(r'strutStyle')
-                .editor(ParamEditor<_i31.StrutStyle>())
+                .any<_i30.StrutStyle>(r'strutStyle')
+                .editor(ParamEditor<_i30.StrutStyle>())
                 .optional(null),
             textAlign: params
-                .single(r'textAlign', _i32.TextAlign.values)
+                .single(r'textAlign', _i31.TextAlign.values)
                 .optional(null),
             textDirection: params
-                .single(r'textDirection', _i32.TextDirection.values)
+                .single(r'textDirection', _i31.TextDirection.values)
                 .optional(null),
             locale: params
-                .any<_i32.Locale>(r'locale')
-                .editor(ParamEditor<_i32.Locale>())
+                .any<_i31.Locale>(r'locale')
+                .editor(ParamEditor<_i31.Locale>())
                 .optional(null),
             softWrap: params.boolean(r'softWrap').optional(null),
             overflow: params
-                .single(r'overflow', _i33.TextOverflow.values)
+                .single(r'overflow', _i32.TextOverflow.values)
                 .optional(null),
             textScaleFactor: params.number(r'textScaleFactor').optional(null),
             textScaler: params
-                .any<_i34.TextScaler>(r'textScaler')
-                .editor(ParamEditor<_i34.TextScaler>())
+                .any<_i33.TextScaler>(r'textScaler')
+                .editor(ParamEditor<_i33.TextScaler>())
                 .optional(null),
             maxLines: params.integer(r'maxLines').optional(null),
             semanticsLabel: params.string(r'semanticsLabel').optional(null),
@@ -819,11 +810,11 @@ List<Component> get components {
                 .string(r'semanticsIdentifier')
                 .optional(null),
             textWidthBasis: params
-                .single(r'textWidthBasis', _i33.TextWidthBasis.values)
+                .single(r'textWidthBasis', _i32.TextWidthBasis.values)
                 .optional(null),
             textHeightBehavior: params
-                .any<_i32.TextHeightBehavior>(r'textHeightBehavior')
-                .editor(ParamEditor<_i32.TextHeightBehavior>())
+                .any<_i31.TextHeightBehavior>(r'textHeightBehavior')
+                .editor(ParamEditor<_i31.TextHeightBehavior>())
                 .optional(null),
             selectionColor: params.color(r'selectionColor').optional(null),
           ),
@@ -831,47 +822,75 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i37.meta,
+      meta: _i36.meta,
       stories: [
-        _i37.$Default.applyGenerated(
+        _i36.$Bold.applyGenerated(
+          name: 'Bold',
+          builder: (context, params) => _i37.TextStyleShowcase.new(
+            key: null,
+            style: params.textStyle(r'style').required(TextStyle()),
+          ),
+        ),
+        _i36.$Colorful.applyGenerated(
+          name: 'Colorful',
+          builder: (context, params) => _i37.TextStyleShowcase.new(
+            key: null,
+            style: params.textStyle(r'style').required(TextStyle()),
+          ),
+        ),
+        _i36.$Decorated.applyGenerated(
+          name: 'Decorated',
+          builder: (context, params) => _i37.TextStyleShowcase.new(
+            key: null,
+            style: params.textStyle(r'style').required(TextStyle()),
+          ),
+        ),
+        _i36.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i38.UnsupportedParameters.new(
+          builder: (context, params) => _i37.TextStyleShowcase.new(
             key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .default$(),
+            style: params.textStyle(r'style').required(TextStyle()),
           ),
         ),
-        _i37.$WithBuilder.applyGenerated(
-          name: 'With Builder',
-          builder: (context, params) => _i38.UnsupportedParameters.new(
+        _i36.$Italic.applyGenerated(
+          name: 'Italic',
+          builder: (context, params) => _i37.TextStyleShowcase.new(
             key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .default$(),
+            style: params.textStyle(r'style').required(TextStyle()),
           ),
         ),
-        _i37.$WithParams.applyGenerated(
-          name: 'With Params',
-          builder: (context, params) => _i38.UnsupportedParameters.new(
+        _i36.$Spaced.applyGenerated(
+          name: 'Spaced',
+          builder: (context, params) => _i37.TextStyleShowcase.new(
             key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .default$(),
+            style: params.textStyle(r'style').required(TextStyle()),
           ),
         ),
       ],
     ),
     Component(
-      meta: _i39.meta,
+      meta: _i38.meta,
       stories: [
-        _i39.$Default.applyGenerated(
+        _i38.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) =>
-              throw _i2.AbstractWidgetClassException(),
+          builder: (context, params) => _i39.UnsupportedParameters.new(
+            key: null,
+            style: params.textStyle(r'style').required(TextStyle()),
+          ),
+        ),
+        _i38.$WithBuilder.applyGenerated(
+          name: 'With Builder',
+          builder: (context, params) => _i39.UnsupportedParameters.new(
+            key: null,
+            style: params.textStyle(r'style').required(TextStyle()),
+          ),
+        ),
+        _i38.$WithParams.applyGenerated(
+          name: 'With Params',
+          builder: (context, params) => _i39.UnsupportedParameters.new(
+            key: null,
+            style: params.textStyle(r'style').required(TextStyle()),
+          ),
         ),
       ],
     ),
@@ -890,20 +909,23 @@ List<Component> get components {
       stories: [
         _i41.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i42.WithEnum.new(
-            key: null,
-            enumValue: params
-                .single(r'enumValue', _i43.SomeEnum.values)
-                .required(_i43.SomeEnum.values.first),
-          ),
+          builder: (context, params) =>
+              throw _i2.AbstractWidgetClassException(),
         ),
       ],
     ),
     Component(
-      meta: _i44.meta,
+      meta: _i42.meta,
       stories: [
-        _i44.$Blue.applyGenerated(name: 'Blue'),
-        _i44.$Green.applyGenerated(name: 'Green'),
+        _i42.$Default.applyGenerated(
+          name: 'Default',
+          builder: (context, params) => _i43.WithEnum.new(
+            key: null,
+            enumValue: params
+                .single(r'enumValue', _i44.SomeEnum.values)
+                .required(_i44.SomeEnum.values.first),
+          ),
+        ),
       ],
     ),
     Component(
@@ -911,6 +933,13 @@ List<Component> get components {
       stories: [
         _i45.$Blue.applyGenerated(name: 'Blue'),
         _i45.$Green.applyGenerated(name: 'Green'),
+      ],
+    ),
+    Component(
+      meta: _i46.meta,
+      stories: [
+        _i46.$Blue.applyGenerated(name: 'Blue'),
+        _i46.$Green.applyGenerated(name: 'Green'),
       ],
     ),
   ];

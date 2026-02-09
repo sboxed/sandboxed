@@ -7,4 +7,6 @@ class TypeCheckers {
   static final gradient =
       TypeChecker.fromName('Gradient', packageName: 'flutter');
   static final key = TypeChecker.fromName('Key', packageName: 'flutter');
+  static final textStyle =
+      TypeChecker.fromName('TextStyle', packageName: 'flutter');
 }

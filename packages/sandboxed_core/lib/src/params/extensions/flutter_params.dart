@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
 import 'package:sandboxed_core/src/params/params.dart';
+import 'package:sandboxed_core/src/params/serializers/flutter/text_style_serializer.dart';
 
 extension FlutterParamsX on ParamStorage {
   ParamBuilder<Color> color(String id) {
@@ -101,5 +102,13 @@ extension FlutterParamsX on ParamStorage {
         .store(this)
         .withDefault(LinearGradient(colors: [Colors.green, Colors.red]))
         .editor(ParamEditor<Gradient>());
+  }
+
+  ParamBuilder<TextStyle> textStyle(String id) {
+    return ParamBuilder<TextStyle>(id) //
+        .store(this)
+        .withDefault(TextStyle())
+        .serializable(TextStyleSerializer())
+        .editor(ParamEditor<TextStyle>());
   }
 }

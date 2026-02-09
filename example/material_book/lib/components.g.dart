@@ -12,36 +12,35 @@ import 'package:flutter/src/widgets/preferred_size.dart' as _i4;
 import 'package:flutter/src/widgets/scroll_notification.dart' as _i5;
 import 'package:flutter/src/painting/borders.dart' as _i6;
 import 'package:flutter/src/widgets/icon_theme_data.dart' as _i7;
-import 'package:flutter/src/painting/text_style.dart' as _i8;
-import 'package:flutter/src/services/system_chrome.dart' as _i9;
-import 'dart:ui' as _i10;
-import 'package:flutter/src/painting/edge_insets.dart' as _i11;
-import 'package:material_book/widgets/bottom_app_bar.stories.dart' as _i12;
-import 'package:flutter/src/material/bottom_app_bar.dart' as _i13;
-import 'package:flutter/src/painting/notched_shapes.dart' as _i14;
+import 'package:flutter/src/services/system_chrome.dart' as _i8;
+import 'dart:ui' as _i9;
+import 'package:flutter/src/painting/edge_insets.dart' as _i10;
+import 'package:material_book/widgets/bottom_app_bar.stories.dart' as _i11;
+import 'package:flutter/src/material/bottom_app_bar.dart' as _i12;
+import 'package:flutter/src/painting/notched_shapes.dart' as _i13;
 import 'package:material_book/widgets/bottom_navigation_bar.stories.dart'
-    as _i15;
-import 'package:flutter/src/material/bottom_navigation_bar.dart' as _i16;
-import 'package:flutter/src/widgets/bottom_navigation_bar_item.dart' as _i17;
-import 'package:flutter/src/services/mouse_cursor.dart' as _i18;
-import 'package:material_book/widgets/card.stories.dart' as _i19;
-import 'package:flutter/src/material/card.dart' as _i20;
-import 'package:material_book/widgets/chips.stories.dart' as _i21;
-import 'package:flutter/src/material/chip.dart' as _i22;
-import 'package:flutter/src/widgets/focus_manager.dart' as _i23;
-import 'package:flutter/src/widgets/widget_state.dart' as _i24;
-import 'package:flutter/src/material/theme_data.dart' as _i25;
-import 'package:flutter/src/rendering/box.dart' as _i26;
-import 'package:material_book/icons/material_icons.stories.dart' as _i27;
-import 'package:material_book/icons/material_icons.dart' as _i28;
-import 'package:material_book/widgets/scaffold.stories.dart' as _i29;
-import 'package:flutter/src/material/scaffold.dart' as _i30;
+    as _i14;
+import 'package:flutter/src/material/bottom_navigation_bar.dart' as _i15;
+import 'package:flutter/src/widgets/bottom_navigation_bar_item.dart' as _i16;
+import 'package:flutter/src/services/mouse_cursor.dart' as _i17;
+import 'package:material_book/widgets/card.stories.dart' as _i18;
+import 'package:flutter/src/material/card.dart' as _i19;
+import 'package:material_book/widgets/chips.stories.dart' as _i20;
+import 'package:flutter/src/material/chip.dart' as _i21;
+import 'package:flutter/src/widgets/focus_manager.dart' as _i22;
+import 'package:flutter/src/widgets/widget_state.dart' as _i23;
+import 'package:flutter/src/material/theme_data.dart' as _i24;
+import 'package:flutter/src/rendering/box.dart' as _i25;
+import 'package:material_book/icons/material_icons.stories.dart' as _i26;
+import 'package:material_book/icons/material_icons.dart' as _i27;
+import 'package:material_book/widgets/scaffold.stories.dart' as _i28;
+import 'package:flutter/src/material/scaffold.dart' as _i29;
 import 'package:flutter/src/material/floating_action_button_location.dart'
-    as _i31;
-import 'package:flutter/src/painting/alignment.dart' as _i32;
-import 'package:flutter/src/painting/box_decoration.dart' as _i33;
-import 'package:flutter/src/gestures/recognizer.dart' as _i34;
-import 'package:flutter/src/animation/animation.dart' as _i35;
+    as _i30;
+import 'package:flutter/src/painting/alignment.dart' as _i31;
+import 'package:flutter/src/painting/box_decoration.dart' as _i32;
+import 'package:flutter/src/gestures/recognizer.dart' as _i33;
+import 'package:flutter/src/animation/animation.dart' as _i34;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -126,16 +125,12 @@ List<Component> get components {
             toolbarHeight: params.number(r'toolbarHeight').optional(null),
             leadingWidth: params.number(r'leadingWidth').optional(null),
             toolbarTextStyle: params
-                .any<_i8.TextStyle>(r'toolbarTextStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
+                .textStyle(r'toolbarTextStyle')
                 .optional(null),
-            titleTextStyle: params
-                .any<_i8.TextStyle>(r'titleTextStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
-                .optional(null),
+            titleTextStyle: params.textStyle(r'titleTextStyle').optional(null),
             systemOverlayStyle: params
-                .any<_i9.SystemUiOverlayStyle>(r'systemOverlayStyle')
-                .editor(ParamEditor<_i9.SystemUiOverlayStyle>())
+                .any<_i8.SystemUiOverlayStyle>(r'systemOverlayStyle')
+                .editor(ParamEditor<_i8.SystemUiOverlayStyle>())
                 .optional(null),
             forceMaterialTransparency: params
                 .boolean(r'forceMaterialTransparency')
@@ -144,11 +139,11 @@ List<Component> get components {
                 .boolean(r'useDefaultSemanticsOrder')
                 .required(true),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
+                .single(r'clipBehavior', _i9.Clip.values)
                 .optional(null),
             actionsPadding: params
-                .any<_i11.EdgeInsetsGeometry>(r'actionsPadding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'actionsPadding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             animateColor: params.boolean(r'animateColor').required(false),
           ),
@@ -156,9 +151,9 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i12.meta.copyWith(
+      meta: _i11.meta.copyWith(
         documentation: [
-          ..._i12.meta.documentation,
+          ..._i11.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -167,27 +162,27 @@ List<Component> get components {
         ],
       ),
       stories: [
-        _i12.$Default.applyGenerated(
+        _i11.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i13.BottomAppBar.new(
+          builder: (context, params) => _i12.BottomAppBar.new(
             key: null,
             color: params.color(r'color').optional(null),
             elevation: params.number(r'elevation').optional(null),
             shape: params
-                .any<_i14.NotchedShape>(r'shape')
-                .editor(ParamEditor<_i14.NotchedShape>())
+                .any<_i13.NotchedShape>(r'shape')
+                .editor(ParamEditor<_i13.NotchedShape>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
-                .required(_i10.Clip.none),
+                .single(r'clipBehavior', _i9.Clip.values)
+                .required(_i9.Clip.none),
             notchMargin: params.number(r'notchMargin').required(4.0),
             child: params
                 .any<_i3.Widget>(r'child')
                 .editor(ParamEditor<_i3.Widget>())
                 .optional(null),
             padding: params
-                .any<_i11.EdgeInsetsGeometry>(r'padding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'padding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             surfaceTintColor: params.color(r'surfaceTintColor').optional(null),
             shadowColor: params.color(r'shadowColor').optional(null),
@@ -197,9 +192,9 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i15.meta.copyWith(
+      meta: _i14.meta.copyWith(
         documentation: [
-          ..._i15.meta.documentation,
+          ..._i14.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -208,13 +203,13 @@ List<Component> get components {
         ],
       ),
       stories: [
-        _i15.$Default.applyGenerated(
+        _i14.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i16.BottomNavigationBar.new(
+          builder: (context, params) => _i15.BottomNavigationBar.new(
             key: null,
             items: params
-                .any<List<_i17.BottomNavigationBarItem>>(r'items')
-                .editor(ParamEditor<List<_i17.BottomNavigationBarItem>>())
+                .any<List<_i16.BottomNavigationBarItem>>(r'items')
+                .editor(ParamEditor<List<_i16.BottomNavigationBarItem>>())
                 .required([]),
             onTap: params
                 .any<void Function(int)>(r'onTap')
@@ -223,7 +218,7 @@ List<Component> get components {
             currentIndex: params.integer(r'currentIndex').required(0),
             elevation: params.number(r'elevation').optional(null),
             type: params
-                .single(r'type', _i16.BottomNavigationBarType.values)
+                .single(r'type', _i15.BottomNavigationBarType.values)
                 .optional(null),
             fixedColor: params.color(r'fixedColor').optional(null),
             backgroundColor: params.color(r'backgroundColor').optional(null),
@@ -247,12 +242,10 @@ List<Component> get components {
                 .number(r'unselectedFontSize')
                 .required(12.0),
             selectedLabelStyle: params
-                .any<_i8.TextStyle>(r'selectedLabelStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
+                .textStyle(r'selectedLabelStyle')
                 .optional(null),
             unselectedLabelStyle: params
-                .any<_i8.TextStyle>(r'unselectedLabelStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
+                .textStyle(r'unselectedLabelStyle')
                 .optional(null),
             showSelectedLabels: params
                 .boolean(r'showSelectedLabels')
@@ -261,14 +254,14 @@ List<Component> get components {
                 .boolean(r'showUnselectedLabels')
                 .optional(null),
             mouseCursor: params
-                .any<_i18.MouseCursor>(r'mouseCursor')
-                .editor(ParamEditor<_i18.MouseCursor>())
+                .any<_i17.MouseCursor>(r'mouseCursor')
+                .editor(ParamEditor<_i17.MouseCursor>())
                 .optional(null),
             enableFeedback: params.boolean(r'enableFeedback').optional(null),
             landscapeLayout: params
                 .single(
                   r'landscapeLayout',
-                  _i16.BottomNavigationBarLandscapeLayout.values,
+                  _i15.BottomNavigationBarLandscapeLayout.values,
                 )
                 .optional(null),
             useLegacyColorScheme: params
@@ -279,11 +272,11 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i19.meta,
+      meta: _i18.meta,
       stories: [
-        _i19.$Default.applyGenerated(
+        _i18.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i20.Card.new(
+          builder: (context, params) => _i19.Card.new(
             key: null,
             color: params.color(r'color').optional(null),
             shadowColor: params.color(r'shadowColor').optional(null),
@@ -297,11 +290,11 @@ List<Component> get components {
                 .boolean(r'borderOnForeground')
                 .required(true),
             margin: params
-                .any<_i11.EdgeInsetsGeometry>(r'margin')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'margin')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
+                .single(r'clipBehavior', _i9.Clip.values)
                 .optional(null),
             child: params
                 .any<_i3.Widget>(r'child')
@@ -312,9 +305,9 @@ List<Component> get components {
                 .required(true),
           ),
         ),
-        _i19.$Nested.applyGenerated(
+        _i18.$Nested.applyGenerated(
           name: 'Nested',
-          builder: (context, params) => _i20.Card.new(
+          builder: (context, params) => _i19.Card.new(
             key: null,
             color: params.color(r'color').optional(null),
             shadowColor: params.color(r'shadowColor').optional(null),
@@ -328,11 +321,11 @@ List<Component> get components {
                 .boolean(r'borderOnForeground')
                 .required(true),
             margin: params
-                .any<_i11.EdgeInsetsGeometry>(r'margin')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'margin')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
+                .single(r'clipBehavior', _i9.Clip.values)
                 .optional(null),
             child: params
                 .any<_i3.Widget>(r'child')
@@ -346,9 +339,9 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i21.meta.copyWith(
+      meta: _i20.meta.copyWith(
         documentation: [
-          ..._i21.meta.documentation,
+          ..._i20.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -357,9 +350,9 @@ List<Component> get components {
         ],
       ),
       stories: [
-        _i21.$ActionChip.applyGenerated(
+        _i20.$ActionChip.applyGenerated(
           name: 'Action Chip',
-          builder: (context, params) => _i22.Chip.new(
+          builder: (context, params) => _i21.Chip.new(
             key: null,
             avatar: params
                 .any<_i3.Widget>(r'avatar')
@@ -369,13 +362,10 @@ List<Component> get components {
                 .any<_i3.Widget>(r'label')
                 .editor(ParamEditor<_i3.Widget>())
                 .required(const SizedBox.shrink()),
-            labelStyle: params
-                .any<_i8.TextStyle>(r'labelStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
-                .optional(null),
+            labelStyle: params.textStyle(r'labelStyle').optional(null),
             labelPadding: params
-                .any<_i11.EdgeInsetsGeometry>(r'labelPadding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'labelPadding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             deleteIcon: params
                 .any<_i3.Widget>(r'deleteIcon')
@@ -398,30 +388,30 @@ List<Component> get components {
                 .editor(ParamEditor<_i6.OutlinedBorder>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
-                .required(_i10.Clip.none),
+                .single(r'clipBehavior', _i9.Clip.values)
+                .required(_i9.Clip.none),
             focusNode: params
-                .any<_i23.FocusNode>(r'focusNode')
-                .editor(ParamEditor<_i23.FocusNode>())
+                .any<_i22.FocusNode>(r'focusNode')
+                .editor(ParamEditor<_i22.FocusNode>())
                 .optional(null),
             autofocus: params.boolean(r'autofocus').required(false),
             color: params
-                .any<_i24.WidgetStateProperty<_i10.Color?>>(r'color')
-                .editor(ParamEditor<_i24.WidgetStateProperty<_i10.Color?>>())
+                .any<_i23.WidgetStateProperty<_i9.Color?>>(r'color')
+                .editor(ParamEditor<_i23.WidgetStateProperty<_i9.Color?>>())
                 .optional(null),
             backgroundColor: params.color(r'backgroundColor').optional(null),
             padding: params
-                .any<_i11.EdgeInsetsGeometry>(r'padding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'padding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             visualDensity: params
-                .any<_i25.VisualDensity>(r'visualDensity')
-                .editor(ParamEditor<_i25.VisualDensity>())
+                .any<_i24.VisualDensity>(r'visualDensity')
+                .editor(ParamEditor<_i24.VisualDensity>())
                 .optional(null),
             materialTapTargetSize: params
                 .single(
                   r'materialTapTargetSize',
-                  _i25.MaterialTapTargetSize.values,
+                  _i24.MaterialTapTargetSize.values,
                 )
                 .optional(null),
             elevation: params.number(r'elevation').optional(null),
@@ -432,26 +422,26 @@ List<Component> get components {
                 .editor(ParamEditor<_i7.IconThemeData>())
                 .optional(null),
             avatarBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'avatarBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'avatarBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             deleteIconBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'deleteIconBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             chipAnimationStyle: params
-                .any<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
-                .editor(ParamEditor<_i22.ChipAnimationStyle>())
+                .any<_i21.ChipAnimationStyle>(r'chipAnimationStyle')
+                .editor(ParamEditor<_i21.ChipAnimationStyle>())
                 .optional(null),
             mouseCursor: params
-                .any<_i18.MouseCursor>(r'mouseCursor')
-                .editor(ParamEditor<_i18.MouseCursor>())
+                .any<_i17.MouseCursor>(r'mouseCursor')
+                .editor(ParamEditor<_i17.MouseCursor>())
                 .optional(null),
           ),
         ),
-        _i21.$Chip.applyGenerated(
+        _i20.$Chip.applyGenerated(
           name: 'Chip',
-          builder: (context, params) => _i22.Chip.new(
+          builder: (context, params) => _i21.Chip.new(
             key: null,
             avatar: params
                 .any<_i3.Widget>(r'avatar')
@@ -461,13 +451,10 @@ List<Component> get components {
                 .any<_i3.Widget>(r'label')
                 .editor(ParamEditor<_i3.Widget>())
                 .required(const SizedBox.shrink()),
-            labelStyle: params
-                .any<_i8.TextStyle>(r'labelStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
-                .optional(null),
+            labelStyle: params.textStyle(r'labelStyle').optional(null),
             labelPadding: params
-                .any<_i11.EdgeInsetsGeometry>(r'labelPadding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'labelPadding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             deleteIcon: params
                 .any<_i3.Widget>(r'deleteIcon')
@@ -490,30 +477,30 @@ List<Component> get components {
                 .editor(ParamEditor<_i6.OutlinedBorder>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
-                .required(_i10.Clip.none),
+                .single(r'clipBehavior', _i9.Clip.values)
+                .required(_i9.Clip.none),
             focusNode: params
-                .any<_i23.FocusNode>(r'focusNode')
-                .editor(ParamEditor<_i23.FocusNode>())
+                .any<_i22.FocusNode>(r'focusNode')
+                .editor(ParamEditor<_i22.FocusNode>())
                 .optional(null),
             autofocus: params.boolean(r'autofocus').required(false),
             color: params
-                .any<_i24.WidgetStateProperty<_i10.Color?>>(r'color')
-                .editor(ParamEditor<_i24.WidgetStateProperty<_i10.Color?>>())
+                .any<_i23.WidgetStateProperty<_i9.Color?>>(r'color')
+                .editor(ParamEditor<_i23.WidgetStateProperty<_i9.Color?>>())
                 .optional(null),
             backgroundColor: params.color(r'backgroundColor').optional(null),
             padding: params
-                .any<_i11.EdgeInsetsGeometry>(r'padding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'padding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             visualDensity: params
-                .any<_i25.VisualDensity>(r'visualDensity')
-                .editor(ParamEditor<_i25.VisualDensity>())
+                .any<_i24.VisualDensity>(r'visualDensity')
+                .editor(ParamEditor<_i24.VisualDensity>())
                 .optional(null),
             materialTapTargetSize: params
                 .single(
                   r'materialTapTargetSize',
-                  _i25.MaterialTapTargetSize.values,
+                  _i24.MaterialTapTargetSize.values,
                 )
                 .optional(null),
             elevation: params.number(r'elevation').optional(null),
@@ -524,26 +511,26 @@ List<Component> get components {
                 .editor(ParamEditor<_i7.IconThemeData>())
                 .optional(null),
             avatarBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'avatarBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'avatarBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             deleteIconBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'deleteIconBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             chipAnimationStyle: params
-                .any<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
-                .editor(ParamEditor<_i22.ChipAnimationStyle>())
+                .any<_i21.ChipAnimationStyle>(r'chipAnimationStyle')
+                .editor(ParamEditor<_i21.ChipAnimationStyle>())
                 .optional(null),
             mouseCursor: params
-                .any<_i18.MouseCursor>(r'mouseCursor')
-                .editor(ParamEditor<_i18.MouseCursor>())
+                .any<_i17.MouseCursor>(r'mouseCursor')
+                .editor(ParamEditor<_i17.MouseCursor>())
                 .optional(null),
           ),
         ),
-        _i21.$ChoiceChip.applyGenerated(
+        _i20.$ChoiceChip.applyGenerated(
           name: 'Choice Chip',
-          builder: (context, params) => _i22.Chip.new(
+          builder: (context, params) => _i21.Chip.new(
             key: null,
             avatar: params
                 .any<_i3.Widget>(r'avatar')
@@ -553,13 +540,10 @@ List<Component> get components {
                 .any<_i3.Widget>(r'label')
                 .editor(ParamEditor<_i3.Widget>())
                 .required(const SizedBox.shrink()),
-            labelStyle: params
-                .any<_i8.TextStyle>(r'labelStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
-                .optional(null),
+            labelStyle: params.textStyle(r'labelStyle').optional(null),
             labelPadding: params
-                .any<_i11.EdgeInsetsGeometry>(r'labelPadding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'labelPadding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             deleteIcon: params
                 .any<_i3.Widget>(r'deleteIcon')
@@ -582,30 +566,30 @@ List<Component> get components {
                 .editor(ParamEditor<_i6.OutlinedBorder>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
-                .required(_i10.Clip.none),
+                .single(r'clipBehavior', _i9.Clip.values)
+                .required(_i9.Clip.none),
             focusNode: params
-                .any<_i23.FocusNode>(r'focusNode')
-                .editor(ParamEditor<_i23.FocusNode>())
+                .any<_i22.FocusNode>(r'focusNode')
+                .editor(ParamEditor<_i22.FocusNode>())
                 .optional(null),
             autofocus: params.boolean(r'autofocus').required(false),
             color: params
-                .any<_i24.WidgetStateProperty<_i10.Color?>>(r'color')
-                .editor(ParamEditor<_i24.WidgetStateProperty<_i10.Color?>>())
+                .any<_i23.WidgetStateProperty<_i9.Color?>>(r'color')
+                .editor(ParamEditor<_i23.WidgetStateProperty<_i9.Color?>>())
                 .optional(null),
             backgroundColor: params.color(r'backgroundColor').optional(null),
             padding: params
-                .any<_i11.EdgeInsetsGeometry>(r'padding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'padding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             visualDensity: params
-                .any<_i25.VisualDensity>(r'visualDensity')
-                .editor(ParamEditor<_i25.VisualDensity>())
+                .any<_i24.VisualDensity>(r'visualDensity')
+                .editor(ParamEditor<_i24.VisualDensity>())
                 .optional(null),
             materialTapTargetSize: params
                 .single(
                   r'materialTapTargetSize',
-                  _i25.MaterialTapTargetSize.values,
+                  _i24.MaterialTapTargetSize.values,
                 )
                 .optional(null),
             elevation: params.number(r'elevation').optional(null),
@@ -616,26 +600,26 @@ List<Component> get components {
                 .editor(ParamEditor<_i7.IconThemeData>())
                 .optional(null),
             avatarBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'avatarBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'avatarBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             deleteIconBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'deleteIconBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             chipAnimationStyle: params
-                .any<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
-                .editor(ParamEditor<_i22.ChipAnimationStyle>())
+                .any<_i21.ChipAnimationStyle>(r'chipAnimationStyle')
+                .editor(ParamEditor<_i21.ChipAnimationStyle>())
                 .optional(null),
             mouseCursor: params
-                .any<_i18.MouseCursor>(r'mouseCursor')
-                .editor(ParamEditor<_i18.MouseCursor>())
+                .any<_i17.MouseCursor>(r'mouseCursor')
+                .editor(ParamEditor<_i17.MouseCursor>())
                 .optional(null),
           ),
         ),
-        _i21.$FilterChip.applyGenerated(
+        _i20.$FilterChip.applyGenerated(
           name: 'Filter Chip',
-          builder: (context, params) => _i22.Chip.new(
+          builder: (context, params) => _i21.Chip.new(
             key: null,
             avatar: params
                 .any<_i3.Widget>(r'avatar')
@@ -645,13 +629,10 @@ List<Component> get components {
                 .any<_i3.Widget>(r'label')
                 .editor(ParamEditor<_i3.Widget>())
                 .required(const SizedBox.shrink()),
-            labelStyle: params
-                .any<_i8.TextStyle>(r'labelStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
-                .optional(null),
+            labelStyle: params.textStyle(r'labelStyle').optional(null),
             labelPadding: params
-                .any<_i11.EdgeInsetsGeometry>(r'labelPadding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'labelPadding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             deleteIcon: params
                 .any<_i3.Widget>(r'deleteIcon')
@@ -674,30 +655,30 @@ List<Component> get components {
                 .editor(ParamEditor<_i6.OutlinedBorder>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
-                .required(_i10.Clip.none),
+                .single(r'clipBehavior', _i9.Clip.values)
+                .required(_i9.Clip.none),
             focusNode: params
-                .any<_i23.FocusNode>(r'focusNode')
-                .editor(ParamEditor<_i23.FocusNode>())
+                .any<_i22.FocusNode>(r'focusNode')
+                .editor(ParamEditor<_i22.FocusNode>())
                 .optional(null),
             autofocus: params.boolean(r'autofocus').required(false),
             color: params
-                .any<_i24.WidgetStateProperty<_i10.Color?>>(r'color')
-                .editor(ParamEditor<_i24.WidgetStateProperty<_i10.Color?>>())
+                .any<_i23.WidgetStateProperty<_i9.Color?>>(r'color')
+                .editor(ParamEditor<_i23.WidgetStateProperty<_i9.Color?>>())
                 .optional(null),
             backgroundColor: params.color(r'backgroundColor').optional(null),
             padding: params
-                .any<_i11.EdgeInsetsGeometry>(r'padding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'padding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             visualDensity: params
-                .any<_i25.VisualDensity>(r'visualDensity')
-                .editor(ParamEditor<_i25.VisualDensity>())
+                .any<_i24.VisualDensity>(r'visualDensity')
+                .editor(ParamEditor<_i24.VisualDensity>())
                 .optional(null),
             materialTapTargetSize: params
                 .single(
                   r'materialTapTargetSize',
-                  _i25.MaterialTapTargetSize.values,
+                  _i24.MaterialTapTargetSize.values,
                 )
                 .optional(null),
             elevation: params.number(r'elevation').optional(null),
@@ -708,26 +689,26 @@ List<Component> get components {
                 .editor(ParamEditor<_i7.IconThemeData>())
                 .optional(null),
             avatarBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'avatarBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'avatarBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             deleteIconBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'deleteIconBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             chipAnimationStyle: params
-                .any<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
-                .editor(ParamEditor<_i22.ChipAnimationStyle>())
+                .any<_i21.ChipAnimationStyle>(r'chipAnimationStyle')
+                .editor(ParamEditor<_i21.ChipAnimationStyle>())
                 .optional(null),
             mouseCursor: params
-                .any<_i18.MouseCursor>(r'mouseCursor')
-                .editor(ParamEditor<_i18.MouseCursor>())
+                .any<_i17.MouseCursor>(r'mouseCursor')
+                .editor(ParamEditor<_i17.MouseCursor>())
                 .optional(null),
           ),
         ),
-        _i21.$InputChip.applyGenerated(
+        _i20.$InputChip.applyGenerated(
           name: 'Input Chip',
-          builder: (context, params) => _i22.Chip.new(
+          builder: (context, params) => _i21.Chip.new(
             key: null,
             avatar: params
                 .any<_i3.Widget>(r'avatar')
@@ -737,13 +718,10 @@ List<Component> get components {
                 .any<_i3.Widget>(r'label')
                 .editor(ParamEditor<_i3.Widget>())
                 .required(const SizedBox.shrink()),
-            labelStyle: params
-                .any<_i8.TextStyle>(r'labelStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
-                .optional(null),
+            labelStyle: params.textStyle(r'labelStyle').optional(null),
             labelPadding: params
-                .any<_i11.EdgeInsetsGeometry>(r'labelPadding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'labelPadding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             deleteIcon: params
                 .any<_i3.Widget>(r'deleteIcon')
@@ -766,30 +744,30 @@ List<Component> get components {
                 .editor(ParamEditor<_i6.OutlinedBorder>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
-                .required(_i10.Clip.none),
+                .single(r'clipBehavior', _i9.Clip.values)
+                .required(_i9.Clip.none),
             focusNode: params
-                .any<_i23.FocusNode>(r'focusNode')
-                .editor(ParamEditor<_i23.FocusNode>())
+                .any<_i22.FocusNode>(r'focusNode')
+                .editor(ParamEditor<_i22.FocusNode>())
                 .optional(null),
             autofocus: params.boolean(r'autofocus').required(false),
             color: params
-                .any<_i24.WidgetStateProperty<_i10.Color?>>(r'color')
-                .editor(ParamEditor<_i24.WidgetStateProperty<_i10.Color?>>())
+                .any<_i23.WidgetStateProperty<_i9.Color?>>(r'color')
+                .editor(ParamEditor<_i23.WidgetStateProperty<_i9.Color?>>())
                 .optional(null),
             backgroundColor: params.color(r'backgroundColor').optional(null),
             padding: params
-                .any<_i11.EdgeInsetsGeometry>(r'padding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'padding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             visualDensity: params
-                .any<_i25.VisualDensity>(r'visualDensity')
-                .editor(ParamEditor<_i25.VisualDensity>())
+                .any<_i24.VisualDensity>(r'visualDensity')
+                .editor(ParamEditor<_i24.VisualDensity>())
                 .optional(null),
             materialTapTargetSize: params
                 .single(
                   r'materialTapTargetSize',
-                  _i25.MaterialTapTargetSize.values,
+                  _i24.MaterialTapTargetSize.values,
                 )
                 .optional(null),
             elevation: params.number(r'elevation').optional(null),
@@ -800,26 +778,26 @@ List<Component> get components {
                 .editor(ParamEditor<_i7.IconThemeData>())
                 .optional(null),
             avatarBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'avatarBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'avatarBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             deleteIconBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'deleteIconBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             chipAnimationStyle: params
-                .any<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
-                .editor(ParamEditor<_i22.ChipAnimationStyle>())
+                .any<_i21.ChipAnimationStyle>(r'chipAnimationStyle')
+                .editor(ParamEditor<_i21.ChipAnimationStyle>())
                 .optional(null),
             mouseCursor: params
-                .any<_i18.MouseCursor>(r'mouseCursor')
-                .editor(ParamEditor<_i18.MouseCursor>())
+                .any<_i17.MouseCursor>(r'mouseCursor')
+                .editor(ParamEditor<_i17.MouseCursor>())
                 .optional(null),
           ),
         ),
-        _i21.$Playground.applyGenerated(
+        _i20.$Playground.applyGenerated(
           name: 'Playground',
-          builder: (context, params) => _i22.Chip.new(
+          builder: (context, params) => _i21.Chip.new(
             key: null,
             avatar: params
                 .any<_i3.Widget>(r'avatar')
@@ -829,13 +807,10 @@ List<Component> get components {
                 .any<_i3.Widget>(r'label')
                 .editor(ParamEditor<_i3.Widget>())
                 .required(const SizedBox.shrink()),
-            labelStyle: params
-                .any<_i8.TextStyle>(r'labelStyle')
-                .editor(ParamEditor<_i8.TextStyle>())
-                .optional(null),
+            labelStyle: params.textStyle(r'labelStyle').optional(null),
             labelPadding: params
-                .any<_i11.EdgeInsetsGeometry>(r'labelPadding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'labelPadding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             deleteIcon: params
                 .any<_i3.Widget>(r'deleteIcon')
@@ -858,30 +833,30 @@ List<Component> get components {
                 .editor(ParamEditor<_i6.OutlinedBorder>())
                 .optional(null),
             clipBehavior: params
-                .single(r'clipBehavior', _i10.Clip.values)
-                .required(_i10.Clip.none),
+                .single(r'clipBehavior', _i9.Clip.values)
+                .required(_i9.Clip.none),
             focusNode: params
-                .any<_i23.FocusNode>(r'focusNode')
-                .editor(ParamEditor<_i23.FocusNode>())
+                .any<_i22.FocusNode>(r'focusNode')
+                .editor(ParamEditor<_i22.FocusNode>())
                 .optional(null),
             autofocus: params.boolean(r'autofocus').required(false),
             color: params
-                .any<_i24.WidgetStateProperty<_i10.Color?>>(r'color')
-                .editor(ParamEditor<_i24.WidgetStateProperty<_i10.Color?>>())
+                .any<_i23.WidgetStateProperty<_i9.Color?>>(r'color')
+                .editor(ParamEditor<_i23.WidgetStateProperty<_i9.Color?>>())
                 .optional(null),
             backgroundColor: params.color(r'backgroundColor').optional(null),
             padding: params
-                .any<_i11.EdgeInsetsGeometry>(r'padding')
-                .editor(ParamEditor<_i11.EdgeInsetsGeometry>())
+                .any<_i10.EdgeInsetsGeometry>(r'padding')
+                .editor(ParamEditor<_i10.EdgeInsetsGeometry>())
                 .optional(null),
             visualDensity: params
-                .any<_i25.VisualDensity>(r'visualDensity')
-                .editor(ParamEditor<_i25.VisualDensity>())
+                .any<_i24.VisualDensity>(r'visualDensity')
+                .editor(ParamEditor<_i24.VisualDensity>())
                 .optional(null),
             materialTapTargetSize: params
                 .single(
                   r'materialTapTargetSize',
-                  _i25.MaterialTapTargetSize.values,
+                  _i24.MaterialTapTargetSize.values,
                 )
                 .optional(null),
             elevation: params.number(r'elevation').optional(null),
@@ -892,31 +867,31 @@ List<Component> get components {
                 .editor(ParamEditor<_i7.IconThemeData>())
                 .optional(null),
             avatarBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'avatarBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'avatarBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             deleteIconBoxConstraints: params
-                .any<_i26.BoxConstraints>(r'deleteIconBoxConstraints')
-                .editor(ParamEditor<_i26.BoxConstraints>())
+                .any<_i25.BoxConstraints>(r'deleteIconBoxConstraints')
+                .editor(ParamEditor<_i25.BoxConstraints>())
                 .optional(null),
             chipAnimationStyle: params
-                .any<_i22.ChipAnimationStyle>(r'chipAnimationStyle')
-                .editor(ParamEditor<_i22.ChipAnimationStyle>())
+                .any<_i21.ChipAnimationStyle>(r'chipAnimationStyle')
+                .editor(ParamEditor<_i21.ChipAnimationStyle>())
                 .optional(null),
             mouseCursor: params
-                .any<_i18.MouseCursor>(r'mouseCursor')
-                .editor(ParamEditor<_i18.MouseCursor>())
+                .any<_i17.MouseCursor>(r'mouseCursor')
+                .editor(ParamEditor<_i17.MouseCursor>())
                 .optional(null),
           ),
         ),
       ],
     ),
     Component(
-      meta: _i27.meta,
+      meta: _i26.meta,
       stories: [
-        _i27.$Default.applyGenerated(
+        _i26.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i28.MaterialIcons.new(
+          builder: (context, params) => _i27.MaterialIcons.new(
             key: null,
             size: params.number(r'size').required(24),
           ),
@@ -924,9 +899,9 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i29.meta.copyWith(
+      meta: _i28.meta.copyWith(
         documentation: [
-          ..._i29.meta.documentation,
+          ..._i28.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -935,9 +910,9 @@ List<Component> get components {
         ],
       ),
       stories: [
-        _i29.$Default.applyGenerated(
+        _i28.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i30.Scaffold.new(
+          builder: (context, params) => _i29.Scaffold.new(
             key: null,
             appBar: params
                 .any<_i4.PreferredSizeWidget>(r'appBar')
@@ -952,28 +927,28 @@ List<Component> get components {
                 .editor(ParamEditor<_i3.Widget>())
                 .optional(null),
             floatingActionButtonLocation: params
-                .any<_i31.FloatingActionButtonLocation>(
+                .any<_i30.FloatingActionButtonLocation>(
                   r'floatingActionButtonLocation',
                 )
-                .editor(ParamEditor<_i31.FloatingActionButtonLocation>())
+                .editor(ParamEditor<_i30.FloatingActionButtonLocation>())
                 .optional(null),
             floatingActionButtonAnimator: params
-                .any<_i31.FloatingActionButtonAnimator>(
+                .any<_i30.FloatingActionButtonAnimator>(
                   r'floatingActionButtonAnimator',
                 )
-                .editor(ParamEditor<_i31.FloatingActionButtonAnimator>())
+                .editor(ParamEditor<_i30.FloatingActionButtonAnimator>())
                 .optional(null),
             persistentFooterButtons: params
                 .any<List<_i3.Widget>>(r'persistentFooterButtons')
                 .editor(ParamEditor<List<_i3.Widget>>())
                 .optional(null),
             persistentFooterAlignment: params
-                .any<_i32.AlignmentDirectional>(r'persistentFooterAlignment')
-                .editor(ParamEditor<_i32.AlignmentDirectional>())
+                .any<_i31.AlignmentDirectional>(r'persistentFooterAlignment')
+                .editor(ParamEditor<_i31.AlignmentDirectional>())
                 .required(AlignmentDirectional.centerEnd),
             persistentFooterDecoration: params
-                .any<_i33.BoxDecoration>(r'persistentFooterDecoration')
-                .editor(ParamEditor<_i33.BoxDecoration>())
+                .any<_i32.BoxDecoration>(r'persistentFooterDecoration')
+                .editor(ParamEditor<_i32.BoxDecoration>())
                 .optional(null),
             drawer: params
                 .any<_i3.Widget>(r'drawer')
@@ -1007,9 +982,9 @@ List<Component> get components {
             drawerDragStartBehavior: params
                 .single(
                   r'drawerDragStartBehavior',
-                  _i34.DragStartBehavior.values,
+                  _i33.DragStartBehavior.values,
                 )
-                .required(_i34.DragStartBehavior.start),
+                .required(_i33.DragStartBehavior.start),
             extendBody: params.boolean(r'extendBody').required(false),
             drawerBarrierDismissible: params
                 .boolean(r'drawerBarrierDismissible')
@@ -1020,13 +995,13 @@ List<Component> get components {
             drawerScrimColor: params.color(r'drawerScrimColor').optional(null),
             bottomSheetScrimBuilder: params
                 .any<
-                  _i3.Widget? Function(_i3.BuildContext, _i35.Animation<double>)
+                  _i3.Widget? Function(_i3.BuildContext, _i34.Animation<double>)
                 >(r'bottomSheetScrimBuilder')
                 .editor(
                   ParamEditor<
                     _i3.Widget? Function(
                       _i3.BuildContext,
-                      _i35.Animation<double>,
+                      _i34.Animation<double>,
                     )
                   >(),
                 )

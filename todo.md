@@ -32,7 +32,7 @@
   - [ ] (B) Flutter params
     - [x] Alignment {cm:2025-04-01}
     - [x] EdgeInsets {cm:2025-10-13}
-    - [ ] TextStyle - partially
+    - [x] TextStyle {cm:2025-02-09}
   - [x] (B) Select Field Param {cm:2025-10-13}
   - [x] (B) Multiple Select Field Param {cm:2025-10-13}
   - [x] (B) Multiline Text Param {cm:2025-10-13}
