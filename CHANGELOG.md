@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-02-09
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed` - `v0.1.8`](#sandboxed---v018)
+ - [`sandboxed_generator` - `v0.1.6`](#sandboxed_generator---v016)
+ - [`sandboxed_ui_kit` - `v0.1.3+3`](#sandboxed_ui_kit---v0133)
+
+---
+
+#### `sandboxed` - `v0.1.8`
+
+ - **REFACTOR**: update element imports and adjust OverlayPortal usage in UI components.
+ - **FIX**: fix sandboxed theme is not built if custom theme provided.
+ - **FIX**: change default params addon order.
+ - **FIX**(addons): fix viewport addon editor not updating.
+ - **FEAT**: add Justfile and generate commands for sandboxed packages and apps.
+
+#### `sandboxed_generator` - `v0.1.6`
+
+ - **REFACTOR**: update element imports and adjust OverlayPortal usage in UI components.
+ - **FEAT**: add Justfile and generate commands for sandboxed packages and apps.
+
+#### `sandboxed_ui_kit` - `v0.1.3+3`
+
+ - **REFACTOR**: update element imports and adjust OverlayPortal usage in UI components.
+
+
 ## 2025-10-16
 
 ### Changes

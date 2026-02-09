@@ -1,3 +1,11 @@
+## 0.1.8
+
+ - **REFACTOR**: update element imports and adjust OverlayPortal usage in UI components.
+ - **FIX**: fix sandboxed theme is not built if custom theme provided.
+ - **FIX**: change default params addon order.
+ - **FIX**(addons): fix viewport addon editor not updating.
+ - **FEAT**: add Justfile and generate commands for sandboxed packages and apps.
+
 ## 0.1.7+2
 
  - **FIX**(explorer): fix components and modules are shuffled.

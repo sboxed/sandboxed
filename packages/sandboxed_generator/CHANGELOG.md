@@ -1,3 +1,8 @@
+## 0.1.6
+
+ - **REFACTOR**: update element imports and adjust OverlayPortal usage in UI components.
+ - **FEAT**: add Justfile and generate commands for sandboxed packages and apps.
+
 ## 0.1.5+4
 
  - Update a dependency to the latest release.

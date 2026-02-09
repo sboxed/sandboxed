@@ -1,7 +1,7 @@
 name: sandboxed_generator
 description: "Code generator for Sandboxed components. Automatically creates boilerplate for registering and rendering UI elements in isolation."
 resolution: workspace
-version: 0.1.5+4
+version: 0.1.6
 homepage: https://sboxed.dev/
 
 environment:

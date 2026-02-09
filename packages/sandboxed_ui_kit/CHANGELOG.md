@@ -1,3 +1,7 @@
+## 0.1.3+3
+
+ - **REFACTOR**: update element imports and adjust OverlayPortal usage in UI components.
+
 ## 0.1.3+2
 
  - Update a dependency to the latest release.
