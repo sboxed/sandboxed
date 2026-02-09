@@ -61,3 +61,7 @@ bootstrap:
 
 generate: sandboxed::generate sandbox-app::generate sandboxed-library::generate material-book::generate monorepo::generate
     @echo "Generating code for sandboxed"
+
+release:
+    fvm dart run melos version
+    git push --follow-tags
