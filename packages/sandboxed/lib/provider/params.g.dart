@@ -10,26 +10,24 @@ part of 'params.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(paramsScopeId)
-const paramsScopeIdProvider = ParamsScopeIdProvider._();
+final paramsScopeIdProvider = ParamsScopeIdProvider._();
 
 final class ParamsScopeIdProvider
     extends $FunctionalProvider<String, String, String> with $Provider<String> {
-  const ParamsScopeIdProvider._()
+  ParamsScopeIdProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'paramsScopeIdProvider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[
-            selectedElementNotifierProvider
-          ],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[selectedElementNotifierProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             ParamsScopeIdProvider.$allTransitiveDependencies0,
           ],
         );
 
-  static const $allTransitiveDependencies0 = selectedElementNotifierProvider;
+  static final $allTransitiveDependencies0 = selectedElementNotifierProvider;
 
   @override
   String debugGetCreateSourceHash() => _$paramsScopeIdHash();
@@ -56,11 +54,11 @@ final class ParamsScopeIdProvider
 String _$paramsScopeIdHash() => r'84f5764839e00fba92207393cad65c1b5fe4d362';
 
 @ProviderFor(params)
-const paramsProvider = ParamsFamily._();
+final paramsProvider = ParamsFamily._();
 
 final class ParamsProvider extends $FunctionalProvider<Raw<ParamStorage>,
     Raw<ParamStorage>, Raw<ParamStorage>> with $Provider<Raw<ParamStorage>> {
-  const ParamsProvider._(
+  ParamsProvider._(
       {required ParamsFamily super.from, required String super.argument})
       : super(
           retry: null,
@@ -70,8 +68,8 @@ final class ParamsProvider extends $FunctionalProvider<Raw<ParamStorage>,
           $allTransitiveDependencies: null,
         );
 
-  static const $allTransitiveDependencies0 = addonsProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = addonsProvider;
+  static final $allTransitiveDependencies1 =
       AddonsProvider.$allTransitiveDependencies0;
 
   @override
@@ -122,12 +120,12 @@ String _$paramsHash() => r'1b801339a0688c703b923a9866fb5440b88aca8d';
 
 final class ParamsFamily extends $Family
     with $FunctionalFamilyOverride<Raw<ParamStorage>, String> {
-  const ParamsFamily._()
+  ParamsFamily._()
       : super(
           retry: null,
           name: r'paramsProvider',
-          dependencies: const <ProviderOrFamily>[addonsProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[addonsProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             ParamsProvider.$allTransitiveDependencies0,
             ParamsProvider.$allTransitiveDependencies1,
           ],
@@ -144,11 +142,11 @@ final class ParamsFamily extends $Family
 }
 
 @ProviderFor(ParamsQuery)
-const paramsQueryProvider = ParamsQueryFamily._();
+final paramsQueryProvider = ParamsQueryFamily._();
 
 final class ParamsQueryProvider
     extends $NotifierProvider<ParamsQuery, String?> {
-  const ParamsQueryProvider._(
+  ParamsQueryProvider._(
       {required ParamsQueryFamily super.from, required String super.argument})
       : super(
           retry: null,
@@ -158,10 +156,10 @@ final class ParamsQueryProvider
           $allTransitiveDependencies: null,
         );
 
-  static const $allTransitiveDependencies0 = paramsProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = paramsProvider;
+  static final $allTransitiveDependencies1 =
       ParamsProvider.$allTransitiveDependencies0;
-  static const $allTransitiveDependencies2 =
+  static final $allTransitiveDependencies2 =
       ParamsProvider.$allTransitiveDependencies1;
 
   @override
@@ -201,12 +199,12 @@ String _$paramsQueryHash() => r'c4690b101c287fbbb2f0c8ee2d6996f2fe4b6f95';
 
 final class ParamsQueryFamily extends $Family
     with $ClassFamilyOverride<ParamsQuery, String?, String?, String?, String> {
-  const ParamsQueryFamily._()
+  ParamsQueryFamily._()
       : super(
           retry: null,
           name: r'paramsQueryProvider',
-          dependencies: const <ProviderOrFamily>[paramsProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[paramsProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             ParamsQueryProvider.$allTransitiveDependencies0,
             ParamsQueryProvider.$allTransitiveDependencies1,
             ParamsQueryProvider.$allTransitiveDependencies2,
@@ -233,12 +231,13 @@ abstract class _$ParamsQuery extends $Notifier<String?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(
-      _$args,
-    );
     final ref = this.ref as $Ref<String?, String?>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<String?, String?>, String?, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(
+        ref,
+        () => build(
+              _$args,
+            ));
   }
 }

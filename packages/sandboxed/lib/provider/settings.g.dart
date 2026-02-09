@@ -46,12 +46,12 @@ const _$PanelPositionEnumMap = {
 
 @ProviderFor(SettingStorage)
 @JsonPersist()
-const settingStorageProvider = SettingStorageProvider._();
+final settingStorageProvider = SettingStorageProvider._();
 
 @JsonPersist()
 final class SettingStorageProvider
     extends $NotifierProvider<SettingStorage, Settings> {
-  const SettingStorageProvider._()
+  SettingStorageProvider._()
       : super(
           from: null,
           argument: null,
@@ -86,11 +86,10 @@ abstract class _$SettingStorageBase extends $Notifier<Settings> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<Settings, Settings>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<Settings, Settings>, Settings, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
 

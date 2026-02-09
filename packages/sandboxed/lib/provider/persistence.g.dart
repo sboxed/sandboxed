@@ -10,7 +10,7 @@ part of 'persistence.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(sharedPreferences)
-const sharedPreferencesProvider = SharedPreferencesProvider._();
+final sharedPreferencesProvider = SharedPreferencesProvider._();
 
 final class SharedPreferencesProvider extends $FunctionalProvider<
         AsyncValue<SharedPreferences>,
@@ -19,7 +19,7 @@ final class SharedPreferencesProvider extends $FunctionalProvider<
     with
         $FutureModifier<SharedPreferences>,
         $FutureProvider<SharedPreferences> {
-  const SharedPreferencesProvider._()
+  SharedPreferencesProvider._()
       : super(
           from: null,
           argument: null,
@@ -48,7 +48,7 @@ final class SharedPreferencesProvider extends $FunctionalProvider<
 String _$sharedPreferencesHash() => r'48e60558ea6530114ea20ea03e69b9fb339ab129';
 
 @ProviderFor(storage)
-const storageProvider = StorageProvider._();
+final storageProvider = StorageProvider._();
 
 final class StorageProvider extends $FunctionalProvider<
         AsyncValue<Storage<String, String>>,
@@ -57,7 +57,7 @@ final class StorageProvider extends $FunctionalProvider<
     with
         $FutureModifier<Storage<String, String>>,
         $FutureProvider<Storage<String, String>> {
-  const StorageProvider._()
+  StorageProvider._()
       : super(
           from: null,
           argument: null,
@@ -86,11 +86,11 @@ final class StorageProvider extends $FunctionalProvider<
 String _$storageHash() => r'b392ca78000995a1510c0530054f3d779af15112';
 
 @ProviderFor(PathPersistence)
-const pathPersistenceProvider = PathPersistenceProvider._();
+final pathPersistenceProvider = PathPersistenceProvider._();
 
 final class PathPersistenceProvider
     extends $AsyncNotifierProvider<PathPersistence, String?> {
-  const PathPersistenceProvider._()
+  PathPersistenceProvider._()
       : super(
           from: null,
           argument: null,
@@ -116,13 +116,12 @@ abstract class _$PathPersistence extends $AsyncNotifier<String?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<String?>, String?>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<AsyncValue<String?>, String?>,
         AsyncValue<String?>,
         Object?,
         Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

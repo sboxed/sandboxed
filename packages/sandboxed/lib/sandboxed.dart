@@ -25,7 +25,6 @@ import 'package:sandboxed/theme.dart';
 import 'package:sandboxed/widgets/application_scale.dart';
 import 'package:sandboxed/widgets/sb_notification_listener.dart';
 import 'package:sandboxed_core/component.dart';
-import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 
 export 'package:sandboxed_core/sandboxed_core.dart';
 export 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';

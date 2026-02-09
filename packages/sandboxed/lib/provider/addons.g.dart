@@ -10,20 +10,20 @@ part of 'addons.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(addonList)
-const addonListProvider = AddonListProvider._();
+final addonListProvider = AddonListProvider._();
 
 final class AddonListProvider
     extends $FunctionalProvider<List<Addon>, List<Addon>, List<Addon>>
     with $Provider<List<Addon>> {
-  const AddonListProvider._()
+  AddonListProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'addonListProvider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[],
-          $allTransitiveDependencies: const <ProviderOrFamily>[],
+          dependencies: <ProviderOrFamily>[],
+          $allTransitiveDependencies: <ProviderOrFamily>[],
         );
 
   @override
@@ -51,23 +51,23 @@ final class AddonListProvider
 String _$addonListHash() => r'ea82c6dbc93ecd4dccbedeb7c0142cee81a75b43';
 
 @ProviderFor(Addons)
-const addonsProvider = AddonsProvider._();
+final addonsProvider = AddonsProvider._();
 
 final class AddonsProvider extends $NotifierProvider<Addons, List<Addon>> {
-  const AddonsProvider._()
+  AddonsProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'addonsProvider',
           isAutoDispose: false,
-          dependencies: const <ProviderOrFamily>[addonListProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[addonListProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             AddonsProvider.$allTransitiveDependencies0,
           ],
         );
 
-  static const $allTransitiveDependencies0 = addonListProvider;
+  static final $allTransitiveDependencies0 = addonListProvider;
 
   @override
   String debugGetCreateSourceHash() => _$addonsHash();
@@ -92,34 +92,33 @@ abstract class _$Addons extends $Notifier<List<Addon>> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<List<Addon>, List<Addon>>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<List<Addon>, List<Addon>>, List<Addon>, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(AddonQuery)
-const addonQueryProvider = AddonQueryProvider._();
+final addonQueryProvider = AddonQueryProvider._();
 
 final class AddonQueryProvider extends $NotifierProvider<AddonQuery, String?> {
-  const AddonQueryProvider._()
+  AddonQueryProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'addonQueryProvider',
           isAutoDispose: false,
-          dependencies: const <ProviderOrFamily>[addonsProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[addonsProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             AddonQueryProvider.$allTransitiveDependencies0,
             AddonQueryProvider.$allTransitiveDependencies1,
           ],
         );
 
-  static const $allTransitiveDependencies0 = addonsProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = addonsProvider;
+  static final $allTransitiveDependencies1 =
       AddonsProvider.$allTransitiveDependencies0;
 
   @override
@@ -145,10 +144,9 @@ abstract class _$AddonQuery extends $Notifier<String?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<String?, String?>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<String?, String?>, String?, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

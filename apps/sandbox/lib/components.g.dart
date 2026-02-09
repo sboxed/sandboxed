@@ -37,35 +37,33 @@ import 'package:sandboxed_sandbox/widgets/button.stories.dart' as _i21;
 import 'package:sandboxed_sandbox/widgets/button.dart' as _i22;
 import 'package:flutter/src/widgets/framework.dart' as _i23;
 import 'package:sandboxed_sandbox/widgets/other_format.stories.dart' as _i24;
-import 'package:sandboxed_sandbox/widgets/diagrams/button.stories.dart' as _i25;
-import 'package:sandboxed_sandbox/widgets/diagrams/button.dart' as _i26;
-import 'package:sandboxed_sandbox/widgets/diagrams/card.stories.dart' as _i27;
-import 'package:sandboxed_sandbox/widgets/diagrams/card.dart' as _i28;
 import 'package:sandboxed_sandbox/widgets/tags/tagged_component.stories.dart'
-    as _i29;
-import 'package:sandboxed_sandbox/widgets/tags/tagged_component.dart' as _i30;
+    as _i25;
+import 'package:sandboxed_sandbox/widgets/tags/tagged_component.dart' as _i26;
 import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.stories.dart'
-    as _i31;
-import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.dart' as _i32;
-import 'package:sandbox_feature/difficulty_params.stories.dart' as _i33;
-import 'package:flutter/src/widgets/text.dart' as _i34;
-import 'package:flutter/src/painting/strut_style.dart' as _i35;
-import 'dart:ui' as _i36;
-import 'package:flutter/src/painting/text_painter.dart' as _i37;
-import 'package:flutter/src/painting/text_scaler.dart' as _i38;
-import 'package:sandbox_feature/inline_editor_params.stories.dart' as _i39;
+    as _i27;
+import 'package:sandboxed_sandbox/widgets/tags/tagged_stories.dart' as _i28;
+import 'package:sandbox_feature/difficulty_params.stories.dart' as _i29;
+import 'package:flutter/src/widgets/text.dart' as _i30;
+import 'package:flutter/src/painting/strut_style.dart' as _i31;
+import 'dart:ui' as _i32;
+import 'package:flutter/src/painting/text_painter.dart' as _i33;
+import 'package:flutter/src/painting/text_scaler.dart' as _i34;
+import 'package:sandbox_feature/inline_editor_params.stories.dart' as _i35;
 import 'package:sandboxed_sandbox/widgets/markdown/markdown_documentation.stories.dart'
-    as _i40;
+    as _i36;
 import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.stories.dart'
-    as _i41;
+    as _i37;
 import 'package:sandboxed_sandbox/widgets/automatic/unsupported_parameters.dart'
-    as _i42;
-import 'package:sandboxed_sandbox/material/button.stories.dart' as _i43;
-import 'package:sandboxed_sandbox/material/color.stories.dart' as _i44;
+    as _i38;
+import 'package:sandboxed_sandbox/material/button.stories.dart' as _i39;
+import 'package:sandboxed_sandbox/material/color.stories.dart' as _i40;
 import 'package:sandboxed_sandbox/widgets/automatic/with_enum.stories.dart'
-    as _i45;
-import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i46;
-import 'package:sandboxed_sandbox/data/some_enum.dart' as _i47;
+    as _i41;
+import 'package:sandboxed_sandbox/widgets/automatic/with_enum.dart' as _i42;
+import 'package:sandboxed_sandbox/data/some_enum.dart' as _i43;
+import 'package:sandboxed_sandbox/widgets/diagrams/button.stories.dart' as _i44;
+import 'package:sandboxed_sandbox/widgets/diagrams/card.stories.dart' as _i45;
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:flutter/material.dart';
 
@@ -646,134 +644,32 @@ List<Component> get components {
     Component(
       meta: _i25.meta,
       stories: [
-        _i25.$Blue.applyGenerated(
-          name: 'Blue',
-          builder: (context, params) => _i26.SandboxDiagramButton.new(
-            key: null,
-            title: params.string(r'title').required('Text'),
-            color: params.color(r'color').required(Colors.red),
-          ),
-        ),
-        _i25.$Green.applyGenerated(
-          name: 'Green',
-          builder: (context, params) => _i26.SandboxDiagramButton.new(
-            key: null,
-            title: params.string(r'title').required('Text'),
-            color: params.color(r'color').required(Colors.red),
-          ),
+        _i25.$Default.applyGenerated(
+          name: 'Default',
+          builder: (context, params) => _i26.TaggedComponent.new(key: null),
         ),
       ],
     ),
     Component(
       meta: _i27.meta,
       stories: [
-        _i27.$Blue.applyGenerated(
-          name: 'Blue',
-          builder: (context, params) => _i28.SandboxDiagramCard.new(
-            key: null,
-            title: params.string(r'title').required('Text'),
-            color: params.color(r'color').required(Colors.red),
-            stats: params
-                .any<List<_i28.SandboxDiagramCardStats>>(r'stats')
-                .editor(ParamEditor<List<_i28.SandboxDiagramCardStats>>())
-                .required([]),
-            onChanged: params
-                .any<
-                  void Function(
-                    (
-                      _i28.SandboxDiagramCardStats,
-                      _i28.SandboxDiagramCardStats?, {
-                      String name,
-                      _i28.SandboxDiagramCardStats next,
-                      _i28.SandboxDiagramCardStats? nullable,
-                    }),
-                  )
-                >(r'onChanged')
-                .editor(
-                  ParamEditor<
-                    void Function(
-                      (
-                        _i28.SandboxDiagramCardStats,
-                        _i28.SandboxDiagramCardStats?, {
-                        String name,
-                        _i28.SandboxDiagramCardStats next,
-                        _i28.SandboxDiagramCardStats? nullable,
-                      }),
-                    )
-                  >(),
-                )
-                .optional(null),
-          ),
+        _i27.$Deprecated.applyGenerated(
+          name: 'Deprecated',
+          builder: (context, params) => _i28.TaggedStories.new(key: null),
         ),
-        _i27.$Green.applyGenerated(
-          name: 'Green',
-          builder: (context, params) => _i28.SandboxDiagramCard.new(
-            key: null,
-            title: params.string(r'title').required('Text'),
-            color: params.color(r'color').required(Colors.red),
-            stats: params
-                .any<List<_i28.SandboxDiagramCardStats>>(r'stats')
-                .editor(ParamEditor<List<_i28.SandboxDiagramCardStats>>())
-                .required([]),
-            onChanged: params
-                .any<
-                  void Function(
-                    (
-                      _i28.SandboxDiagramCardStats,
-                      _i28.SandboxDiagramCardStats?, {
-                      String name,
-                      _i28.SandboxDiagramCardStats next,
-                      _i28.SandboxDiagramCardStats? nullable,
-                    }),
-                  )
-                >(r'onChanged')
-                .editor(
-                  ParamEditor<
-                    void Function(
-                      (
-                        _i28.SandboxDiagramCardStats,
-                        _i28.SandboxDiagramCardStats?, {
-                        String name,
-                        _i28.SandboxDiagramCardStats next,
-                        _i28.SandboxDiagramCardStats? nullable,
-                      }),
-                    )
-                  >(),
-                )
-                .optional(null),
-          ),
+        _i27.$New.applyGenerated(
+          name: 'New',
+          builder: (context, params) => _i28.TaggedStories.new(key: null),
         ),
       ],
     ),
     Component(
       meta: _i29.meta,
+      config: Config(module: 'Packages/Sandbox Feature'),
       stories: [
         _i29.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i30.TaggedComponent.new(key: null),
-        ),
-      ],
-    ),
-    Component(
-      meta: _i31.meta,
-      stories: [
-        _i31.$Deprecated.applyGenerated(
-          name: 'Deprecated',
-          builder: (context, params) => _i32.TaggedStories.new(key: null),
-        ),
-        _i31.$New.applyGenerated(
-          name: 'New',
-          builder: (context, params) => _i32.TaggedStories.new(key: null),
-        ),
-      ],
-    ),
-    Component(
-      meta: _i33.meta,
-      config: Config(module: 'Packages/Sandbox Feature'),
-      stories: [
-        _i33.$Default.applyGenerated(
-          name: 'Default',
-          builder: (context, params) => _i34.Text.new(
+          builder: (context, params) => _i30.Text.new(
             params.string(r'data').required('Text'),
             key: null,
             style: params
@@ -781,27 +677,27 @@ List<Component> get components {
                 .editor(ParamEditor<_i9.TextStyle>())
                 .optional(null),
             strutStyle: params
-                .any<_i35.StrutStyle>(r'strutStyle')
-                .editor(ParamEditor<_i35.StrutStyle>())
+                .any<_i31.StrutStyle>(r'strutStyle')
+                .editor(ParamEditor<_i31.StrutStyle>())
                 .optional(null),
             textAlign: params
-                .single(r'textAlign', _i36.TextAlign.values)
+                .single(r'textAlign', _i32.TextAlign.values)
                 .optional(null),
             textDirection: params
-                .single(r'textDirection', _i36.TextDirection.values)
+                .single(r'textDirection', _i32.TextDirection.values)
                 .optional(null),
             locale: params
-                .any<_i36.Locale>(r'locale')
-                .editor(ParamEditor<_i36.Locale>())
+                .any<_i32.Locale>(r'locale')
+                .editor(ParamEditor<_i32.Locale>())
                 .optional(null),
             softWrap: params.boolean(r'softWrap').optional(null),
             overflow: params
-                .single(r'overflow', _i37.TextOverflow.values)
+                .single(r'overflow', _i33.TextOverflow.values)
                 .optional(null),
             textScaleFactor: params.number(r'textScaleFactor').optional(null),
             textScaler: params
-                .any<_i38.TextScaler>(r'textScaler')
-                .editor(ParamEditor<_i38.TextScaler>())
+                .any<_i34.TextScaler>(r'textScaler')
+                .editor(ParamEditor<_i34.TextScaler>())
                 .optional(null),
             maxLines: params.integer(r'maxLines').optional(null),
             semanticsLabel: params.string(r'semanticsLabel').optional(null),
@@ -809,11 +705,11 @@ List<Component> get components {
                 .string(r'semanticsIdentifier')
                 .optional(null),
             textWidthBasis: params
-                .single(r'textWidthBasis', _i37.TextWidthBasis.values)
+                .single(r'textWidthBasis', _i33.TextWidthBasis.values)
                 .optional(null),
             textHeightBehavior: params
-                .any<_i36.TextHeightBehavior>(r'textHeightBehavior')
-                .editor(ParamEditor<_i36.TextHeightBehavior>())
+                .any<_i32.TextHeightBehavior>(r'textHeightBehavior')
+                .editor(ParamEditor<_i32.TextHeightBehavior>())
                 .optional(null),
             selectionColor: params.color(r'selectionColor').optional(null),
           ),
@@ -821,12 +717,12 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i39.meta,
+      meta: _i35.meta,
       config: Config(module: 'Packages/Sandbox Feature'),
       stories: [
-        _i39.$Default.applyGenerated(
+        _i35.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i34.Text.new(
+          builder: (context, params) => _i30.Text.new(
             params.string(r'data').required('Text'),
             key: null,
             style: params
@@ -834,27 +730,27 @@ List<Component> get components {
                 .editor(ParamEditor<_i9.TextStyle>())
                 .optional(null),
             strutStyle: params
-                .any<_i35.StrutStyle>(r'strutStyle')
-                .editor(ParamEditor<_i35.StrutStyle>())
+                .any<_i31.StrutStyle>(r'strutStyle')
+                .editor(ParamEditor<_i31.StrutStyle>())
                 .optional(null),
             textAlign: params
-                .single(r'textAlign', _i36.TextAlign.values)
+                .single(r'textAlign', _i32.TextAlign.values)
                 .optional(null),
             textDirection: params
-                .single(r'textDirection', _i36.TextDirection.values)
+                .single(r'textDirection', _i32.TextDirection.values)
                 .optional(null),
             locale: params
-                .any<_i36.Locale>(r'locale')
-                .editor(ParamEditor<_i36.Locale>())
+                .any<_i32.Locale>(r'locale')
+                .editor(ParamEditor<_i32.Locale>())
                 .optional(null),
             softWrap: params.boolean(r'softWrap').optional(null),
             overflow: params
-                .single(r'overflow', _i37.TextOverflow.values)
+                .single(r'overflow', _i33.TextOverflow.values)
                 .optional(null),
             textScaleFactor: params.number(r'textScaleFactor').optional(null),
             textScaler: params
-                .any<_i38.TextScaler>(r'textScaler')
-                .editor(ParamEditor<_i38.TextScaler>())
+                .any<_i34.TextScaler>(r'textScaler')
+                .editor(ParamEditor<_i34.TextScaler>())
                 .optional(null),
             maxLines: params.integer(r'maxLines').optional(null),
             semanticsLabel: params.string(r'semanticsLabel').optional(null),
@@ -862,11 +758,11 @@ List<Component> get components {
                 .string(r'semanticsIdentifier')
                 .optional(null),
             textWidthBasis: params
-                .single(r'textWidthBasis', _i37.TextWidthBasis.values)
+                .single(r'textWidthBasis', _i33.TextWidthBasis.values)
                 .optional(null),
             textHeightBehavior: params
-                .any<_i36.TextHeightBehavior>(r'textHeightBehavior')
-                .editor(ParamEditor<_i36.TextHeightBehavior>())
+                .any<_i32.TextHeightBehavior>(r'textHeightBehavior')
+                .editor(ParamEditor<_i32.TextHeightBehavior>())
                 .optional(null),
             selectionColor: params.color(r'selectionColor').optional(null),
           ),
@@ -874,9 +770,9 @@ List<Component> get components {
       ],
     ),
     Component(
-      meta: _i40.meta.copyWith(
+      meta: _i36.meta.copyWith(
         documentation: [
-          ..._i40.meta.documentation,
+          ..._i36.meta.documentation,
           DocumentEntry(
             name: 'Docs',
             content:
@@ -885,9 +781,9 @@ List<Component> get components {
         ],
       ),
       stories: [
-        _i40.$Default.applyGenerated(
+        _i36.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i34.Text.new(
+          builder: (context, params) => _i30.Text.new(
             params.string(r'data').required('Text'),
             key: null,
             style: params
@@ -895,27 +791,27 @@ List<Component> get components {
                 .editor(ParamEditor<_i9.TextStyle>())
                 .optional(null),
             strutStyle: params
-                .any<_i35.StrutStyle>(r'strutStyle')
-                .editor(ParamEditor<_i35.StrutStyle>())
+                .any<_i31.StrutStyle>(r'strutStyle')
+                .editor(ParamEditor<_i31.StrutStyle>())
                 .optional(null),
             textAlign: params
-                .single(r'textAlign', _i36.TextAlign.values)
+                .single(r'textAlign', _i32.TextAlign.values)
                 .optional(null),
             textDirection: params
-                .single(r'textDirection', _i36.TextDirection.values)
+                .single(r'textDirection', _i32.TextDirection.values)
                 .optional(null),
             locale: params
-                .any<_i36.Locale>(r'locale')
-                .editor(ParamEditor<_i36.Locale>())
+                .any<_i32.Locale>(r'locale')
+                .editor(ParamEditor<_i32.Locale>())
                 .optional(null),
             softWrap: params.boolean(r'softWrap').optional(null),
             overflow: params
-                .single(r'overflow', _i37.TextOverflow.values)
+                .single(r'overflow', _i33.TextOverflow.values)
                 .optional(null),
             textScaleFactor: params.number(r'textScaleFactor').optional(null),
             textScaler: params
-                .any<_i38.TextScaler>(r'textScaler')
-                .editor(ParamEditor<_i38.TextScaler>())
+                .any<_i34.TextScaler>(r'textScaler')
+                .editor(ParamEditor<_i34.TextScaler>())
                 .optional(null),
             maxLines: params.integer(r'maxLines').optional(null),
             semanticsLabel: params.string(r'semanticsLabel').optional(null),
@@ -923,14 +819,69 @@ List<Component> get components {
                 .string(r'semanticsIdentifier')
                 .optional(null),
             textWidthBasis: params
-                .single(r'textWidthBasis', _i37.TextWidthBasis.values)
+                .single(r'textWidthBasis', _i33.TextWidthBasis.values)
                 .optional(null),
             textHeightBehavior: params
-                .any<_i36.TextHeightBehavior>(r'textHeightBehavior')
-                .editor(ParamEditor<_i36.TextHeightBehavior>())
+                .any<_i32.TextHeightBehavior>(r'textHeightBehavior')
+                .editor(ParamEditor<_i32.TextHeightBehavior>())
                 .optional(null),
             selectionColor: params.color(r'selectionColor').optional(null),
           ),
+        ),
+      ],
+    ),
+    Component(
+      meta: _i37.meta,
+      stories: [
+        _i37.$Default.applyGenerated(
+          name: 'Default',
+          builder: (context, params) => _i38.UnsupportedParameters.new(
+            key: null,
+            style: params
+                .any<_i9.TextStyle>(r'style')
+                .editor(ParamEditor<_i9.TextStyle>())
+                .default$(),
+          ),
+        ),
+        _i37.$WithBuilder.applyGenerated(
+          name: 'With Builder',
+          builder: (context, params) => _i38.UnsupportedParameters.new(
+            key: null,
+            style: params
+                .any<_i9.TextStyle>(r'style')
+                .editor(ParamEditor<_i9.TextStyle>())
+                .default$(),
+          ),
+        ),
+        _i37.$WithParams.applyGenerated(
+          name: 'With Params',
+          builder: (context, params) => _i38.UnsupportedParameters.new(
+            key: null,
+            style: params
+                .any<_i9.TextStyle>(r'style')
+                .editor(ParamEditor<_i9.TextStyle>())
+                .default$(),
+          ),
+        ),
+      ],
+    ),
+    Component(
+      meta: _i39.meta,
+      stories: [
+        _i39.$Default.applyGenerated(
+          name: 'Default',
+          builder: (context, params) =>
+              throw _i2.AbstractWidgetClassException(),
+        ),
+      ],
+    ),
+    Component(
+      meta: _i40.meta,
+      stories: [
+        _i40.$Default.applyGenerated(
+          name: 'Default',
+          builder: (context, params) =>
+              throw _i2.AbstractWidgetClassException(),
         ),
       ],
     ),
@@ -939,68 +890,27 @@ List<Component> get components {
       stories: [
         _i41.$Default.applyGenerated(
           name: 'Default',
-          builder: (context, params) => _i42.UnsupportedParameters.new(
+          builder: (context, params) => _i42.WithEnum.new(
             key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .default$(),
+            enumValue: params
+                .single(r'enumValue', _i43.SomeEnum.values)
+                .required(_i43.SomeEnum.values.first),
           ),
-        ),
-        _i41.$WithBuilder.applyGenerated(
-          name: 'With Builder',
-          builder: (context, params) => _i42.UnsupportedParameters.new(
-            key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .default$(),
-          ),
-        ),
-        _i41.$WithParams.applyGenerated(
-          name: 'With Params',
-          builder: (context, params) => _i42.UnsupportedParameters.new(
-            key: null,
-            style: params
-                .any<_i9.TextStyle>(r'style')
-                .editor(ParamEditor<_i9.TextStyle>())
-                .default$(),
-          ),
-        ),
-      ],
-    ),
-    Component(
-      meta: _i43.meta,
-      stories: [
-        _i43.$Default.applyGenerated(
-          name: 'Default',
-          builder: (context, params) =>
-              throw _i2.AbstractWidgetClassException(),
         ),
       ],
     ),
     Component(
       meta: _i44.meta,
       stories: [
-        _i44.$Default.applyGenerated(
-          name: 'Default',
-          builder: (context, params) =>
-              throw _i2.AbstractWidgetClassException(),
-        ),
+        _i44.$Blue.applyGenerated(name: 'Blue'),
+        _i44.$Green.applyGenerated(name: 'Green'),
       ],
     ),
     Component(
       meta: _i45.meta,
       stories: [
-        _i45.$Default.applyGenerated(
-          name: 'Default',
-          builder: (context, params) => _i46.WithEnum.new(
-            key: null,
-            enumValue: params
-                .single(r'enumValue', _i47.SomeEnum.values)
-                .required(_i47.SomeEnum.values.first),
-          ),
-        ),
+        _i45.$Blue.applyGenerated(name: 'Blue'),
+        _i45.$Green.applyGenerated(name: 'Green'),
       ],
     ),
   ];

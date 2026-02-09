@@ -10,11 +10,11 @@ part of 'title.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(title)
-const titleProvider = TitleProvider._();
+final titleProvider = TitleProvider._();
 
 final class TitleProvider extends $FunctionalProvider<Widget, Widget, Widget>
     with $Provider<Widget> {
-  const TitleProvider._()
+  TitleProvider._()
       : super(
           from: null,
           argument: null,

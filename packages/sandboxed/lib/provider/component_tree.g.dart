@@ -10,21 +10,21 @@ part of 'component_tree.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(components)
-const componentsProvider = ComponentsProvider._();
+final componentsProvider = ComponentsProvider._();
 
 final class ComponentsProvider extends $FunctionalProvider<
     List<SandboxedElement>,
     List<SandboxedElement>,
     List<SandboxedElement>> with $Provider<List<SandboxedElement>> {
-  const ComponentsProvider._()
+  ComponentsProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'componentsProvider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[],
-          $allTransitiveDependencies: const <ProviderOrFamily>[],
+          dependencies: <ProviderOrFamily>[],
+          $allTransitiveDependencies: <ProviderOrFamily>[],
         );
 
   @override
@@ -53,24 +53,24 @@ final class ComponentsProvider extends $FunctionalProvider<
 String _$componentsHash() => r'b8a25f787fa019ab57f5c2d4ba933a842d06cf72';
 
 @ProviderFor(ComponentTreeNotifier)
-const componentTreeNotifierProvider = ComponentTreeNotifierProvider._();
+final componentTreeNotifierProvider = ComponentTreeNotifierProvider._();
 
 final class ComponentTreeNotifierProvider
     extends $NotifierProvider<ComponentTreeNotifier, TreeType<NodeData>> {
-  const ComponentTreeNotifierProvider._()
+  ComponentTreeNotifierProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'componentTreeNotifierProvider',
           isAutoDispose: false,
-          dependencies: const <ProviderOrFamily>[componentsProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[componentsProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             ComponentTreeNotifierProvider.$allTransitiveDependencies0,
           ],
         );
 
-  static const $allTransitiveDependencies0 = componentsProvider;
+  static final $allTransitiveDependencies0 = componentsProvider;
 
   @override
   String debugGetCreateSourceHash() => _$componentTreeNotifierHash();
@@ -96,22 +96,21 @@ abstract class _$ComponentTreeNotifier extends $Notifier<TreeType<NodeData>> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<TreeType<NodeData>, TreeType<NodeData>>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<TreeType<NodeData>, TreeType<NodeData>>,
         TreeType<NodeData>,
         Object?,
         Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(Node)
-const nodeProvider = NodeFamily._();
+final nodeProvider = NodeFamily._();
 
 final class NodeProvider extends $NotifierProvider<Node, Tree?> {
-  const NodeProvider._(
+  NodeProvider._(
       {required NodeFamily super.from, required String? super.argument})
       : super(
           retry: null,
@@ -121,8 +120,8 @@ final class NodeProvider extends $NotifierProvider<Node, Tree?> {
           $allTransitiveDependencies: null,
         );
 
-  static const $allTransitiveDependencies0 = componentTreeNotifierProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = componentTreeNotifierProvider;
+  static final $allTransitiveDependencies1 =
       ComponentTreeNotifierProvider.$allTransitiveDependencies0;
 
   @override
@@ -162,12 +161,12 @@ String _$nodeHash() => r'6dfed7c9b7361f803c273c996ebe1e3285242723';
 
 final class NodeFamily extends $Family
     with $ClassFamilyOverride<Node, Tree?, Tree?, Tree?, String?> {
-  const NodeFamily._()
+  NodeFamily._()
       : super(
           retry: null,
           name: r'nodeProvider',
-          dependencies: const <ProviderOrFamily>[componentTreeNotifierProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[componentTreeNotifierProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             NodeProvider.$allTransitiveDependencies0,
             NodeProvider.$allTransitiveDependencies1,
           ],
@@ -193,21 +192,22 @@ abstract class _$Node extends $Notifier<Tree?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(
-      _$args,
-    );
     final ref = this.ref as $Ref<Tree?, Tree?>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<Tree?, Tree?>, Tree?, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(
+        ref,
+        () => build(
+              _$args,
+            ));
   }
 }
 
 @ProviderFor(TreeNode)
-const treeNodeProvider = TreeNodeFamily._();
+final treeNodeProvider = TreeNodeFamily._();
 
 final class TreeNodeProvider extends $NotifierProvider<TreeNode, Tree?> {
-  const TreeNodeProvider._(
+  TreeNodeProvider._(
       {required TreeNodeFamily super.from, required String? super.argument})
       : super(
           retry: null,
@@ -217,10 +217,10 @@ final class TreeNodeProvider extends $NotifierProvider<TreeNode, Tree?> {
           $allTransitiveDependencies: null,
         );
 
-  static const $allTransitiveDependencies0 = filteredTreeProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = filteredTreeProvider;
+  static final $allTransitiveDependencies1 =
       FilteredTreeProvider.$allTransitiveDependencies0;
-  static const $allTransitiveDependencies2 =
+  static final $allTransitiveDependencies2 =
       FilteredTreeProvider.$allTransitiveDependencies1;
 
   @override
@@ -260,12 +260,12 @@ String _$treeNodeHash() => r'cd2a994d6c9d233f1c57ace0fbf5965f6542d26f';
 
 final class TreeNodeFamily extends $Family
     with $ClassFamilyOverride<TreeNode, Tree?, Tree?, Tree?, String?> {
-  const TreeNodeFamily._()
+  TreeNodeFamily._()
       : super(
           retry: null,
           name: r'treeNodeProvider',
-          dependencies: const <ProviderOrFamily>[filteredTreeProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[filteredTreeProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             TreeNodeProvider.$allTransitiveDependencies0,
             TreeNodeProvider.$allTransitiveDependencies1,
             TreeNodeProvider.$allTransitiveDependencies2,
@@ -292,21 +292,22 @@ abstract class _$TreeNode extends $Notifier<Tree?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(
-      _$args,
-    );
     final ref = this.ref as $Ref<Tree?, Tree?>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<Tree?, Tree?>, Tree?, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(
+        ref,
+        () => build(
+              _$args,
+            ));
   }
 }
 
 @ProviderFor(SearchQuery)
-const searchQueryProvider = SearchQueryProvider._();
+final searchQueryProvider = SearchQueryProvider._();
 
 final class SearchQueryProvider extends $NotifierProvider<SearchQuery, String> {
-  const SearchQueryProvider._()
+  SearchQueryProvider._()
       : super(
           from: null,
           argument: null,
@@ -340,35 +341,34 @@ abstract class _$SearchQuery extends $Notifier<String> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<String, String>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<String, String>, String, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(filteredTree)
-const filteredTreeProvider = FilteredTreeProvider._();
+final filteredTreeProvider = FilteredTreeProvider._();
 
 final class FilteredTreeProvider
     extends $FunctionalProvider<Tree?, Tree?, Tree?> with $Provider<Tree?> {
-  const FilteredTreeProvider._()
+  FilteredTreeProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'filteredTreeProvider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[componentTreeNotifierProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[componentTreeNotifierProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             FilteredTreeProvider.$allTransitiveDependencies0,
             FilteredTreeProvider.$allTransitiveDependencies1,
           ],
         );
 
-  static const $allTransitiveDependencies0 = componentTreeNotifierProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = componentTreeNotifierProvider;
+  static final $allTransitiveDependencies1 =
       ComponentTreeNotifierProvider.$allTransitiveDependencies0;
 
   @override
@@ -396,29 +396,29 @@ final class FilteredTreeProvider
 String _$filteredTreeHash() => r'd53650f8dbdcb5ec926fc79154de1d5d31bfd591';
 
 @ProviderFor(tree2)
-const tree2Provider = Tree2Provider._();
+final tree2Provider = Tree2Provider._();
 
 final class Tree2Provider extends $FunctionalProvider<
         List<TreeViewNode<ElementNode>>,
         List<TreeViewNode<ElementNode>>,
         List<TreeViewNode<ElementNode>>>
     with $Provider<List<TreeViewNode<ElementNode>>> {
-  const Tree2Provider._()
+  Tree2Provider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'tree2Provider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[componentTreeNotifierProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[componentTreeNotifierProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             Tree2Provider.$allTransitiveDependencies0,
             Tree2Provider.$allTransitiveDependencies1,
           ],
         );
 
-  static const $allTransitiveDependencies0 = componentTreeNotifierProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = componentTreeNotifierProvider;
+  static final $allTransitiveDependencies1 =
       ComponentTreeNotifierProvider.$allTransitiveDependencies0;
 
   @override
@@ -448,35 +448,35 @@ final class Tree2Provider extends $FunctionalProvider<
 String _$tree2Hash() => r'9fd9eaccf00606e449edac6e8049dac53ef2d14c';
 
 @ProviderFor(filteredTree2)
-const filteredTree2Provider = FilteredTree2Provider._();
+final filteredTree2Provider = FilteredTree2Provider._();
 
 final class FilteredTree2Provider extends $FunctionalProvider<
         List<TreeViewNode<ElementNode>>,
         List<TreeViewNode<ElementNode>>,
         List<TreeViewNode<ElementNode>>>
     with $Provider<List<TreeViewNode<ElementNode>>> {
-  const FilteredTree2Provider._()
+  FilteredTree2Provider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'filteredTree2Provider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[
             tree2Provider,
             componentTreeNotifierProvider
           ],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          $allTransitiveDependencies: <ProviderOrFamily>[
             FilteredTree2Provider.$allTransitiveDependencies0,
             FilteredTree2Provider.$allTransitiveDependencies1,
             FilteredTree2Provider.$allTransitiveDependencies2,
           ],
         );
 
-  static const $allTransitiveDependencies0 = tree2Provider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = tree2Provider;
+  static final $allTransitiveDependencies1 =
       Tree2Provider.$allTransitiveDependencies0;
-  static const $allTransitiveDependencies2 =
+  static final $allTransitiveDependencies2 =
       Tree2Provider.$allTransitiveDependencies1;
 
   @override
@@ -506,31 +506,31 @@ final class FilteredTree2Provider extends $FunctionalProvider<
 String _$filteredTree2Hash() => r'373f049f65aeba4f1d754c57010946fd1cbf79be';
 
 @ProviderFor(largestNode)
-const largestNodeProvider = LargestNodeProvider._();
+final largestNodeProvider = LargestNodeProvider._();
 
 final class LargestNodeProvider extends $FunctionalProvider<
     TreeViewNode<ElementNode>,
     TreeViewNode<ElementNode>,
     TreeViewNode<ElementNode>> with $Provider<TreeViewNode<ElementNode>> {
-  const LargestNodeProvider._()
+  LargestNodeProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'largestNodeProvider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[tree2Provider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[tree2Provider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             LargestNodeProvider.$allTransitiveDependencies0,
             LargestNodeProvider.$allTransitiveDependencies1,
             LargestNodeProvider.$allTransitiveDependencies2,
           ],
         );
 
-  static const $allTransitiveDependencies0 = tree2Provider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = tree2Provider;
+  static final $allTransitiveDependencies1 =
       Tree2Provider.$allTransitiveDependencies0;
-  static const $allTransitiveDependencies2 =
+  static final $allTransitiveDependencies2 =
       Tree2Provider.$allTransitiveDependencies1;
 
   @override

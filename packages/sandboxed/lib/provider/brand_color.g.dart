@@ -10,11 +10,11 @@ part of 'brand_color.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(brandColor)
-const brandColorProvider = BrandColorProvider._();
+final brandColorProvider = BrandColorProvider._();
 
 final class BrandColorProvider extends $FunctionalProvider<Color, Color, Color>
     with $Provider<Color> {
-  const BrandColorProvider._()
+  BrandColorProvider._()
       : super(
           from: null,
           argument: null,

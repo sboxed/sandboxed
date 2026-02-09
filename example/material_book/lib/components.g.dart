@@ -78,6 +78,9 @@ List<Component> get components {
                 .any<List<_i3.Widget>>(r'actions')
                 .editor(ParamEditor<List<_i3.Widget>>())
                 .optional(null),
+            automaticallyImplyActions: params
+                .boolean(r'automaticallyImplyActions')
+                .required(true),
             flexibleSpace: params
                 .any<_i3.Widget>(r'flexibleSpace')
                 .editor(ParamEditor<_i3.Widget>())

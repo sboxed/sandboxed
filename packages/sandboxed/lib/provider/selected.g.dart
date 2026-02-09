@@ -10,19 +10,19 @@ part of 'selected.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(SelectedElementNotifier)
-const selectedElementNotifierProvider = SelectedElementNotifierProvider._();
+final selectedElementNotifierProvider = SelectedElementNotifierProvider._();
 
 final class SelectedElementNotifierProvider
     extends $NotifierProvider<SelectedElementNotifier, String?> {
-  const SelectedElementNotifierProvider._()
+  SelectedElementNotifierProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'selectedElementNotifierProvider',
           isAutoDispose: false,
-          dependencies: const <ProviderOrFamily>[],
-          $allTransitiveDependencies: const <ProviderOrFamily>[],
+          dependencies: <ProviderOrFamily>[],
+          $allTransitiveDependencies: <ProviderOrFamily>[],
         );
 
   @override
@@ -49,21 +49,20 @@ abstract class _$SelectedElementNotifier extends $Notifier<String?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<String?, String?>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<String?, String?>, String?, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(selection)
-const selectionProvider = SelectionFamily._();
+final selectionProvider = SelectionFamily._();
 
 final class SelectionProvider
     extends $FunctionalProvider<Selection?, Selection?, Selection?>
     with $Provider<Selection?> {
-  const SelectionProvider._(
+  SelectionProvider._(
       {required SelectionFamily super.from, required String super.argument})
       : super(
           retry: null,
@@ -73,10 +72,10 @@ final class SelectionProvider
           $allTransitiveDependencies: null,
         );
 
-  static const $allTransitiveDependencies0 = nodeProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = nodeProvider;
+  static final $allTransitiveDependencies1 =
       NodeProvider.$allTransitiveDependencies0;
-  static const $allTransitiveDependencies2 =
+  static final $allTransitiveDependencies2 =
       NodeProvider.$allTransitiveDependencies1;
 
   @override
@@ -126,12 +125,12 @@ String _$selectionHash() => r'bbe0f5f83efb158b1a0e6b55656dc2cf1ad1e393';
 
 final class SelectionFamily extends $Family
     with $FunctionalFamilyOverride<Selection?, String> {
-  const SelectionFamily._()
+  SelectionFamily._()
       : super(
           retry: null,
           name: r'selectionProvider',
-          dependencies: const <ProviderOrFamily>[nodeProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[nodeProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             SelectionProvider.$allTransitiveDependencies0,
             SelectionProvider.$allTransitiveDependencies1,
             SelectionProvider.$allTransitiveDependencies2,
@@ -149,23 +148,23 @@ final class SelectionFamily extends $Family
 }
 
 @ProviderFor(selectedElement)
-const selectedElementProvider = SelectedElementProvider._();
+final selectedElementProvider = SelectedElementProvider._();
 
 final class SelectedElementProvider
     extends $FunctionalProvider<Selection?, Selection?, Selection?>
     with $Provider<Selection?> {
-  const SelectedElementProvider._()
+  SelectedElementProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'selectedElementProvider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[
             selectionProvider,
             selectedElementNotifierProvider
           ],
-          $allTransitiveDependencies: const <ProviderOrFamily>{
+          $allTransitiveDependencies: <ProviderOrFamily>{
             SelectedElementProvider.$allTransitiveDependencies0,
             SelectedElementProvider.$allTransitiveDependencies1,
             SelectedElementProvider.$allTransitiveDependencies2,
@@ -174,14 +173,14 @@ final class SelectedElementProvider
           },
         );
 
-  static const $allTransitiveDependencies0 = selectionProvider;
-  static const $allTransitiveDependencies1 =
+  static final $allTransitiveDependencies0 = selectionProvider;
+  static final $allTransitiveDependencies1 =
       SelectionProvider.$allTransitiveDependencies0;
-  static const $allTransitiveDependencies2 =
+  static final $allTransitiveDependencies2 =
       SelectionProvider.$allTransitiveDependencies1;
-  static const $allTransitiveDependencies3 =
+  static final $allTransitiveDependencies3 =
       SelectionProvider.$allTransitiveDependencies2;
-  static const $allTransitiveDependencies4 = selectedElementNotifierProvider;
+  static final $allTransitiveDependencies4 = selectedElementNotifierProvider;
 
   @override
   String debugGetCreateSourceHash() => _$selectedElementHash();

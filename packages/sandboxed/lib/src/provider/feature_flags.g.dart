@@ -10,11 +10,11 @@ part of 'feature_flags.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(featureFlags)
-const featureFlagsProvider = FeatureFlagsProvider._();
+final featureFlagsProvider = FeatureFlagsProvider._();
 
 final class FeatureFlagsProvider extends $FunctionalProvider<Set<FeatureFlags>,
     Set<FeatureFlags>, Set<FeatureFlags>> with $Provider<Set<FeatureFlags>> {
-  const FeatureFlagsProvider._()
+  FeatureFlagsProvider._()
       : super(
           from: null,
           argument: null,

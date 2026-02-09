@@ -10,12 +10,12 @@ part of 'tags.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(globalTags)
-const globalTagsProvider = GlobalTagsProvider._();
+final globalTagsProvider = GlobalTagsProvider._();
 
 final class GlobalTagsProvider
     extends $FunctionalProvider<Set<String>, Set<String>, Set<String>>
     with $Provider<Set<String>> {
-  const GlobalTagsProvider._()
+  GlobalTagsProvider._()
       : super(
           from: null,
           argument: null,
@@ -51,12 +51,12 @@ final class GlobalTagsProvider
 String _$globalTagsHash() => r'a761c15eab6639493eaa603906ec36f2efed7f9e';
 
 @ProviderFor(tagsResolver)
-const tagsResolverProvider = TagsResolverProvider._();
+final tagsResolverProvider = TagsResolverProvider._();
 
 final class TagsResolverProvider
     extends $FunctionalProvider<TagsResolver, TagsResolver, TagsResolver>
     with $Provider<TagsResolver> {
-  const TagsResolverProvider._()
+  TagsResolverProvider._()
       : super(
           from: null,
           argument: null,
@@ -92,25 +92,25 @@ final class TagsResolverProvider
 String _$tagsResolverHash() => r'c96b74a7ce32657b5d62d093329324c90e849d3b';
 
 @ProviderFor(allTags)
-const allTagsProvider = AllTagsProvider._();
+final allTagsProvider = AllTagsProvider._();
 
 final class AllTagsProvider
     extends $FunctionalProvider<Set<String>, Set<String>, Set<String>>
     with $Provider<Set<String>> {
-  const AllTagsProvider._()
+  AllTagsProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'allTagsProvider',
           isAutoDispose: true,
-          dependencies: const <ProviderOrFamily>[componentsProvider],
-          $allTransitiveDependencies: const <ProviderOrFamily>[
+          dependencies: <ProviderOrFamily>[componentsProvider],
+          $allTransitiveDependencies: <ProviderOrFamily>[
             AllTagsProvider.$allTransitiveDependencies0,
           ],
         );
 
-  static const $allTransitiveDependencies0 = componentsProvider;
+  static final $allTransitiveDependencies0 = componentsProvider;
 
   @override
   String debugGetCreateSourceHash() => _$allTagsHash();
@@ -137,11 +137,11 @@ final class AllTagsProvider
 String _$allTagsHash() => r'58a1494b1433703053abf544b48c507a3a2b1de3';
 
 @ProviderFor(TagFilter)
-const tagFilterProvider = TagFilterProvider._();
+final tagFilterProvider = TagFilterProvider._();
 
 final class TagFilterProvider
     extends $NotifierProvider<TagFilter, Set<String>> {
-  const TagFilterProvider._()
+  TagFilterProvider._()
       : super(
           from: null,
           argument: null,
@@ -175,10 +175,9 @@ abstract class _$TagFilter extends $Notifier<Set<String>> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<Set<String>, Set<String>>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<Set<String>, Set<String>>, Set<String>, Object?, Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
