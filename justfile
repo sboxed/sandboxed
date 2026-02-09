@@ -70,4 +70,4 @@ release:
 
 
 publish:
-  fvm dart run melos publish
+  fvm dart run melos publish --no-dry-run
