@@ -1,4 +1,4 @@
-import 'package:analyzer/dart/element/element2.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:recase/recase.dart';
@@ -19,14 +19,14 @@ class StoryParser {
 
   StoryParser({required this.resolver, required this.meta});
 
-  Future<Expression> parse(TopLevelVariableElement2 element) async {
+  Future<Expression> parse(TopLevelVariableElement element) async {
     final generated = _generateStoryMetadata(element);
     final story = _createStoryExpression(element, generated);
     return story;
   }
 
   Map<String, Expression> _generateStoryMetadata(
-    TopLevelVariableElement2 element,
+    TopLevelVariableElement element,
   ) {
     final generated = <String, Expression>{};
     generated['name'] = _generateStoryName(element);
@@ -38,11 +38,11 @@ class StoryParser {
     return generated;
   }
 
-  Expression _generateStoryName(TopLevelVariableElement2 element) {
-    return literal(element.name3?.replaceAll(RegExp(r'^\$'), '').titleCase);
+  Expression _generateStoryName(TopLevelVariableElement element) {
+    return literal(element.name?.replaceAll(RegExp(r'^\$'), '').titleCase);
   }
 
-  Expression _generateStoryBuilder(ClassElement2 widget) {
+  Expression _generateStoryBuilder(ClassElement widget) {
     return Method((method) {
       method.requiredParameters.addAll([
         Parameter((param) => param.name = 'context'),
@@ -59,13 +59,13 @@ class StoryParser {
   }
 
   Expression _createStoryExpression(
-    TopLevelVariableElement2 element,
+    TopLevelVariableElement element,
     Map<String, Expression> generated,
   ) {
-    final name = element.name3;
-    if (name == null) throw ArgumentError.notNull('element.name3');
+    final name = element.name;
+    if (name == null) throw ArgumentError.notNull('element.name');
 
-    final story = refer(name, element.library2.uri.toString());
+    final story = refer(name, element.library.uri.toString());
 
     if (generated.isEmpty) return story;
 
@@ -78,11 +78,11 @@ class StoryParser {
     );
   }
 
-  Expression buildComponent(ClassElement2 element) {
-    final constructor = element.constructors2.first;
-    print(['build component', element, constructor, constructor.name3]);
-    final constructorName = (constructor.name3?.isNotEmpty == true) //
-        ? constructor.name3!
+  Expression buildComponent(ClassElement element) {
+    final constructor = element.constructors.first;
+    print(['build component', element, constructor, constructor.name]);
+    final constructorName = (constructor.name?.isNotEmpty == true) //
+        ? constructor.name!
         : 'new';
 
     try {
@@ -123,14 +123,14 @@ class StoryParser {
   }
 
   Expression _buildWidgetExpression(
-    ClassElement2 element,
-    ConstructorElement2 constructor,
+    ClassElement element,
+    ConstructorElement constructor,
     String constructorName,
   ) {
-    final name = element.name3;
-    if (name == null) throw ArgumentError.notNull('element.name3');
+    final name = element.name;
+    if (name == null) throw ArgumentError.notNull('element.name');
 
-    Expression widget = refer(name, element.library2.uri.toString());
+    Expression widget = refer(name, element.library.uri.toString());
 
     if (constructorName.isNotEmpty) {
       widget = widget.property(constructorName);
@@ -151,10 +151,10 @@ class StoryParser {
       if (value == null) return;
 
       parameter.isNamed
-          ? named[parameter.name3!] = value
+          ? named[parameter.name!] = value
           : positional.add(value);
     } on UnsupportedParameterException catch (e) {
-      unsupported[parameter.name3 ?? '<unnamed>'] = e.type;
+      unsupported[parameter.name ?? '<unnamed>'] = e.type;
     }
   }
 }

@@ -1,4 +1,4 @@
-import 'package:analyzer/dart/element/element2.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:sandboxed_generator/expression/raw.dart';
@@ -31,12 +31,12 @@ class StoryParameterBuilder {
 
   Expression? handleEnumDefaultValue(
     String defaultValue,
-    EnumElement2 enum$,
+    EnumElement enum$,
     Expression? value,
   ) {
-    if (defaultValue.startsWith('${enum$.name3}.')) {
+    if (defaultValue.startsWith('${enum$.name}.')) {
       final parts = defaultValue.split('.').skip(1);
-      value = refer(enum$.name3 ?? '', enum$.library2.uri.toString());
+      value = refer(enum$.name ?? '', enum$.library.uri.toString());
       for (final part in parts) {
         value = value!.property(part);
       }
@@ -48,7 +48,7 @@ class StoryParameterBuilder {
     Expression? value;
 
     if (parameter.defaultValueCode case String defaultValue) {
-      if (parameter.type.element3 case EnumElement2 enum$) {
+      if (parameter.type.element case EnumElement enum$) {
         value = handleEnumDefaultValue(defaultValue, enum$, value);
       } else if (!defaultValue.startsWith('_')) {
         value = CodeExpression(Code(defaultValue));
@@ -86,8 +86,8 @@ class StoryParameterBuilder {
     List<Expression> positionalArgs,
     Map<String, Expression> namedArgs,
   ) {
-    final name = parameter.name3;
-    if (name == null) throw ArgumentError.notNull('parameter.name3');
+    final name = parameter.name;
+    if (name == null) throw ArgumentError.notNull('parameter.name');
 
     return refer('params')
         .property(internal)
@@ -104,8 +104,8 @@ class StoryParameterBuilder {
       types.addAll(List.filled(3 - types.length, refer('void')));
     }
 
-    final name = parameter.name3;
-    if (name == null) throw ArgumentError.notNull('parameter.name3');
+    final name = parameter.name;
+    if (name == null) throw ArgumentError.notNull('parameter.name');
 
     Expression any;
     any = refer('params').property('any').call(

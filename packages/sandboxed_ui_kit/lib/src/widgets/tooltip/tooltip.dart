@@ -60,8 +60,9 @@ class _SBTooltipState extends State<SBTooltip>
 
   @override
   Widget build(BuildContext context) {
-    return OverlayPortal.targetsRootOverlay(
+    return OverlayPortal(
       controller: controller,
+      overlayLocation: OverlayChildLocation.rootOverlay,
       overlayChildBuilder: (overlayContext) {
         final translation = context
             .findRenderObject() //

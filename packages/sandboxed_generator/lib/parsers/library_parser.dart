@@ -1,4 +1,4 @@
-import 'package:analyzer/dart/element/element2.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
@@ -15,7 +15,7 @@ class LibraryParser {
   final bool isRootPackage;
   final String package;
   final String path;
-  final LibraryElement2 library;
+  final LibraryElement library;
   final List<String> docs;
   final Reference? configReference;
 
@@ -30,27 +30,27 @@ class LibraryParser {
     required this.configReference,
   });
 
-  bool checkMeta(TopLevelVariableElement2 element) {
-    if (element.type.element3 case ClassElement2 clazz) {
+  bool checkMeta(TopLevelVariableElement element) {
+    if (element.type.element case ClassElement clazz) {
       // TODO(@melvspace): 03/06/25 typechecker is conflicting with flutter for some reason. investigate.
-      return clazz.name3 == 'Meta' &&
-          clazz.library2.uri.toString().contains('sandboxed_core/meta.dart');
+      return clazz.name == 'Meta' &&
+          clazz.library.uri.toString().contains('sandboxed_core/meta.dart');
     }
 
     return false;
   }
 
-  bool checkStory(TopLevelVariableElement2 element) {
-    if (element.type.element3 case ClassElement2 clazz) {
+  bool checkStory(TopLevelVariableElement element) {
+    if (element.type.element case ClassElement clazz) {
       // TODO(@melvspace): 03/06/25 typechecker is conflicting with flutter for some reason. investigate.
-      return clazz.name3 == 'Story' &&
-          clazz.library2.uri.toString().contains('sandboxed_core/story.dart');
+      return clazz.name == 'Story' &&
+          clazz.library.uri.toString().contains('sandboxed_core/story.dart');
     }
 
     return false;
   }
 
-  TopLevelVariableElement2? findMeta() {
+  TopLevelVariableElement? findMeta() {
     for (final element in library.topLevelVariables) {
       print(library.topLevelVariables);
       if (checkMeta(element)) {
@@ -63,8 +63,8 @@ class LibraryParser {
 
   Reference get _meta {
     final meta = findMeta();
-    print([meta, meta?.name3]);
-    return refer(meta?.name3 ?? 'meta', library.uri.toString());
+    print([meta, meta?.name]);
+    return refer(meta?.name ?? 'meta', library.uri.toString());
   }
 
   Future<MetaDescription?> buildMeta() async {
@@ -78,18 +78,18 @@ class LibraryParser {
   Future<List<Expression>> buildStories(MetaDescription? meta) async {
     final parser = StoryParser(resolver: resolver, meta: meta);
     final stories = library.topLevelVariables
-        .whereType<TopLevelVariableElement2>()
+        .whereType<TopLevelVariableElement>()
         .where(checkStory);
 
     final parsed = <String>{};
     final result = <(String, Expression)>[];
     for (final story in stories) {
-      if (parsed.contains(story.name3)) continue;
+      if (parsed.contains(story.name)) continue;
 
       final storyAccessor = await parser.parse(story);
-      final name = story.name3;
+      final name = story.name;
       if (name == null) {
-        throw ArgumentError.notNull('story.name3');
+        throw ArgumentError.notNull('story.name');
       }
 
       result.add((name, storyAccessor));
@@ -119,7 +119,7 @@ class LibraryParser {
         );
 
     return (
-      metaDescription?.widget?.name3 ?? '_undefined_',
+      metaDescription?.widget?.name ?? '_undefined_',
       InvokeExpression.newOf(
         refer('Component'),
         [],

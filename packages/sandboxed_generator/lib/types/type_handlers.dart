@@ -1,4 +1,4 @@
-import 'package:analyzer/dart/element/element2.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
@@ -19,7 +19,7 @@ class TypeHandlers {
       DartType type when type.isDartCoreNum => builder.build('number', 0.0),
       DartType type when type.isDartCoreDouble => builder.build('number', 0.0),
       DartType type when type.isDartCoreInt => builder.build('integer', 0),
-      DartType type when type.element3 is EnumElement2 =>
+      DartType type when type.element is EnumElement =>
         _handleEnum(type, builder),
       DartType type when TypeCheckers.color.isAssignableFromType(type) =>
         builder.build('color', Raw('Colors.red')),
@@ -140,22 +140,22 @@ class TypeHandlers {
       default:
         return TypeReference((b) {
           b.url = type.url;
-          b.symbol = type.element3?.name3;
+          b.symbol = type.element?.name;
           b.isNullable = tree.isNotEmpty && //
               type.nullabilitySuffix == NullabilitySuffix.question;
 
           List<DartType> typeArgs = [];
           if (type.alias case InstantiatedTypeAliasElement alias) {
             typeArgs = alias.typeArguments;
-            b.symbol = alias.element2.name3;
+            b.symbol = alias.element.name;
           } else if (type is InterfaceType) {
             typeArgs = type.typeArguments;
           }
 
           if (b.symbol == null) {
             throw StateError(
-              'Failed to get name for $type under ${tree.map((e) => e.element3?.name3).join(', ')}, '
-              'element - ${type.element3}, element3 - ${type.element3}',
+              'Failed to get name for $type under ${tree.map((e) => e.element?.name).join(', ')}, '
+              'element - ${type.element}, element - ${type.element}',
             );
           }
 
@@ -174,12 +174,10 @@ class TypeHandlers {
   static Expression _handleEnum(DartType type, StoryParameterBuilder builder) {
     return builder.build(
       'single',
-      refer(type.element3!.name3!, type.url)
-          .property('values')
-          .property('first'),
+      refer(type.element!.name!, type.url).property('values').property('first'),
       positionalArgs: [
         refer(
-          type.element3!.name3!,
+          type.element!.name!,
           type.url,
         ).property('values')
       ],

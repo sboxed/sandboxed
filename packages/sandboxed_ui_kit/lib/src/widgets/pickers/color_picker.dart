@@ -53,8 +53,9 @@ class _SBColorPickerState extends State<SBColorPicker> {
 
     return Row(
       children: [
-        OverlayPortal.targetsRootOverlay(
+        OverlayPortal(
           controller: overlayController,
+          overlayLocation: OverlayChildLocation.rootOverlay,
           overlayChildBuilder: (BuildContext context) {
             if (!isEditable) {
               return const SizedBox();

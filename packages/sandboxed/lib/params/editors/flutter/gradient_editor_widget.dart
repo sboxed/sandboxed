@@ -310,8 +310,9 @@ class __HandleState extends State<_Handle> {
   @override
   Widget build(BuildContext context) {
     return SkipFrame(
-      child: OverlayPortal.targetsRootOverlay(
+      child: OverlayPortal(
         controller: controller,
+        overlayLocation: OverlayChildLocation.rootOverlay,
         overlayChildBuilder: (context) => CompositedTransformFollower(
           link: link,
           followerAnchor: Alignment.center,

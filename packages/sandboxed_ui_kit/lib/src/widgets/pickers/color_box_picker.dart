@@ -34,8 +34,9 @@ class _ColorBoxPickerState extends State<ColorBoxPicker> {
     final color = widget.color;
     final hsv = HSVColor.fromColor(color);
 
-    return OverlayPortal.targetsRootOverlay(
+    return OverlayPortal(
       controller: overlayController,
+      overlayLocation: OverlayChildLocation.rootOverlay,
       overlayChildBuilder: (BuildContext context) {
         if (!isEditable) {
           return const SizedBox();
