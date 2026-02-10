@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_resizable_container/flutter_resizable_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,16 +8,14 @@ import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed/widgets/sb_bottom_app_bar.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 
-@RoutePage()
 class StoryPage extends ConsumerWidget {
   final String? id;
   final String? params;
 
   const StoryPage({
     super.key,
-    @QueryParam('path') this.id,
-    @QueryParam() this.params,
-    @QueryParam() String? global,
+    this.id,
+    this.params,
   }) : assert(id != null, 'id cant be null');
 
   @override

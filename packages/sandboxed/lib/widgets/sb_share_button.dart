@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sandboxed/routing/sandboxed_router_provider.dart';
 
 class SBShareButton extends StatelessWidget {
   const SBShareButton({super.key});
@@ -14,9 +14,11 @@ class SBShareButton extends StatelessWidget {
 
     return FilledButton(
       onPressed: () {
+        final url = context.currentUrl ?? '/';
+
         Clipboard.setData(
           ClipboardData(
-            text: origin + AutoRouter.of(context).urlState.url,
+            text: origin + url,
           ),
         );
 

@@ -19,6 +19,7 @@ dependencies:
 
   # packages
   flex_color_scheme: ^8.0.0
+  google_fonts: ^8.0.1
   highlight: ^0.7.0
   flutter_highlight: ^0.7.0
   recase: ^4.0.0

@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/addons/mixins/panel_addon.dart';
-import 'package:slugify/slugify.dart';
 import 'package:sandboxed/addons/addon.dart';
 import 'package:sandboxed/addons/interactive_viewer/interactive_viewer_addon.dart';
 import 'package:sandboxed/addons/mixins/decorator_addon.dart';
@@ -14,6 +13,14 @@ import 'package:sandboxed/widgets/gap.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
 export 'package:device_frame_plus/device_frame_plus.dart';
+
+/// Simple slugify implementation - converts text to URL-safe slug
+String _slugify(String text) {
+  return text
+      .toLowerCase()
+      .replaceAll(RegExp(r'[^a-z0-9]+'), '-')
+      .replaceAll(RegExp(r'^-|-$'), '');
+}
 
 class ViewportState with EquatableMixin {
   ViewportState({
@@ -261,7 +268,7 @@ final class ViewportAddon extends Addon
   @override
   Map<String, dynamic> encode() {
     return {
-      "devices": value.devices.map((e) => slugify(e.name)).toList(),
+      "devices": value.devices.map((e) => _slugify(e.name)).toList(),
       "frame": value.hasFrame,
       "orientation": value.orientation.name,
     };
@@ -277,7 +284,7 @@ final class ViewportAddon extends Addon
       devices: devices != null
           ? this
               .devices
-              .where((element) => devices.contains(slugify(element.name)))
+              .where((element) => devices.contains(_slugify(element.name)))
               .toList()
           : null,
       hasFrame: frame,

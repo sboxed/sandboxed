@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +7,7 @@ import 'package:sandboxed/inspector/addons_inspector.dart';
 import 'package:sandboxed/inspector/component_inspector.dart';
 import 'package:sandboxed/provider/params.dart';
 import 'package:sandboxed/provider/selected.dart';
+import 'package:sandboxed/routing/sandboxed_router_provider.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 
 class SBBottomAppBar extends ConsumerWidget {
@@ -81,9 +81,11 @@ class SBBottomAppBar extends ConsumerWidget {
             const Spacer(),
             FilledButton(
               onPressed: () {
+                final url = context.currentUrl ?? '/';
+
                 Clipboard.setData(
                   ClipboardData(
-                    text: Uri.base.origin + AutoRouter.of(context).urlState.url,
+                    text: Uri.base.origin + url,
                   ),
                 );
 

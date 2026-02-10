@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,7 +8,6 @@ import 'package:sandboxed/widgets/sb_bottom_app_bar.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-@RoutePage()
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 

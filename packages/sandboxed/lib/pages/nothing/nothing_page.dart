@@ -1,15 +1,10 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:sandboxed/widgets/element_name.dart';
 import 'package:sandboxed/widgets/sb_bottom_app_bar.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 
-@RoutePage()
 class NothingPage extends StatelessWidget {
-  const NothingPage({
-    super.key,
-    @QueryParam() String? global,
-  });
+  const NothingPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,6 @@
-// ignore_for_file: implementation_imports
+import 'package:flutter/widgets.dart';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/src/widgets/navigator.dart';
-
-class DelegateRouteObserver extends AutoRouteObserver {
+class DelegateRouteObserver extends NavigatorObserver {
   final void Function(Route route, Route? previousRoute)? onDidPush;
   final void Function(Route route, Route? previousRoute)? onDidPop;
   final void Function(Route route, Route? previousRoute)? onDidRemove;

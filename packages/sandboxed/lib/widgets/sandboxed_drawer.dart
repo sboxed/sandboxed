@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/provider/theme_mode.dart';
 import 'package:sandboxed/provider/title.dart';
-import 'package:sandboxed/router.gr.dart';
+import 'package:sandboxed/routing/sandboxed_router_provider.dart';
 import 'package:sandboxed/src/provider/feature_flags.dart';
 import 'package:sandboxed/tree/component_tree.dart';
 import 'package:sandboxed/tree_next/element_tree.dart';
@@ -24,7 +23,9 @@ class SandboxedDrawer extends StatelessWidget {
           actions: [
             IconButton(
               color: Colors.white,
-              onPressed: () => AutoRouter.of(context).push(SettingsRoute()),
+              onPressed: () {
+                context.sandboxedRouter?.showSettings();
+              },
               icon: Icon(Icons.settings),
             ),
             SBThemeButton(

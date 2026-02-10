@@ -1,7 +1,6 @@
 // ignore_for_file: scoped_providers_should_specify_dependencies
 library;
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -13,13 +12,13 @@ import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/provider/addons.dart';
 import 'package:sandboxed/provider/brand_color.dart';
 import 'package:sandboxed/provider/component_tree.dart';
-import 'package:sandboxed/provider/params.dart';
 import 'package:sandboxed/provider/persistence.dart';
 import 'package:sandboxed/provider/selected.dart';
 import 'package:sandboxed/provider/settings.dart';
 import 'package:sandboxed/provider/theme_mode.dart';
 import 'package:sandboxed/provider/title.dart';
-import 'package:sandboxed/router.dart';
+import 'package:sandboxed/routing/sandboxed_route_parser.dart';
+import 'package:sandboxed/routing/sandboxed_router_delegate.dart';
 import 'package:sandboxed/src/provider/feature_flags.dart';
 import 'package:sandboxed/theme.dart';
 import 'package:sandboxed/widgets/application_scale.dart';
@@ -56,13 +55,19 @@ class Sandboxed extends StatefulWidget {
 }
 
 class _SandboxedState extends State<Sandboxed> {
-  final router = AppRouter();
+  SandboxedRouterDelegate? _routerDelegate;
+  final _routeInformationParser = const SandboxedRouteInformationParser();
 
   @override
   void initState() {
     usePathUrlStrategy();
-
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _routerDelegate?.dispose();
+    super.dispose();
   }
 
   @override
@@ -110,6 +115,17 @@ class _SandboxedState extends State<Sandboxed> {
               return const SizedBox();
             }
 
+            // Initialize router delegate with ref (only once)
+            _routerDelegate ??= SandboxedRouterDelegate(ref: ref);
+
+            // Listen to state changes and update router
+            ref.listen(selectedElementProvider, (previous, next) {
+              _routerDelegate?.updateConfiguration();
+            });
+            ref.listen(addonQueryProvider, (previous, next) {
+              _routerDelegate?.updateConfiguration();
+            });
+
             return ApplicationScale(
               child: MaterialApp.router(
                 debugShowCheckedModeBanner: false,
@@ -132,41 +148,13 @@ class _SandboxedState extends State<Sandboxed> {
                     child: child,
                   );
                 },
-                routerConfig: router.config(
-                  deepLinkBuilder: (deepLink) async {
-                    if (deepLink.path == '/' && path.value != null) {
-                      await handleDeepLink(Uri.parse(path.value!), ref);
-                      return DeepLink.path(path.value!);
-                    }
-
-                    if (deepLink.isValid) {
-                      await handleDeepLink(deepLink.uri, ref);
-                    }
-
-                    return deepLink;
-                  },
-                ),
+                routerDelegate: _routerDelegate!,
+                routeInformationParser: _routeInformationParser,
               ),
             );
           },
         ),
       ),
     );
-  }
-
-  Future<void> handleDeepLink(Uri uri, WidgetRef ref) async {
-    await Future.microtask(() {
-      if (uri.queryParameters['path'] case String id) {
-        ref.read(selectedElementNotifierProvider.notifier).select(id);
-
-        if (uri.queryParameters['params'] case String params) {
-          ref.read(paramsQueryProvider(id).notifier).applyDeeplink(params);
-        }
-      }
-
-      if (uri.queryParameters['global'] case String global) {
-        ref.read(addonQueryProvider.notifier).applyDeeplink(global);
-      }
-    });
   }
 }
