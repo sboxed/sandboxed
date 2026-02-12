@@ -60,6 +60,9 @@ class _StoryViewState extends State<StoryView> {
       return builder(context);
     } on UnsupportedParamException catch (exception) {
       return UnsupportedParamWidget(exception: exception);
+    } on UnsupportedGenericParametersException catch (exception) {
+      return SandboxedUnsupportedGenericParametersErrorWidget(
+          exception: exception);
     } on AbstractWidgetClassException {
       return const SandboxedAbstractWidgetErrorWidget();
     }
@@ -70,6 +73,9 @@ class _StoryViewState extends State<StoryView> {
       return widget.story.builder(context, params);
     } on UnsupportedParamException catch (exception) {
       return UnsupportedParamWidget(exception: exception);
+    } on UnsupportedGenericParametersException catch (exception) {
+      return SandboxedUnsupportedGenericParametersErrorWidget(
+          exception: exception);
     } on AbstractWidgetClassException {
       return const SandboxedAbstractWidgetErrorWidget();
     }

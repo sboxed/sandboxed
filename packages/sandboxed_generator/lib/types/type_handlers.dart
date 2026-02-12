@@ -3,6 +3,7 @@ import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:sandboxed_generator/builders/story_parameter_builder.dart';
+import 'package:sandboxed_generator/exception/unsupported_parameters.dart';
 import 'package:sandboxed_generator/expression/raw.dart';
 import 'package:sandboxed_generator/extension/dart_type_extension.dart';
 import 'package:sandboxed_generator/types/type_checker.dart';
@@ -12,6 +13,12 @@ import 'package:code_builder/code_builder.dart' as code_builder;
 
 class TypeHandlers {
   static Expression? handleType(DartType type, StoryParameterBuilder builder) {
+    // Check if the type contains any type parameters (like T, E, K, V)
+    // These cannot be safely handled in generated code
+    if (_containsTypeParameter(type)) {
+      throw UnsupportedParameterException(type.getDisplayString());
+    }
+    
     return switch (type) {
       DartType type when type.isDartCoreString =>
         builder.build('string', 'Text'),
@@ -80,6 +87,31 @@ class TypeHandlers {
     return [result, ...hints];
   }
 
+  /// Checks if a type contains any type parameters (like T, E, K, V)
+  static bool _containsTypeParameter(DartType type) {
+    if (type is TypeParameterType) {
+      return true;
+    }
+    
+    if (type is InterfaceType) {
+      return type.typeArguments.any(_containsTypeParameter);
+    }
+    
+    if (type is analyzer.FunctionType) {
+      if (_containsTypeParameter(type.returnType)) return true;
+      if (type.normalParameterTypes.any(_containsTypeParameter)) return true;
+      if (type.optionalParameterTypes.any(_containsTypeParameter)) return true;
+      if (type.namedParameterTypes.values.any(_containsTypeParameter)) return true;
+    }
+    
+    if (type is analyzer.RecordType) {
+      if (type.positionalFields.any((f) => _containsTypeParameter(f.type))) return true;
+      if (type.namedFields.any((f) => _containsTypeParameter(f.type))) return true;
+    }
+    
+    return false;
+  }
+
   /// Builds a type reference for a given Dart type, handling various type scenarios.
   ///
   /// [type] is the Dart type to convert into a code builder reference.
@@ -93,6 +125,11 @@ class TypeHandlers {
     switch (type) {
       case VoidType():
         return refer('void');
+
+      case TypeParameterType():
+        // Type parameters (like T, E, K, V) cannot be referenced in generated code
+        // Replace them with dynamic to avoid invalid references like _i9.T
+        return refer('dynamic');
 
       case analyzer.FunctionType():
         return code_builder.FunctionType(

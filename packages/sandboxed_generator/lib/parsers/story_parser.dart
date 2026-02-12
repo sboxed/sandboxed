@@ -7,7 +7,6 @@ import 'package:sandboxed_generator/exception/unsupported_parameters.dart';
 import 'package:sandboxed_generator/parsers/meta_parser.dart';
 import 'package:sandboxed_generator/types/type_checkers.dart';
 import 'package:sandboxed_generator/types/type_handlers.dart';
-import 'package:sandboxed_generator/ui/unsupported_parameters_message.dart';
 
 /// Parses story metadata and generates story expressions for top-level variable elements.
 ///
@@ -88,8 +87,10 @@ class StoryParser {
     try {
       return _buildWidgetExpression(element, constructor, constructorName);
     } on UnsupportedParametersException catch (e) {
-      return CodeExpression(
-          Code(UnsupportedParametersMessage(parameters: e.parameters).build()));
+      return refer(
+        'UnsupportedGenericParametersException',
+        'package:sandboxed_core/sandboxed_core.dart',
+      ).call([literalMap(e.parameters)]).thrown;
     }
   }
 
