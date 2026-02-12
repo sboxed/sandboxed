@@ -11,9 +11,7 @@ String _capitalize(String word) {
 extension _StringTitleCase on String {
   String get titleCase {
     if (isEmpty) return this;
-    return split(RegExp(r'[\s_-]+'))
-        .map(_capitalize)
-        .join(' ');
+    return split(RegExp(r'[\s_-]+')).map(_capitalize).join(' ');
   }
 }
 

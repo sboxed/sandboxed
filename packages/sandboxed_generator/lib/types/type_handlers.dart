@@ -18,7 +18,7 @@ class TypeHandlers {
     if (_containsTypeParameter(type)) {
       throw UnsupportedParameterException(type.getDisplayString());
     }
-    
+
     return switch (type) {
       DartType type when type.isDartCoreString =>
         builder.build('string', 'Text'),
@@ -92,23 +92,29 @@ class TypeHandlers {
     if (type is TypeParameterType) {
       return true;
     }
-    
+
     if (type is InterfaceType) {
       return type.typeArguments.any(_containsTypeParameter);
     }
-    
+
     if (type is analyzer.FunctionType) {
       if (_containsTypeParameter(type.returnType)) return true;
       if (type.normalParameterTypes.any(_containsTypeParameter)) return true;
       if (type.optionalParameterTypes.any(_containsTypeParameter)) return true;
-      if (type.namedParameterTypes.values.any(_containsTypeParameter)) return true;
+      if (type.namedParameterTypes.values.any(_containsTypeParameter)) {
+        return true;
+      }
     }
-    
+
     if (type is analyzer.RecordType) {
-      if (type.positionalFields.any((f) => _containsTypeParameter(f.type))) return true;
-      if (type.namedFields.any((f) => _containsTypeParameter(f.type))) return true;
+      if (type.positionalFields.any((f) => _containsTypeParameter(f.type))) {
+        return true;
+      }
+      if (type.namedFields.any((f) => _containsTypeParameter(f.type))) {
+        return true;
+      }
     }
-    
+
     return false;
   }
 

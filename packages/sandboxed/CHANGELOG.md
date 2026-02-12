@@ -1,3 +1,8 @@
+## 0.1.9
+
+ - **REFACTOR**: replace auto_route with custom routing implementation.
+ - **FEAT**: implement TextStyle showcase and editor components.
+
 ## 0.1.8
 
  - **REFACTOR**: update element imports and adjust OverlayPortal usage in UI components.

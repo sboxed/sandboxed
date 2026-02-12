@@ -1,3 +1,8 @@
+## 0.1.6
+
+ - **FEAT**: introduce generic parameters handling and error widget.
+ - **FEAT**: implement TextStyle showcase and editor components.
+
 ## 0.1.5
 
  - **FEAT**: add component and story order field for sorting nodes in tree.

@@ -1,3 +1,8 @@
+## 0.1.7
+
+ - **FEAT**: introduce generic parameters handling and error widget.
+ - **FEAT**: implement TextStyle showcase and editor components.
+
 ## 0.1.6
 
  - **REFACTOR**: update element imports and adjust OverlayPortal usage in UI components.
