@@ -1,3 +1,7 @@
+## 0.1.7+1
+
+ - **REFACTOR**: bump analyzer version.
+
 ## 0.1.7
 
  - **FEAT**: introduce generic parameters handling and error widget.

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-02-18
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed_generator` - `v0.1.7+1`](#sandboxed_generator---v0171)
+
+---
+
+#### `sandboxed_generator` - `v0.1.7+1`
+
+ - **REFACTOR**: bump analyzer version.
+
+
 ## 2026-02-12
 
 ### Changes
