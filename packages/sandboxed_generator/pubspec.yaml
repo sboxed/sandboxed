@@ -10,7 +10,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   # Allow 6.x/7.x for workspace compatibility with test + flutter_test (test_api pin).
-  analyzer: ">=6.0.0 <9.0.0"
+  analyzer: ">=8.1.1 <10.0.0"
   build: ^4.0.4
   code_builder: ^4.0.0
   collection: ^1.0.0
