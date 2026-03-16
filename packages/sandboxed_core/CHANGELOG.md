@@ -1,3 +1,7 @@
+## 0.1.6+1
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
 ## 0.1.6
 
  - **FEAT**: introduce generic parameters handling and error widget.

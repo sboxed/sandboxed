@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-03-16
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed` - `v0.1.9+1`](#sandboxed---v0191)
+ - [`sandboxed_cli` - `v0.0.2+3`](#sandboxed_cli---v0023)
+ - [`sandboxed_core` - `v0.1.6+1`](#sandboxed_core---v0161)
+ - [`sandboxed_generator` - `v0.1.7+2`](#sandboxed_generator---v0172)
+ - [`sandboxed_test` - `v0.0.3+2`](#sandboxed_test---v0032)
+ - [`sandboxed_ui_kit` - `v0.1.3+5`](#sandboxed_ui_kit---v0135)
+
+---
+
+#### `sandboxed` - `v0.1.9+1`
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
+#### `sandboxed_cli` - `v0.0.2+3`
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
+#### `sandboxed_core` - `v0.1.6+1`
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
+#### `sandboxed_generator` - `v0.1.7+2`
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
+#### `sandboxed_test` - `v0.0.3+2`
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
+#### `sandboxed_ui_kit` - `v0.1.3+5`
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
+
 ## 2026-02-18
 
 ### Changes

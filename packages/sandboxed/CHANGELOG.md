@@ -1,3 +1,7 @@
+## 0.1.9+1
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
 ## 0.1.9
 
  - **REFACTOR**: replace auto_route with custom routing implementation.

@@ -1,3 +1,7 @@
+## 0.0.3+2
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
 ## 0.0.3+1
 
  - **DOCS**: ignore LICENSE.md in pub.

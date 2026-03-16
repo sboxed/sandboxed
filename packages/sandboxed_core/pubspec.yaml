@@ -1,7 +1,7 @@
 name: sandboxed_core
 description: "Core logic and utilities powering the Sandboxed UI development environment. Includes base classes and internal APIs."
 resolution: workspace
-version: 0.1.6
+version: 0.1.6+1
 homepage: https://sboxed.com/
 
 environment:

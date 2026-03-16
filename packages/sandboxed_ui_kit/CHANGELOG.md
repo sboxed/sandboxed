@@ -1,3 +1,7 @@
+## 0.1.3+5
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
 ## 0.1.3+4
 
  - Update a dependency to the latest release.

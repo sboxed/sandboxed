@@ -1,3 +1,7 @@
+## 0.1.7+2
+
+ - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.
+
 ## 0.1.7+1
 
  - **REFACTOR**: bump analyzer version.
