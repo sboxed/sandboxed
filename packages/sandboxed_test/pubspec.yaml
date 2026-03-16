@@ -2,7 +2,7 @@ name: sandboxed_test
 description: "Reserved package name for future testing utilities related to the Sandboxed UI toolkit."
 resolution: workspace
 version: 0.0.3+1
-homepage: https://sboxed.dev/
+homepage: https://sboxed.com/
 
 environment:
   sdk: ^3.5.4
