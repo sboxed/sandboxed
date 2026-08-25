@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-08-25
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sandboxed` - `v0.1.9+2`](#sandboxed---v0192)
+
+---
+
+#### `sandboxed` - `v0.1.9+2`
+
+ - **REFACTOR**(riverpod): remove provider codegen.
+
+
 ## 2026-03-16
 
 ### Changes

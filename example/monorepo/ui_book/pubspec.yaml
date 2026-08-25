@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  sandboxed: ^0.1.9+1
+  sandboxed: ^0.1.9+2
   sandboxed_core: ^0.1.6+1
 
   ui_kit:

@@ -1,3 +1,7 @@
+## 0.1.9+2
+
+ - **REFACTOR**(riverpod): remove provider codegen.
+
 ## 0.1.9+1
 
  - **FIX**: replace sboxed.dev links with sboxed.com in pubspec files.

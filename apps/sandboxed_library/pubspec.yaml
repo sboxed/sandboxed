@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  sandboxed: ^0.1.9+1
+  sandboxed: ^0.1.9+2
   sandboxed_ui_kit: ^0.1.3+5
 
 dev_dependencies:
