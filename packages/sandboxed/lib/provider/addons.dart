@@ -2,19 +2,30 @@ import 'dart:developer';
 
 import 'package:flat/flat.dart';
 import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/addons/addon.dart';
 import 'package:sandboxed/widgets/revive.dart';
 
-part 'addons.g.dart';
-
-@Riverpod(dependencies: [])
 List<Addon> addonList(Ref ref) {
   return [];
 }
 
-@Riverpod(dependencies: [addonList], keepAlive: true)
-class Addons extends _$Addons {
+final addonListProvider = Provider.autoDispose<List<Addon>>(
+  addonList,
+  dependencies: const [],
+);
+
+final addonsProvider = NotifierProvider<Addons, List<Addon>>(
+  Addons.new,
+  dependencies: [addonListProvider],
+);
+
+final addonQueryProvider = NotifierProvider<AddonQuery, String?>(
+  AddonQuery.new,
+  dependencies: [addonsProvider],
+);
+
+class Addons extends Notifier<List<Addon>> {
   @override
   List<Addon> build() {
     return ref.watch(addonListProvider);
@@ -25,8 +36,7 @@ class Addons extends _$Addons {
 // &args=size:m;weight:regular;decoration:italic
 // &globals=colorScheme:dark;measureEnabled:!true
 
-@Riverpod(keepAlive: true, dependencies: [Addons])
-class AddonQuery extends _$AddonQuery {
+class AddonQuery extends Notifier<String?> {
   late List<Addon> _addons;
 
   String _compute() {

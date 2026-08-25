@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-part 'title.g.dart';
-
-@riverpod
 Widget title(Ref ref) {
   return const Text("Sandboxed");
 }
+
+final titleProvider = Provider.autoDispose<Widget>(title);

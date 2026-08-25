@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flat/flat.dart';
 import 'package:flutter/foundation.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/addons/mixins/param_editor_addon.dart';
 import 'package:sandboxed/provider/addons.dart';
 import 'package:sandboxed/provider/selected.dart';
@@ -10,15 +10,11 @@ import 'package:sandboxed/utility/debouncer.dart';
 import 'package:sandboxed/widgets/revive.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
-part 'params.g.dart';
-
-@Riverpod(dependencies: [SelectedElementNotifier])
 String paramsScopeId(Ref ref) {
   return ref.watch(selectedElementNotifierProvider) ?? '';
 }
 
-@Riverpod(dependencies: [Addons])
-Raw<ParamStorage> params(Ref ref, String id) {
+ParamStorage params(Ref ref, String id) {
   final addons = ref.watch(addonsProvider);
 
   final editors3 = addons //
@@ -30,8 +26,26 @@ Raw<ParamStorage> params(Ref ref, String id) {
   return ParamStorage(editors3: editors3);
 }
 
-@Riverpod(keepAlive: true, dependencies: [params])
-class ParamsQuery extends _$ParamsQuery {
+final paramsScopeIdProvider = Provider.autoDispose<String>(
+  paramsScopeId,
+  dependencies: [selectedElementNotifierProvider],
+);
+
+final paramsProvider = Provider.autoDispose.family<ParamStorage, String>(
+  params,
+  dependencies: [addonsProvider],
+);
+
+final paramsQueryProvider =
+    NotifierProvider.family<ParamsQuery, String?, String>(
+  ParamsQuery.new,
+  dependencies: [paramsProvider],
+);
+
+class ParamsQuery extends Notifier<String?> {
+  ParamsQuery(this.id);
+
+  final String id;
   late ParamStorage _params;
   final Debouncer _debouncer = Debouncer(
     duration: Duration(milliseconds: 500),
@@ -85,7 +99,7 @@ class ParamsQuery extends _$ParamsQuery {
   }
 
   @override
-  String? build(String id) {
+  String? build() {
     _params = ref.watch(paramsProvider(id));
 
     _params.addListener(_update);

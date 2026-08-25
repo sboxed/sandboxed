@@ -1,21 +1,16 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/provider/component_tree.dart';
 import 'package:sandboxed_core/component.dart';
 import 'package:sandboxed_core/tags_resolver.dart';
 
-part 'tags.g.dart';
-
-@riverpod
 Set<String> globalTags(Ref ref) {
   return {};
 }
 
-@riverpod
 TagsResolver tagsResolver(Ref ref) {
   return TagsResolver(globalTags: ref.watch(globalTagsProvider));
 }
 
-@Riverpod(dependencies: [components])
 Set<String> allTags(Ref ref) {
   final tags = {...ref.watch(globalTagsProvider)};
   final components = ref.watch(componentsProvider);
@@ -41,8 +36,19 @@ Set<String> allTags(Ref ref) {
   return tags;
 }
 
-@riverpod
-class TagFilter extends _$TagFilter {
+final globalTagsProvider = Provider.autoDispose<Set<String>>(globalTags);
+
+final tagsResolverProvider = Provider.autoDispose<TagsResolver>(tagsResolver);
+
+final allTagsProvider = Provider.autoDispose<Set<String>>(
+  allTags,
+  dependencies: [componentsProvider],
+);
+
+final tagFilterProvider =
+    NotifierProvider.autoDispose<TagFilter, Set<String>>(TagFilter.new);
+
+class TagFilter extends Notifier<Set<String>> {
   @override
   Set<String> build() {
     return {};

@@ -1,23 +1,63 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sandboxed/provider/tags.dart';
 import 'package:sandboxed/tree/component_tree_node.dart';
 import 'package:sandboxed/tree/component_tree_parser.dart';
 import 'package:sandboxed/sandboxed.dart';
 
-part 'component_tree.g.dart';
-
-@Riverpod(dependencies: [])
 List<SandboxedElement> components(Ref ref) {
   return [];
 }
 
-@Riverpod(
-  keepAlive: true,
-  name: 'componentTreeNotifierProvider',
-  dependencies: [components],
-)
-class ComponentTreeNotifier extends _$ComponentTreeNotifier {
+final componentsProvider = Provider.autoDispose<List<SandboxedElement>>(
+  components,
+  dependencies: const [],
+);
+
+final componentTreeNotifierProvider =
+    NotifierProvider<ComponentTreeNotifier, TreeType<NodeData>>(
+  ComponentTreeNotifier.new,
+  dependencies: [componentsProvider],
+);
+
+final nodeProvider = NotifierProvider.family<Node, Tree?, String?>(
+  Node.new,
+  dependencies: [componentTreeNotifierProvider],
+  isAutoDispose: true,
+);
+
+final treeNodeProvider = NotifierProvider.family<TreeNode, Tree?, String?>(
+  TreeNode.new,
+  dependencies: [filteredTreeProvider],
+  isAutoDispose: true,
+);
+
+final searchQueryProvider = NotifierProvider<SearchQuery, String>(
+  SearchQuery.new,
+);
+
+final filteredTreeProvider = Provider.autoDispose<Tree?>(
+  filteredTree,
+  dependencies: [componentTreeNotifierProvider],
+);
+
+final tree2Provider = Provider.autoDispose<List<TreeViewNode<ElementNode>>>(
+  tree2,
+  dependencies: [componentTreeNotifierProvider],
+);
+
+final filteredTree2Provider =
+    Provider.autoDispose<List<TreeViewNode<ElementNode>>>(
+  filteredTree2,
+  dependencies: [tree2Provider, componentTreeNotifierProvider],
+);
+
+final largestNodeProvider = Provider.autoDispose<TreeViewNode<ElementNode>>(
+  largestNode,
+  dependencies: [tree2Provider],
+);
+
+class ComponentTreeNotifier extends Notifier<TreeType<NodeData>> {
   @override
   TreeType<NodeData> build() {
     final components = ref.watch(componentsProvider);
@@ -41,10 +81,13 @@ class ComponentTreeNotifier extends _$ComponentTreeNotifier {
   }
 }
 
-@Riverpod(dependencies: [ComponentTreeNotifier])
-class Node extends _$Node {
+class Node extends Notifier<Tree?> {
+  Node(this.id);
+
+  final String? id;
+
   @override
-  Tree? build(String? id) {
+  Tree? build() {
     final tree = ref.watch(componentTreeNotifierProvider);
     if (id == null) return tree;
 
@@ -57,10 +100,13 @@ class Node extends _$Node {
   }
 }
 
-@Riverpod(dependencies: [filteredTree])
-class TreeNode extends _$TreeNode {
+class TreeNode extends Notifier<Tree?> {
+  TreeNode(this.id);
+
+  final String? id;
+
   @override
-  Tree? build(String? id) {
+  Tree? build() {
     final tree = ref.watch(filteredTreeProvider);
     if (id == null) return tree;
     if (tree == null) return tree;
@@ -74,8 +120,7 @@ class TreeNode extends _$TreeNode {
   }
 }
 
-@Riverpod(keepAlive: true)
-class SearchQuery extends _$SearchQuery {
+class SearchQuery extends Notifier<String> {
   @override
   String build() {
     return '';
@@ -87,7 +132,6 @@ class SearchQuery extends _$SearchQuery {
   }
 }
 
-@Riverpod(dependencies: [ComponentTreeNotifier])
 Tree? filteredTree(Ref ref) {
   final tree = ref.watch(componentTreeNotifierProvider);
   final query = ref.watch(searchQueryProvider);
@@ -154,7 +198,6 @@ Tree? filterTree(Tree tree, bool Function(Tree node) predicate) {
   );
 }
 
-@Riverpod(dependencies: [ComponentTreeNotifier])
 List<TreeViewNode<ElementNode>> tree2(Ref ref) {
   final node = ref.watch(componentTreeNotifierProvider);
   List<TreeViewNode<ElementNode>> getNodes(List<Tree> tree) {
@@ -171,7 +214,6 @@ List<TreeViewNode<ElementNode>> tree2(Ref ref) {
   return getNodes(node.children);
 }
 
-@Riverpod(dependencies: [tree2, ComponentTreeNotifier])
 List<TreeViewNode<ElementNode>> filteredTree2(Ref ref) {
   final tree = ref.watch(tree2Provider);
   final originalTree = ref.watch(componentTreeNotifierProvider);
@@ -220,7 +262,6 @@ List<TreeViewNode<ElementNode>> filteredTree2(Ref ref) {
   return getNodes(root?.children ?? []);
 }
 
-@Riverpod(dependencies: [tree2])
 TreeViewNode<ElementNode> largestNode(Ref ref) {
   final tree = ref.watch(tree2Provider);
 

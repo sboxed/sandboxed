@@ -1,10 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/provider/component_tree.dart';
 import 'package:sandboxed/tree/component_tree_node.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
-
-part 'selected.g.dart';
 
 sealed class Selection {
   Component get component;
@@ -34,12 +32,23 @@ final class StorySelection extends Selection with EquatableMixin {
   List<Object?> get props => [component, story];
 }
 
-@Riverpod(
-  keepAlive: true,
-  name: 'selectedElementNotifierProvider',
-  dependencies: [],
-)
-class SelectedElementNotifier extends _$SelectedElementNotifier {
+final selectedElementNotifierProvider =
+    NotifierProvider<SelectedElementNotifier, String?>(
+  SelectedElementNotifier.new,
+  dependencies: const [],
+);
+
+final selectionProvider = Provider.autoDispose.family<Selection?, String>(
+  selection,
+  dependencies: [nodeProvider],
+);
+
+final selectedElementProvider = Provider.autoDispose<Selection?>(
+  selectedElement,
+  dependencies: [selectionProvider, selectedElementNotifierProvider],
+);
+
+class SelectedElementNotifier extends Notifier<String?> {
   @override
   String? build() {
     return null;
@@ -51,7 +60,6 @@ class SelectedElementNotifier extends _$SelectedElementNotifier {
   }
 }
 
-@Riverpod(dependencies: [Node])
 Selection? selection(Ref ref, String id) {
   final node = ref.watch(nodeProvider(id));
   if (node == null) return null;
@@ -80,7 +88,6 @@ Selection? selection(Ref ref, String id) {
   }
 }
 
-@Riverpod(dependencies: [selection, SelectedElementNotifier])
 Selection? selectedElement(Ref ref) {
   final selected = ref.watch(selectedElementNotifierProvider);
   if (selected == null) return null;

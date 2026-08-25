@@ -1,25 +1,31 @@
 import 'dart:async';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/experimental/persist.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-part 'persistence.g.dart';
-
-@Riverpod(keepAlive: true)
 Future<SharedPreferences> sharedPreferences(Ref ref) {
   return SharedPreferences.getInstance();
 }
 
-@riverpod
 Future<Storage<String, String>> storage(Ref ref) async {
   final preferences = await ref.watch(sharedPreferencesProvider.future);
 
   return PreferencesStorage(preferences);
 }
 
-@Riverpod(keepAlive: true)
-class PathPersistence extends _$PathPersistence {
+final sharedPreferencesProvider = FutureProvider<SharedPreferences>(
+  sharedPreferences,
+);
+
+final storageProvider = FutureProvider.autoDispose<Storage<String, String>>(
+  storage,
+);
+
+final pathPersistenceProvider =
+    AsyncNotifierProvider<PathPersistence, String?>(PathPersistence.new);
+
+class PathPersistence extends AsyncNotifier<String?> {
   final _completer = Completer();
   late SharedPreferences _preferences;
 

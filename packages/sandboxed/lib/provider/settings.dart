@@ -1,6 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/experimental/persist.dart';
-import 'package:riverpod_annotation/experimental/json_persist.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sandboxed/feature_flags.dart';
 import 'package:sandboxed/provider/persistence.dart';
@@ -33,13 +34,19 @@ abstract class Settings with _$Settings {
       _$SettingsFromJson(json);
 }
 
-@riverpod
-@JsonPersist()
-class SettingStorage extends _$SettingStorage {
+final settingStorageProvider =
+    NotifierProvider.autoDispose<SettingStorage, Settings>(SettingStorage.new);
+
+class SettingStorage extends Notifier<Settings> {
   @override
   Settings build() {
-    persist(
+    NotifierPersistX(this).persist<String, String>(
       ref.watch(storageProvider.future),
+      key: 'SettingStorage',
+      encode: (state) => jsonEncode(state.toJson()),
+      decode: (encoded) => Settings.fromJson(
+        jsonDecode(encoded) as Map<String, dynamic>,
+      ),
       options: StorageOptions(cacheTime: StorageCacheTime.unsafe_forever),
     );
 
