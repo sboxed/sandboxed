@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/sboxed/sandboxed/compare/v0.2.0...v0.2.1) (2026-11-06)
+
+
+### Bug Fixes
+
+* **release:** preserve package changelog history ([219976b](https://github.com/sboxed/sandboxed/commit/219976b0b16f36307bf661b7656a4dfe8f5b13a5))
+
 ## [0.2.0](https://github.com/sboxed/sandboxed/compare/v0.1.9...v0.2.0) (2026-11-06)
 
 

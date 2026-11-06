@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   
-  sandboxed_core: ^0.2.0 # x-release-please-version
+  sandboxed_core: ^0.2.1 # x-release-please-version
 
 dev_dependencies:
   flutter_test:
