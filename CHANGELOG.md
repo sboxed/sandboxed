@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://github.com/sboxed/sandboxed/compare/v0.1.9...v0.2.0) (2026-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** require Dart 3.13 and Flutter 3.47. Material APIs use package:material_ui/material_ui.dart.
+
+### Bug Fixes
+
+* clear Dart analyzer diagnostics ([9ad03c3](https://github.com/sboxed/sandboxed/commit/9ad03c343672e94807281e844741046ebd362d41))
+* **generator:** enable Material assets ([c6f249c](https://github.com/sboxed/sandboxed/commit/c6f249c6da0934d04753b7d1770babfe3a78d9f1))
+
+
+### Miscellaneous Chores
+
+* **deps:** upgrade Flutter dependencies ([76528ff](https://github.com/sboxed/sandboxed/commit/76528ff512feffc87ba3e427c140737870dad77f))
+
 ## 2026-08-25
 
 ### Changes
@@ -768,4 +785,3 @@ Packages with other changes:
 
  - **FIX**: fix overflow box error.
  - **DOCS**: add documentation.
-
