@@ -14,6 +14,15 @@ rootProject.layout.buildDirectory.value(newBuildDir)
 subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
+
+    plugins.withId("com.android.library") {
+        extensions.configure<com.android.build.api.variant.LibraryAndroidComponentsExtension> {
+            finalizeDsl { library ->
+                // Match Flutter stable's compile SDK for native dependencies.
+                library.compileSdk = maxOf(library.compileSdk ?: 0, 36)
+            }
+        }
+    }
 }
 subprojects {
     project.evaluationDependsOn(":app")

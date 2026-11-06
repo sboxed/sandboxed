@@ -8,6 +8,13 @@ allprojects {
 rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
+
+    plugins.withId("com.android.library") {
+        extensions.getByName("androidComponents").finalizeDsl { library ->
+            // Match Flutter stable's compile SDK for native dependencies.
+            library.compileSdk = Math.max(library.compileSdk ?: 0, 36)
+        }
+    }
 }
 subprojects {
     project.evaluationDependsOn(":app")
