@@ -190,7 +190,7 @@ class _ComponentTreeState extends ConsumerState<ComponentTree>
   Widget buildChildrenNodes(Tree node, List<Widget> items) {
     return ClipRect(
       child: SizeTransition(
-        axisAlignment: 1,
+        alignment: AlignmentDirectional.bottomStart,
         sizeFactor: CurvedAnimation(parent: controller, curve: Curves.easeOut),
         child: Column(
           children: items,

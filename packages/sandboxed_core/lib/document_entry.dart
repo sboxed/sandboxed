@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class DocumentEntry with EquatableMixin {
+class DocumentEntry with Equatable {
   final String name;
   final String content;
 

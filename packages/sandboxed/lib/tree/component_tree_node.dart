@@ -13,7 +13,7 @@ part 'component_tree_node.freezed.dart';
 typedef Tree = TreeType<NodeData>;
 
 // ignore: must_be_immutable
-class NodeData with EquatableMixin implements AbsNodeType {
+class NodeData with Equatable implements AbsNodeType {
   ElementNode data;
 
   NodeData(this.data);

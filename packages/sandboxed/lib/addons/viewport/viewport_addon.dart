@@ -22,7 +22,7 @@ String _slugify(String text) {
       .replaceAll(RegExp(r'^-|-$'), '');
 }
 
-class ViewportState with EquatableMixin {
+class ViewportState with Equatable {
   ViewportState({
     required this.devices,
     this.orientation = Orientation.portrait,

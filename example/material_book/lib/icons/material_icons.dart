@@ -180,8 +180,11 @@ class _MaterialIconsState extends State<MaterialIcons> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Icon(
+                                              // Runtime glyphs require --no-tree-shake-icons.
                                               IconData(
+                                                // ignore: non_const_argument_for_const_parameter
                                                 icon.code,
+                                                // ignore: non_const_argument_for_const_parameter
                                                 fontFamily: icon.fontFamily,
                                               ),
                                               size: widget.size,

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
-abstract class SandboxedElement with EquatableMixin {
+abstract class SandboxedElement with Equatable {
   const SandboxedElement();
 }
 

@@ -10,7 +10,7 @@ sealed class Selection {
   const Selection();
 }
 
-final class DocumentSelection extends Selection with EquatableMixin {
+final class DocumentSelection extends Selection with Equatable {
   @override
   final Component component;
   final DocumentEntry document;
@@ -21,7 +21,7 @@ final class DocumentSelection extends Selection with EquatableMixin {
   List<Object?> get props => [component, document];
 }
 
-final class StorySelection extends Selection with EquatableMixin {
+final class StorySelection extends Selection with Equatable {
   @override
   final Component component;
   final Story story;
