@@ -5,29 +5,28 @@ version: 0.1.7+2
 homepage: https://sboxed.com/
 
 environment:
-  sdk: ">=3.5.4 <4.0.0"
+  sdk: ^3.13.0
 
 # Add regular dependencies here.
 dependencies:
-  # Allow 6.x/7.x for workspace compatibility with test + flutter_test (test_api pin).
-  analyzer: ">=8.1.1 <10.0.0"
-  build: ^4.0.4
-  code_builder: ^4.0.0
-  collection: ^1.0.0
-  crypto: ^3.0.0
-  dart_style: ^3.0.0
-  glob: ^2.0.0
-  meta: ^1.0.0
-  path: ^1.0.0
-  source_gen: ^4.2.0
-  yaml: ^3.0.0
+  analyzer: ^13.3.0
+  build: ^4.0.11
+  code_builder: ^4.13.0
+  collection: ^1.19.1
+  crypto: ^3.0.8
+  dart_style: ^3.1.14
+  glob: ^2.2.0
+  meta: ^1.19.0
+  path: ^1.9.1
+  source_gen: ^4.2.4
+  yaml: ^3.1.4
 
   # utility
-  recase: ^4.0.0
-  source_span: ^1.0.0
+  recase: ^4.1.0
+  source_span: ^1.10.2
 
   sandboxed_core: ^0.1.6+1
 
 dev_dependencies:
-  lints: ^6.0.0
-  test: ^1.24.0
+  lints: ^6.1.0
+  test: ^1.31.1

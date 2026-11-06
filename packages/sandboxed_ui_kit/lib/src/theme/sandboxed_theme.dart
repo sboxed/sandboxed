@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.dart';
 
 class SandboxedTheme extends ThemeExtension<SandboxedTheme> {

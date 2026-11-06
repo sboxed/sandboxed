@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/pages/index_page.dart';
 import 'package:sandboxed/pages/settings/settings_pages.dart';
@@ -91,7 +91,7 @@ class SandboxedRouterDelegate extends RouterDelegate<SandboxedRoute>
   bool _showSettings = false;
 
   SandboxedRouterDelegate({required this.ref})
-      : navigatorKey = GlobalKey<NavigatorState>();
+    : navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   SandboxedRoute? get currentConfiguration {
@@ -112,21 +112,21 @@ class SandboxedRouterDelegate extends RouterDelegate<SandboxedRoute>
     final global = ref.read(addonQueryProvider);
     final queryParams = <String, String>{
       'path': id,
-      if (global != null) 'global': global,
+      'global': ?global,
     };
 
     return switch (selected) {
       StorySelection() => () {
-          final params = ref.read(paramsQueryProvider(id));
-          if (params != null) {
-            queryParams['params'] = params;
-          }
-          return SandboxedRoute.story(id: id, queryParameters: queryParams);
-        }(),
+        final params = ref.read(paramsQueryProvider(id));
+        if (params != null) {
+          queryParams['params'] = params;
+        }
+        return SandboxedRoute.story(id: id, queryParameters: queryParams);
+      }(),
       DocumentSelection() => SandboxedRoute.document(
-          id: id,
-          queryParameters: queryParams,
-        ),
+        id: id,
+        queryParameters: queryParams,
+      ),
     };
   }
 

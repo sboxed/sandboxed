@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flat/flat.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/addons/addon.dart';
 import 'package:sandboxed/widgets/revive.dart';

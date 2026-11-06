@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:sandboxed_ui_kit/src/widgets/tooltip/tooltip.dart';

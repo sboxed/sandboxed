@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed/sandboxed.dart';
 import 'package:sandboxed_sandbox/widgets/params/param_showcase.dart';
 

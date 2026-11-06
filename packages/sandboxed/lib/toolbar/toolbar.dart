@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/provider/addons.dart';
 import 'package:sandboxed/toolbar/toolbar_addon_mixin.dart';

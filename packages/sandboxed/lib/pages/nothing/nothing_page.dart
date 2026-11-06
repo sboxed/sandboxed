@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed/widgets/element_name.dart';
 import 'package:sandboxed/widgets/sb_bottom_app_bar.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:sandboxed_ui_kit/src/layout/responsive_layout.dart';
 import 'package:sandboxed_ui_kit/src/widgets/layout/sb_drawer.stories.dart';

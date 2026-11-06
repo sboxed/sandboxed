@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/src/exception/exception.dart';
 import 'package:sandboxed_core/src/params/params.dart';
 import 'package:sandboxed_core/src/widgets/widgets.dart';

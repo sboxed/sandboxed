@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:iconify_flutter_plus/icons/mdi.dart';
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';
 

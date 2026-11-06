@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_resizable_container/flutter_resizable_container.dart';
 import 'package:sandboxed_ui_kit/src/widgets/layout/resizable_divider.dart';
 

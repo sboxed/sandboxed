@@ -1,7 +1,7 @@
 // ignore_for_file: scoped_providers_should_specify_dependencies
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:sandboxed/addons/addon.dart';
@@ -96,7 +96,7 @@ class _SandboxedState extends State<Sandboxed> {
               ...widget.flags,
               ...ref.watch(
                 settingStorageProvider.select((value) => value.optInFeatures),
-              )
+              ),
             },
           ),
           addonListProvider.overrideWith(
@@ -130,22 +130,28 @@ class _SandboxedState extends State<Sandboxed> {
               child: MaterialApp.router(
                 debugShowCheckedModeBanner: false,
                 themeMode: ref.watch(themeModeNotifierProvider),
-                theme: widget.theme?.copyWith(
+                theme:
+                    widget.theme?.copyWith(
                       extensions: [
                         buildSandboxedTheme(context, ref),
                       ],
                     ) ??
                     buildLightTheme(context, ref),
-                darkTheme: widget.darkTheme?.copyWith(
+                darkTheme:
+                    widget.darkTheme?.copyWith(
                       extensions: [
                         buildSandboxedTheme(context, ref),
                       ],
                     ) ??
                     buildDarkTheme(context, ref),
                 builder: (context, child) {
-                  return GestureDetector(
-                    onTap: () => FocusScope.of(context).unfocus,
-                    child: child,
+                  // Markdown and device frames still use Flutter's Material library.
+                  // ignore: deprecated_member_use
+                  return MaterialUiCompatibilityBridge(
+                    child: GestureDetector(
+                      onTap: () => FocusScope.of(context).unfocus,
+                      child: child,
+                    ),
                   );
                 },
                 routerDelegate: _routerDelegate!,

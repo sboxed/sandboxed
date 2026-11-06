@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:material_book/components.g.dart';
 import 'package:sandboxed/addons/alignment/alignment_addon.dart';
 import 'package:sandboxed/addons/interactive_viewer/interactive_viewer_addon.dart';

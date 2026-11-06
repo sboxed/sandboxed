@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/src/params/param_builder.dart';
 import 'package:sandboxed_core/src/params/delegate_param_serializer.dart';
 
@@ -59,11 +59,10 @@ class ParamValue<T> extends ChangeNotifier {
     this.default$,
     this.editor,
     this.serializer,
-    Map<String, Object> metadata = const {},
+    this._metadata = const {},
     required this.constraints,
-  })  : _value = value,
-        _metadata = metadata,
-        initial = value;
+  }) : _value = value,
+       initial = value;
 
   void update(T? value) {
     if (required && value == null) {

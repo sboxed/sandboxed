@@ -5,9 +5,10 @@ publish_to: 'none'
 version: 1.0.0
 
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.13.0
 
 dependencies:
+  material_ui: ^1.10.0
   flutter:
     sdk: flutter
 
@@ -18,19 +19,19 @@ dependencies:
   sandbox_feature:
 
   # packages
-  flex_color_scheme: ^8.0.0
-  google_fonts: ^8.0.1
+  flex_color_scheme: ^9.0.0
+  google_fonts: ^9.0.0
   highlight: ^0.7.0
   flutter_highlight: ^0.7.0
-  recase: ^4.0.0
+  recase: ^4.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints:
+  flutter_lints: ^6.0.0
   
-  build_runner: ^2.4.13
+  build_runner: ^2.16.1
   sandboxed_generator: ^0.1.7+2
 
 flutter:

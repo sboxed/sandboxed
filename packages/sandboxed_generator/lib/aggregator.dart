@@ -185,7 +185,7 @@ class ComponentAggregateBuilder extends Builder {
 
         library.directives.addAll([
           Directive.import('package:sandboxed_core/sandboxed_core.dart'),
-          Directive.import('package:flutter/material.dart'),
+          Directive.import('package:material_ui/material_ui.dart'),
         ]);
 
         library.body.add(

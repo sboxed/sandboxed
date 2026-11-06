@@ -5,18 +5,22 @@ version: 0.1.6+1
 homepage: https://sboxed.com/
 
 environment:
-  sdk: ">=3.5.4 <4.0.0"
-  flutter: ">=1.17.0"
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
 
 dependencies:
+  material_ui: ^1.10.0
   flutter:
     sdk: flutter
 
-  recase: ^4.0.0
-  equatable: ^2.0.0
+  recase: ^4.1.0
+  equatable: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: 
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

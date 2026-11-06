@@ -5,6 +5,7 @@
 // dart format width=80
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'package:ui_kit/button.stories.dart' as _i1;
 import 'package:ui_kit/stories/config.dart' as _i2;
 import 'package:ui_kit/button.dart' as _i3;
@@ -16,7 +17,7 @@ import 'package:ui_kit/heading.dart' as _i8;
 import 'package:products/product_card.stories.dart' as _i9;
 import 'package:products/product_card.dart' as _i10;
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 List<Component> get components {
   return <Component>[

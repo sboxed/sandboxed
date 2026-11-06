@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed/addons/typed_addons/flag_addon.dart';
 import 'package:sandboxed/toolbar/toolbar_addon_mixin.dart';
 import 'package:sandboxed/toolbar/toolbar_button.dart';

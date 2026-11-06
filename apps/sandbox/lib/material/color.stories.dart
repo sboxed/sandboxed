@@ -2,7 +2,7 @@
 
 // ignore_for_file: deprecated_member_use
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed/widgets/gap.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 

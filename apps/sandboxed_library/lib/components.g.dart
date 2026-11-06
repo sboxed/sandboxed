@@ -5,6 +5,7 @@
 // dart format width=80
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.stories.dart'
     as _i1;
 import 'package:sandboxed_ui_kit/stories/config.dart' as _i2;
@@ -23,7 +24,7 @@ import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.stories.dart'
     as _i11;
 import 'package:sandboxed_ui_kit/src/widgets/tags/tag_chip.dart' as _i12;
 import 'package:sandboxed_core/sandboxed_core.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 List<Component> get components {
   return <Component>[

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/src/params/delegate_param_serializer.dart';
 
 class TextStyleSerializer implements ParamSerializer<TextStyle> {

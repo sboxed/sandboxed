@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 
 export 'package:iconify_flutter_plus/iconify_flutter_plus.dart';

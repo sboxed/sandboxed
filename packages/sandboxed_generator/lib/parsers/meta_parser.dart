@@ -1,8 +1,6 @@
-// ignore_for_file: implementation_imports
-
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/src/dart/ast/ast.dart';
 import 'package:build/build.dart';
 import 'package:collection/collection.dart';
 
@@ -48,14 +46,17 @@ class MetaVisitor extends RecursiveAstVisitor {
 
       // find argument widget type.
       final componentArgumentExpression = node.argumentList.arguments
-          .whereType<NamedExpression>()
+          .whereType<NamedArgument>()
           .firstWhereOrNull(
-            (element) => element.name.label.name == 'component',
+            (element) => element.name.lexeme == 'component',
           )
-          ?.expression;
-      final componentArgument =
-          (componentArgumentExpression as SimpleIdentifier?) //
-              ?.element;
+          ?.argumentExpression;
+      final componentArgument = switch (componentArgumentExpression) {
+        TypeLiteral(:final type) => type.element,
+        SimpleIdentifier(:final element) => element,
+        _ => null,
+      };
+
       if (componentArgument case ClassElement component) {
         this.componentArgument = component;
       }

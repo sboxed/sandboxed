@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_resizable_container/flutter_resizable_container.dart';
 
 const kDividerWidth = 5;

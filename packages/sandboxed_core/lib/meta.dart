@@ -24,22 +24,23 @@ class Meta<T extends Widget> {
   final int order;
 
   const Meta({
-    String? name,
-    Type? component,
+    this._name,
+    this._component,
     this.module,
     this.documentation = const [],
     this.parameters = const {},
     this.decorators = const [],
     this.tags = const [],
     this.order = 0,
-  })  : _name = name,
-        _component = component;
+  });
 
   Type get component => _component ?? T;
 
   String get name {
     if (_name == null) {
-      log('$T: You have not defined name for component. On Web platform it will be unobtainable due to flutter optimizations');
+      log(
+        '$T: You have not defined name for component. On Web platform it will be unobtainable due to flutter optimizations',
+      );
     }
 
     if (kIsWeb && _name == null) {
@@ -76,7 +77,6 @@ class Meta<T extends Widget> {
   }
 
   List<String> get warnings => [
-        if (_name == null)
-          'Name of component is not set, in minified builds it will be unobtainable',
-      ];
+    if (_name == null) 'Name of component is not set, in minified builds it will be unobtainable',
+  ];
 }

@@ -1,6 +1,6 @@
 // ignore_for_file: implementation_imports
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:markdown/src/ast.dart' as md;
 import 'package:sandboxed_ui_kit/sandboxed_ui_kit.dart';

@@ -22,10 +22,10 @@ workspace:
   - example/monorepo/ui_kit
 
 environment:
-  sdk: ">=3.5.4 <4.0.0"
+  sdk: ^3.13.0
 
 dev_dependencies:
-  melos: ^7.0.0
+  melos: ^8.10.1
 
 melos:
   sdkPath: ".fvm/flutter_sdk"

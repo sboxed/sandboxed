@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
 class MultiSegmentedEditorPresenter<T> extends ValueEditorPresenter<List<T>> {

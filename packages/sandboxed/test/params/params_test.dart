@@ -4,19 +4,19 @@ import 'package:sandboxed_core/sandboxed_core.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  // this test indicates that type can't be inferred in chained calls. so explicit type providing needed
   test(
-    'test dynamic list inference param',
+    'requires an explicit list type in chained parameter calls',
     () {
       expect(
         () {
           final params = ParamStorage();
-          final List<String> _ = params.any('list').required([]);
+          final List<String> value = params.any('list').required([]);
+
+          return value;
         },
         throwsA(isA<TypeError>()),
       );
     },
-    tags: ['lang-flaws'],
   );
 
   test(
@@ -25,9 +25,10 @@ void main() {
       expect(
         () {
           final params = ParamStorage();
-          final List<String> _ = params //
-              .any<List<String>>('list')
-              .required([]);
+          final List<String> _ =
+              params //
+                  .any<List<String>>('list')
+                  .required([]);
         },
         returnsNormally,
       );
@@ -47,9 +48,10 @@ void main() {
 
       expect(
         () {
-          value = params //
-              .any<List<String>>('list')
-              .required(['Some']);
+          value =
+              params //
+                  .any<List<String>>('list')
+                  .required(['Some']);
         },
         returnsNormally,
       );
@@ -71,9 +73,10 @@ void main() {
 
       expect(
         () {
-          value = params //
-              .any<List<String>>('list')
-              .optional();
+          value =
+              params //
+                  .any<List<String>>('list')
+                  .optional();
         },
         throwsA(isA<TypeError>()),
       );
@@ -97,8 +100,9 @@ void main() {
     expect(
       () {
         final params = ParamStorage();
-        final List<String> _ =
-            params.multi('multiList', ['string', 'bla']).required([]);
+        final List<String> _ = params
+            .multi('multiList', ['string', 'bla'])
+            .required([]);
       },
       returnsNormally,
     );

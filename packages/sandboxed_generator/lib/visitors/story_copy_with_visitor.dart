@@ -15,9 +15,9 @@ class StoryCopyWithVisitor extends RecursiveAstVisitor {
 
   void _checkForMissingBuilder(MethodInvocation parent, ArgumentList node) {
     if (parent.methodName.name == 'Story' &&
-        !node.arguments
-            .whereType<NamedExpression>()
-            .any((element) => element.name.label.name == 'builder')) {
+        !node.arguments.whereType<NamedArgument>().any(
+          (element) => element.name.lexeme == 'builder',
+        )) {
       overrides.add('builder');
     }
   }

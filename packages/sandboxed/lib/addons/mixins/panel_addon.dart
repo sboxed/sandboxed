@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed/sandboxed.dart';
 
 /// Base mixin for addons that want to add custom tabs to the inspector.

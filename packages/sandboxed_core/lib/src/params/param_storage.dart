@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
 class ParamStorage with ChangeNotifier {
@@ -20,10 +20,9 @@ class ParamStorage with ChangeNotifier {
       _paramRegisteredController.stream;
 
   ParamStorage({
-    List<ParamEditorFactory<Presenter>> editors3 = const [],
+    this._editors3 = const [],
     DefaultResolver? defaultResolver,
-  })  : _editors3 = editors3,
-        _defaultResolver = defaultResolver ?? DefaultResolver.basic();
+  }) : _defaultResolver = defaultResolver ?? DefaultResolver.basic();
 
   void setInitialValues(Map<String, dynamic> defaults) {
     _defaults.addAll(defaults);

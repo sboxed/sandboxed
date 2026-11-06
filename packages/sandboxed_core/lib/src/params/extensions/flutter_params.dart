@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:recase/recase.dart';
 import 'package:sandboxed_core/src/params/params.dart';
 import 'package:sandboxed_core/src/params/serializers/flutter/text_style_serializer.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandbox_feature/sandbox_feature.dart';
 import 'package:sandboxed/addons/addon.dart';
 import 'package:sandboxed/addons/mixins/param_editor_addon.dart';

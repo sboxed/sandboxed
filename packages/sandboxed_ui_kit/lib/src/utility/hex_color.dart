@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 final class HexColor extends Color {
   static String _repeatEvery(String text, int times) {
@@ -22,17 +22,19 @@ final class HexColor extends Color {
     int value = switch (strippedHex) {
       _ when strippedHex.length == 8 => int.parse("0x$strippedHex"),
       _ when strippedHex.length == 6 => int.parse("0x$alpha$strippedHex"),
-      _ when strippedHex.length == 4 =>
-        int.parse("0x${_repeatEvery(strippedHex, 2)}"),
-      _ when strippedHex.length == 3 =>
-        int.parse("0x$alpha${_repeatEvery(strippedHex, 2)}"),
+      _ when strippedHex.length == 4 => int.parse(
+        "0x${_repeatEvery(strippedHex, 2)}",
+      ),
+      _ when strippedHex.length == 3 => int.parse(
+        "0x$alpha${_repeatEvery(strippedHex, 2)}",
+      ),
       _ => throw ArgumentError('invalid hex value: $hex with alpha - $alpha'),
     };
 
     return value;
   }
 
-  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+  HexColor(String hexColor) : super(_getColorFromHex(hexColor));
 }
 
 abstract final class SvgColor {

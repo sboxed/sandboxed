@@ -1,5 +1,5 @@
 import 'package:faker/faker.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 import 'package:sandboxed_ui_kit/src/theme/theme.dart';
 import 'package:sandboxed_ui_kit/src/widgets/tiles/element_tile.dart';

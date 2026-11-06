@@ -28,8 +28,8 @@ class Gap extends StatelessWidget {
     super.key,
     this.crossAxisExtent,
     this.color,
-  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
-        assert(crossAxisExtent == null || crossAxisExtent >= 0);
+  }) : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
+       assert(crossAxisExtent == null || crossAxisExtent >= 0);
 
   /// Creates a widget that takes a fixed [mainAxisExtent] of space in the
   /// direction of its parent and expands in the cross axis direction.
@@ -40,11 +40,11 @@ class Gap extends StatelessWidget {
     Key? key,
     Color? color,
   }) : this(
-          mainAxisExtent,
-          key: key,
-          crossAxisExtent: double.infinity,
-          color: color,
-        );
+         mainAxisExtent,
+         key: key,
+         crossAxisExtent: double.infinity,
+         color: color,
+       );
 
   /// The amount of space this widget takes in the direction of its parent.
   ///
@@ -74,8 +74,9 @@ class Gap extends StatelessWidget {
   Widget build(BuildContext context) {
     final scrollableState = Scrollable.maybeOf(context);
     final AxisDirection? axisDirection = scrollableState?.axisDirection;
-    final Axis? fallbackDirection =
-        axisDirection == null ? null : axisDirectionToAxis(axisDirection);
+    final Axis? fallbackDirection = axisDirection == null
+        ? null
+        : axisDirectionToAxis(axisDirection);
 
     return _RawGap(
       mainAxisExtent,
@@ -121,11 +122,11 @@ class MaxGap extends StatelessWidget {
     Key? key,
     Color? color,
   }) : this(
-          mainAxisExtent,
-          key: key,
-          crossAxisExtent: double.infinity,
-          color: color,
-        );
+         mainAxisExtent,
+         key: key,
+         crossAxisExtent: double.infinity,
+         color: color,
+       );
 
   /// The amount of space this widget takes in the direction of the parent.
   ///
@@ -167,8 +168,8 @@ class _RawGap extends LeafRenderObjectWidget {
     this.crossAxisExtent,
     this.color,
     this.fallbackDirection,
-  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
-        assert(crossAxisExtent == null || crossAxisExtent >= 0);
+  }) : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
+       assert(crossAxisExtent == null || crossAxisExtent >= 0);
 
   final double mainAxisExtent;
 
@@ -202,7 +203,8 @@ class _RawGap extends LeafRenderObjectWidget {
     super.debugFillProperties(properties);
     properties.add(DoubleProperty('mainAxisExtent', mainAxisExtent));
     properties.add(
-        DoubleProperty('crossAxisExtent', crossAxisExtent, defaultValue: 0));
+      DoubleProperty('crossAxisExtent', crossAxisExtent, defaultValue: 0),
+    );
     properties.add(ColorProperty('color', color));
     properties.add(EnumProperty<Axis>('fallbackDirection', fallbackDirection));
   }
@@ -212,14 +214,11 @@ class _RawGap extends LeafRenderObjectWidget {
 
 class RenderGap extends RenderBox {
   RenderGap({
-    required double mainAxisExtent,
-    double? crossAxisExtent,
-    Axis? fallbackDirection,
-    Color? color,
-  })  : _mainAxisExtent = mainAxisExtent,
-        _crossAxisExtent = crossAxisExtent,
-        _color = color,
-        _fallbackDirection = fallbackDirection;
+    required this._mainAxisExtent,
+    this._crossAxisExtent,
+    this._fallbackDirection,
+    this._color,
+  });
 
   double get mainAxisExtent => _mainAxisExtent;
   double _mainAxisExtent;

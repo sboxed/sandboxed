@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:device_frame_plus/device_frame_plus.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sandboxed/addons/mixins/panel_addon.dart';
 import 'package:sandboxed/addons/addon.dart';

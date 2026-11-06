@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/src/exception/unsupported_generic_parameters_exception.dart';
 import 'package:sandboxed_core/src/widgets/sandboxed_generic_error_widget.dart';
 

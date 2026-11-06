@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sandboxed_core/sandboxed_core.dart';
 
 Meta get meta => Meta<Scaffold>(name: 'Scaffold', decorators: []);
