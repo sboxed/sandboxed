@@ -25,6 +25,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Test release changelog sync
+        run: python3 -m unittest discover -s .github/scripts -p 'test_*.py'
+
       - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           channel: stable

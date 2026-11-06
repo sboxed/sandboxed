@@ -47,9 +47,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.sandy.outputs.token }}
         run: |
-          for changelog in packages/*/CHANGELOG.md; do
-            cp CHANGELOG.md "$changelog"
-          done
+          python3 .github/scripts/sync_changelogs.py
 
           git add packages/*/CHANGELOG.md
 
