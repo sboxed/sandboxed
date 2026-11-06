@@ -65,12 +65,8 @@ generate: sandboxed::generate sandbox-app::generate sandboxed-library::generate 
 
 
 release:
-  #!/usr/bin/env bash
-  set -e
-  
-  fvm dart run melos version
-  git push --follow-tags
+  gh workflow run release-please.yml --ref main
 
 
-publish:
-  fvm dart run melos publish --no-dry-run
+publish-check:
+  fvm dart run melos publish --dry-run --yes

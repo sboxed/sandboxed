@@ -1,0 +1,66 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "bf8560b0d9cfb082fc0fdf83ce90ffdaf1734a85",
+  "release-type": "simple",
+  "bump-minor-pre-major": true,
+  "include-component-in-tag": false,
+  "packages": {
+    ".": {
+      "package-name": "sandboxed",
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "apps/sandbox/features/sandbox_feature/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "apps/sandbox/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "apps/sandboxed_library/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "example/material_book/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "example/monorepo/products/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "example/monorepo/ui_book/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "example/monorepo/ui_kit/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "packages/sandboxed/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "packages/sandboxed_cli/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "packages/sandboxed_core/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "packages/sandboxed_generator/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "packages/sandboxed_test/pubspec.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "packages/sandboxed_ui_kit/pubspec.yaml"
+        }
+      ]
+    }
+  }
+}

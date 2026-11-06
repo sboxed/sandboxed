@@ -1,0 +1,62 @@
+name: Release Please
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-please
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Create Sandy installation token
+        id: sandy
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ vars.SANDY_APP_ID }}
+          private-key: ${{ secrets.SANDY_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+
+      - name: Create release PR or GitHub release
+        id: release
+        uses: googleapis/release-please-action@0dfd8538845b8e92600d271a895a5372865d4062 # v5.0.0
+        with:
+          token: ${{ steps.sandy.outputs.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      - name: Checkout release PR
+        if: steps.release.outputs.prs_created == 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}
+          token: ${{ steps.sandy.outputs.token }}
+
+      - name: Include shared release notes in each package
+        if: steps.release.outputs.prs_created == 'true'
+        env:
+          GH_TOKEN: ${{ steps.sandy.outputs.token }}
+        run: |
+          for changelog in packages/*/CHANGELOG.md; do
+            cp CHANGELOG.md "$changelog"
+          done
+
+          git add packages/*/CHANGELOG.md
+
+          if ! git diff --cached --quiet; then
+            bot_id=$(gh api 'users/sandy-451[bot]' --jq .id)
+            git config user.name 'Sandy #451'
+            git config user.email "$bot_id+sandy-451[bot]@users.noreply.github.com"
+            git commit -m 'chore(release): sync shared release notes'
+            git push
+          fi

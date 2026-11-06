@@ -1,4 +1,5 @@
 name: sandboxed_workspace
+publish_to: none
 description: Sandboxed is place where you store your components and stories
 
 workspace: 
@@ -29,14 +30,6 @@ dev_dependencies:
 
 melos:
   sdkPath: ".fvm/flutter_sdk"
-
-  command:
-    version:
-      hooks:
-        preCommit: |
-          dart format .
-          dart fix --apply
-          git add .
 
   scripts:
     generate:

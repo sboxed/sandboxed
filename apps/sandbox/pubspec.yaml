@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  sandboxed: ^0.1.9+2
-  sandboxed_core: ^0.1.6+1
+  sandboxed: ^0.1.9+2 # x-release-please-version
+  sandboxed_core: ^0.1.6+1 # x-release-please-version
 
   # features
   sandbox_feature:
@@ -32,7 +32,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   
   build_runner: ^2.16.1
-  sandboxed_generator: ^0.1.7+2
+  sandboxed_generator: ^0.1.7+2 # x-release-please-version
 
 flutter:
   uses-material-design: true
